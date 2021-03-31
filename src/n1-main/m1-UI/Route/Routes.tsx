@@ -1,28 +1,29 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {RoutePath} from "../../../App";
 
 export const Navbar = () =>{
     return (
         <div>
             <div>
-                <NavLink to={'/login'}>Login</NavLink>
-            </div>
-            <div>
-                <NavLink to={'/registration'}>Registration</NavLink>
-            </div>
-            <div>
-                <NavLink to={'/profile'}>Profile</NavLink>
-            </div>
-            <div>
-                <NavLink to={'/recovery'}>Password recovery</NavLink>
-            </div>
-            <div>
-                <NavLink to={'/new_password'}>New password</NavLink>
-            </div>
-            <div>
-                <NavLink to={'/testComponent'}>Test component</NavLink>
+                <NavLink to={RoutePath.LOGIN}>Login</NavLink>
             </div>
 
+            <div>
+                <NavLink to={RoutePath.REGISTRATION}>Registration</NavLink>
+            </div>
+
+            <div>
+                <NavLink to={RoutePath.PROFILE}>Profile</NavLink>
+            </div>
+
+            <div>
+                <NavLink to={RoutePath.PASSWORD_RECOVERY}>Password recovery</NavLink>
+            </div>
+
+            <div>
+                <NavLink to={RoutePath.TEST_COMPONENT}>Test component</NavLink>
+            </div>
 
         </div>
     )
