@@ -14,6 +14,7 @@ export const Registration = () => {
             <h3>Your email</h3>
             <SuperInputText/>
             <SuperButton title={'create'}/>
+            <p>Check that branch was created</p>
         </div>
     )
 }
