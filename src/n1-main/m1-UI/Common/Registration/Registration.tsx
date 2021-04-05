@@ -2,9 +2,7 @@ import React, {useState} from "react";
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import SuperCheckbox from "../InputAndButton/c3-SuperCheckbox/SuperCheckbox";
-import {AppStoreType} from "../../../m2-BLL/00-store/store";
-import {RegistrationInitialStateType, registrationTC} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import { registrationTC} from "../../../m2-BLL/01-reduser1/registration-reducer";
 import {Login} from "../Login/Login";
 
 
@@ -27,7 +25,6 @@ export const Registration = () => {
     }
 
     const onClickHandler = () => {
-        debugger
        dispatch( registrationTC(userName,email,password))
     }
     if (isRegistred) {
@@ -42,7 +39,6 @@ export const Registration = () => {
             <SuperInputText onChange={onChangeHandlerLogin}/>
             <h3>your password</h3>
             <SuperInputText onChange={onChangeHandlerPassword}/>
-            <button onClick={onClickHandler}>button for test</button>
             <SuperButton onClick={onClickHandler} title={'create'}/>
         </div>
     )

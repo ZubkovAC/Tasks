@@ -28,13 +28,13 @@ export const reserseReducer = ( state:ReserseInitialState = reserseInitialState,
         case "REDIRECT-TRUE":{
             return {
                 ...state,
-                redirect:true
+                redirect:false
             }
         }
         case "REDIRECT-FALSE":{
             return {
                 ...state,
-                redirect:false
+                redirect:true
             }
         }
 
@@ -63,8 +63,6 @@ export const redirectF = () => ({type:"REDIRECT-FALSE"}as const)
 
 export const passwordAC = (password:string) => ({type:"PASSWORD",password}as const)
 
-
-
 export const resPasswordTC = (password:string,resetPasswordsToken:string)=>(dispatch:any)=>{
         return AuthAPI.newPassword(password,resetPasswordsToken)
             .then((res)=>{
@@ -75,6 +73,8 @@ export const resPasswordTC = (password:string,resetPasswordsToken:string)=>(disp
             })
             .catch((error:any)=> {
                 console.log(password)
+                dispatch(redirectF())
+                dispatch(redirectT())
                 alert(error.error)
             })
     }

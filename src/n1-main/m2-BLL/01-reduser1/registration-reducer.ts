@@ -1,4 +1,4 @@
-import axios from "axios";
+import {AuthAPI} from "../../m3-DAL/axios";
 
 let initialState = {
     isRegistered: false
@@ -13,15 +13,8 @@ export const registrationReducer = (state: RegistrationInitialStateType = initia
             return state
     }
 }
-const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
-    withCredentials: true,
-})
-export const AuthAPI = {
-    createRegistration(userName:string,email:string,password:string){
-        return instance.post('auth/register',{userName,email,password})
-    }
-}
+
+
 
 export const registrationTC = (userName:string,email:string,password:string)=>{
 return (dispatch:any)=>{
@@ -35,7 +28,7 @@ return (dispatch:any)=>{
 }
 
 export const isRegisteredAC = (isRegistered: boolean) => ({type: 'CHANGE-IS-REGISTERED', isRegistered} as const)
-export type isRegisteredAC = ReturnType<typeof isRegisteredAC>
+export type IsRegisteredAC = ReturnType<typeof isRegisteredAC>
 
 export type ActionType =
-    | isRegisteredAC
+    | IsRegisteredAC
