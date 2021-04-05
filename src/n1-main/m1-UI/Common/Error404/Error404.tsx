@@ -1,7 +1,7 @@
 import css from './Error404.module.css'
 import React from 'react';
 
-export const Error = () =>{
+export const Error404 = () =>{
     return (
         <div className={css.App}>
             <div className={css.space}>
@@ -16,3 +16,6 @@ export const Error = () =>{
         </div>
     )
 }
+
+
+// http://localhost:7542/2.0/?frontTime=1596635884283
