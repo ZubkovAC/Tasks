@@ -11,6 +11,15 @@ export const AuthAPI = {
     createRegistration(userName:string,email:string,password:string){
         return instance.post('auth/register',{userName,email,password})
     },
+    authMe(){
+        return instance.post('auth/me',{})
+    },
+    login(email:string,password:string,rememberMe:boolean){
+        return instance.post('auth/login',{email,password,rememberMe})
+    },
+    logout(){
+        return instance.delete('auth/me',{})
+    },
     newPassword(password:string,resetPasswordsToken:string){
         return instance.post('auth/set-new-password',{password,resetPasswordsToken})
     }
