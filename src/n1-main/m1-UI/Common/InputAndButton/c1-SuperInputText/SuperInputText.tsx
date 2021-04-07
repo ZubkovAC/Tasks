@@ -18,6 +18,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     spanClassName?: string
     buttonCallback?:(a:any)=>void
     title?:string
+    needButton?:boolean
 };
 
 const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -70,9 +71,10 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
 
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
-            <button className={error?  s.buttonErrorFalse : s.buttonErrorTrue  } onClick={onChangeCallbackButton} >
+            {restProps.needButton&&<button className={error?  s.buttonErrorFalse : s.buttonErrorTrue  } onClick={onChangeCallbackButton} >
                 {title?title:'add'}
-            </button>
+            </button>}
+
             <div className={finalSpanClassName}>
 
                 {error && <div className={finalSpanClassName}>{error}</div>}

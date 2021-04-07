@@ -1,22 +1,21 @@
 import React, {useState} from "react";
+import "./registration.css"
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import { registrationTC} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import {RegistrationInitialStateType, registrationTC} from "../../../m2-BLL/01-reduser1/registration-reducer";
 import {Login} from "../Login/Login";
+import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {Preloader} from "../Accets/Preloader";
 
 
 export const Registration = () => {
-    let isRegistred = useSelector<any>(state => state.registration.isRegistered)
+    let isRegistred = useSelector<AppStateType>(state => state.registration.isRegistered)
+    let error = useSelector<AppStateType>(state => state.registration.error)
+    let isFetching = useSelector<AppStateType>(state => state.registration.isFetching)
     const dispatch = useDispatch()
-    let [userName,setUserName] = useState("")
     let [email, setEmail] = useState("")
     let [password, setPassword] = useState("")
-
-    const onChangeHandlerUsername = (e: React.FormEvent<HTMLInputElement>) => {
-        setUserName(e.currentTarget.value)
-    }
-
     const onChangeHandlerLogin = (e:  React.FormEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }
@@ -25,21 +24,22 @@ export const Registration = () => {
     }
 
     const onClickHandler = () => {
-       dispatch( registrationTC(userName,email,password))
+       dispatch( registrationTC(email,password))
     }
     if (isRegistred) {
         return <Login/>
     }
+
     return (
         <div>
             <h2>temporary stub</h2>
-            <h3>Your name</h3>
-            <SuperInputText onChange={onChangeHandlerUsername} />
+            {isFetching&&<Preloader/>}
             <h3>Your email</h3>
             <SuperInputText onChange={onChangeHandlerLogin}/>
             <h3>your password</h3>
             <SuperInputText onChange={onChangeHandlerPassword}/>
-            <SuperButton onClick={onClickHandler} title={'create'}/>
+            {error && <p className={"error"}>{` attention ${error}`}</p>}
+            <SuperButton disabled={isFetching?true:false} onClick={onClickHandler} title={'create'}/>
         </div>
     )
 }
