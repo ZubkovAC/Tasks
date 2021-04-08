@@ -44,7 +44,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
     }
 
     const onChangeCallbackButton =()=> {
-       alert('hello')
+        alert('hello')
     }
 
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
