@@ -3,5 +3,5 @@ import preloader from "./preloader.gif";
 
 
 export const Preloader =()=>{
-    return  <img src={preloader}/>
+    return  <img src={preloader} alt={preloader}/>
 }

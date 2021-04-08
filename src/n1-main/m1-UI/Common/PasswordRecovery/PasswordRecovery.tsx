@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
@@ -17,13 +17,13 @@ export const PasswordRecovery = () => {
     let redirect = useSelector<AppStateType, boolean>(state => state.newPassword.redirect)
 
 
-    const unpdatePassword = (text: string) => {
+    const unpdatePassword = useCallback((text: string) => {
         dispatch(passwordAC(text))
-    }
+    },[dispatch])
 
-    const recovery = () => {
+    const recovery = useCallback( ()=> {
         dispatch(resPasswordTC(password, resetPasswordsToken))
-    }
+    },[dispatch])
 
     if (redirect) {
         return (

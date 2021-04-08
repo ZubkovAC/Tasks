@@ -25,22 +25,32 @@ type responseType = {
 
 export const registrationReducer = (state: RegistrationInitialStateType = initialState, action: ActionTypeRegistration): RegistrationInitialStateType => {
     switch (action.type) {
-        case 'CHANGE-IS-REGISTERED':
+        case 'REGISTERED/CHANGE-IS-REGISTERED':
             return {...state, isRegistered: action.isRegistered}
-        case 'CHANGE-ERROR':
+        case 'REGISTERED/CHANGE-ERROR':
             return {...state, error: action.error}
-        case 'IS-FETCHING':
+        case 'REGISTERED/IS-FETCHING':
             return {...state, isFetching: action.isFetching}
-        case 'VAL-EMAIL':
+        case 'REGISTERED/VAL-EMAIL':
             return {...state, validationEmail: action.validationEmail}
-        case 'VAL-PASSWORD':
+        case 'REGISTERED/VAL-PASSWORD':
             return {...state, validationPassword: action.validationPassword}
         default:
             return state
     }
 }
 
+// Action Type
+export const isRegisteredAC = (isRegistered: boolean) => ({type: 'REGISTERED/CHANGE-IS-REGISTERED', isRegistered} as const)
+export const errorAC = (error: any) => ({type: 'REGISTERED/CHANGE-ERROR', error} as const)
+export const isFetchingAC = (isFetching: boolean) => ({type: 'REGISTERED/IS-FETCHING', isFetching} as const)
+export const validationEmailAC = (validationEmail: boolean) => ({type: 'REGISTERED/VAL-EMAIL', validationEmail} as const)
+export const validationPasswordAC = (validationPassword: boolean) => ({
+    type: 'REGISTERED/VAL-PASSWORD',
+    validationPassword
+} as const)
 
+// TC
 export const registrationTC = (email: string, password: string) => {
     return (dispatch: any) => {
         dispatch(isFetchingAC(true))
@@ -57,16 +67,7 @@ export const registrationTC = (email: string, password: string) => {
     }
 }
 
-
-export const isRegisteredAC = (isRegistered: boolean) => ({type: 'CHANGE-IS-REGISTERED', isRegistered} as const)
-export const errorAC = (error: any) => ({type: 'CHANGE-ERROR', error} as const)
-export const isFetchingAC = (isFetching: boolean) => ({type: 'IS-FETCHING', isFetching} as const)
-export const validationEmailAC = (validationEmail: boolean) => ({type: 'VAL-EMAIL', validationEmail} as const)
-export const validationPasswordAC = (validationPassword: boolean) => ({
-    type: 'VAL-PASSWORD',
-    validationPassword
-} as const)
-
+// Type
 export type IsRegisteredAC = ReturnType<typeof isRegisteredAC>
 export type errorACType = ReturnType<typeof errorAC>
 export type isFetchingACType = ReturnType<typeof isFetchingAC>

@@ -3,11 +3,7 @@ import "./registration.css"
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    RegistrationInitialStateType,
-    registrationTC,
-    validationEmailAC, validationPasswordAC
-} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import {registrationTC,validationEmailAC, validationPasswordAC} from "../../../m2-BLL/01-reduser1/registration-reducer";
 import {Login} from "../Login/Login";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Preloader} from "../Accets/Preloader";
@@ -30,10 +26,12 @@ export const Registration =React.memo(() => {
 
     const handleBlurPassword = useCallback((e:React.FormEvent<HTMLInputElement>)=>{
         setCheckOnBlurPassword(true)
-    },[])
+    },[setCheckOnBlurPassword])
+
     const handleBlurEmail=useCallback((e:React.FormEvent<HTMLInputElement>) =>{
         setCheckOnBlurEmail(true)
-    },[])
+    },[setCheckOnBlurEmail])
+
     const onChangeHandlerLogin = useCallback((e:  React.FormEvent<HTMLInputElement>) => {
         if(regForEmail.test(e.currentTarget.value)){
             dispatch(validationEmailAC(false))
@@ -42,7 +40,8 @@ export const Registration =React.memo(() => {
         else if(!e.currentTarget.onblur){
             dispatch(validationEmailAC(true))
         }
-    },[])
+    },[dispatch])
+
     const onChangeHandlerPassword =useCallback((e:React.FormEvent<HTMLInputElement>) => {
         if(e.currentTarget.value.length>7){
             setPassword(e.currentTarget.value)
@@ -51,11 +50,12 @@ export const Registration =React.memo(() => {
         else if(!e.currentTarget.onblur){
             dispatch(validationPasswordAC(true))
         }
+    },[dispatch])
 
-    },[])
     const onClickHandler = useCallback(() => {
         dispatch( registrationTC(email,password))
-    },[])
+    },[dispatch])
+
     if (isRegistred) {
         return <Login/>
     }
@@ -72,7 +72,7 @@ export const Registration =React.memo(() => {
 
             <SuperInputText onBlur={handleBlurPassword} onChange={onChangeHandlerPassword}/>
             {error && <p className={"error"}>{` attention ${error}`}</p>}
-            <SuperButton disabled={isFetching?true:false} onClick={onClickHandler} title={'create'}/>
+            <SuperButton disabled={!!isFetching} onClick={onClickHandler} title={'create'}/>
         </div>
     )
 })
