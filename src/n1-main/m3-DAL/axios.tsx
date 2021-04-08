@@ -8,8 +8,8 @@ const instance = axios.create({
 
 
 export const AuthAPI = {
-    createRegistration(userName:string,email:string,password:string){
-        return instance.post('auth/register',{userName,email,password})
+    createRegistration(email:string,password:string){
+        return instance.post('auth/register',{email,password})
     },
     authMe(){
         return instance.post('auth/me',{})

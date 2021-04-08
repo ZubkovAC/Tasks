@@ -1,45 +1,78 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
+import "./registration.css"
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import { registrationTC} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import {
+    RegistrationInitialStateType,
+    registrationTC,
+    validationEmailAC, validationPasswordAC
+} from "../../../m2-BLL/01-reduser1/registration-reducer";
 import {Login} from "../Login/Login";
+import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {Preloader} from "../Accets/Preloader";
 
+export const regForEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const Registration = () => {
-    let isRegistred = useSelector<any>(state => state.registration.isRegistered)
+export const Registration =React.memo(() => {
+    console.log("Registration is render")
+    let validationEmail =useSelector<AppStateType>(state=>state.registration.validationEmail)
+    let validationPassword = useSelector<AppStateType>(state=>state.registration.validationPassword)
+    let isRegistred = useSelector<AppStateType>(state => state.registration.isRegistered)
+    let error = useSelector<AppStateType>(state => state.registration.error)
+    let isFetching = useSelector<AppStateType>(state => state.registration.isFetching)
     const dispatch = useDispatch()
-    let [userName,setUserName] = useState("")
     let [email, setEmail] = useState("")
     let [password, setPassword] = useState("")
+    let [checkOnBlurEmail, setCheckOnBlurEmail] = useState(false)
+    let[checkOnBlurPassword,setCheckOnBlurPassword]=useState(false)
 
-    const onChangeHandlerUsername = (e: React.FormEvent<HTMLInputElement>) => {
-        setUserName(e.currentTarget.value)
-    }
 
-    const onChangeHandlerLogin = (e:  React.FormEvent<HTMLInputElement>) => {
-        setEmail(e.currentTarget.value)
-    }
-    const onChangeHandlerPassword = (e:  React.FormEvent<HTMLInputElement>) => {
-        setPassword(e.currentTarget.value)
-    }
+    const handleBlurPassword = useCallback((e:React.FormEvent<HTMLInputElement>)=>{
+        setCheckOnBlurPassword(true)
+    },[])
+    const handleBlurEmail=useCallback((e:React.FormEvent<HTMLInputElement>) =>{
+        setCheckOnBlurEmail(true)
+    },[])
+    const onChangeHandlerLogin = useCallback((e:  React.FormEvent<HTMLInputElement>) => {
+        if(regForEmail.test(e.currentTarget.value)){
+            dispatch(validationEmailAC(false))
+            setEmail(e.currentTarget.value)
+        }
+        else if(!e.currentTarget.onblur){
+            dispatch(validationEmailAC(true))
+        }
+    },[])
+    const onChangeHandlerPassword =useCallback((e:React.FormEvent<HTMLInputElement>) => {
+        if(e.currentTarget.value.length>7){
+            setPassword(e.currentTarget.value)
+            dispatch(validationPasswordAC(false))
+        }
+        else if(!e.currentTarget.onblur){
+            dispatch(validationPasswordAC(true))
+        }
 
-    const onClickHandler = () => {
-       dispatch( registrationTC(userName,email,password))
-    }
+    },[])
+    const onClickHandler = useCallback(() => {
+        dispatch( registrationTC(email,password))
+    },[])
     if (isRegistred) {
         return <Login/>
     }
+
     return (
         <div>
             <h2>temporary stub</h2>
-            <h3>Your name</h3>
-            <SuperInputText onChange={onChangeHandlerUsername} />
+            {isFetching&&<Preloader/>}
             <h3>Your email</h3>
-            <SuperInputText onChange={onChangeHandlerLogin}/>
+            {validationEmail&&checkOnBlurEmail&&  <span className={"error"}>email is incorrect</span>}
+            <SuperInputText onBlur={handleBlurEmail} onChange={onChangeHandlerLogin}/>
             <h3>your password</h3>
-            <SuperInputText onChange={onChangeHandlerPassword}/>
-            <SuperButton onClick={onClickHandler} title={'create'}/>
+            {validationPassword&&checkOnBlurPassword&& <span className={"error"}>Password must be more than 7 characters</span>}
+
+            <SuperInputText onBlur={handleBlurPassword} onChange={onChangeHandlerPassword}/>
+            {error && <p className={"error"}>{` attention ${error}`}</p>}
+            <SuperButton disabled={isFetching?true:false} onClick={onClickHandler} title={'create'}/>
         </div>
     )
-}
+})
