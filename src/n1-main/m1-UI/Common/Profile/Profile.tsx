@@ -9,10 +9,8 @@ export const Profile = () => {
     const dispatch = useDispatch()
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
 
-    // тестовые данные из логинизации, в перспективе нужно из профиля с сервера, с картинкой
     let avatar = useSelector<AppStateType, null | string>(state => state.login.avatar)
     let userName = useSelector<AppStateType, string>(state => state.login.userName)
-    //
 
     if(!isAuth){
         return <Redirect to={'/login'}/>;
