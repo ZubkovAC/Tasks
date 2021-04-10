@@ -9,10 +9,8 @@ export const Profile = () => {
     const dispatch = useDispatch()
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
 
-    // тестовые данные из логинизации, в перспективе нужно из профиля с сервера, с картинкой
-    let email = useSelector<AppStateType>(state => state.login.email)
-    let pass = useSelector<AppStateType>(state => state.login.password)
-    //
+    let avatar = useSelector<AppStateType, null | string>(state => state.login.avatar)
+    let userName = useSelector<AppStateType, string>(state => state.login.userName)
 
     if(!isAuth){
         return <Redirect to={'/login'}/>;
@@ -25,9 +23,8 @@ export const Profile = () => {
         <div>
             <SuperButton onClick={onClickHandler} title={'Logout'} />
             <h2>Profile</h2>
-            <img src="https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg" alt=""/>
-            <h3>your password: {pass}</h3>
-            <h3>Your email: {email}</h3>
+            <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
+            <h3>Hello {userName}</h3>
         </div>
     )
 }
