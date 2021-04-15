@@ -8,6 +8,8 @@ import SuperRange from "../InputAndButton/c7-SuperRange/SuperRange";
 import React, {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {authMeTC} from "../../../m2-BLL/02-reducer-login/login";
+import SuperInputTextOld from "../InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
+import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 
 export const TestComponent = () =>{
     const dispatch = useDispatch()
@@ -16,6 +18,13 @@ export const TestComponent = () =>{
     },[dispatch])
     return(
         <div>
+
+            <SuperInputTextOld />
+            <SuperButtonOld title={'add'}/>
+            <SuperButtonOld title={'v'}/>
+            <SuperButtonOld title={'v'} transform={true}/>
+
+
             <SuperInputText title={'alert'}/>
             <SuperButton title={'push'}/>
             <SuperCheckbox/>

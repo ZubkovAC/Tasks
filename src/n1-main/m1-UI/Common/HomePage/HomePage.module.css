@@ -1,0 +1,20 @@
+@font-face {
+    font-family: Panda;
+    src: url("../../fonts/KungFuPanda.otf") format("opentype");
+}
+
+h2 {
+    font-family: Panda;
+    color:black;
+    text-shadow: 0 0 30px 0 black;
+}
+.style span  {
+    margin: 10px;
+    font-style:italic;
+    color:darkred;
+    display: inline-block;
+    box-shadow: 0 0 30px 0 black;
+}
+.style img{
+    box-shadow: 5px 0 40px 5px black;
+}

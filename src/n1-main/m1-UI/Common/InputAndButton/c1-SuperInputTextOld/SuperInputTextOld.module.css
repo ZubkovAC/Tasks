@@ -1,0 +1,19 @@
+@font-face {
+    font-family: Panda;
+    src: url("../../../fonts/KungFuPanda.otf") format("opentype");
+    font-family: PandaRU;
+    src: url("../../../fonts/KungRU.otf") format("opentype");
+}
+
+.inputOld{
+
+    font-family: Panda,PandaRU;
+    color:black;
+    box-shadow: 0 0 5px 0 black;
+    min-width: 50px;
+    min-height: 10px;
+    background-color: wheat;
+    font-size: 20px;
+    padding: 3px;
+    outline: none;
+}

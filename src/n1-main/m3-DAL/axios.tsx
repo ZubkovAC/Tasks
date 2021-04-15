@@ -5,7 +5,8 @@ const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
-
+//   https://zubkovac.github.io/
+//   http://localhost:7542/2.0/
 
 export const AuthAPI = {
     createRegistration(email:string,password:string){

@@ -1,0 +1,46 @@
+@font-face {
+    font-family: Panda;
+    src: url("../../../fonts/KungFuPanda.otf") format("opentype");
+}
+
+.buttonOld{
+    font-family: Panda;
+    color:black;
+    box-shadow: 0 0 45px 0 black;
+    min-width: 30px;
+    min-height: 20px;
+    background-color: wheat;
+    font-size: 20px;
+    padding: 3px;
+    outline: none;
+}
+
+.buttonOld:hover{
+    box-shadow: 0 0 30px 0 black;
+    color:darkred;
+}
+.buttonOld:active{
+    box-shadow: 0 0 20px 0 black;
+    color:red;
+}
+.buttonOldT{
+    font-family: Panda;
+    color:black;
+    box-shadow: 0 0 45px 0 black;
+    min-width: 30px;
+    min-height: 20px;
+    background-color: wheat;
+    font-size: 20px;
+    padding: 3px;
+    outline: none;
+    transform:rotate(180deg)
+}
+.buttonOldT:hover{
+    box-shadow: 0 0 30px 0 black;
+    color:darkred;
+}
+.buttonOldT:active{
+    box-shadow: 0 0 20px 0 black;
+    color:red;
+}
+
