@@ -1,4 +1,5 @@
 import {AuthAPI} from "../../m3-DAL/axios";
+import {Dispatch} from "redux";
 
 let initialState = {
     isRegistered: false,
@@ -15,13 +16,6 @@ export type RegistrationInitialStateType = {
     validationPassword: boolean
 }
 
-type responseType = {
-    response: {
-        data: {
-            error: string
-        }
-    }
-}
 
 export const registrationReducer = (state: RegistrationInitialStateType = initialState, action: ActionTypeRegistration): RegistrationInitialStateType => {
     switch (action.type) {
@@ -51,20 +45,22 @@ export const validationPasswordAC = (validationPassword: boolean) => ({
 } as const)
 
 // TC
-export const registrationTC = (email: string, password: string) => {
-    return (dispatch: any) => {
+export const registrationTC = (email: string, password: string) =>  (dispatch: Dispatch) => {
         dispatch(isFetchingAC(true))
 
         return AuthAPI.createRegistration(email, password)
-            .then((res: any) => {
+            .then((res) => {
                 dispatch(isRegisteredAC(true));
             })
-            .catch((error: responseType) => {
-                console.log({...error})
-                dispatch(errorAC(error.response.data.error))
+            .catch((error) => {
+                if(error){
+                    dispatch(errorAC(error.response.data.error))
+                }
+                else {
+                    dispatch(errorAC(error.message))
+                }
             })
             .then(() => dispatch(isFetchingAC(false)))
-    }
 }
 
 // Type

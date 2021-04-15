@@ -8,8 +8,13 @@ import {Registration} from "./n1-main/m1-UI/Common/Registration/Registration";
 import {Profile} from "./n1-main/m1-UI/Common/Profile/Profile";
 import {PasswordRecovery} from "./n1-main/m1-UI/Common/PasswordRecovery/PasswordRecovery";
 import {Error404} from "./n1-main/m1-UI/Common/Error404/Error404";
+import {HomePage} from "./n1-main/m1-UI/Common/HomePage/HomePage";
+import {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/login";
 
 export const RoutePath = {
+    HOME_RAGE:'/',
     LOGIN: "/login",
     REGISTRATION: '/registration',
     PROFILE: '/profile',
@@ -20,6 +25,12 @@ export const RoutePath = {
 }
 
 function App() {
+
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(authMeTC())
+    },[dispatch])
+
     return (
         <div className="App">
             <div style={{float: 'left', margin: '40px', height: '1000px'}}>
@@ -27,13 +38,13 @@ function App() {
             </div>
             <div style={{margin: '40px'}}>
                 <Switch>
+                    <Route exact path={RoutePath.HOME_RAGE} render={() => <HomePage/>}/>
                     <Route exact path={RoutePath.LOGIN} render={() => <Login/>}/>
                     <Route exact path={RoutePath.REGISTRATION} render={() => <Registration/>}/>
                     <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
-                    {/*<Redirect from={RoutePath.REDIRECT} to={RoutePath.ERROR_404}/>*/}
 
                 </Switch>
             </div>

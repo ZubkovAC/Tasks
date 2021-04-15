@@ -12,10 +12,10 @@ export const AuthAPI = {
         return instance.post('auth/register',{email,password})
     },
     authMe(){
-        return instance.post('auth/me',{})
+        return instance.post<LoginData>('auth/me',{})
     },
     login(email:string,password:string,rememberMe:boolean){
-        return instance.post('auth/login',{email,password,rememberMe})
+        return instance.post<LoginData>('auth/login',{email,password,rememberMe})
     },
     logout(){
         return instance.delete('auth/me',{})
@@ -24,3 +24,21 @@ export const AuthAPI = {
         return instance.post('auth/set-new-password',{password,resetPasswordsToken})
     }
 }
+
+
+export type LoginData = {
+    avatar: string
+    created: string
+    email: string
+    isAdmin: boolean
+    name: string
+    publicCardPacksCount: number
+    rememberMe: boolean
+    token: string
+    tokenDeathTime: number
+    updated: string
+    verified: boolean
+    __v: number
+    _id: string
+}
+

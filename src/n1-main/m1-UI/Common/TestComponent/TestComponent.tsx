@@ -5,9 +5,15 @@ import SuperEditableSpan from "../InputAndButton/c4-SuperEditableSpan/SuperEdita
 import SuperSelect from "../InputAndButton/c5-SuperSelect/SuperSelect";
 import SuperRadio from "../InputAndButton/c6-SuperRadio/SuperRadio";
 import SuperRange from "../InputAndButton/c7-SuperRange/SuperRange";
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
+import {authMeTC} from "../../../m2-BLL/02-reducer-login/login";
 
 export const TestComponent = () =>{
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(authMeTC())
+    },[dispatch])
     return(
         <div>
             <SuperInputText title={'alert'}/>

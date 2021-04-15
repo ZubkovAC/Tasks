@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./login.css"
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import SuperCheckbox from "../InputAndButton/c3-SuperCheckbox/SuperCheckbox";
 import { useDispatch, useSelector } from "react-redux";
-import { loginTC } from "../../../m2-BLL/02-reducer-login/login";
+import {authMeTC, loginTC} from "../../../m2-BLL/02-reducer-login/login";
 import { Redirect } from 'react-router-dom';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 
@@ -25,13 +25,18 @@ export const Login = () => {
     const onChangeHandlerRememberMe = (e: React.FormEvent<HTMLInputElement>) => {
         setRememberMe(e.currentTarget.checked)
     }
+
+    useEffect(()=>{
+        if (!isAuth) dispatch(authMeTC())
+    },[dispatch])
+
+
     const onClickHandler = () => {
         dispatch( loginTC(email, password, rememberMe))
     }
 
-    if(isAuth){
-        return <Redirect to={'/profile'}/>;
-    }
+    if(isAuth)return <Redirect to={'/profile'}/>;
+
 
     return (
         <div>
