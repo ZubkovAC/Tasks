@@ -11,7 +11,7 @@ export const Profile = () => {
 
     let avatar = useSelector<AppStateType, null | string>(state => state.login.avatar)
     let userName = useSelector<AppStateType, string>(state => state.login.userName)
-
+    
     if(!isAuth){
         return <Redirect to={'/login'}/>;
     }
@@ -23,7 +23,7 @@ export const Profile = () => {
         <div>
             <SuperButton onClick={onClickHandler} title={'Logout'} />
             <h2>Profile</h2>
-            <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
+            <img src={avatar ? avatar : ''} alt="avatar"/>
             <h3>Hello {userName}</h3>
         </div>
     )

@@ -18,6 +18,14 @@ export const Navbar = () =>{
             </div>
 
             <div>
+                <NavLink to={RoutePath.PACKS}>Packs</NavLink>
+            </div>
+
+            <div>
+                <NavLink to={RoutePath.CARDS}>Cards</NavLink>
+            </div>
+
+            <div>
                 <NavLink to={RoutePath.PASSWORD_RECOVERY}>Password recovery</NavLink>
             </div>
 

@@ -10,8 +10,6 @@ const initialState = {
     userName: ''
 }
 
-
-
 export const loginReducer = (state:initialStateType = initialState, action:ActionType):initialStateType =>{
     switch (action.type) {
         case "LOGIN/LOGIN":
@@ -28,13 +26,13 @@ export const loginReducer = (state:initialStateType = initialState, action:Actio
             }
         case 'LOGIN/CHECK-AUTH':
             return {
-                ...state,
+                ...state, 
                 isAuth: action.isAuth
             }
         case 'LOGIN/GET-PROFILE':
             return {
-                ...state,
-                avatar: action.avatar,
+                ...state, 
+                avatar: action.avatar, 
                 userName: action.userName
             }
         default:
@@ -49,28 +47,27 @@ export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as c
 export const isAuthAC = (isAuth: boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth} as const)
 export const getProfileAC = (avatar:string, userName:string) => ({type: 'LOGIN/GET-PROFILE', avatar, userName} as const)
 
-
 //TC
 export const loginTC = (email:string, password:string, rememberMe:boolean) => (dispatch:any) => {
-    return AuthAPI.login(email, password, rememberMe)
-        .then((res)=>{
-            dispatch(loginAC(email, password, rememberMe))
-            dispatch(errorAC(null))
-            dispatch(isAuthAC(true))
-            dispatch(getProfileAC(res.data.avatar, res.data.name))
-        })
-        .catch((error: any) => {
-            dispatch(errorAC(error.response.data.error))
-        })
-}
+        return AuthAPI.login(email, password, rememberMe)
+            .then((res)=>{
+                dispatch(loginAC(email, password, rememberMe))
+                dispatch(errorAC(null))
+                dispatch(isAuthAC(true))
+                dispatch(getProfileAC(res.data.avatar, res.data.name))
+            })
+            .catch((error: any) => {
+                dispatch(errorAC(error.response.data.error))
+            })
+    }
 
 export const logoutTC = () => (dispatch:any) => {
-    return AuthAPI.logout()
-        .then(() => dispatch(isAuthAC(false)))
-        .catch((error: any) => {
-            dispatch(errorAC(error.response.data.error))
-        })
-}
+        return AuthAPI.logout()
+            .then(() => dispatch(isAuthAC(false)))
+            .catch((error: any) => {
+                dispatch(errorAC(error.response.data.error))
+            })
+    }
 
 //Type
 export type initialStateType = typeof initialState
