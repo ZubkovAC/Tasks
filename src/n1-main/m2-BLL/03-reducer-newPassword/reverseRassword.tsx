@@ -1,10 +1,14 @@
 import {AuthAPI} from "../../m3-DAL/axios"
+import {Dispatch} from "redux";
 
 
 const reserseInitialState = {
-    password: '',
-    resetPasswordsToken: '',
-    redirect: false
+    email: '',
+    from: '',
+    message:'' ,
+    password:'',
+    redirect: false,
+
 }
 
 
@@ -16,8 +20,10 @@ export const reserseReducer = (state: ReserseInitialState = reserseInitialState,
             return {...state, password: action.password}
         case "REVERSE/NEW-PASSWORD": {
             return {
-                ...state, password: action.password,
-                resetPasswordsToken: action.resetPasswordsToken,
+                ...state,
+                email: action.email,
+                from: action.from,
+                message:action.message
             }
         }
         case "REVERSE/REDIRECT-TRUE": {
@@ -34,26 +40,27 @@ export const reserseReducer = (state: ReserseInitialState = reserseInitialState,
 }
 
 //Action
-export const resPassword = (password: string, resetPasswordsToken: string) =>
-    ({type: "REVERSE/NEW-PASSWORD", password, resetPasswordsToken} as const)
+export const resPassword = (email: string, from: string,message:string) =>
+    ({type: "REVERSE/NEW-PASSWORD", email,from, message} as const)
 export const redirectT = () => ({type: "REVERSE/REDIRECT-TRUE"} as const)
 export const redirectF = () => ({type: "REVERSE/REDIRECT-FALSE"} as const)
 export const passwordAC = (password: string) => ({type: "REVERSE/PASSWORD", password} as const)
 
-//TC
-export const resPasswordTC = (password: string, resetPasswordsToken: string) => (dispatch: any) => {
-    return AuthAPI.newPassword(password, resetPasswordsToken)
+//TC     password recover link ???
+export const resPasswordTC = (email: string, from: string,message:string,) => (dispatch: Dispatch) => {
+    return AuthAPI.forgot(email, from,message)
         .then((res) => {
-            dispatch(redirectF())
+            // dispatch(redirectF())
         })
-        .then((res: any) => {
-            dispatch(resPassword(password, resetPasswordsToken))
+        .then((res) => {
+            debugger
+            dispatch(resPassword(email, from,message))
         })
-        .catch((error: any) => {
-            console.log(password)
-            dispatch(redirectF())
-            dispatch(redirectT())
-            alert(error.error)
+        .catch((error) => {
+            console.log({...error})
+            // dispatch(redirectF())
+            // dispatch(redirectT())
+            alert(error)
         })
 }
 

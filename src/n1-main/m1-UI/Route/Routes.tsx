@@ -19,7 +19,6 @@ export const Navbar = () =>{
             </div>
 
             <div className={css.navlink}>
-            <div>
                 <NavLink to={RoutePath.PACKS}>Packs</NavLink>
             </div>
 
@@ -30,7 +29,6 @@ export const Navbar = () =>{
             <div className={css.navlink}>
                 <NavLink to={RoutePath.TEST_COMPONENT}>Test component</NavLink>
             </div>
-
         </div>
     )
 }

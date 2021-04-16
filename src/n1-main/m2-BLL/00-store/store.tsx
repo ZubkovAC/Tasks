@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 
 let rootReducer = combineReducers({
     start:StartReducer,
-    newPassword:reserseReducer,
+    resPassword:reserseReducer,
     registration: registrationReducer,
     login: loginReducer,
     packs: packsReducer

@@ -1,42 +1,77 @@
-import React, {useCallback} from "react";
-import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
-import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
+import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {passwordAC, resPasswordTC} from "../../../m2-BLL/03-reducer-newPassword/reverseRassword";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-import {Redirect} from "react-router-dom";
+import {Redirect, useParams} from "react-router-dom";
 import {RoutePath} from "../../../../App";
-
+import SuperInputTextOld from "../InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
+import css from "./PasswordRecovery.module.css";
+import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 
 export const PasswordRecovery = () => {
 
-
+    const { id } = useParams<{id?: string}>();
     const dispatch = useDispatch()
-    let password = useSelector<AppStateType, string>(state => state.newPassword.password)
-    let resetPasswordsToken = useSelector<AppStateType, string>(state => state.newPassword.resetPasswordsToken)
-    let redirect = useSelector<AppStateType, boolean>(state => state.newPassword.redirect)
+    let password = useSelector<AppStateType, string>(state => state.resPassword.password)
+    let redirect = useSelector<AppStateType, boolean>(state => state.resPassword.redirect)
 
+    const [mail,setMail]=useState<string>('nya-admin@nya.nya')
+    const [SplitFlap,setSplitFlap]=useState<boolean>(false)
+    const [pass,setPass]=useState<string>('1qazxcvBG')
+    const [pass1,setPass1]=useState<string>('1qazxcvBG')
 
-    const unpdatePassword = useCallback((text: string) => {
-        dispatch(passwordAC(text))
-    },[dispatch])
+    const unpdateMail =(value:string)=> {
+        setMail(value)
+    }
+    const unpdateFirstPassword =(value:string)=> {
+        setPass(value)
+    }
+    const unpdateLastPassword =(value:string)=> {
+        setPass1(value)
+    }
 
-    const recovery = useCallback( ()=> {
-        dispatch(resPasswordTC(password, resetPasswordsToken))
-    },[dispatch])
+    const recoveryMail = useCallback( ()=> {
+        if (mail==='nya-admin@nya.nya'){
+            setSplitFlap(true)
+            dispatch(resPasswordTC(mail,'hello','begu'))
+        }else {
+            setSplitFlap(false)
+        }
+    },[mail])
+
+    const recoveryPass = useCallback( ()=> {
+        if (pass===pass1){
+            alert('ok')
+        }
+    },[pass,pass1])
 
     if (redirect) {
         return (
             <Redirect from={RoutePath.LOGIN} to={RoutePath.LOGIN}/>
         )
     }
+
     else{
         return (
             <div>
-                <h2>temporary stub</h2>
-                <div>new Password</div>
-                <SuperInputText onChangeText={unpdatePassword}/>
-                <SuperButton title={"recovery"} onClick={recovery}/>
+                <h2>Recovery</h2>
+                <span className={css.span}  >email</span>
+                <SuperInputTextOld onChangeText={unpdateMail} title={mail}/>
+                <div style={{height:'10px'}}></div>
+                <SuperButtonOld title={"recovery"} onClick={recoveryMail}/>
+                {SplitFlap &&
+                <div style={{margin:"20px"}}>
+                    <span className={css.span}  >password</span>
+                    <SuperInputTextOld onChangeText={unpdateFirstPassword} title={pass} />
+                    <div style={{height:'10px'}}></div>
+                    <span className={css.span}  >password</span>
+                    <SuperInputTextOld onChangeText={unpdateLastPassword} title={pass1} />
+                    <div style={{height:'10px'}}></div>
+                    <SuperButtonOld title={"recovery"} onClick={recoveryPass}/>
+                </div>
+
+
+                }
             </div>
         )
 

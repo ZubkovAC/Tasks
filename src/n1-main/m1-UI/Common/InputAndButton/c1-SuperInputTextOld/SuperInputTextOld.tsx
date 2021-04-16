@@ -38,14 +38,11 @@ const SuperInputTextOld: React.FC<SuperInputTextPropsType> = (
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement> ) => {
         onChange // если есть пропс onChange
         && onChange(e); // то передать ему е (поскольку onChange не обязателен)
-
         onChangeText && onChangeText(e.currentTarget.value);
 
     }
 
-    const onChangeCallbackButton =()=> {
-        alert('hello')
-    }
+
 
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
 
@@ -67,12 +64,10 @@ const SuperInputTextOld: React.FC<SuperInputTextPropsType> = (
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={s.inputOld}
-
+                value={title}
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
-            {restProps.needButton&&<button className={error?  s.buttonErrorFalse : s.buttonErrorTrue  } onClick={onChangeCallbackButton} >
-                {title?title:'add'}
-            </button>}
+
 
             <div className={finalSpanClassName}>
 

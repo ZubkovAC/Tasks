@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/',
+    baseURL: 'http://localhost:7542/2.0/cards/pack',
     withCredentials: true,
 })
 //   https://zubkovac.github.io/
@@ -21,10 +21,15 @@ export const AuthAPI = {
     logout(){
         return instance.delete('auth/me',{})
     },
-    newPassword(password:string,resetPasswordsToken:string){
-        return instance.post('auth/set-new-password',{password,resetPasswordsToken})
+    forgot(email:string,from:string,message:string){
+        return instance.post('auth/forgot',{email,from,message})
+    },
+    newPassword(password:string,resetPasswordToken:string){
+        return instance.post('auth/set-new-password',{password,resetPasswordToken})
     }
 }
+
+
 
 export const PacksAPI = {
     getPacks(packName?: string, min?: number, max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
