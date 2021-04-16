@@ -2,9 +2,10 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:7542/2.0/cards/pack',
+    baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
+
 //   https://zubkovac.github.io/
 //   http://localhost:7542/2.0/
 
