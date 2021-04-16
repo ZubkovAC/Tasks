@@ -1,15 +1,21 @@
 import css from '../Block/Block.module.css'
 import React from 'react';
-import SuperButton from "../../InputAndButton/c2-SuperButton/SuperButton";
+import SuperButtonOld from '../../InputAndButton/с2-SuperBottonOld/SuperButtonOld';
 
 export const HeaderPacks = () =>{
     return (
         <div className={css.App}>
-            <div>Name</div>
-            <div>cardsCount</div>
-            <div>updated</div>
-            <div>url</div>
-            <SuperButton title={'Add'}/>
+            <div style={{fontSize:'20px',fontWeight:600}}>
+                <div>Name</div>
+                <div>cardsCount</div>
+                <div>updated</div>
+                <div>url</div>
+            </div>
+
+            <div>
+                <SuperButtonOld title={'Add'}/>
+            </div>
+
         </div>
     )
 }
