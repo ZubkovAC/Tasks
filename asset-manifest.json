@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.81c8152a.chunk.css",
-    "main.js": "/Tasks/static/js/main.68116d10.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.68116d10.chunk.js.map",
-    "runtime-main.js": "/Tasks/static/js/runtime-main.ed829fc8.js",
-    "runtime-main.js.map": "/Tasks/static/js/runtime-main.ed829fc8.js.map",
-    "static/js/2.8130b57f.chunk.js": "/Tasks/static/js/2.8130b57f.chunk.js",
-    "static/js/2.8130b57f.chunk.js.map": "/Tasks/static/js/2.8130b57f.chunk.js.map",
-    "static/js/3.c59ddd48.chunk.js": "/Tasks/static/js/3.c59ddd48.chunk.js",
-    "static/js/3.c59ddd48.chunk.js.map": "/Tasks/static/js/3.c59ddd48.chunk.js.map",
+    "main.css": "/Tasks/static/css/main.a72f557d.chunk.css",
+    "main.js": "/Tasks/static/js/main.2db8db34.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.2db8db34.chunk.js.map",
+    "runtime-main.js": "/Tasks/static/js/runtime-main.b0c0c360.js",
+    "runtime-main.js.map": "/Tasks/static/js/runtime-main.b0c0c360.js.map",
+    "static/js/2.aeda08da.chunk.js": "/Tasks/static/js/2.aeda08da.chunk.js",
+    "static/js/2.aeda08da.chunk.js.map": "/Tasks/static/js/2.aeda08da.chunk.js.map",
+    "static/js/3.af954281.chunk.js": "/Tasks/static/js/3.af954281.chunk.js",
+    "static/js/3.af954281.chunk.js.map": "/Tasks/static/js/3.af954281.chunk.js.map",
     "index.html": "/Tasks/index.html",
-    "static/css/main.81c8152a.chunk.css.map": "/Tasks/static/css/main.81c8152a.chunk.css.map",
-    "static/js/2.8130b57f.chunk.js.LICENSE.txt": "/Tasks/static/js/2.8130b57f.chunk.js.LICENSE.txt",
+    "static/css/main.a72f557d.chunk.css.map": "/Tasks/static/css/main.a72f557d.chunk.css.map",
+    "static/js/2.aeda08da.chunk.js.LICENSE.txt": "/Tasks/static/js/2.aeda08da.chunk.js.LICENSE.txt",
     "static/media/SuperButtonOld.module.css": "/Tasks/static/media/KungFuPanda.fd3df450.otf",
-    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf"
+    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.ed829fc8.js",
-    "static/js/2.8130b57f.chunk.js",
-    "static/css/main.81c8152a.chunk.css",
-    "static/js/main.68116d10.chunk.js"
+    "static/js/runtime-main.b0c0c360.js",
+    "static/js/2.aeda08da.chunk.js",
+    "static/css/main.a72f557d.chunk.css",
+    "static/js/main.2db8db34.chunk.js"
   ]
 }
