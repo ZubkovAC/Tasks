@@ -12,6 +12,7 @@ import {HomePage} from "./n1-main/m1-UI/Common/HomePage/HomePage";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/login";
+import {Packs} from "./n1-main/m1-UI/Common/Packs/Packs";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -20,6 +21,7 @@ export const RoutePath = {
     PROFILE: '/profile',
     PASSWORD_RECOVERY: '/recovery',
     TEST_COMPONENT: "/testComponent",
+    PACKS: '/packs',
     ERROR_404: "/404",
     REDIRECT: '*',
 }
@@ -30,6 +32,9 @@ function App() {
     useEffect(()=>{
         dispatch(authMeTC())
     },[dispatch])
+
+
+
 
     return (
         <div className="App">
@@ -44,6 +49,7 @@ function App() {
                     <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
+                    <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
 
                 </Switch>

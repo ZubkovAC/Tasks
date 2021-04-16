@@ -16,6 +16,13 @@ export type RegistrationInitialStateType = {
     validationPassword: boolean
 }
 
+type responseType = {
+    response: {
+        data: {
+            error: string
+        }
+    }
+}
 
 export const registrationReducer = (state: RegistrationInitialStateType = initialState, action: ActionTypeRegistration): RegistrationInitialStateType => {
     switch (action.type) {
