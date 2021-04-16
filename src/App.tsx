@@ -9,7 +9,6 @@ import {Profile} from "./n1-main/m1-UI/Common/Profile/Profile";
 import {PasswordRecovery} from "./n1-main/m1-UI/Common/PasswordRecovery/PasswordRecovery";
 import {Error404} from "./n1-main/m1-UI/Common/Error404/Error404";
 import {Packs} from "./n1-main/m1-UI/Common/Packs/Packs";
-import {Cards} from "./n1-main/m1-UI/Common/Cards/Cards";
 
 export const RoutePath = {
     LOGIN: "/login",
@@ -18,7 +17,6 @@ export const RoutePath = {
     PASSWORD_RECOVERY: '/recovery',
     TEST_COMPONENT: "/testComponent",
     PACKS: '/packs',
-    CARDS: '/cards',
     ERROR_404: "/404",
     REDIRECT: '*',
 }
@@ -40,7 +38,6 @@ function App() {
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
-                    <Route exact path={RoutePath.CARDS} render={() => <Cards/>}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
                     {/*<Redirect from={RoutePath.REDIRECT} to={RoutePath.ERROR_404}/>*/}
 
