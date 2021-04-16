@@ -13,6 +13,8 @@ import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/login";
 import {Search} from "./n1-main/m1-UI/Common/Search/search";
+import {Pagination} from "./n1-main/m1-UI/Common/Pagination/Pagination";
+import SuperSelect from "./n1-main/m1-UI/Common/InputAndButton/c5-SuperSelect/SuperSelect";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -36,7 +38,6 @@ function App() {
         <div className="App">
             <div style={{float: 'left', margin: '40px', height: '1000px'}}>
                 <Navbar/>
-                <Search/>
             </div>
             <div style={{margin: '40px'}}>
                 <Switch>
@@ -49,6 +50,7 @@ function App() {
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
 
                 </Switch>
+
             </div>
 
 

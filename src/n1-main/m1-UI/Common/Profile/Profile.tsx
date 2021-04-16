@@ -4,6 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
 import {authMeTC, logoutTC} from "../../../m2-BLL/02-reducer-login/login";
+import {Search} from "../Search/search";
+import {Pagination} from "../Pagination/Pagination";
 
 export const Profile = () => {
     const dispatch = useDispatch()
@@ -31,6 +33,8 @@ export const Profile = () => {
                 <h2>Profile</h2>
                 <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
                 <h3>Hello {userName}</h3>
+                <Search/>
+                <Pagination/>
             </div>
         )
     }
