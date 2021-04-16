@@ -22,7 +22,7 @@ export const Navbar = () =>{
                 <NavLink to={RoutePath.PACKS}>Packs</NavLink>
             </div>
 
-            <div>
+            <div className={css.navlink}>
                 <NavLink to={RoutePath.PASSWORD_RECOVERY}>Password recovery</NavLink>
             </div>
 
