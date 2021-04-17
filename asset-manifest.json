@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.51e37747.chunk.css",
-    "main.js": "/Tasks/static/js/main.6a8a0650.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.6a8a0650.chunk.js.map",
-    "runtime-main.js": "/Tasks/static/js/runtime-main.b0c0c360.js",
-    "runtime-main.js.map": "/Tasks/static/js/runtime-main.b0c0c360.js.map",
-    "static/js/2.6a5eba87.chunk.js": "/Tasks/static/js/2.6a5eba87.chunk.js",
-    "static/js/2.6a5eba87.chunk.js.map": "/Tasks/static/js/2.6a5eba87.chunk.js.map",
-    "static/js/3.af954281.chunk.js": "/Tasks/static/js/3.af954281.chunk.js",
-    "static/js/3.af954281.chunk.js.map": "/Tasks/static/js/3.af954281.chunk.js.map",
+    "main.css": "/Tasks/static/css/main.a5368202.chunk.css",
+    "main.js": "/Tasks/static/js/main.4e449648.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.4e449648.chunk.js.map",
+    "runtime-main.js": "/Tasks/static/js/runtime-main.89161675.js",
+    "runtime-main.js.map": "/Tasks/static/js/runtime-main.89161675.js.map",
+    "static/js/2.561b8ac7.chunk.js": "/Tasks/static/js/2.561b8ac7.chunk.js",
+    "static/js/2.561b8ac7.chunk.js.map": "/Tasks/static/js/2.561b8ac7.chunk.js.map",
+    "static/js/3.f37169d9.chunk.js": "/Tasks/static/js/3.f37169d9.chunk.js",
+    "static/js/3.f37169d9.chunk.js.map": "/Tasks/static/js/3.f37169d9.chunk.js.map",
     "index.html": "/Tasks/index.html",
-    "static/css/main.51e37747.chunk.css.map": "/Tasks/static/css/main.51e37747.chunk.css.map",
-    "static/js/2.6a5eba87.chunk.js.LICENSE.txt": "/Tasks/static/js/2.6a5eba87.chunk.js.LICENSE.txt",
-    "static/media/SuperButtonOld.module.css": "/Tasks/static/media/KungFuPanda.fd3df450.otf",
-    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf"
+    "static/css/main.a5368202.chunk.css.map": "/Tasks/static/css/main.a5368202.chunk.css.map",
+    "static/js/2.561b8ac7.chunk.js.LICENSE.txt": "/Tasks/static/js/2.561b8ac7.chunk.js.LICENSE.txt",
+    "static/media/Paginator.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf",
+    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf"
   },
   "entrypoints": [
-    "static/js/runtime-main.b0c0c360.js",
-    "static/js/2.6a5eba87.chunk.js",
-    "static/css/main.51e37747.chunk.css",
-    "static/js/main.6a8a0650.chunk.js"
+    "static/js/runtime-main.89161675.js",
+    "static/js/2.561b8ac7.chunk.js",
+    "static/css/main.a5368202.chunk.css",
+    "static/js/main.4e449648.chunk.js"
   ]
 }
