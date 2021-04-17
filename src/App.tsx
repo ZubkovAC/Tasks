@@ -10,9 +10,10 @@ import {PasswordRecovery} from "./n1-main/m1-UI/Common/PasswordRecovery/Password
 import {Error404} from "./n1-main/m1-UI/Common/Error404/Error404";
 import {HomePage} from "./n1-main/m1-UI/Common/HomePage/HomePage";
 import {useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/login";
 import {Packs} from "./n1-main/m1-UI/Common/Packs/Packs";
+import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -28,10 +29,12 @@ export const RoutePath = {
 
 function App() {
 
+    const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
+
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(authMeTC())
-    },[dispatch])
+        if (!isAuth) dispatch(authMeTC())
+    },[])
 
 
 

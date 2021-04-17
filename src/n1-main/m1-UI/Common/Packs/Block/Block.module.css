@@ -1,6 +1,9 @@
-.App{
+.Block{
+    background-color: white;
+    opacity: 0.5;
     display: flex;
     justify-content: flex-start;
     margin: 10px;
     border: 1px solid gray;
+    padding: 10px;
 }

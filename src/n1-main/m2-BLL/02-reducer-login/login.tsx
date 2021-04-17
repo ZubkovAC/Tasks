@@ -9,7 +9,8 @@ const initialState = {
     error: null,
     isAuth: false,
     avatar: '' ,
-    userName: ''
+    userName: '',
+    lamp:true,
 }
 
 
@@ -28,6 +29,8 @@ export const loginReducer = (state: initialStateType = initialState, action: Act
             return {...state, isAuth: action.isAuth}
         case 'LOGIN/GET-PROFILE':
             return {...state, avatar: action.avatar, userName: action.userName}
+        case "LOGIN/TEST-ERROR":
+            return {...state,lamp:action.lamp}
         default:
             return state
     }
@@ -40,7 +43,7 @@ export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as c
 export const isAuthAC = (isAuth: boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth} as const)
 export const getProfileAC = (avatar: string , userName: string) => ({
     type: 'LOGIN/GET-PROFILE',avatar,userName} as const)
-
+export const lampAC = (lamp: boolean) => ({type: 'LOGIN/TEST-ERROR', lamp} as const)
 
 //TC
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
@@ -58,11 +61,16 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
         .catch((error) => {
             if (error.response){
                 dispatch(errorAC(error.response.data.error))
+                dispatch(lampAC(false))
+                setTimeout(()=>dispatch(lampAC(true)),2000)
             }
             else{
                 dispatch(errorAC(error.message))
+                dispatch(lampAC(false))
+                setTimeout(()=>dispatch(lampAC(true)),2000)
             }
         })
+
 }
 
 export const logoutTC = () => (dispatch: Dispatch) => {
@@ -70,10 +78,14 @@ export const logoutTC = () => (dispatch: Dispatch) => {
         .then(() => dispatch(isAuthAC(false)))
         .catch((error) => {
             if (error.response){
+                dispatch(lampAC(false))
+                setTimeout(()=>dispatch(lampAC(true)),2000)
                 dispatch(errorAC(error.response.data.error))
             }
             else{
                 dispatch(errorAC(error.message))
+                dispatch(lampAC(false))
+                setTimeout(()=>dispatch(lampAC(true)),2000)
             }
         })
 }
@@ -81,17 +93,24 @@ export const logoutTC = () => (dispatch: Dispatch) => {
 export const authMeTC = () => (dispatch: Dispatch) => {
     return AuthAPI.authMe()
         .then((res) =>{
+            console.log(res.data)
+            dispatch(getProfileAC(res.data.avatar, res.data.name))
             dispatch(isAuthAC(true))
         } )
+        .catch( res=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+        })
 }
 
 
 
 //Type
 export type initialStateType = typeof initialState
-export type ActionType = LoginType | ErrorType | IsAuthType | GetProfileType
+export type ActionType = LoginType | ErrorType | IsAuthType | GetProfileType | LampAC
 
 export type LoginType = ReturnType<typeof loginAC>
 export type ErrorType = ReturnType<typeof errorAC>
 export type IsAuthType = ReturnType<typeof isAuthAC>
 export type GetProfileType = ReturnType<typeof getProfileAC>
+export type LampAC = ReturnType<typeof lampAC>

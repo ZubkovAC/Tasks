@@ -53,7 +53,7 @@ export const resPasswordTC = (email: string, from: string,message:string,) => (d
             // dispatch(redirectF())
         })
         .then((res) => {
-            debugger
+
             dispatch(resPassword(email, from,message))
         })
         .catch((error) => {

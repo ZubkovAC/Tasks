@@ -1,18 +1,20 @@
 import React, {ChangeEvent, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {cardCountAC} from "../../../m2-BLL/04-reducer-search/search-reducer";
-import SuperSelect from "../InputAndButton/c5-SuperSelect/SuperSelect";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-
+import SuperSelectOld from "../InputAndButton/c5-SuperSelectOld/SuperSelectOld";
+import {Search} from "../Search/search";
 
 export const Pagination = () => {
     const pagesCount = useSelector<AppStateType,number>((state)=>state.search.cardPageTotalCount)
-    const portionSize = useSelector<AppStateType,number>((state)=>state.search.count)
+    const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)
+
     let pageCount = Math.ceil(pagesCount/portionSize)
     let pageList = []
     for(let i=0; i<pageCount;i++){
         pageList.push(i)
     }
+
     let portionCount = Math.ceil(pageCount / portionSize);//посмотрим
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
@@ -22,8 +24,9 @@ export const Pagination = () => {
         dispatch(cardCountAC(+e))
     }
     return (
-        <div>
-            <SuperSelect onChangeOption={onChangeHandler} options={['3','4','5','6','7','8','9']}/>
+        <div style={{textAlign:'right'}}>
+            <SuperSelectOld style={{display:'inline' ,textAlign:'right'}} onChangeOption={onChangeHandler} options={['3','4','5','6','7','8','9']}/>
+            <Search/>
             {portionNumber > 1 &&
             <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>}
             {pageList
@@ -34,6 +37,7 @@ export const Pagination = () => {
                 })}
             {portionCount > portionNumber && <button onClick={() => {setPortionNumber(portionNumber + 1)}}>
                 NEXT</button>}
+
         </div>
     )
 }

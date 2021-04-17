@@ -20,20 +20,22 @@ export const PasswordRecovery = () => {
     const [pass,setPass]=useState<string>('1qazxcvBG')
     const [pass1,setPass1]=useState<string>('1qazxcvBG')
 
-    const unpdateMail =(value:string)=> {
+    const unpdateMail =useCallback((value:string)=>  {
         setMail(value)
-    }
-    const unpdateFirstPassword =(value:string)=> {
+    },[mail])
+
+    const unpdateFirstPassword =useCallback((value:string)=> {
         setPass(value)
-    }
-    const unpdateLastPassword =(value:string)=> {
+    },[pass])
+
+    const unpdateLastPassword = useCallback( (value:string)=> {
         setPass1(value)
-    }
+    },[setPass1])
 
     const recoveryMail = useCallback( ()=> {
         if (mail==='nya-admin@nya.nya'){
             setSplitFlap(true)
-            dispatch(resPasswordTC(mail,'hello','begu'))
+            dispatch(resPasswordTC(mail,'hello','begu'))   //alert reducer reverseRassword
         }else {
             setSplitFlap(false)
         }
@@ -41,7 +43,6 @@ export const PasswordRecovery = () => {
 
     const recoveryPass = useCallback( ()=> {
         if (pass===pass1){
-            alert('ok')
         }
     },[pass,pass1])
 
@@ -69,8 +70,6 @@ export const PasswordRecovery = () => {
                     <div style={{height:'10px'}}></div>
                     <SuperButtonOld title={"recovery"} onClick={recoveryPass}/>
                 </div>
-
-
                 }
             </div>
         )

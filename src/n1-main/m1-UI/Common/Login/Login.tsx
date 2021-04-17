@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import "./login.css"
 import SuperInputText from "../InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../InputAndButton/c2-SuperButton/SuperButton";
@@ -26,14 +26,12 @@ export const Login = () => {
         setRememberMe(e.currentTarget.checked)
     }
 
-    useEffect(()=>{
-        if (!isAuth) dispatch(authMeTC())
-    },[dispatch])
 
 
-    const onClickHandler = () => {
+
+    const onClickHandler = useCallback(() => {
         dispatch( loginTC(email, password, rememberMe))
-    }
+    },[email, password, rememberMe])
 
     if(isAuth)return <Redirect to={'/profile'}/>;
 

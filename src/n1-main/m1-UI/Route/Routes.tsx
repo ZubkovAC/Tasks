@@ -2,10 +2,16 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 import {RoutePath} from "../../../App";
 import css from './Routes.module.css'
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../m2-BLL/00-store/store";
 
 export const Navbar = () =>{
+
+    let lamp = useSelector<AppStateType,boolean>(state=>state.login.lamp)
+
     return (
         <div>
+            <span className={lamp ? css.lamp:css.lampErr}>status</span>
             <div className={css.navlink}>
                 <NavLink to={RoutePath.LOGIN}>Login</NavLink>
             </div >

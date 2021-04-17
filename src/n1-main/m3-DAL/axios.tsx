@@ -6,7 +6,7 @@ const instance = axios.create({
     withCredentials: true,
 })
 
-//   https://zubkovac.github.io/
+//   https://neko-back.herokuapp.com/2.0
 //   http://localhost:7542/2.0/
 
 export const AuthAPI = {

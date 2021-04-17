@@ -16,3 +16,19 @@
 .navlink a:active {
     box-shadow: 0 0 20px 0px black;
 }
+.lamp{
+    position:absolute;
+    float:left;
+    color:greenyellow;
+    left: 95%;
+    top:5%;
+    text-shadow: 1px 1px 20px lightgreen, 0 0 1em lightgreen;
+}
+.lampErr{
+    position:absolute;
+    float:left;
+    color:red;
+    left: 95%;
+    top:5%;
+    text-shadow: 1px 1px 20px red, 0 0 1em darkred;
+}
