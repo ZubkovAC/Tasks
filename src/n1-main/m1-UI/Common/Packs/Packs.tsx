@@ -5,7 +5,6 @@ import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Block} from "./Block/Block";
 import {HeaderPacks} from "./HeaderPacks/HeaderPacks";
 import { useDispatch, useSelector } from "react-redux";
-import {Search} from "../Search/search";
 import {Pagination} from "../Pagination/Pagination";
 
 
@@ -37,16 +36,9 @@ export const Packs = () =>{
     let cardPacks = useSelector<AppStateType,Array<PardsTypeProps>>(state => state.packs.cardPacks)
 
 
-
-
-
-
-
     if(!isAuth){
         return <Unauthorised/>;
     }
-
-
 
     return (
         <div className={css.App}>

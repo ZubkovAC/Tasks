@@ -93,7 +93,6 @@ export const logoutTC = () => (dispatch: Dispatch) => {
 export const authMeTC = () => (dispatch: Dispatch) => {
     return AuthAPI.authMe()
         .then((res) =>{
-            console.log(res.data)
             dispatch(getProfileAC(res.data.avatar, res.data.name))
             dispatch(isAuthAC(true))
         } )
