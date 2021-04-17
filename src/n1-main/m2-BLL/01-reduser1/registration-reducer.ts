@@ -67,7 +67,7 @@ export const registrationTC = (email: string, password: string) =>  (dispatch: D
                     dispatch(errorAC(error.message))
                 }
             })
-            .then(() => dispatch(isFetchingAC(false)))
+            .finally(() => dispatch(isFetchingAC(false)))
 }
 
 // Type

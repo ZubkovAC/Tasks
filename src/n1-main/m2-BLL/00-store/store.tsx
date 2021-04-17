@@ -5,12 +5,14 @@ import {registrationReducer} from "../01-reduser1/registration-reducer";
 import {loginReducer} from "../02-reducer-login/login";
 import {packsReducer} from "../05-reducer-packs/packs";
 import thunk from 'redux-thunk'
+import {searchReducer} from "../04-reducer-search/search-reducer";
 
 let rootReducer = combineReducers({
     start:StartReducer,
     resPassword:reserseReducer,
     registration: registrationReducer,
     login: loginReducer,
+    search:searchReducer,
     packs: packsReducer
 })
 
