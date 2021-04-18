@@ -44,8 +44,51 @@ export const PacksAPI = {
     },
     deletePack(id: string){
         return instance.delete(`cards/pack?id=${id}`)
+    },
+}
+
+
+export const CardsAPI = {
+    getCards(cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
+             max:number,sortCards:string,page:number,pageCount:number){
+        return instance.get(
+            `/cards/card?cardAnswer=${cardAnswer}&cardQuestion=${cardQuestion}&cardsPack_id=${cardsPack_id}
+            &min=${min}&max=${max}&sortCards=${sortCards}&page=${page}&pageCount=${pageCount}`)
+    },
+    newCard( card:NewCard ){
+        return instance.post(`/cards/card`,{card})
+    },
+    deleteCard (id:string){
+        return instance.delete( `/cards/card?=${id}`)
+    },
+    updateCard (card:UpdateTypeInstase){
+        return instance.put( `/cards/card?=${card}` )
     }
 }
+
+
+
+
+export type UpdateTypeInstase={
+    _id:string
+    question:string
+    comments:string
+}
+
+export type NewCard = {
+    cardsPack_id:string,
+    question?:string,
+    answer?:string,
+    grade?:number,
+    shots?:number,
+    rating?:number,
+    answerImg?:string,
+    questionImg?:string,
+    questionVideo?: string,
+    answerVideo?:string,
+    type?:string
+}
+
 
 export type LoginData = {
     avatar: string
