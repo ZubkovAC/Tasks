@@ -2,6 +2,7 @@
 import {PacksAPI} from "../../m3-DAL/axios"
 import {PardsTypeProps} from "../../m1-UI/NavBar(left)/04-Packs/Packs";
 import {Dispatch} from "redux";
+import {lampAC} from "../02-reducer-login/reducer-login";
 
 const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
@@ -47,7 +48,14 @@ export const getPacksTC = (packName: string, min: number, max: number, sortPacks
             // dispatch(getPacksAC(res.data.cardPacks.name, res.data.cardPacks.user_name, res.data.cardPacks.rating, res.data.cardPacks.created, res.data.cardPacks.updated,res.data.cardPacksTotalCount))
         })
         .catch((error) => {
-            dispatch(errorAC(error.response.data.error))
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+            if(error.response){
+                dispatch(errorAC(error.response.data.error))
+            }
+            else{
+                dispatch(errorAC(error.message))
+            }
         })
 }
 
@@ -57,7 +65,12 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
             dispatch(addPackAC(name, path, grade, shots, rating, deckCover, isPrivate, typeQ))
         })
         .catch((error: any) => {
-            dispatch(errorAC(error.response.data.error))
+            if(error.response){
+                dispatch(errorAC(error.response.data.error))
+            }
+            else{
+                dispatch(errorAC(error.message))
+            }
         })
 }
 

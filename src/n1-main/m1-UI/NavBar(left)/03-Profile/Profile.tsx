@@ -6,8 +6,7 @@ import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton"
 import {logoutTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
 import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
-import {Search} from "../04-Packs/Search/search";
-import {Pagination} from "../../Common/Pagination/Pagination";
+
 
 export const Profile = () => {
     const dispatch = useDispatch()
@@ -23,8 +22,6 @@ export const Profile = () => {
         dispatch( logoutTC())
     },[dispatch])
     if(!isAuth) return <Redirect to={'/login'}/>;
-
-
 
     else {
         return (

@@ -46,23 +46,30 @@ export const PacksAPI = {
         return instance.delete(`cards/pack?id=${id}`)
     },
 }
-
+// getCards(cardAnswer?:string,cardQuestion?:string,cardsPack_id?:string,min?:number,
+//     max?:number,sortCards?:string,page?:number,pageCount?:number){
+//     return instance.get(`/cards/card?cardAnswer=${cardAnswer}&cardQuestion=${cardQuestion}&cardsPack_id=${cardsPack_id}&min=${min}&max=${max}&sortCards=${sortCards}&page=${page}&pageCount=${pageCount}`)
+// },
 
 export const CardsAPI = {
-    getCards(cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
-             max:number,sortCards:string,page:number,pageCount:number){
-        return instance.get(
-            `/cards/card?cardAnswer=${cardAnswer}&cardQuestion=${cardQuestion}&cardsPack_id=${cardsPack_id}
-            &min=${min}&max=${max}&sortCards=${sortCards}&page=${page}&pageCount=${pageCount}`)
+    getCards(cardAnswer?:any,cardQuestion?:any,cardsPack_id?:any,min?:any,
+             max?:any,sortCards?:any,page?:any,pageCount?:any){
+        return instance.get(`cards/card`,{params:{
+                cardAnswer: cardAnswer,
+                cardQuestion: cardQuestion,
+        cardsPack_id: cardsPack_id,
+                min: min,
+                max,sortCards,page,pageCount
+            }})
     },
     newCard( card:NewCard ){
-        return instance.post(`/cards/card`,{card})
+        return instance.post(`cards/card`,{card})
     },
     deleteCard (id:string){
-        return instance.delete( `/cards/card?=${id}`)
+        return instance.delete( `cards/card?=${id}`)
     },
     updateCard (card:UpdateTypeInstase){
-        return instance.put( `/cards/card`,{card} )
+        return instance.put( `cards/card`,{card} )
     }
 }
 

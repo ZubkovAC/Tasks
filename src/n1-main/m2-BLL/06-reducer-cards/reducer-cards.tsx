@@ -2,6 +2,7 @@ import {Dispatch} from "redux";
 import {CardsAPI} from "../../m3-DAL/axios";
 
 
+
 const initialState = {
     cards:''
 
@@ -27,13 +28,17 @@ export const getCardsAC = (cards:any) => ({ type:"CARDS/GET-CARDS",cards}as cons
 
 export type GetCardsAC = ReturnType<typeof getCardsAC>
 
-export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
-                           max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
+// export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
+//                            max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
+
+export const getCardsTC = (cardAnswer:any,cardQuestion:any,cardsPack_id:any,min:any,
+                           max:any,sortCards:any,page:any,pageCount:any) => (dispatch: Dispatch)=>{
     return CardsAPI.getCards(cardAnswer,cardQuestion,cardsPack_id,min,max,sortCards,page,pageCount)
         .then((res)=>{
             debugger
             dispatch(getCardsAC(res.data))
         })
+        .catch((err)=>console.log({...err}))
 }
 
 
