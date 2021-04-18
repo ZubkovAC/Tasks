@@ -6,6 +6,7 @@ import {reducerLogin} from "../02-reducer-login/reducer-login";
 import {reducerPacks} from "../05-reducer-packs/reducer-packs";
 import thunk from 'redux-thunk'
 import {reducerSearch} from "../04-reducer-search/reducer-search";
+import {cardsReducer} from "../06-reducer-cards/reducer-cards";
 
 
 
@@ -16,7 +17,8 @@ let rootReducer = combineReducers({
     registration: registrationReducer,
     login: reducerLogin,
     search:reducerSearch,
-    packs: reducerPacks
+    packs: reducerPacks,
+    cards:cardsReducer
 })
 
 

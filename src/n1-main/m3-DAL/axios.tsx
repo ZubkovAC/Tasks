@@ -33,12 +33,14 @@ export const AuthAPI = {
 
 
 export const PacksAPI = {
-    getPacks(packName?: string, min?: number, max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
+    getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
         return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
-    },
-    addPack(name?: string, path?: string, grade?: number, shots?: number, rating?: number, deckCover?: string, isPrivate?: boolean, typeQ?: string){
-        return instance.post(`cards/pack`, {name, path, grade, shots, rating, deckCover, isPrivate, typeQ})
-    },
+    },                                  // эту бороду можно как-то уменьшить?? с верху
+    addPack(name: string, path: string, grade: number, shots: number,
+            rating: number, deckCover: string, privat: boolean, type: string){   // private - ругается(как указано в инструкции)
+        return instance.post(`cards/pack`, {name, path, grade,
+            shots, rating, deckCover, privat, type})                 // правильно прописал? ... в ответ ошибка 401 это норма?
+    },                                                              // при запросе Пачка не добовляется (не видно)
     updatePack(_id: string, name?: string){
         return instance.put(`cards/pack`, {_id, name})
     },
@@ -52,14 +54,11 @@ export const PacksAPI = {
 // },
 
 export const CardsAPI = {
-    getCards(cardAnswer?:any,cardQuestion?:any,cardsPack_id?:any,min?:any,
-             max?:any,sortCards?:any,page?:any,pageCount?:any){
+    getCards(cardAnswer?:string,cardQuestion?:string,cardsPack_id?:string,min?:number,
+            max?:number,sortCards?:string,page?:number,pageCount?:number){
         return instance.get(`cards/card`,{params:{
-                cardAnswer: cardAnswer,
-                cardQuestion: cardQuestion,
-        cardsPack_id: cardsPack_id,
-                min: min,
-                max,sortCards,page,pageCount
+            cardAnswer, cardQuestion, cardsPack_id,
+                min, max,sortCards,page,pageCount
             }})
     },
     newCard( card:NewCard ){

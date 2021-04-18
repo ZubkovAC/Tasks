@@ -7,6 +7,7 @@ import {lampAC} from "../02-reducer-login/reducer-login";
 const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
     cardPacksTotalCount:0,
+    name:''
 }
 
 export const reducerPacks = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -17,17 +18,18 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
                 cardPacks:action.array,
                 cardPacksTotalCount:action.cardPacksTotalCount
             }
+        case "PACKS/CREATE-NAME-PACK":{
+            return {...state,name:action.name }
+        }
         default:
             return state
     }
 }
 
 // ActionType
-// export const getPacksAC = (name: string, user_name: string, rating: number, created: string, updated: string,cardPacksTotalCount:number) =>
 export const getPacksAC = (array:Array<PardsTypeProps>,cardPacksTotalCount:number) =>
     ({type: "PACKS/GET-PACKS",array,cardPacksTotalCount} as const)
-export const addPackAC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, isPrivate: boolean, typeQ: string) =>
-    ({type: "PACKS/ADD-PACK", name, path, grade, shots, rating, deckCover, isPrivate, typeQ} as const)
+export const  textCreateNamePackAC = (name: string) => ({type: "PACKS/CREATE-NAME-PACK", name} as const)
 export const updatePackAC = (_id: string, name: string) =>
     ({type: "PACKS/UPDATE-PACK", _id, name} as const)
 export const deletePackAC = (id: string) =>
@@ -39,13 +41,10 @@ export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as c
 
 
 //TC
-export const getPacksTC = (packName: string, min: number, max: number, sortPacks: string, page: number, pageCount: number, userId: string) => (dispatch: Dispatch) => {
+export const getPacksTC = (packName: string, min: number , max: number, sortPacks: string, page: number, pageCount: number, userId: string) => (dispatch: Dispatch) => {
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId)
         .then((res) => {
-            debugger
-
             dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))
-            // dispatch(getPacksAC(res.data.cardPacks.name, res.data.cardPacks.user_name, res.data.cardPacks.rating, res.data.cardPacks.created, res.data.cardPacks.updated,res.data.cardPacksTotalCount))
         })
         .catch((error) => {
             dispatch(lampAC(false))
@@ -59,12 +58,16 @@ export const getPacksTC = (packName: string, min: number, max: number, sortPacks
         })
 }
 
-export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, isPrivate: boolean, typeQ: string) => (dispatch: Dispatch) => {
-    return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, isPrivate, typeQ)
+export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string) => (dispatch: Dispatch) => {
+    return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
         .then((res) => {
-            dispatch(addPackAC(name, path, grade, shots, rating, deckCover, isPrivate, typeQ))
+            debugger
+            dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))
         })
         .catch((error: any) => {
+            debugger
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
             if(error.response){
                 dispatch(errorAC(error.response.data.error))
             }
@@ -96,10 +99,12 @@ export const deletePackTC = (id: string) => (dispatch: any) => {
 
 //Type
 export type initialStateType = typeof initialState
-export type ActionType = getType | addType | updateType | deleteType | errorType
+export type ActionType = GetPacksAC | TextCreateNamePackAC | updateType | deleteType | errorType
 
-export type getType = ReturnType<typeof getPacksAC>
-export type addType = ReturnType<typeof addPackAC>
+export type GetPacksAC = ReturnType<typeof getPacksAC>
+export type TextCreateNamePackAC = ReturnType<typeof textCreateNamePackAC>
+
+
 export type updateType = ReturnType<typeof updatePackAC>
 export type deleteType = ReturnType<typeof getPacksAC>
 export type errorType = ReturnType<typeof errorAC>

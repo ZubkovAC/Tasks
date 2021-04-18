@@ -1,13 +1,15 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {cardCountAC, pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
+import {pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-import SuperSelectOld from "../InputAndButton/c5-SuperSelectOld/SuperSelectOld";
-import {Search} from "../../NavBar(left)/04-Packs/Search/search";
 import css from './Paginator.module.css'
 import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 export const Pagination = () => {
+
+    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
+
     const cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.search.cardPageTotalCount)
     const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)
     const cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)
@@ -23,22 +25,18 @@ export const Pagination = () => {
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
     const dispatch = useDispatch()
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(cardCountAC(+e))
-    }
+
+
     const PagesCount = (e:number) =>{
         dispatch(pagesListAC(e))
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
     }
+
     let pagesList = useSelector<AppStateType,number>(state=>state.search.pagesList)
+
     return (
         <div style={{textAlign:'right'}}>
 
-
-            <SuperSelectOld style={{display:'inline' ,textAlign:'right'}} onChangeOption={onChangeHandler} options={['3','4','5','6','7','8','9']}/>
-
-
-
-            <Search/>
 
 
 

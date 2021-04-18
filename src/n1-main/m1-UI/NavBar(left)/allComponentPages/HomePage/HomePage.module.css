@@ -1,6 +1,6 @@
 @font-face {
     font-family: Panda;
-    src: url("../../Common/fonts/KungFuPanda.otf") format("opentype");
+    src: url("../../../Common/fonts/KungFuPanda.otf") format("opentype");
 }
 
 h2 {

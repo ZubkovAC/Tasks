@@ -7,13 +7,14 @@ import {Login} from './n1-main/m1-UI/NavBar(left)/01-Login/Login';
 import {Registration} from "./n1-main/m1-UI/NavBar(left)/02-Registration/Registration";
 import {Profile} from "./n1-main/m1-UI/NavBar(left)/03-Profile/Profile";
 import {PasswordRecovery} from "./n1-main/m1-UI/NavBar(left)/05-PasswordRecovery/PasswordRecovery";
-import {Error404} from "./n1-main/m1-UI/NavBar(left)/Error404/Error404";
-import {HomePage} from "./n1-main/m1-UI/NavBar(left)/HomePage/HomePage";
-import {useEffect} from "react";
+import {Error404} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/Error404/Error404";
+import {HomePage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/HomePage/HomePage";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/reducer-login";
-import {Packs} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
+import {Packs, PardsTypeProps} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
 import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
+import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/PackID";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -29,6 +30,7 @@ export const RoutePath = {
 
 function App() {
 
+    let cardPacks =  useSelector<AppStateType,Array<PardsTypeProps>>(state => state.packs.cardPacks)
     const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
 
     const dispatch = useDispatch()
@@ -53,6 +55,8 @@ function App() {
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
+
+                    <Route path={RoutePath.PACKS} render={() => <PackId/>}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
 
                 </Switch>
