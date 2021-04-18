@@ -62,7 +62,7 @@ export const CardsAPI = {
         return instance.delete( `/cards/card?=${id}`)
     },
     updateCard (card:UpdateTypeInstase){
-        return instance.put( `/cards/card?=${card}` )
+        return instance.put( `/cards/card`,{card} )
     }
 }
 

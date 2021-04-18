@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {cardCountAC, pagesListAC} from "../../../m2-BLL/04-reducer-search/search-reducer";
+import {cardCountAC, pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperSelectOld from "../InputAndButton/c5-SuperSelectOld/SuperSelectOld";
-import {Search} from "../Search/search";
+import {Search} from "../../NavBar(left)/04-Packs/Search/search";
 import css from './Paginator.module.css'
 import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 

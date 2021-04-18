@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {StartReducer} from "../01-reduser1/start";
-import {reserseReducer} from "../03-reducer-newPassword/reverseRassword";
+import {reserseReducer} from "../03-reducer-newPassword/reducer-reverseRassword";
 import {registrationReducer} from "../01-reduser1/registration-reducer";
-import {loginReducer} from "../02-reducer-login/login";
-import {packsReducer} from "../05-reducer-packs/packs";
+import {reducerLogin} from "../02-reducer-login/reducer-login";
+import {reducerPacks} from "../05-reducer-packs/reducer-packs";
 import thunk from 'redux-thunk'
-import {searchReducer} from "../04-reducer-search/search-reducer";
+import {reducerSearch} from "../04-reducer-search/reducer-search";
 
 
 
@@ -14,9 +14,9 @@ let rootReducer = combineReducers({
     start:StartReducer,
     resPassword:reserseReducer,
     registration: registrationReducer,
-    login: loginReducer,
-    search:searchReducer,
-    packs: packsReducer
+    login: reducerLogin,
+    search:reducerSearch,
+    packs: reducerPacks
 })
 
 

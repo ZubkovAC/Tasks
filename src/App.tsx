@@ -2,17 +2,17 @@ import './App.css';
 
 import { Route, Switch} from "react-router-dom";
 import {Navbar} from "./n1-main/m1-UI/Route/Routes";
-import {TestComponent} from "./n1-main/m1-UI/Common/TestComponent/TestComponent";
-import {Login} from './n1-main/m1-UI/Common/Login/Login';
-import {Registration} from "./n1-main/m1-UI/Common/Registration/Registration";
-import {Profile} from "./n1-main/m1-UI/Common/Profile/Profile";
-import {PasswordRecovery} from "./n1-main/m1-UI/Common/PasswordRecovery/PasswordRecovery";
-import {Error404} from "./n1-main/m1-UI/Common/Error404/Error404";
-import {HomePage} from "./n1-main/m1-UI/Common/HomePage/HomePage";
+import {TestComponent} from "./n1-main/m1-UI/NavBar(left)/06-TestComponent/TestComponent";
+import {Login} from './n1-main/m1-UI/NavBar(left)/01-Login/Login';
+import {Registration} from "./n1-main/m1-UI/NavBar(left)/02-Registration/Registration";
+import {Profile} from "./n1-main/m1-UI/NavBar(left)/03-Profile/Profile";
+import {PasswordRecovery} from "./n1-main/m1-UI/NavBar(left)/05-PasswordRecovery/PasswordRecovery";
+import {Error404} from "./n1-main/m1-UI/NavBar(left)/Error404/Error404";
+import {HomePage} from "./n1-main/m1-UI/NavBar(left)/HomePage/HomePage";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/login";
-import {Packs} from "./n1-main/m1-UI/Common/Packs/Packs";
+import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/reducer-login";
+import {Packs} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
 import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 
 export const RoutePath = {

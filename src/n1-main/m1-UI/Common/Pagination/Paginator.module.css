@@ -1,8 +1,8 @@
 @font-face {
    font-family: Panda;
-   src: url("../../fonts/KungFuPanda.otf") format("opentype");
+   src: url("../fonts/KungFuPanda.otf") format("opentype");
    font-family: RussoOne;
-   src: url("../../fonts/RussoOne.ttf") format("truetype");
+   src: url("../fonts/RussoOne.ttf") format("truetype");
 }
 
 .selectedPage {
