@@ -4,10 +4,12 @@ import {PardsTypeProps} from "../../m1-UI/NavBar(left)/04-Packs/Packs";
 import {Dispatch} from "redux";
 import {lampAC} from "../02-reducer-login/reducer-login";
 
+
 const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
     cardPacksTotalCount:0,
-    name:''
+    name:'',
+    type:'TestPack'
 }
 
 export const reducerPacks = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -30,11 +32,9 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
 export const getPacksAC = (array:Array<PardsTypeProps>,cardPacksTotalCount:number) =>
     ({type: "PACKS/GET-PACKS",array,cardPacksTotalCount} as const)
 export const  textCreateNamePackAC = (name: string) => ({type: "PACKS/CREATE-NAME-PACK", name} as const)
-export const updatePackAC = (_id: string, name: string) =>
-    ({type: "PACKS/UPDATE-PACK", _id, name} as const)
-export const deletePackAC = (id: string) =>
-    ({type: "PACKS/DELETE-PACK", id} as const)
-export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)
+
+
+export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)     // выводиться куда? не используется в коде
 
 
 
@@ -58,14 +58,14 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
         })
 }
 
+
+
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string) => (dispatch: Dispatch) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
         .then((res) => {
-            debugger
-            dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))
+            console.log('ok',{...res.data})
         })
-        .catch((error: any) => {
-            debugger
+        .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
             if(error.response){
@@ -77,37 +77,44 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
         })
 }
 
-export const updatePackTC = (_id: string, name: string) => (dispatch: any) => {
+export const updatePackTC = (_id: string, name: string) => (dispatch: Dispatch) => {
     return PacksAPI.updatePack(_id, name)
         .then((res) => {
-            dispatch(updatePackAC(_id, name))
+            console.log({...res.data})
         })
-        .catch((error: any) => {
+        .catch((error) => {
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
             dispatch(errorAC(error.response.data.error))
         })
 }
 
-export const deletePackTC = (id: string) => (dispatch: any) => {
+export const deletePackTC = (id: string) => (dispatch: Dispatch) => {
     return PacksAPI.deletePack(id)
         .then((res) => {
-            dispatch(deletePackAC(id))
+            debugger
+            console.log({...res.data})
         })
-        .catch((error: any) => {
-            dispatch(errorAC(error.response.data.error))
+        .catch((err)=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
         })
 }
+
 
 //Type
 export type initialStateType = typeof initialState
-export type ActionType = GetPacksAC | TextCreateNamePackAC | updateType | deleteType | errorType
+export type ActionType =
+    | GetPacksAC
+    | TextCreateNamePackAC
+    | ErrorType
 
 export type GetPacksAC = ReturnType<typeof getPacksAC>
 export type TextCreateNamePackAC = ReturnType<typeof textCreateNamePackAC>
 
 
-export type updateType = ReturnType<typeof updatePackAC>
-export type deleteType = ReturnType<typeof getPacksAC>
-export type errorType = ReturnType<typeof errorAC>
+
+export type ErrorType = ReturnType<typeof errorAC>
 
 
 

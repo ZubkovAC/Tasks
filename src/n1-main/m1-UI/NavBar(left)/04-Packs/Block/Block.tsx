@@ -4,6 +4,7 @@ import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/Su
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {getCardsTC, inputIdAC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 export type BlockPropsType ={
     name:string
@@ -23,6 +24,13 @@ export const Block =(props:BlockPropsType)=>{
         dispatch(getCardsTC('english','english',props.id,1,4,'0grade',1,7) )
     }
 
+    const deleteCard = () =>{
+        dispatch(deletePackTC(props.id))
+    }
+
+    const updateCard = ()=>{
+        dispatch( updatePackTC(props.id, 'jylio-xylio'))
+    }
 
 
 
@@ -43,8 +51,8 @@ export const Block =(props:BlockPropsType)=>{
 
             </div>
             <div>
-                <SuperButtonOld title={'Delete'}  />
-                <SuperButtonOld title={'Update'}  />
+                <SuperButtonOld title={'Delete'}  onClick={deleteCard} />
+                <SuperButtonOld title={'Update'}  onClick={updateCard} />
             </div>
 
         </div>

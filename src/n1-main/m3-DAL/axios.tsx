@@ -36,13 +36,14 @@ export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
         return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
     },                                  // эту бороду можно как-то уменьшить?? с верху
-    addPack(name: string, path: string, grade: number, shots: number,
-            rating: number, deckCover: string, privat: boolean, type: string){   // private - ругается(как указано в инструкции)
-        return instance.post(`cards/pack`, {name, path, grade,
-            shots, rating, deckCover, privat, type})                 // правильно прописал? ... в ответ ошибка 401 это норма?
+    addPack(name?: string, path?: string, grade?: number, shots?: number,
+            rating?: number, deckCover?: string, privat?: boolean, type?: string){   // private - ругается(как указано в инструкции)
+        return instance.post(`cards/pack`, {cardsPack:{name, path, grade,
+            shots, rating, deckCover, privat, type}})                 // правильно прописал? ... в ответ ошибка 401 это норма?
     },                                                              // при запросе Пачка не добовляется (не видно)
-    updatePack(_id: string, name?: string){
-        return instance.put(`cards/pack`, {_id, name})
+    updatePack(_id: string, name: string){
+        // return instance.put(`cards/pack`, {_id, name})           //как было
+        return instance.put(`cards/pack`, {cardsPack:{_id, name}})  // как работает
     },
     deletePack(id: string){
         return instance.delete(`cards/pack?id=${id}`)
@@ -61,8 +62,8 @@ export const CardsAPI = {
                 min, max,sortCards,page,pageCount
             }})
     },
-    newCard( card:NewCard ){
-        return instance.post(`cards/card`,{card})
+    createCard( card:CreateCardType ){
+        return instance.post(`cards/card`,{card:{card}})
     },
     deleteCard (id:string){
         return instance.delete( `cards/card?=${id}`)
@@ -81,7 +82,7 @@ export type UpdateTypeInstase={
     comments:string
 }
 
-export type NewCard = {
+export type CreateCardType = {
     cardsPack_id:string,
     question?:string,
     answer?:string,
