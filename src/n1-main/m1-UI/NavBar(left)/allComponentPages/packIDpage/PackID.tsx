@@ -38,9 +38,9 @@ export const PackId = () =>{
 
 
     const createCard = () =>{
-         dispatch(createCardTC(id, '??', '=',0,0,
-            0, 'string', 'string',  'string',
-            'string', 'string'))
+         dispatch(createCardTC(id, 'cardsTest', 'Test2',0,0,
+            0, 'string', 'string',  '',
+            '', 'CARD'))
     }
     const updateCard = () =>{
         // dispatch(updateCardTC(card))

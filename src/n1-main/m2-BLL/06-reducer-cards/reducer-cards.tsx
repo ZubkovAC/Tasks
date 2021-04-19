@@ -47,13 +47,15 @@ export type InputIdAC = ReturnType<typeof inputIdAC>
 
 export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
                       max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
-    return CardsAPI.getCards(cardAnswer,cardQuestion,cardsPack_id,min,max,sortCards,page,pageCount)
+    // return CardsAPI.getCards(cardAnswer,cardQuestion,cardsPack_id,min,max,sortCards,page,pageCount)pageCount,page,min,max
+    return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,)
         .then((res)=>{
             debugger
             dispatch(getCardsAC(res.data.cards))
         })
         .catch((err)=>console.log({...err}))
 }
+
 export const createCardTC = (cardsPack_id:string,
                              question?:string,
                              answer?:string,

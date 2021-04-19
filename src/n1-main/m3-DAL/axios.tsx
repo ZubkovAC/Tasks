@@ -35,39 +35,31 @@ export const AuthAPI = {
 export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
         return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
-    },                                  // эту бороду можно как-то уменьшить?? с верху
+    },
     addPack(name?: string, path?: string, grade?: number, shots?: number,
-            rating?: number, deckCover?: string, privat?: boolean, type?: string){   // private - ругается(как указано в инструкции)
+            rating?: number, deckCover?: string, privat?: boolean, type?: string){
         return instance.post(`cards/pack`, {cardsPack:{name, path, grade,
-            shots, rating, deckCover, privat, type}})                 // правильно прописал? ... в ответ ошибка 401 это норма?
-    },                                                              // при запросе Пачка не добовляется (не видно)
+            shots, rating, deckCover, privat, type}})
+    },
     updatePack(_id: string, name: string){
-        // return instance.put(`cards/pack`, {_id, name})           //как было
-        return instance.put(`cards/pack`, {cardsPack:{_id, name}})  // как работает
+        return instance.put(`cards/pack`, {cardsPack:{_id, name}})
     },
     deletePack(id: string){
         return instance.delete(`cards/pack?id=${id}`)
     },
 }
-// getCards(cardAnswer?:string,cardQuestion?:string,cardsPack_id?:string,min?:number,
-//     max?:number,sortCards?:string,page?:number,pageCount?:number){
-//     return instance.get(`/cards/card?cardAnswer=${cardAnswer}&cardQuestion=${cardQuestion}&cardsPack_id=${cardsPack_id}&min=${min}&max=${max}&sortCards=${sortCards}&page=${page}&pageCount=${pageCount}`)
-// },
+
 
 export const CardsAPI = {
-    getCards(cardAnswer?:string,cardQuestion?:string,cardsPack_id?:string,min?:number,
-            max?:number,sortCards?:string,page?:number,pageCount?:number){
-        return instance.get(`cards/card`,{params:{
-            cardAnswer, cardQuestion, cardsPack_id,
-                min, max,sortCards,page,pageCount
-            }})
+
+    getCards(cardPackId:string,cardQuestion:string,cardAnswer:string){
+        return instance.get(`cards/card?pageCount=10&cardsPack_id=${cardPackId}&cardQuestion=${cardQuestion}&cardAnswer=${cardAnswer}`)
     },
     createCard( cardsPack_id:string, question?:string, answer?:string, grade?:number, shots?:number, rating?:number, answerImg?:string,
                 questionImg?:string, questionVideo?: string, answerVideo?:string, type?:string){
         return instance.post(`cards/card`,{card:{cardsPack_id,question,answer,grade,shots,rating,
                     answerImg,questionImg,questionVideo,answerVideo,type}})
     },
-
     updateCard (card:UpdateTypeInstase){
         return instance.put( `cards/card`,{card} )
     },
