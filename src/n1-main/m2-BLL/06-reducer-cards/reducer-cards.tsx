@@ -1,12 +1,13 @@
 import {Dispatch} from "redux";
-import {CardsAPI} from "../../m3-DAL/axios";
+import {CardsAPI, CreateCardType, UpdateTypeInstase} from "../../m3-DAL/axios";
+import {lampAC} from "../02-reducer-login/reducer-login";
 
 
 
 const initialState = {
-    cards:'',
-    id:'',
-
+    cardArray:[] as CreateCardType[],
+    packID:'',
+    card:{} as CreateCardType
 }
 
 export type IniticalStateCardType = typeof initialState
@@ -16,12 +17,13 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
         case "CARDS/GET-CARDS":
             return {
                 ...state,
-                cards:action.cards,
+                cardArray:action.cardArray,
             }
         case "CARDS/ID-CARDS":{
+            debugger
             return {
                 ...state,
-                id:action.id
+                packID:action.packID
             }
         }
         default:
@@ -29,8 +31,8 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
     }
 }
 
-export const getCardsAC = (cards:string) => ({ type:"CARDS/GET-CARDS",cards}as const)
-export const inputIdAC = (id:string) => ({ type:"CARDS/ID-CARDS",id}as const)
+export const getCardsAC = (cardArray:CreateCardType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
+export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as const)
 
 
 
@@ -48,10 +50,51 @@ export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:st
     return CardsAPI.getCards(cardAnswer,cardQuestion,cardsPack_id,min,max,sortCards,page,pageCount)
         .then((res)=>{
             debugger
-            dispatch(getCardsAC(res.data))
+            dispatch(getCardsAC(res.data.cards))
         })
         .catch((err)=>console.log({...err}))
 }
+export const createCardTC = (cardsPack_id:string,
+                             question?:string,
+                             answer?:string,
+                             grade?:number,
+                             shots?:number,
+                             rating?:number,
+                             answerImg?:string,
+                             questionImg?:string,
+                             questionVideo?: string,
+                             answerVideo?:string,
+                             type?:string) => (dispatch:Dispatch) =>{
+    return CardsAPI.createCard(cardsPack_id,question,answer,grade,shots,rating,
+        answerImg,questionImg,questionVideo,answerVideo,type)
+        .then((res)=>{
+            console.log({...res.data})
+        })
+        .catch((err)=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+        })
+}
+
+export const updateCardTC = (card:UpdateTypeInstase) => (dispatch:Dispatch) =>{
+    return CardsAPI.updateCard(card)
+        .then(res=>console.log({...res.data}))
+        .catch(err=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+        })
+}
+
+export const deleteCardTC = (id:string) => (dispatch:Dispatch) => {
+    return CardsAPI.deleteCard(id)
+        .then(res=> console.log({...res.data}))
+        .catch(err=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+        })
+}
+
+
 
 
 

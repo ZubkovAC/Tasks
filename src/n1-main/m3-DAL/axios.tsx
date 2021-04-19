@@ -62,15 +62,18 @@ export const CardsAPI = {
                 min, max,sortCards,page,pageCount
             }})
     },
-    createCard( card:CreateCardType ){
-        return instance.post(`cards/card`,{card:{card}})
+    createCard( cardsPack_id:string, question?:string, answer?:string, grade?:number, shots?:number, rating?:number, answerImg?:string,
+                questionImg?:string, questionVideo?: string, answerVideo?:string, type?:string){
+        return instance.post(`cards/card`,{card:{cardsPack_id,question,answer,grade,shots,rating,
+                    answerImg,questionImg,questionVideo,answerVideo,type}})
+    },
+
+    updateCard (card:UpdateTypeInstase){
+        return instance.put( `cards/card`,{card} )
     },
     deleteCard (id:string){
         return instance.delete( `cards/card?=${id}`)
     },
-    updateCard (card:UpdateTypeInstase){
-        return instance.put( `cards/card`,{card} )
-    }
 }
 
 

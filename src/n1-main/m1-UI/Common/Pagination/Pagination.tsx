@@ -37,10 +37,6 @@ export const Pagination = () => {
     return (
         <div style={{textAlign:'right'}}>
 
-
-
-
-
             {portionNumber > 1
                 ? <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(portionNumber - 1)}}/>
                 : <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(pageList.length)}}/>        // на будущее реализовать  обратный отсчет

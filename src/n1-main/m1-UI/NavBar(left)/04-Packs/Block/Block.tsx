@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {getCardsTC, inputIdAC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {RoutePath} from "../../../../../App";
 
 export type BlockPropsType ={
     name:string
@@ -32,8 +33,9 @@ export const Block =(props:BlockPropsType)=>{
         dispatch( updatePackTC(props.id, 'jylio-xylio'))
     }
 
-
-
+    // <NavLink to={`/packs/${props.id}`>{props.id}</NavLink>
+    // <NavLink to={RoutePath.PACKS+`/${props.id}`>{props.id}</NavLink>  рабочая
+    // <NavLink to={RoutePath.PACKS+'/'+props.id>{props.id}</NavLink>
     return  (
         <div className={css.Block}>
             <div style={{fontSize:'16px',fontWeight:600}}>
@@ -44,7 +46,7 @@ export const Block =(props:BlockPropsType)=>{
                     <span style={{padding:'5px'}}> {props.created}</span>
                     <span style={{padding:'15px'}}>
                         ID:
-                        <NavLink to={`/packs/${props.id}`} onClick={()=>loadingIdCard}>{props.id}</NavLink>
+                        <NavLink to={`/packs/${props.id}`} >{props.id}</NavLink>
                         </span>
                     <span>cardsCount:{props.cardsCount}</span>
                 </div>
@@ -57,4 +59,5 @@ export const Block =(props:BlockPropsType)=>{
 
         </div>
     )
+
 }

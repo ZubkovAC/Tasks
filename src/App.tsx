@@ -56,7 +56,8 @@ function App() {
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
 
-                    <Route path={RoutePath.PACKS} render={() => <PackId/>}/>
+
+                    <Route path={RoutePath.PACKS + '/:id'} render={() => <PackId />}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
 
                 </Switch>
