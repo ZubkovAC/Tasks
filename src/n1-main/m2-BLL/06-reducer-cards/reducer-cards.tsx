@@ -22,7 +22,6 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
                 cardArray:action.cardArray,
             }
         case "CARDS/ID-CARDS":{
-            debugger
             return {
                 ...state,
                 packID:action.packID

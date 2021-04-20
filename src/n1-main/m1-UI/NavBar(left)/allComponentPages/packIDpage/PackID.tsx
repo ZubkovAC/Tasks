@@ -49,13 +49,11 @@ export const PackId = () =>{
     const inputIdCard = (value:string) =>{
         dispatch(inputIdAC(value))
     }
-    console.log(cardArray)
     return (
         <div>
             <h2>ppc</h2>
             <h3>{id}</h3>
             <SuperButtonOld title={'-Get-Card-'} onClick={getCard}/>
-            <SuperInputTextOld  onChangeText={inputIdCard}  />
             <SuperButtonOld onClick={createCard} title={'create'}/>
             <SuperButtonOld onClick={updateCard} title={'update'}/>
             {cardArray.map( card=>{
