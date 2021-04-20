@@ -19,6 +19,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     buttonCallback?:(a:any)=>void
     title?:string
     needButton?:boolean
+    type?:string
 };
 
 const SuperInputText: React.FC<SuperInputTextPropsType> = (
@@ -64,7 +65,7 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
     return (
         <div className={s.Input}>
             <input
-                type={"text"}
+                type={type? type: 'text'}
                 onChange={onChangeCallback}
                 onKeyPress={onKeyPressCallback}
                 className={finalInputClassName}

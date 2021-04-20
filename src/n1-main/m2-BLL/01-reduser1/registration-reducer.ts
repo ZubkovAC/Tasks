@@ -1,5 +1,6 @@
 import {AuthAPI} from "../../m3-DAL/axios";
 import {Dispatch} from "redux";
+import {lampAC} from "../02-reducer-login/reducer-login";
 
 let initialState = {
     isRegistered: false,
@@ -60,6 +61,8 @@ export const registrationTC = (email: string, password: string) =>  (dispatch: D
                 dispatch(isRegisteredAC(true));
             })
             .catch((error) => {
+                dispatch(lampAC(false))
+                setTimeout(()=>dispatch(lampAC(true)),2000)
                 if(error){
                     dispatch(errorAC(error.response.data.error))
                 }

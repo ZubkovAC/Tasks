@@ -64,11 +64,9 @@ export const CardsAPI = {
         return instance.put( `cards/card`,{card} )
     },
     deleteCard (id:string){
-        return instance.delete( `cards/card?=${id}`)
+        return instance.delete( `cards/card?id=${id}`)
     },
 }
-
-
 
 
 export type UpdateTypeInstase={
@@ -90,6 +88,9 @@ export type CreateCardType = {
     answerVideo?:string,
     type?:string
 }
+
+
+
 
 
 export type LoginData = {

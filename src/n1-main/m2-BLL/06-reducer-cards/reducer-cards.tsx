@@ -5,7 +5,7 @@ import {lampAC} from "../02-reducer-login/reducer-login";
 
 
 const initialState = {
-    cardArray:[] as CreateCardType[],
+    cardArray:[] as CardArrayResponseType[],
     packID:'',
     card:{} as CreateCardType
 }
@@ -31,7 +31,7 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
     }
 }
 
-export const getCardsAC = (cardArray:CreateCardType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
+export const getCardsAC = (cardArray:CardArrayResponseType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
 export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as const)
 
 
@@ -50,10 +50,13 @@ export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:st
     // return CardsAPI.getCards(cardAnswer,cardQuestion,cardsPack_id,min,max,sortCards,page,pageCount)pageCount,page,min,max
     return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,)
         .then((res)=>{
-            debugger
             dispatch(getCardsAC(res.data.cards))
         })
-        .catch((err)=>console.log({...err}))
+        .catch((err)=>{
+            dispatch(lampAC(false))
+            setTimeout(()=>dispatch(lampAC(true)),2000)
+            console.log({...err})
+        })
 }
 
 export const createCardTC = (cardsPack_id:string,
@@ -104,3 +107,26 @@ export const deleteCardTC = (id:string) => (dispatch:Dispatch) => {
 export type ActionTypeCards =
     | GetCardsAC
     | InputIdAC
+
+
+
+export type CardArrayResponseType ={
+    answer: string
+    answerImg: string
+    answerVideo: string
+    cardsPack_id: string
+    comments: string
+    created: string
+    grade: number
+    more_id: string
+    question: string
+    questionImg: string
+    questionVideo: string
+    rating: number
+    shots: number
+    type: string
+    updated: string
+    user_id: string
+    __v: number
+    _id: string
+}

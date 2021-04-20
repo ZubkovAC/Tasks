@@ -13,8 +13,8 @@ export const Login = () => {
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
-    let [email, setEmail] = useState("nya-admin@nya.nya")
-    let [password, setPassword] = useState("1qazxcvBG")
+    let [email, setEmail] = useState("3y6kob@mail.ru")
+    let [password, setPassword] = useState("oTBuHTa977")
     let [rememberMe, setRememberMe] = useState(false)
 
     const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ export const Login = () => {
             <div>account</div>
             <SuperInputText onChange={onChangeHandlerEmail} value={email} />
             <div>password</div>
-            <SuperInputText onChange={onChangeHandlerPassword} value={password} />
+            <SuperInputText onChange={onChangeHandlerPassword} type={'password'} value={password} />
             <div>remember Me</div>
             <SuperCheckbox onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
             {error && <p className={"error"}>{` attention ${error}`}</p>}

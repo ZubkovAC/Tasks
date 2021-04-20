@@ -20,7 +20,9 @@ export const Registration =React.memo(() => {
     let isRegistred = useSelector<AppStateType>(state => state.registration.isRegistered)
     let error = useSelector<AppStateType>(state => state.registration.error)
     let isFetching = useSelector<AppStateType>(state => state.registration.isFetching)
+
     const dispatch = useDispatch()
+
     let [email, setEmail] = useState("")
     let [password, setPassword] = useState("")
     let [checkOnBlurEmail, setCheckOnBlurEmail] = useState(false)
@@ -57,7 +59,7 @@ export const Registration =React.memo(() => {
 
     const onClickHandler = useCallback(() => {
         dispatch( registrationTC(email,password))
-    },[dispatch])
+    },[email,password])
 
     if (isRegistred) {
         return <Login/>
