@@ -10,6 +10,7 @@ import SuperSelectOld from "../../Common/InputAndButton/c5-SuperSelectOld/SuperS
 import {cardCountAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {Search} from "./Search/search";
 import { CreatePack } from './CreatePack/CreatePack';
+import { Modal } from '../../Common/Modal/Modal';
 
 
 export type PardsTypeProps = {
@@ -50,6 +51,8 @@ export const Packs = () =>{
 
     return (
         <div className={css.App}>
+            <Modal/>
+
             <HeaderPacks/>
 
             <SuperSelectOld style={{display:'inline' ,textAlign:'right'}} onChangeOption={onChangeHandler}
