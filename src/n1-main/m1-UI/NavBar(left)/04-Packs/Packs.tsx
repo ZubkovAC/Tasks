@@ -55,7 +55,7 @@ export const Packs = () =>{
             <SuperSelectOld style={{display:'inline' ,textAlign:'right'}} onChangeOption={onChangeHandler}
                             options={['9','8','7','6','5','4','3']}/>
 
-            <Search/>
+            <Search />
             <CreateCard/>
             <Pagination/>
 
