@@ -44,7 +44,7 @@ export const Pagination = () => {
             {pageList
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map(p => {
-                    return <span
+                    return <span key={p}
                                  className={p === pagesList ? css.selectedPage : css.selectedP}
                                  onClick={()=>PagesCount(p)}
                                >{p}-</span>
@@ -53,7 +53,6 @@ export const Pagination = () => {
                 ? <SuperButtonOld title={'NEXT'} onClick={() => {setPortionNumber(portionNumber + 1)}}/>
                 : portionCount < rightPortionPageNumber-1 && setPortionNumber(1)                // править долго убегает вперед
             }
-
         </div>
     )
 }

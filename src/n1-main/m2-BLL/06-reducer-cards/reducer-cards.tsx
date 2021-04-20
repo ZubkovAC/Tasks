@@ -1,6 +1,8 @@
 import {Dispatch} from "redux";
 import {CardsAPI, CreateCardType, UpdateTypeInstase} from "../../m3-DAL/axios";
-import {lampAC} from "../02-reducer-login/reducer-login";
+import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
+import {ThunkDispatch} from "redux-thunk";
+import {AppStateType} from "../00-store/store";
 
 
 
@@ -69,10 +71,11 @@ export const createCardTC = (cardsPack_id:string,
                              questionImg?:string,
                              questionVideo?: string,
                              answerVideo?:string,
-                             type?:string) => (dispatch:Dispatch) =>{
+                             type?:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards | ActionLoginType>) =>{
     return CardsAPI.createCard(cardsPack_id,question,answer,grade,shots,rating,
         answerImg,questionImg,questionVideo,answerVideo,type)
         .then((res)=>{
+            dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) )
             console.log({...res.data})
         })
         .catch((err)=>{
@@ -90,18 +93,18 @@ export const updateCardTC = (card:UpdateTypeInstase) => (dispatch:Dispatch) =>{
         })
 }
 
-export const deleteCardTC = (id:string) => (dispatch:Dispatch) => {
-    return CardsAPI.deleteCard(id)
-        .then(res=> console.log({...res.data}))
+
+export const deleteCardTC = (idCard:string,idPack:string) => (dispatch:ThunkDispatch<AppStateType,unknown,ActionTypeCards | ActionLoginType>) => {
+    return CardsAPI.deleteCard(idCard)
+        .then(res=> {
+            dispatch(getCardsTC('','',idPack,1,4,'',1,7))
+            console.log({...res.data})
+        })
         .catch(err=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
         })
 }
-
-
-
-
 
 
 export type ActionTypeCards =

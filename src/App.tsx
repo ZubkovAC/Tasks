@@ -12,7 +12,7 @@ import {HomePage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/HomePage/
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/reducer-login";
-import {Packs, PardsTypeProps} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
+import {Packs} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
 import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/PackID";
 
@@ -30,7 +30,6 @@ export const RoutePath = {
 
 function App() {
 
-    let cardPacks =  useSelector<AppStateType,Array<PardsTypeProps>>(state => state.packs.cardPacks)
     const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
 
     const dispatch = useDispatch()

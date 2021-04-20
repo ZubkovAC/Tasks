@@ -14,7 +14,7 @@ const initialState = {
 }
 
 
-export const reducerLogin = (state: initialStateType = initialState, action: ActionType): initialStateType => {
+export const reducerLogin = (state: initialStateType = initialState, action: ActionLoginType): initialStateType => {
     switch (action.type) {
         case "LOGIN/LOGIN":
             return {
@@ -106,7 +106,7 @@ export const authMeTC = () => (dispatch: Dispatch) => {
 
 //Type
 export type initialStateType = typeof initialState
-export type ActionType = LoginType | ErrorType | IsAuthType | GetProfileType | LampAC
+export type ActionLoginType = LoginType | ErrorType | IsAuthType | GetProfileType | LampAC
 
 export type LoginType = ReturnType<typeof loginAC>
 export type ErrorType = ReturnType<typeof errorAC>

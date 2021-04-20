@@ -5,7 +5,7 @@ import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 
 
-export const CreateCard = () => {
+export const CreatePack = () => {
     const dispatch = useDispatch()
     let name = useSelector<AppStateType,string>(state => state.packs.name)
     let type = useSelector<AppStateType,string>(state => state.packs.type)

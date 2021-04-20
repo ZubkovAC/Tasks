@@ -16,7 +16,7 @@ export const HeaderPacks = () =>{
 
 
     const getPack = () => {
-        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
     }
 
 

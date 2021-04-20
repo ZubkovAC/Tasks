@@ -3,9 +3,8 @@ import React from "react";
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import {NavLink} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {getCardsTC, inputIdAC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {RoutePath} from "../../../../../App";
+
 
 export type BlockPropsType ={
     name:string
@@ -20,10 +19,10 @@ export const Block =(props:BlockPropsType)=>{
 
     const dispatch = useDispatch()
 
-    const loadingIdCard = () =>{
-        dispatch(inputIdAC(props.id))
-        dispatch(getCardsTC('english','english',props.id,1,4,'0grade',1,7) )
-    }
+    // const loadingIdCard = () =>{
+    //     dispatch(inputIdAC(props.id))
+    //     dispatch(getCardsTC('english','english',props.id,1,4,'0grade',1,7) )
+    // }
 
     const deleteCard = () =>{
         dispatch(deletePackTC(props.id))
@@ -33,9 +32,6 @@ export const Block =(props:BlockPropsType)=>{
         dispatch( updatePackTC(props.id, 'jylio-xylio'))
     }
 
-    // <NavLink to={`/packs/${props.id}`>{props.id}</NavLink>
-    // <NavLink to={RoutePath.PACKS+`/${props.id}`>{props.id}</NavLink>  рабочая
-    // <NavLink to={RoutePath.PACKS+'/'+props.id>{props.id}</NavLink>
     return  (
         <div className={css.Block}>
             <div style={{fontSize:'16px',fontWeight:600}}>

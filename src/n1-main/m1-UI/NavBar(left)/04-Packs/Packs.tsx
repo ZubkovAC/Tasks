@@ -9,7 +9,7 @@ import {Pagination} from "../../Common/Pagination/Pagination";
 import SuperSelectOld from "../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
 import {cardCountAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {Search} from "./Search/search";
-import { CreateCard } from './CreateCard/CreateCard';
+import { CreatePack } from './CreatePack/CreatePack';
 
 
 export type PardsTypeProps = {
@@ -56,7 +56,7 @@ export const Packs = () =>{
                             options={['9','8','7','6','5','4','3']}/>
 
             <Search/>
-            <CreateCard/>
+            <CreatePack/>
             <Pagination/>
 
             {cardPacks.map( t=>{

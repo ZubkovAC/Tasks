@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {passwordAC, resPasswordTC} from "../../../m2-BLL/03-reducer-newPassword/reducer-reverseRassword";
+import { resPasswordTC} from "../../../m2-BLL/03-reducer-newPassword/reducer-reverseRassword";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-import {Redirect, useParams} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {RoutePath} from "../../../../App";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from "./PasswordRecovery.module.css";
@@ -10,15 +10,15 @@ import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/Super
 
 export const PasswordRecovery = () => {
 
-    const { id } = useParams<{id?: string}>();
+
     const dispatch = useDispatch()
-    let password = useSelector<AppStateType, string>(state => state.resPassword.password)
     let redirect = useSelector<AppStateType, boolean>(state => state.resPassword.redirect)
 
     const [mail,setMail]=useState<string>('nya-admin@nya.nya')
     const [SplitFlap,setSplitFlap]=useState<boolean>(false)
     const [pass,setPass]=useState<string>('1qazxcvBG')
     const [pass1,setPass1]=useState<string>('1qazxcvBG')
+
 
     const unpdateMail =useCallback((value:string)=>  {
         setMail(value)

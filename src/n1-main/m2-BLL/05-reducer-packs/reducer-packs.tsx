@@ -92,7 +92,6 @@ export const updatePackTC = (_id: string, name: string) => (dispatch: Dispatch) 
 export const deletePackTC = (id: string) => (dispatch: Dispatch) => {
     return PacksAPI.deletePack(id)
         .then((res) => {
-            debugger
             console.log({...res.data})
         })
         .catch((err)=>{

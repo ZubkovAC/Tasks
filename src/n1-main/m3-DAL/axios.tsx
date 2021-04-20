@@ -32,9 +32,11 @@ export const AuthAPI = {
 
 
 
+
 export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
         return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
+        // return instance.get(`cards/pack`,{params:{packName,min,max,sortPacks,page,pageCount,userId}})
     },
     addPack(name?: string, path?: string, grade?: number, shots?: number,
             rating?: number, deckCover?: string, privat?: boolean, type?: string){
@@ -89,23 +91,4 @@ export type CreateCardType = {
     type?:string
 }
 
-
-
-
-
-export type LoginData = {
-    avatar: string
-    created: string
-    email: string
-    isAdmin: boolean
-    name: string
-    publicCardPacksCount: number
-    rememberMe: boolean
-    token: string
-    tokenDeathTime: number
-    updated: string
-    verified: boolean
-    __v: number
-    _id: string
-}
 
