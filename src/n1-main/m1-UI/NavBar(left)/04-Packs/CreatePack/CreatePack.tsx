@@ -7,19 +7,22 @@ import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextO
 
 export const CreatePack = () => {
     const dispatch = useDispatch()
+
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
+
+
+
     let name = useSelector<AppStateType,string>(state => state.packs.name)
     let type = useSelector<AppStateType,string>(state => state.packs.type)
     // name: string, path: string, grade: number, shots: number,
     //     rating: number, deckCover: string, isPrivate: boolean,
     //     type: string
     const CreatePack = () =>{
-        dispatch(addPackTC(name,'',0,0,0,'',false,type))
-        dispatch( getPacksTC(searchCardName, 0, 99,
-            '0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
+        dispatch(addPackTC(name,'',0,0,0,'',false,type,searchCardName,pagesList,cardPages))
     }
+
     const TextCreatePack = (name:string) =>{
         dispatch(textCreateNamePackAC(name))
     }

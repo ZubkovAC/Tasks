@@ -51,10 +51,9 @@ export const Packs = () => {
 
     return (
         <div className={css.App}>
-            <Modal/>
+            {/*<Modal/>*/}
 
             <HeaderPacks/>
-
             <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeHandler}
                             options={['9', '8', '7', '6', '5', '4', '3']}/>
 

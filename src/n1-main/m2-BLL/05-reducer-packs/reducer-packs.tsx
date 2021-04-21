@@ -2,7 +2,10 @@
 import {PacksAPI} from "../../m3-DAL/axios"
 import {PardsTypeProps} from "../../m1-UI/NavBar(left)/04-Packs/Packs";
 import {Dispatch} from "redux";
-import {lampAC} from "../02-reducer-login/reducer-login";
+import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../00-store/store";
+import {ThunkDispatch} from "redux-thunk";
 
 
 const initialState = {
@@ -12,7 +15,7 @@ const initialState = {
     type:'TestPack'
 }
 
-export const reducerPacks = (state: initialStateType = initialState, action: ActionType): initialStateType => {
+export const reducerPacks = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
     switch (action.type) {
         case "PACKS/GET-PACKS":
             return {
@@ -60,9 +63,10 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
 
 
 
-export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string) => (dispatch: Dispatch) => {
+export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
         .then((res) => {
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
             console.log('ok',{...res.data})
         })
         .catch((error) => {
@@ -103,7 +107,7 @@ export const deletePackTC = (id: string) => (dispatch: Dispatch) => {
 
 //Type
 export type initialStateType = typeof initialState
-export type ActionType =
+export type ActionPackType =
     | GetPacksAC
     | TextCreateNamePackAC
     | ErrorType

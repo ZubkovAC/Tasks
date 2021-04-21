@@ -6,16 +6,16 @@ import {useDispatch} from "react-redux";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 
-export type BlockPropsType ={
-    name:string
-    rating:number
-    userName:string
-    created:string
-    id:string
-    cardsCount:number
+export type BlockPropsType = {
+    name: string
+    rating: number
+    userName: string
+    created: string
+    id: string
+    cardsCount: number
 }
 
-export const Block =(props:BlockPropsType)=>{
+export const Block = (props: BlockPropsType) => {
 
     const dispatch = useDispatch()
 
@@ -24,34 +24,36 @@ export const Block =(props:BlockPropsType)=>{
     //     dispatch(getCardsTC('english','english',props.id,1,4,'0grade',1,7) )
     // }
 
-    const deleteCard = () =>{
+    const deleteCard = () => {
         dispatch(deletePackTC(props.id))
     }
 
-    const updateCard = ()=>{
-        dispatch( updatePackTC(props.id, 'jylio-xylio'))
+    const updateCard = () => {
+        dispatch(updatePackTC(props.id, 'jylio-xylio'))
     }
 
-    return  (
+    return (
         <div className={css.Block}>
-            <div style={{fontSize:'16px',fontWeight:600}}>
-                <span  style={{fontSize:'22px',fontWeight:600}}>{props.userName}</span>
-                <div>
-                    <span style={{padding:'5px'}}>{props.name}</span>
-                    <span style={{padding:'5px'}}> rating:{props.rating}</span>
-                    <span style={{padding:'5px'}}> {props.created}</span>
-                    <span style={{padding:'15px'}}>
+            <div style={{fontSize: '16px', fontWeight: 600}}>
+                <span className={css.userName}>{props.userName}</span>
+                <div className={css.Table}>
+
+                    <span className={css.name}>{props.name}</span>
+                    <span className={css.rating}> rating:{props.rating}</span>
+                    {/*<span className={css.create}> {props.created}</span>*/}
+                    <span className={css.cardsCount}>cardsCount:{props.cardsCount}</span>
+                    <span className={css.id}>
                         ID:
-                        <NavLink to={`/packs/${props.id}`} >{props.id}</NavLink>
-                        </span>
-                    <span>cardsCount:{props.cardsCount}</span>
+                        <NavLink to={`/packs/${props.id}`}>{props.id}</NavLink>
+                    </span>
+                    <span className={css.buttons}>
+                        <SuperButtonOld title={'Delete'} onClick={deleteCard}/>
+                        <SuperButtonOld title={'Update'} onClick={updateCard}/>
+                    </span>
                 </div>
 
             </div>
-            <div>
-                <SuperButtonOld title={'Delete'}  onClick={deleteCard} />
-                <SuperButtonOld title={'Update'}  onClick={updateCard} />
-            </div>
+
 
         </div>
     )
