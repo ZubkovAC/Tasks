@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.8dd66f88.chunk.css",
-    "main.js": "/Tasks/static/js/main.91c2ada6.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.91c2ada6.chunk.js.map",
+    "main.css": "/Tasks/static/css/main.3cb83a0e.chunk.css",
+    "main.js": "/Tasks/static/js/main.7f297089.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.7f297089.chunk.js.map",
     "runtime-main.js": "/Tasks/static/js/runtime-main.1457d725.js",
     "runtime-main.js.map": "/Tasks/static/js/runtime-main.1457d725.js.map",
     "static/js/2.db8fb564.chunk.js": "/Tasks/static/js/2.db8fb564.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.0b02beff.chunk.js": "/Tasks/static/js/3.0b02beff.chunk.js",
     "static/js/3.0b02beff.chunk.js.map": "/Tasks/static/js/3.0b02beff.chunk.js.map",
     "index.html": "/Tasks/index.html",
-    "static/css/main.8dd66f88.chunk.css.map": "/Tasks/static/css/main.8dd66f88.chunk.css.map",
+    "static/css/main.3cb83a0e.chunk.css.map": "/Tasks/static/css/main.3cb83a0e.chunk.css.map",
     "static/js/2.db8fb564.chunk.js.LICENSE.txt": "/Tasks/static/js/2.db8fb564.chunk.js.LICENSE.txt",
     "static/media/CardFront.911ce36f.jpg": "/Tasks/static/media/CardFront.911ce36f.jpg",
     "static/media/Paginator.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf",
@@ -20,7 +20,7 @@
   "entrypoints": [
     "static/js/runtime-main.1457d725.js",
     "static/js/2.db8fb564.chunk.js",
-    "static/css/main.8dd66f88.chunk.css",
-    "static/js/main.91c2ada6.chunk.js"
+    "static/css/main.3cb83a0e.chunk.css",
+    "static/js/main.7f297089.chunk.js"
   ]
 }
