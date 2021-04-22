@@ -15,6 +15,7 @@ import {authMeTC} from "./n1-main/m2-BLL/02-reducer-login/reducer-login";
 import {Packs} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
 import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/PackID";
+import {LearnPage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/LearnPage/LearnPage";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -24,6 +25,7 @@ export const RoutePath = {
     PASSWORD_RECOVERY: '/recovery',
     TEST_COMPONENT: "/testComponent",
     PACKS: '/packs',
+    LEARN: '/learn',
     ERROR_404: "/404",
     REDIRECT: '*',
 }
@@ -54,6 +56,7 @@ function App() {
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
+                    <Route exact path={RoutePath.LEARN} render={() => <LearnPage/>}/>
 
 
                     <Route path={RoutePath.PACKS + '/:id'} render={() => <PackId />}/>
