@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
-import { useParams } from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 
 
 interface ParamTypes {
@@ -56,6 +56,10 @@ export const PackId = () =>{
             <SuperButtonOld title={'-Get-Card-'} onClick={getCard}/>
             <SuperButtonOld onClick={createCard} title={'create'}/>
             <SuperButtonOld onClick={updateCard} title={'update'}/>
+            <NavLink to={'/learn'}>
+                <SuperButtonOld  title={'learn'}/>
+            </NavLink>
+
             {cardArray.map( card=>{
                 const deleteCard = () => {
                     dispatch(deleteCardTC(card._id,id))
