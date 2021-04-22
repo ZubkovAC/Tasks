@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.9837dd2a.chunk.css",
-    "main.js": "/Tasks/static/js/main.0ce8d3a8.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.0ce8d3a8.chunk.js.map",
-    "runtime-main.js": "/Tasks/static/js/runtime-main.8fd74647.js",
-    "runtime-main.js.map": "/Tasks/static/js/runtime-main.8fd74647.js.map",
-    "static/js/2.7689f494.chunk.js": "/Tasks/static/js/2.7689f494.chunk.js",
-    "static/js/2.7689f494.chunk.js.map": "/Tasks/static/js/2.7689f494.chunk.js.map",
-    "static/js/3.0ba3475a.chunk.js": "/Tasks/static/js/3.0ba3475a.chunk.js",
-    "static/js/3.0ba3475a.chunk.js.map": "/Tasks/static/js/3.0ba3475a.chunk.js.map",
+    "main.css": "/Tasks/static/css/main.8dd66f88.chunk.css",
+    "main.js": "/Tasks/static/js/main.df83618b.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.df83618b.chunk.js.map",
+    "runtime-main.js": "/Tasks/static/js/runtime-main.1457d725.js",
+    "runtime-main.js.map": "/Tasks/static/js/runtime-main.1457d725.js.map",
+    "static/js/2.db8fb564.chunk.js": "/Tasks/static/js/2.db8fb564.chunk.js",
+    "static/js/2.db8fb564.chunk.js.map": "/Tasks/static/js/2.db8fb564.chunk.js.map",
+    "static/js/3.0b02beff.chunk.js": "/Tasks/static/js/3.0b02beff.chunk.js",
+    "static/js/3.0b02beff.chunk.js.map": "/Tasks/static/js/3.0b02beff.chunk.js.map",
     "index.html": "/Tasks/index.html",
-    "static/css/main.9837dd2a.chunk.css.map": "/Tasks/static/css/main.9837dd2a.chunk.css.map",
-    "static/js/2.7689f494.chunk.js.LICENSE.txt": "/Tasks/static/js/2.7689f494.chunk.js.LICENSE.txt",
+    "static/css/main.8dd66f88.chunk.css.map": "/Tasks/static/css/main.8dd66f88.chunk.css.map",
+    "static/js/2.db8fb564.chunk.js.LICENSE.txt": "/Tasks/static/js/2.db8fb564.chunk.js.LICENSE.txt",
     "static/media/CardFront.911ce36f.jpg": "/Tasks/static/media/CardFront.911ce36f.jpg",
     "static/media/Paginator.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf",
-    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf"
+    "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf",
+    "static/media/HomePage.module.css": "/Tasks/static/media/Samurai.1eb5b920.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.8fd74647.js",
-    "static/js/2.7689f494.chunk.js",
-    "static/css/main.9837dd2a.chunk.css",
-    "static/js/main.0ce8d3a8.chunk.js"
+    "static/js/runtime-main.1457d725.js",
+    "static/js/2.db8fb564.chunk.js",
+    "static/css/main.8dd66f88.chunk.css",
+    "static/js/main.df83618b.chunk.js"
   ]
 }
