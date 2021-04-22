@@ -44,7 +44,7 @@ const SuperRadio: React.FC<SuperRadioPropsType> = (
                             //name="selector"
                         />
                         <span className={css.check}></span>
-                        {opt}
+                        <p style={{margin:'-20px'}}>{opt}</p>
                     </label>
                 </li>
     }) : [];

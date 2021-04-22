@@ -1,9 +1,13 @@
+@font-face {
+    font-family: Panda;
+    src: url("../../../Common/fonts/KungFuPanda.otf") format("opentype");
+}
+
 .box_card{
     display: flex;
     flex-wrap:wrap;
     justify-content: center;
     text-align: center;
-
 }
 
 .cardFront{
@@ -25,4 +29,32 @@
 }
 .cardFront:hover{
     box-shadow: 0 0 30px 5px white;
+}
+.content_top{
+    font-size: 40px;
+    font-family: Panda;
+    color: #2b2e2e;
+    text-shadow: 0 0 15px white;
+    text-align: center;
+}
+
+
+.box_button{
+    display: grid;
+    justify-content: space-around;
+
+    grid-template-columns:8fr 1fr 1fr;
+    grid-template:
+            "create learn update";
+}
+
+.learn{
+    grid-area: learn;
+}
+
+.create{
+    grid-area: create;
+}
+.update{
+    grid-area: update;
 }

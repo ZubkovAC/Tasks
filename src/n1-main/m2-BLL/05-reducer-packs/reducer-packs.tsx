@@ -3,7 +3,6 @@ import {PacksAPI} from "../../m3-DAL/axios"
 import {PardsTypeProps} from "../../m1-UI/NavBar(left)/04-Packs/Packs";
 import {Dispatch} from "redux";
 import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
-import {useSelector} from "react-redux";
 import {AppStateType} from "../00-store/store";
 import {ThunkDispatch} from "redux-thunk";
 
@@ -81,7 +80,7 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
         })
 }
 
-export const updatePackTC = (_id: string, name: string) => (dispatch: Dispatch) => {
+export const updatePackTC = (_id: string, name: string) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
     return PacksAPI.updatePack(_id, name)
         .then((res) => {
             console.log({...res.data})
@@ -93,9 +92,10 @@ export const updatePackTC = (_id: string, name: string) => (dispatch: Dispatch) 
         })
 }
 
-export const deletePackTC = (id: string) => (dispatch: Dispatch) => {
+export const deletePackTC = (id: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
     return PacksAPI.deletePack(id)
         .then((res) => {
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
             console.log({...res.data})
         })
         .catch((err)=>{
@@ -119,30 +119,3 @@ export type TextCreateNamePackAC = ReturnType<typeof textCreateNamePackAC>
 
 export type ErrorType = ReturnType<typeof errorAC>
 
-
-
-
-
-//
-// name: "english"
-// user_name: "student@test.com"
-// rating: 0
-// created: "2021-03-10T13:36:43.232Z"
-// updated: "2021-03-26T13:57:17.575Z"
-
-// user_id: "600dba247776b00004e02307"
-
-
-// cardsCount: 7
-// deckCover: null
-// grade: 0
-// more_id: "600dba247776b00004e02307"
-// path: "/def"
-// private: false
-
-// shots: 0
-// type: "pack"
-
-
-// __v: 0
-// _id: "6048cb6b25d4bb00042a4667"

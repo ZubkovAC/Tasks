@@ -8,11 +8,12 @@ body, html{
 .container{
     display: flex;
     position: relative;
-    margin: 40px auto;
+    margin: 0px auto;
     height: auto;
-    width: 600px;
-    padding: 20px;
+    width: 350px;
+    padding: 0px;
     flex-wrap: wrap;
+    margin-top: 30px;
 }
 
 .container ul{
@@ -20,10 +21,12 @@ body, html{
     margin: 0;
     padding: 0;
     overflow: auto;
+
 }
 
 .container ol{
-    display: flex;
+    /*display: flex;*/
+
 }
 
 ol li{
@@ -32,30 +35,35 @@ ol li{
     position: relative;
     float: left;
     width: 100%;
-    height: 100px;
-    border-bottom: 1px solid #333;
+    height: 40px;
+    /*border-bottom: 1px solid #333;*/
+
 }
 
 ol li input[type=radio]{
     position: absolute;
     visibility: hidden;
+
+
 }
 
 ol li label{
     display: block;
     position: relative;
     font-weight: 300;
-    font-size: 1.35em;
+    /*font-size: 1.35em;*/
     padding: 25px 25px 25px 80px;
-    margin: 10px auto;
-    height: 30px;
+    /*margin: 10px auto;*/
+    height: 0px;
     z-index: 9;
     cursor: pointer;
     -webkit-transition: all 0.25s linear;
+
 }
 
 ol li:hover label{
     color: #FFFFFF;
+
 }
 
 ol li .check{
@@ -65,11 +73,12 @@ ol li .check{
     border-radius: 100%;
     height: 25px;
     width: 25px;
-    top: 30px;
+    top: 0px;
     left: 20px;
     z-index: 5;
     transition: border .25s linear;
     -webkit-transition: border .25s linear;
+
 }
 
 ol li:hover .check {
@@ -88,24 +97,29 @@ ol li .check::before {
     margin: auto;
     transition: background 0.25s linear;
     -webkit-transition: background 0.25s linear;
+
 }
 
 input[type=radio]:checked ~ .check {
     border: 5px solid #0DFF92;
+
 }
 
 input[type=radio]:checked ~ .check::before{
     background: #0DFF92;
+
 }
 
 input[type=radio]:checked ~ label{
     color: #0DFF92;
+
 }
 
 .signature {
-    margin: 10px auto;
-    padding: 10px 0;
+    margin:0px auto;
+    padding: 0px 0;
     width: 100%;
+
 }
 
 .signature p{
@@ -113,6 +127,7 @@ input[type=radio]:checked ~ label{
     font-family: Helvetica, Arial, Sans-Serif;
     font-size: 0.85em;
     color: #AAAAAA;
+
 }
 
 .signature .much-heart{
@@ -126,6 +141,9 @@ input[type=radio]:checked ~ label{
     -ms-transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
     transform: rotate(45deg);
+
+
+
 }
 
 .signature .much-heart::before,
@@ -134,23 +152,26 @@ input[type=radio]:checked ~ label{
     content: '';
     position: absolute;
     margin: auto;
-    height: 10px;
-    width: 10px;
+    height: 0px;
+    width: 0px;
     border-radius: 5px;
     background: #AC1D3F;
     top: -4px;
+
 }
 
 .signature .much-heart::after {
     bottom: 0;
     top: auto;
     left: -4px;
+
 }
 
 .signature a {
     color: #AAAAAA;
     text-decoration: none;
     font-weight: bold;
+
 }
 
 

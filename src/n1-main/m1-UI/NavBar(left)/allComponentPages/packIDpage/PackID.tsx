@@ -13,6 +13,7 @@ import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextO
 import css from './PackID.module.css'
 import cardFront from './../../../Common/Accets/CardFront.jpg'
 import {NavLink, useParams} from "react-router-dom";
+import {RoutePath} from "../../../../../App";
 
 
 interface ParamTypes {
@@ -34,7 +35,7 @@ export const PackId = () => {
 
 
     const createCard = () => {
-        dispatch(createCardTC(id, 'cardsTest', 'Test2', 0, 0,
+        dispatch(createCardTC(id, '1+`0`', '`10`', 0, 0,
             0, 'string', 'string', '',
             '', 'CARD'))
     }
@@ -42,23 +43,23 @@ export const PackId = () => {
         // dispatch(updateCardTC(card))    // сделать
     }
 
-
-    const getCard = () => {
-        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
-    }
     const inputIdCard = (value: string) => {
         dispatch(inputIdAC(value))
     }
     return (
         <div>
-            <h2>ppc</h2>
-            <h3>{id}</h3>
-            <SuperButtonOld title={'-Get-Card-'} onClick={getCard}/>
-            <SuperButtonOld onClick={createCard} title={'create'}/>
-            <SuperButtonOld onClick={updateCard} title={'update'}/>
-            <NavLink to={'/learn'}>
-                <SuperButtonOld  title={'learn'}/>
-            </NavLink>
+            <h2 className={css.content_top}>Pack -- Card</h2>
+            <div className={css.box_button}>
+                <div  className={css.learn}>
+                    <NavLink to={RoutePath.LEARN}>
+                        <SuperButtonOld  title={'learn'}/>
+                    </NavLink>
+                </div>
+                <div className={css.create}><SuperButtonOld  onClick={createCard} title={'create'}/></div>
+                <div className={css.update}><SuperButtonOld   onClick={updateCard} title={'update'}/></div>
+            </div>
+
+
             <div className={css.box_card} >
                 {cardArray.map(card => {
                     const deleteCard = () => {
@@ -68,11 +69,11 @@ export const PackId = () => {
                         <div className={css.cardFront} key={card._id}>
                             <div className={css.cardFront2} >
                                 <div className={css.cardFront3}>
-                                    <div>{card.answer}</div>
+                                    <div>{card.question}</div>
                                     <img src={card.answerImg==='' ? card.answerImg : cardFront } width='100px' alt=""/>
 
                                     <div>{card.created}</div>
-                                    <div>{card.question}</div>
+                                    <div>{card.answer}</div>
                                     <div>{card.type}</div>
                                     <div>{card.updated}</div>
                                     <div>{card.rating}</div>

@@ -2,8 +2,9 @@ import css from './Block.module.css'
 import React from "react";
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {AppStateType} from "../../../../m2-BLL/00-store/store";
 
 
 export type BlockPropsType = {
@@ -17,15 +18,15 @@ export type BlockPropsType = {
 
 export const Block = (props: BlockPropsType) => {
 
+    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
+    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
+    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     const dispatch = useDispatch()
 
-    // const loadingIdCard = () =>{
-    //     dispatch(inputIdAC(props.id))
-    //     dispatch(getCardsTC('english','english',props.id,1,4,'0grade',1,7) )
-    // }
+
 
     const deleteCard = () => {
-        dispatch(deletePackTC(props.id))
+        dispatch(deletePackTC(props.id,searchCardName,pagesList,cardPages))
     }
 
     const updateCard = () => {

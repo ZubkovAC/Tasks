@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, { useState} from "react";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {CardArrayResponseType} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
-import './styleLearnPage.css'
+import css from './styleLearnPage.module.css'
+import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
+
 
 export const LearnPage = () => {
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
@@ -19,48 +21,63 @@ export const LearnPage = () => {
         return cards[res.id + 1];
     }
     const [cardForAnswer, setCardForAnswer] = useState(cardArray[0])
-    const [finishQuestion, setFinishQuestion] = useState<any>('')
+    const [finishQuestion, setFinishQuestion] = useState<any>('Learn To Start')
     const [showAnswer, setShowAnswer] = useState<any>(false)
     const [answer, setAnswer] = useState<any>('')
-    const onClickHandler = () => {
-        // @ts-ignore
+
+    const [radio, setRadio] = useState<any>('')
+
+
+    const onClickHandler = (e:any) => {
+
         const newCard = getCard(cardArray)
-        // @ts-ignore
+
         setCardForAnswer(newCard)
-        setFinishQuestion(Object.entries(cardForAnswer)[0][1])//для вопроса 4.1, для ответа 3,1
+        setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1
         setShowAnswer(false)
+        e.stopPropagation()
+
     }
     const OnClickHandlerForShowAnswer = () => {
         setShowAnswer(true)
         setAnswer(Object.entries(cardForAnswer)[3][1])
 
     }
-    //console.log(Object.entries(cardForAnswer))
+    const RadioSelect = (value:string) =>{
+        setRadio(value)
+    }
 
     return (
-        <div className={'cardBlock'}>
-            <h1>Learn Page</h1>
-            <button disabled={!cardForAnswer} onClick={onClickHandler}><h2>learn</h2></button>
-            {cardForAnswer
-                ? <div className={'questionBlock'}>
-                    <div className={'text'}>{finishQuestion}</div>
-                    <button onClick={OnClickHandlerForShowAnswer}>show answer</button>
-                </div>
-                : <h2>Go to Packs and choose Pack for learning</h2>}
-            {showAnswer
-                ? <div className={'cardBlock'}>
-                    <div className={'text'}>{answer}</div>
-                    <div className={'btnBlock'}>
-                        <button>ответил</button>
-                        <button>ответил но плохо</button>
-                        <button>еще хуже</button>
-                        <button>не ответил</button>
-                        <button>что это такое</button>
+        <div className={css.cardBlock}>
+            <h2 className={css.content_top}>Learn Page</h2>
+            <div className={css.cardFrontLearn} onClick={OnClickHandlerForShowAnswer}>
+                <button className={css.but} disabled={!cardForAnswer} onClick={e => onClickHandler(e)}>
+                    LEARN
+                </button>
+                {cardForAnswer
+                    ? <div className={css.cardForAnswer}>
+                        <div>{finishQuestion}</div>
                     </div>
+                    : <h2>Go to Packs and choose Pack for learning</h2>
+                }
+                {showAnswer
+                    ? <div className={css.cardBlock}>
+                        <div className={css.text}>{answer}</div>
+                        <div className={css.btnBlock}>
+                            <SuperRadio
+                                value={radio}
+                                name={"radio"}
+                                options={['ответил','ответил но плохо','еще хуже','не ответил','что это такое']}
+                                onChangeOption={RadioSelect}
+                            />
 
-                </div>
-                : null
-            }
+                        </div>
+
+                    </div>
+                    : null
+                }
+            </div>
+
         </div>
     )
 }

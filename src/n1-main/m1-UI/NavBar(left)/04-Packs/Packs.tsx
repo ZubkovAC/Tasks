@@ -1,5 +1,5 @@
 import css from './Packs.module.css'
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {Unauthorised} from '../../Common/Accets/Unauthorised';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Block} from "./Block/Block";
@@ -11,6 +11,7 @@ import {cardCountAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {Modal} from '../../Common/Modal/Modal';
+import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 
 export type PardsTypeProps = {
@@ -39,7 +40,13 @@ export const Packs = () => {
     const dispatch = useDispatch()
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
     let cardPacks = useSelector<AppStateType, Array<PardsTypeProps>>(state => state.packs.cardPacks)
+    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
+    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
+    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
 
+    useEffect(()=>{
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
+    },[])
 
     const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(cardCountAC(+e))
