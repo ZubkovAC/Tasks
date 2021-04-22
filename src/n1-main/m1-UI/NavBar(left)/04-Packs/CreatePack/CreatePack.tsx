@@ -20,7 +20,7 @@ export const CreatePack = () => {
     //     rating: number, deckCover: string, isPrivate: boolean,
     //     type: string
     const CreatePack = () =>{
-        dispatch(addPackTC(name,'',0,0,0,'',false,type,searchCardName,pagesList,cardPages))
+        dispatch(addPackTC(name,'',0,0,0,'',true,type,searchCardName,pagesList,cardPages))
     }
 
     const TextCreatePack = (name:string) =>{

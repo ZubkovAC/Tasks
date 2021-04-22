@@ -34,7 +34,7 @@ export const Block = (props: BlockPropsType) => {
 
     return (
         <div className={css.Block}>
-            <div style={{fontSize: '16px', fontWeight: 600}}>
+            <div >
                 <span className={css.userName}>{props.userName}</span>
                 <div className={css.Table}>
 

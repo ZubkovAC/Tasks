@@ -29,7 +29,7 @@ export const Navbar = () =>{
             </div>
 
             <div className={css.navlink}>
-                <NavLink to={RoutePath.PASSWORD_RECOVERY}>Password recovery</NavLink>
+                <NavLink to={RoutePath.PASSWORD_RECOVERY}>Recovery pass</NavLink>
             </div>
 
             <div className={css.navlink}>

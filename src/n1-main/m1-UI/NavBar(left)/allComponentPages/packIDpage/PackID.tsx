@@ -10,7 +10,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import css from './PackID.module.css'
+import cardFront from './../../../Common/Accets/CardFront.jpg'
+
 
 
 interface ParamTypes {
@@ -18,35 +21,33 @@ interface ParamTypes {
 }
 
 
-export const PackId = () =>{
+export const PackId = () => {
 
-    const cardArray = useSelector<AppStateType,CardArrayResponseType[]>(state=>state.cards.cardArray)
+    const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
 
-    let  {id} = useParams<ParamTypes>()
+    let {id} = useParams<ParamTypes>()
 
-    useEffect( () =>{
-        dispatch(getCardsTC('','',id,1,4,'',1,7) )
-    },[id])
+    useEffect(() => {
+        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+    }, [id])
 
 
-
-    const createCard = () =>{
-         dispatch(createCardTC(id, 'cardsTest', 'Test2',0,0,
-            0, 'string', 'string',  '',
+    const createCard = () => {
+        dispatch(createCardTC(id, 'cardsTest', 'Test2', 0, 0,
+            0, 'string', 'string', '',
             '', 'CARD'))
     }
-    const updateCard = () =>{
+    const updateCard = () => {
         // dispatch(updateCardTC(card))    // сделать
     }
 
 
-
     const getCard = () => {
-        dispatch(getCardsTC('','',id,1,4,'',1,7) )
+        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
     }
-    const inputIdCard = (value:string) =>{
+    const inputIdCard = (value: string) => {
         dispatch(inputIdAC(value))
     }
     return (
@@ -56,27 +57,41 @@ export const PackId = () =>{
             <SuperButtonOld title={'-Get-Card-'} onClick={getCard}/>
             <SuperButtonOld onClick={createCard} title={'create'}/>
             <SuperButtonOld onClick={updateCard} title={'update'}/>
-            {cardArray.map( card=>{
-                const deleteCard = () => {
-                    dispatch(deleteCardTC(card._id,id))
-                }
-                return(
-                    <div key={card._id}>
-                    <ul style={{fontWeight:600,fontSize:'16px',color:'wheat'}}>
-                        <li>{card.answer}</li>
-                        <SuperButtonOld onClick={deleteCard} title={'x'}/>
-                        <li>{card.created}</li>
-                        <li>{card.question}</li>
-                        <li>{card.type}</li>
-                        <li>{card.updated}</li>
-                        <li>{card.rating}</li>
-                        <li>{card.grade}</li>
-                        <li>{card._id}</li>
-                        ___________________________
-                    </ul>
-                </div>)
+            <div className={css.box_card} >
+                {cardArray.map(card => {
+                    const deleteCard = () => {
+                        dispatch(deleteCardTC(card._id, id))
+                    }
+                    return (
+                        <div className={css.cardFront} key={card._id}>
+                            <div className={css.cardFront2} >
+                                <div className={css.cardFront3}>
+                                    <div>{card.answer}</div>
+                                    <img src={card.answerImg==='' ? card.answerImg : cardFront } width='100px' alt=""/>
 
-            })}
+                                    <div>{card.created}</div>
+                                    <div>{card.question}</div>
+                                    <div>{card.type}</div>
+                                    <div>{card.updated}</div>
+                                    <div>{card.rating}</div>
+                                    <div>{card.grade}</div>
+                                    <div>{card._id}</div>
+
+                                    ___________________________
+                                    <div style={{margin:'20px'}}>
+                                        <SuperButtonOld onClick={deleteCard} title={'x'}/>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        )
+
+                })}
+            </div>
+
         </div>
     )
 
