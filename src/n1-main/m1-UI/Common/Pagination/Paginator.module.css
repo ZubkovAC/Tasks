@@ -8,15 +8,15 @@
 .selectedPage {
    color:wheat;
    font-family: Panda;
-   font-size: 26px;
+   font-size: 28px;
 }
 .selectedP {
    color:black;
    font-family: RussoOne;
-   font-size: 20px;
+   font-size: 22px;
 }
 .selectedP:hover{
    color:white;
    font-family: Panda;
-   font-size: 26px;
+   font-size: 22px;
 }

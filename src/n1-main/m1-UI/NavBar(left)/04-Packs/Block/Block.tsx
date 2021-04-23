@@ -1,10 +1,12 @@
 import css from './Block.module.css'
-import React from "react";
+import React, {useState} from "react";
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {DeleteModal} from "../../allComponentPages/DeleteModalPackID/DeleteModal";
+import {Modal} from "../../../Common/Modal/Modal";
 
 
 export type BlockPropsType = {
@@ -23,10 +25,24 @@ export const Block = (props: BlockPropsType) => {
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     const dispatch = useDispatch()
 
+    const [active,setActive]=useState<boolean>(false)
 
+    const SetActive =() =>{
+        setActive(false)
+    }
 
-    const deleteCard = () => {
+    const deleteSwitchYes = () => {
+        setActive(true)
+        // dispatch(deletePackTC(props.id,searchCardName,pagesList,cardPages))
+    }
+
+    const deletePack = () => {
         dispatch(deletePackTC(props.id,searchCardName,pagesList,cardPages))
+    }
+
+    const deleteSwitchNo = () => {
+        setActive(false)
+        // dispatch(deletePackTC(props.id,searchCardName,pagesList,cardPages))
     }
 
     const updateCard = () => {
@@ -36,6 +52,16 @@ export const Block = (props: BlockPropsType) => {
     return (
         <div className={css.Block}>
             <div >
+
+                <Modal active={active} setActive={SetActive} >
+                    <h2 style={{color:'wheat',textShadow:'0 0 50px white'}}>Are you sure you want to delete it?</h2>
+                    <div style={{float:'right'}}>
+                        <SuperButtonOld title={'yes'}  onClick={deletePack} />
+                        <SuperButtonOld title={'no'} onClick={deleteSwitchNo}/>
+                    </div>
+                </Modal>
+
+
                 <span className={css.userName}>{props.userName}</span>
                 <div className={css.Table}>
 
@@ -48,7 +74,7 @@ export const Block = (props: BlockPropsType) => {
                         <NavLink to={`/packs/${props.id}`}>{props.id}</NavLink>
                     </span>
                     <span className={css.buttons}>
-                        <SuperButtonOld title={'Delete'} onClick={deleteCard}/>
+                        <SuperButtonOld title={'Delete'} onClick={deleteSwitchYes}/>
                         <SuperButtonOld title={'Update'} onClick={updateCard}/>
                     </span>
                 </div>

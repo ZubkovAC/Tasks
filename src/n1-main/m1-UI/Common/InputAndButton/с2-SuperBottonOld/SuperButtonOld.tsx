@@ -7,7 +7,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
     title?:string
-    onClick?: () => void
+    onClick?: (e?:any) => void
     onChange?:any
     password?:string
     resetPasswordsToken?:string

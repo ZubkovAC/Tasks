@@ -1,13 +1,44 @@
-.overlay{
-   position: absolute; 
+.modal{
    top: 0px;
    left: 0px;
    height: 100%;
    width: 100%;
    background-color: rgba(0, 0, 0, .5);
-   z-index: 10;
+   position: fixed;
+
    display: flex;
-   flex-direction: column;
-   justify-content: space-around;
+   justify-content:center;
    align-items: center;
+   transition:0.5s ;
+   opacity: 0;
+   pointer-events: none;
+   borders: 1px black;
+
+}
+
+.modal.active{
+   opacity: 1;
+   pointer-events: all;
+
+
+}
+
+
+.modal_content{
+   padding: 20px;
+   border-radius: 10px;
+   width: 400px;
+   height: 400px;
+
+   background-color: whitesmoke;
+   transform: scale(0.5);
+   transition: 0.4s all;
+
+}
+.modal_content.active {
+   transform: scale(1);
+   borders: 1px black;
+   background-color: whitesmoke;
+   width: 400px;
+   height: 400px;
 }

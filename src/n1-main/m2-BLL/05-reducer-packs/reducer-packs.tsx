@@ -105,6 +105,8 @@ export const deletePackTC = (id: string,searchCardName:string,pagesList:number,c
 }
 
 
+
+
 //Type
 export type initialStateType = typeof initialState
 export type ActionPackType =

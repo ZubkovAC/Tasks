@@ -7,6 +7,7 @@ import {RoutePath} from "../../../../App";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from "./PasswordRecovery.module.css";
 import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import {Modal} from "../../Common/Modal/Modal";
 
 export const PasswordRecovery = () => {
 
@@ -46,15 +47,36 @@ export const PasswordRecovery = () => {
         }
     },[pass,pass1])
 
+
+
+
+    const [modalActive,setModalActive]=useState<boolean>(true)
+
+
+
+
+
     if (redirect) {
         return (
             <Redirect from={RoutePath.LOGIN} to={RoutePath.LOGIN}/>
         )
     }
 
+
+
     else{
+
+
+        const select = (value:boolean) =>{
+            setModalActive(value)
+        }
         return (
             <div>
+                    <button onClick={()=>select(true)}>go</button>
+                <Modal  active={modalActive} setActive={select}>
+
+                </Modal>
+
                 <h2>Recovery</h2>
                 <span className={css.span}  >email</span>
                 <SuperInputTextOld onChangeText={unpdateMail} title={mail}/>
