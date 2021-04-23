@@ -74,9 +74,14 @@ export const createCardTC = (cardsPack_id:string,
         })
 }
 
-export const updateCardTC = (card:UpdateTypeInstase) => (dispatch:Dispatch) =>{
-    return CardsAPI.updateCard(card)
-        .then(res=>console.log({...res.data}))
+export const updateCardTC = (_id:string,question:string,answer:string,cardsPack_id:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards | ActionLoginType>) =>{
+    return CardsAPI.updateCard(_id,question,answer)
+        .then(res=>{
+                dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) )
+                console.log({...res.data})
+        }
+          )
+
         .catch(err=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)

@@ -47,35 +47,17 @@ export const PasswordRecovery = () => {
         }
     },[pass,pass1])
 
-
-
-
-    const [modalActive,setModalActive]=useState<boolean>(true)
-
-
-
-
-
     if (redirect) {
         return (
             <Redirect from={RoutePath.LOGIN} to={RoutePath.LOGIN}/>
         )
     }
 
-
-
     else{
 
 
-        const select = (value:boolean) =>{
-            setModalActive(value)
-        }
         return (
             <div>
-                    <button onClick={()=>select(true)}>go</button>
-                <Modal  active={modalActive} setActive={select}>
-
-                </Modal>
 
                 <h2>Recovery</h2>
                 <span className={css.span}  >email</span>

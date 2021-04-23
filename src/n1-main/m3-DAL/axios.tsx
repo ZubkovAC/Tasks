@@ -44,8 +44,8 @@ export const PacksAPI = {
         return instance.post(`cards/pack`, {cardsPack:{name, path, grade,
             shots, rating, deckCover, privat, type}})
     },
-    updatePack(_id: string, name: string){
-        return instance.put(`cards/pack`, {cardsPack:{_id, name}})
+    updatePack(_id: string,rating:number, name: string){
+        return instance.put(`cards/pack`, {cardsPack:{_id,rating, name}})
     },
     deletePack(id: string){
         return instance.delete(`cards/pack?id=${id}`)
@@ -63,8 +63,8 @@ export const CardsAPI = {
         return instance.post(`cards/card`,{card:{cardsPack_id,question,answer,grade,shots,rating,
                     answerImg,questionImg,questionVideo,answerVideo,type}})
     },
-    updateCard (card:UpdateTypeInstase){
-        return instance.put( `cards/card`,{card} )
+    updateCard (_id:string,question:string,answer:string){
+        return instance.put( `cards/card`, {card:{_id,question,answer}} )
     },
     deleteCard (id:string){
         return instance.delete( `cards/card?id=${id}`)
@@ -78,7 +78,7 @@ export const CardsAPI = {
 export type UpdateTypeInstase={
     _id:string
     question:string
-    comments:string
+    answer:string
 }
 
 export type CreateCardType = {

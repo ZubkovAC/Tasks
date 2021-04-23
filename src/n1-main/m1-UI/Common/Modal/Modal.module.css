@@ -23,7 +23,6 @@
 
 }
 
-
 .modal_content{
    padding: 20px;
    border-radius: 10px;
@@ -35,6 +34,7 @@
    transition: 0.4s all;
 
 }
+
 .modal_content.active {
    transform: scale(1);
    borders: 1px black;

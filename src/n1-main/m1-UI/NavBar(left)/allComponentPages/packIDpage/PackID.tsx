@@ -4,7 +4,7 @@ import {
     createCardTC,
     deleteCardTC,
     getCardsTC,
-    inputIdAC,
+    inputIdAC, updateCardTC,
 } from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
@@ -30,8 +30,19 @@ export const PackId = () => {
 
 
     let {id} = useParams<ParamTypes>()
-
+    //delete modal
     const [active,setActive]=useState<boolean>(false)
+    //create modal
+    const [activeCard,setActiveCard]=useState<boolean>(false)
+    const [question,setQuestion]=useState<string>('')
+    const [answer,setAnswer]=useState<string>('')
+    const [type,setType]=useState<string>('')
+    const [rating,setRating]=useState<number>(0)
+    // update modal
+    const [updateCard,setUpdateCard]=useState<boolean>(false)
+    const [questionUpdate,setQuestionUpdate]=useState<string>('')
+    const [answerUpdate,setAnswerUpdate]=useState<string>('')
+
 
     useEffect(() => {
         dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
@@ -41,46 +52,92 @@ export const PackId = () => {
     const SetActive =() =>{
         setActive(false)
     }
-
-    const createCard = () => {
-        dispatch(createCardTC(id, '1+`0`', '`10`', 0, 0,
-            0, 'string', 'string', '',
-            '', 'CARD'))
-    }
-    const updateCard = () => {
-        // dispatch(updateCardTC(card))    // сделать
+    const SetActiveCard =() =>{
+        setActiveCard(false)
     }
 
 
     const inputIdCard = (value: string) => {
         dispatch(inputIdAC(value))
     }
+
+
+    const questionCreateCard = (value:string) =>{
+        setQuestion(value)
+    }
+    const answerCreateCard = (value:string) =>{
+        setAnswer(value)
+    }
+    const typeCreateCard = (value:string) =>{
+        setType(value)
+    }
+    const ratingCreateCard = (value:string) =>{
+        if(+value >= 0 && +value <= 5) setRating(+value)
+    }
+
+    const CreateCard = () => {
+        setActiveCard(true)
+    }
+    const craeteCardNo = () =>{
+        setActiveCard(false)
+    }
+    const craeteCardYes = () =>{
+        dispatch(createCardTC(id, question, answer, 0, 0,
+            rating, 'string', 'string', '',
+            '', type))
+        setActiveCard(false)
+    }
+
+
+
+
     return (
         <div>
             <h2 className={css.content_top}>Pack -- Card</h2>
             <div className={css.box_button}>
+
+                {/*create modal*/}
+                <Modal active={activeCard} setActive={SetActiveCard} >
+                    <h2 style={{color:'wheat'}}>Create</h2>
+                    <div style={{marginBottom:'10px'}}>
+                        <SuperInputTextOld placeholder={'question'} onChangeText={questionCreateCard}/>
+                    </div>
+                    <div style={{marginBottom:'10px'}}>
+                        <SuperInputTextOld placeholder={'answer'} onChangeText={answerCreateCard}/>
+                    </div>
+                    <div style={{marginBottom:'10px'}}>
+                        <SuperInputTextOld placeholder={'type'} onChangeText={typeCreateCard}/>
+                    </div>
+                    <div style={{marginBottom:'10px'}}>
+                        <SuperInputTextOld placeholder={'rating'} onChangeText={ratingCreateCard}/>
+                    </div>
+                    <SuperButtonOld title={'yes'}  onClick={craeteCardYes} />
+                    <SuperButtonOld title={'no'} onClick={craeteCardNo}/>
+                </Modal>
+
+
+
+
                 <div  className={css.learn}>
                     <NavLink to={RoutePath.LEARN}>
                         <SuperButtonOld  title={'learn'}/>
                     </NavLink>
                 </div>
-                <div className={css.create}><SuperButtonOld  onClick={createCard} title={'create'}/></div>
-                <div className={css.update}><SuperButtonOld   onClick={updateCard} title={'update'}/></div>
+                <div className={css.create}><SuperButtonOld  onClick={CreateCard} title={'create'}/></div>
+                {/*<div className={css.update}><SuperButtonOld   onClick={UpdateCard} title={'update'}/></div>*/}
             </div>
 
 
             <div className={css.box_card} >
                 {cardArray.map(card => {
 
-
                     let arr = card.created.substring(0,10)
 
                     let update = card.updated.substring(0,10)
 
-
-
                     const deleteCardYes = () => {
                         dispatch(deleteCardTC(card._id, id))
+                        setActive(false)
                     }
                     const deleteCardNo = () => {
                         setActive(false)
@@ -90,19 +147,57 @@ export const PackId = () => {
                     }
 
 
+                    const SetUpdateCard=()=>{
+                        setUpdateCard(false)
+                    }
+                    const UpdateCard = () => {
+                        setUpdateCard(true)
+                    }
+                    const questionUpadateCard=(value:string)=>{
+                        setQuestionUpdate(value)
+                    }
+                    const answerUpdateCard=(value:string)=>{
+                        setAnswerUpdate(value)
+                    }
+                    const craeteUpdateNo=()=>{
+                        setUpdateCard(false)
+                    }
+                    const craeteUpdateYes =()=>{
+                        setAnswerUpdate('')
+                        setQuestionUpdate('')
+                        dispatch(updateCardTC(card._id,questionUpdate,answerUpdate,id))
+                        setUpdateCard(false)
+                    }
+
                     return (
                         <div className={css.cardFront} key={card._id}>
                             <div className={css.cardFront2} >
                                 <div className={css.cardFront3}>
 
+                                    {/*update modal*/}
+                                    <Modal active={updateCard} setActive={SetUpdateCard} >
+                                        <h2 style={{color:'wheat'}}>Update</h2>
+                                        <div style={{marginBottom:'10px'}}>
+                                            <SuperInputTextOld placeholder={'question'} onChangeText={questionUpadateCard}/>
+                                        </div>
+                                        <div style={{marginBottom:'10px'}}>
+                                            <SuperInputTextOld placeholder={'answer'} onChangeText={answerUpdateCard}/>
+                                        </div>
+
+                                        <SuperButtonOld title={'yes'}  onClick={craeteUpdateYes} />
+                                        <SuperButtonOld title={'no'} onClick={craeteUpdateNo}/>
+                                    </Modal>
+
+                                    {/*delete*/}
                                     <Modal active={active} setActive={SetActive} >
                                         <h2 style={{color:'wheat'}}>Are you sure you want to delete it?</h2>
-                                        <div style={{float:'right'}}>
+                                        <div >
                                             <SuperButtonOld title={'yes'}  onClick={deleteCardYes} />
                                             <SuperButtonOld title={'no'} onClick={deleteCardNo}/>
                                         </div>
-
                                     </Modal>
+
+
 
                                     <div>{card.question}</div>
                                     <img src={card.answerImg==='' ? card.answerImg : cardFront } width='100px' alt=""/>
@@ -115,13 +210,14 @@ export const PackId = () => {
                                     <div>Type: {card.type}</div>
                                     -----------------------------
                                     <div >
-                                        <SuperButtonOld onClick={deleteCard} title={'Delete Card'}/>
+                                        <div className={css.update}><SuperButtonOld   onClick={UpdateCard} title={'update'}/></div>
                                     </div>
 
                                     -----------------------------
                                     <div>Create :{arr }</div>
-                                    <div style={{margin:'20px'}}>
-
+                                    -----------------------------
+                                    <div >
+                                        <SuperButtonOld onClick={deleteCard} title={'Delete Card'}/>
                                     </div>
 
                                 </div>

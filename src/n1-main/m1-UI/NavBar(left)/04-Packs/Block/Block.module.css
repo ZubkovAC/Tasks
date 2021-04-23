@@ -51,3 +51,8 @@
 .buttons{
     grid-area: buttons
 }
+
+.h3 {
+    color:wheat;
+    text-shadow: 0 0 20px whitesmoke;
+}

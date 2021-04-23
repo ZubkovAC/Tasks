@@ -41,18 +41,19 @@
 
 .box_button{
     display: grid;
-    justify-content: space-around;
-
-    grid-template-columns:8fr 1fr 1fr;
+    justify-content: center;
+    grid-template-columns:1fr 1fr;
     grid-template:
-            "create learn update";
+            "create learn";
 }
 
 .learn{
+    margin: 10px;
     grid-area: learn;
 }
 
 .create{
+    margin: 10px;
     grid-area: create;
 }
 .update{

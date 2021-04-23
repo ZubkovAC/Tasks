@@ -17,7 +17,6 @@ export const Modal = (props:ModalPropsType) => {
         <div className={props.active? active: css.modal} onClick={()=>props.setActive(false)}>
             <div className={props.active? modal_content : css.modal_content} onClick={e=>e.stopPropagation()}>
                 {props.children}
-
             </div>
         </div>
     )

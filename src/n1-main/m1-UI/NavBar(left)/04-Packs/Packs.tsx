@@ -54,8 +54,6 @@ export const Packs = () => {
         dispatch(cardCountAC(+e))
     }
 
-
-
     if (!isAuth) {
         return <Unauthorised/>;
     }
