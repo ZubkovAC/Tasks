@@ -51,7 +51,7 @@ const SuperCheckbox: React.FC<SuperCheckboxPropsType> = (
                     name="example"
                     {...restProps}
                 />
-                {title}
+                <span style={{fontSize:'20px',fontWeight:600}}>{title}</span>
             </label>
         </div>
 

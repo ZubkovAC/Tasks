@@ -9,8 +9,6 @@ import {reducerSearch} from "../04-reducer-search/reducer-search";
 import {cardsReducer} from "../06-reducer-cards/reducer-cards";
 
 
-
-
 let rootReducer = combineReducers({
     start:StartReducer,
     resPassword:reserseReducer,
@@ -20,7 +18,6 @@ let rootReducer = combineReducers({
     packs: reducerPacks,
     cards:cardsReducer
 })
-
 
 // @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

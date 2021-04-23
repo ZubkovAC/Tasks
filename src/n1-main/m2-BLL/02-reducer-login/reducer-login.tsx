@@ -8,9 +8,9 @@ const initialState = {
     rememberMe: false,
     error: null,
     isAuth: false,
-    avatar: '' ,
+    avatar: '',
     userName: '',
-    lamp:true,
+    lamp: true,
 }
 
 
@@ -30,7 +30,7 @@ export const reducerLogin = (state: initialStateType = initialState, action: Act
         case 'LOGIN/GET-PROFILE':
             return {...state, avatar: action.avatar, userName: action.userName}
         case "LOGIN/TEST-ERROR":
-            return {...state,lamp:action.lamp}
+            return {...state, lamp: action.lamp}
         default:
             return state
     }
@@ -41,17 +41,16 @@ export const loginAC = (email: string, password: string, rememberMe: boolean) =>
     ({type: "LOGIN/LOGIN", email, password, rememberMe} as const)
 export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)
 export const isAuthAC = (isAuth: boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth} as const)
-export const getProfileAC = (avatar: string , userName: string) => ({
-    type: 'LOGIN/GET-PROFILE',avatar,userName} as const)
+export const getProfileAC = (avatar: string, userName: string) => ({
+    type: 'LOGIN/GET-PROFILE', avatar, userName
+} as const)
 export const lampAC = (lamp: boolean) => ({type: 'LOGIN/TEST-ERROR', lamp} as const)
 
 //TC
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
-
     return AuthAPI.login(email, password, rememberMe)
-
         .then((res) => {
-            if (res){
+            if (res) {
                 dispatch(loginAC(email, password, rememberMe))
                 dispatch(errorAC(null))
                 dispatch(isAuthAC(true))
@@ -59,54 +58,45 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
             }
         })
         .catch((error) => {
-            if (error.response){
-                dispatch(errorAC(error.response.data.error))
-                dispatch(lampAC(false))
-                setTimeout(()=>dispatch(lampAC(true)),2000)
-            }
-            else{
-                dispatch(errorAC(error.message))
-                dispatch(lampAC(false))
-                setTimeout(()=>dispatch(lampAC(true)),2000)
-            }
+            dispatch(lampAC(false))
+            setTimeout(() => dispatch(lampAC(true)), 2000)
+            if (error.response) dispatch(errorAC(error.response.data.error))
+            else dispatch(errorAC(error.message))
         })
-
 }
 
 export const logoutTC = () => (dispatch: Dispatch) => {
     return AuthAPI.logout()
         .then(() => dispatch(isAuthAC(false)))
         .catch((error) => {
-            if (error.response){
-                dispatch(lampAC(false))
-                setTimeout(()=>dispatch(lampAC(true)),2000)
-                dispatch(errorAC(error.response.data.error))
-            }
-            else{
-                dispatch(errorAC(error.message))
-                dispatch(lampAC(false))
-                setTimeout(()=>dispatch(lampAC(true)),2000)
-            }
+            dispatch(lampAC(false))
+            setTimeout(() => dispatch(lampAC(true)), 2000)
+            if (error.response) dispatch(lampAC(false))
+            else dispatch(errorAC(error.message))
         })
 }
 
 export const authMeTC = () => (dispatch: Dispatch) => {
     return AuthAPI.authMe()
-        .then((res) =>{
+        .then((res) => {
             dispatch(getProfileAC(res.data.avatar, res.data.name))
             dispatch(isAuthAC(true))
-        } )
-        .catch( res=>{
+        })
+        .catch(res => {
             dispatch(lampAC(false))
-            setTimeout(()=>dispatch(lampAC(true)),2000)
+            setTimeout(() => dispatch(lampAC(true)), 2000)
         })
 }
 
 
-
 //Type
 export type initialStateType = typeof initialState
-export type ActionLoginType = LoginType | ErrorType | IsAuthType | GetProfileType | LampAC
+export type ActionLoginType =
+    | LoginType
+    | ErrorType
+    | IsAuthType
+    | GetProfileType
+    | LampAC
 
 export type LoginType = ReturnType<typeof loginAC>
 export type ErrorType = ReturnType<typeof errorAC>

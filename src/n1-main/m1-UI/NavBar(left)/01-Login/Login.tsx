@@ -40,12 +40,14 @@ export const Login = () => {
     return (
         <div>
             <h2>Login</h2>
-            <div>account</div>
+            <h3>account</h3>
             <SuperInputText onChange={onChangeHandlerEmail} value={email} />
-            <div>password</div>
+            <h3>password</h3>
             <SuperInputText onChange={onChangeHandlerPassword} type={'password'} value={password} />
-            <div>remember Me</div>
-            <SuperCheckbox onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
+            <SuperCheckbox  title={'remember Me'} onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
+            <div style={{height:'10px'}}>
+
+            </div>
             {error && <p className={"error"}>{` attention ${error}`}</p>}
             <SuperButton onClick={onClickHandler} title={'Login'} />
         </div>

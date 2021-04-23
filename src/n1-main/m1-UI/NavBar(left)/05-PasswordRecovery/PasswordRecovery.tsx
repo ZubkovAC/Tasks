@@ -7,7 +7,7 @@ import {RoutePath} from "../../../../App";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from "./PasswordRecovery.module.css";
 import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
-import {Modal} from "../../Common/Modal/Modal";
+
 
 export const PasswordRecovery = () => {
 

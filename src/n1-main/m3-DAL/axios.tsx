@@ -6,7 +6,6 @@ const instance = axios.create({
     withCredentials: true,
 })
 
-
 //   https://neko-back.herokuapp.com/2.0
 //   http://localhost:7542/2.0/
 
@@ -31,13 +30,9 @@ export const AuthAPI = {
     }
 }
 
-
-
-
 export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
         return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
-        // return instance.get(`cards/pack`,{params:{packName,min,max,sortPacks,page,pageCount,userId}})
     },
     addPack(name?: string, path?: string, grade?: number, shots?: number,
             rating?: number, deckCover?: string, privat?: boolean, type?: string){
@@ -52,9 +47,7 @@ export const PacksAPI = {
     },
 }
 
-
 export const CardsAPI = {
-
     getCards(cardPackId:string,cardQuestion:string,cardAnswer:string){
         return instance.get(`cards/card?pageCount=10&cardsPack_id=${cardPackId}&cardQuestion=${cardQuestion}&cardAnswer=${cardAnswer}`)
     },
@@ -74,7 +67,7 @@ export const CardsAPI = {
     }
 }
 
-
+// Type
 export type UpdateTypeInstase={
     _id:string
     question:string

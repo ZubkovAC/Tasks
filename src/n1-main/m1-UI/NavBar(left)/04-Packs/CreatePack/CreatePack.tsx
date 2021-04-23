@@ -1,6 +1,6 @@
 import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
 import {useDispatch, useSelector} from "react-redux";
-import {addPackTC, getPacksTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {addPackTC,  textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
@@ -18,13 +18,19 @@ export const CreatePack = () => {
     let name = useSelector<AppStateType,string>(state => state.packs.name)
     let type = useSelector<AppStateType,string>(state => state.packs.type)
 
-
+    // modal position
     const [active, setActive] = useState<boolean>(false)
+    // InputText
+    const [question, setQuestion] = useState<string>('')
+    const [textAnswer, settextAnswer] = useState<string>('')
+    const [textType, settextType] = useState<string>('')
+    const [textRating, setTextRating] = useState<number>(0)
+
+
 
     const SetActive =()=>{
         setActive(false)
     }
-
 
     const CreatePack = () =>{
         setActive(true)
@@ -37,34 +43,45 @@ export const CreatePack = () => {
         setActive(false)
     }
 
-
-    const TextCreatePack = (name:string) =>{
-        dispatch(textCreateNamePackAC(name))
+    const TextCreatePack = (question:string) =>{
+        dispatch(textCreateNamePackAC(question))
+        setQuestion(question)
+    }
+    const answerCreatePack = (answer:string) =>{
+        settextAnswer(answer)
+    }
+    const typeCreatePack = (type:string) =>{
+        settextType(type)
+    }
+    const ratingCreatePack = (rating:string) =>{
+        setTextRating(+rating)
     }
 
 
     return (
         <div>
-           <div style={{fontSize:'20px',color:'white',fontWeight:600}}>Name</div>
+            {/*Modal createPack*/}
             <Modal active={active} setActive={SetActive} >
                 <h2 style={{color:'wheat'}}>Create</h2>
                 <div style={{marginBottom:'10px'}}>
-                    <SuperInputTextOld placeholder={'question'} onChangeText={TextCreatePack}/>
+                    <SuperInputTextOld value={question} placeholder={'question'} onChangeText={TextCreatePack}/>
                 </div>
                <div style={{marginBottom:'10px'}}>
-                   <SuperInputTextOld placeholder={'answer'} onChangeText={TextCreatePack}/>
+                   <SuperInputTextOld value={textAnswer} placeholder={'answer'} onChangeText={answerCreatePack}/>
                </div>
                <div style={{marginBottom:'10px'}}>
-                   <SuperInputTextOld placeholder={'type'} onChangeText={TextCreatePack}/>
+                   <SuperInputTextOld value={textType} placeholder={'type'} onChangeText={typeCreatePack}/>
                </div>
                <div style={{marginBottom:'10px'}}>
-                   <SuperInputTextOld placeholder={'rating'} onChangeText={TextCreatePack}/>
+                   <SuperInputTextOld value={textRating} placeholder={'rating'} onChangeText={ratingCreatePack}/>
                </div>
 
 
                 <SuperButtonOld title={'yes'}  onClick={craetePackYes} />
                 <SuperButtonOld title={'no'} onClick={craetePackNo}/>
             </Modal>
+
+
             <SuperButtonOld  title={'Create  Pack'} onClick={CreatePack}/>
         </div>
     )

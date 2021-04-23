@@ -1,10 +1,8 @@
 import {Dispatch} from "redux";
-import {CardsAPI, CreateCardType, PacksAPI, UpdateTypeInstase} from "../../m3-DAL/axios";
+import {CardsAPI, CreateCardType} from "../../m3-DAL/axios";
 import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../00-store/store";
-
-
 
 const initialState = {
     cardArray:[] as CardArrayResponseType[],
@@ -12,7 +10,7 @@ const initialState = {
     card:{} as CreateCardType
 }
 
-export type IniticalStateCardType = typeof initialState
+
 
 export const cardsReducer = (state: IniticalStateCardType = initialState, action: ActionTypeCards): IniticalStateCardType => {
     switch (action.type) {
@@ -32,22 +30,18 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
     }
 }
 
+// AC
 export const getCardsAC = (cardArray:CardArrayResponseType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
 export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as const)
 
-export type GetCardsAC = ReturnType<typeof getCardsAC>
-export type InputIdAC = ReturnType<typeof inputIdAC>
-
+// TC
 export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
                       max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
     return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,)
-        .then((res)=>{
-            dispatch(getCardsAC(res.data.cards))
-        })
+        .then((res)=>dispatch(getCardsAC(res.data.cards)))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
-            console.log({...err})
         })
 }
 
@@ -64,10 +58,8 @@ export const createCardTC = (cardsPack_id:string,
                              type?:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards | ActionLoginType>) =>{
     return CardsAPI.createCard(cardsPack_id,question,answer,grade,shots,rating,
         answerImg,questionImg,questionVideo,answerVideo,type)
-        .then((res)=>{
-            dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) )
-            console.log({...res.data})
-        })
+        .then((res)=>
+            dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) ))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -76,12 +68,8 @@ export const createCardTC = (cardsPack_id:string,
 
 export const updateCardTC = (_id:string,question:string,answer:string,cardsPack_id:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards | ActionLoginType>) =>{
     return CardsAPI.updateCard(_id,question,answer)
-        .then(res=>{
-                dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) )
-                console.log({...res.data})
-        }
-          )
-
+        .then(res=>
+                dispatch(getCardsTC('','',cardsPack_id,1,4,'',1,7) ))
         .catch(err=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -90,10 +78,8 @@ export const updateCardTC = (_id:string,question:string,answer:string,cardsPack_
 
 export const deleteCardTC = (idCard:string,idPack:string) => (dispatch:ThunkDispatch<AppStateType,unknown,ActionTypeCards | ActionLoginType>) => {
     return CardsAPI.deleteCard(idCard)
-        .then(res=> {
-            dispatch(getCardsTC('','',idPack,1,4,'',1,7))
-            console.log({...res.data})
-        })
+        .then(res=>
+            dispatch(getCardsTC('','',idPack,1,4,'',1,7)))
         .catch(err=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -102,19 +88,20 @@ export const deleteCardTC = (idCard:string,idPack:string) => (dispatch:ThunkDisp
 
 export const cardGradeTC = (grade:number,card_id:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards>) =>{
     return CardsAPI.cardGrade(grade,card_id)
-        .then(res=>{
-            console.log('alulyjjj')
-        })
+        .then(res=>console.log('alulyjjj'))
         .catch(err=> console.log('Xpehalulyjjjj!!!'))
 }
+
+
+//type
+export type IniticalStateCardType = typeof initialState
 
 export type ActionTypeCards =
     | GetCardsAC
     | InputIdAC
 
-
-
-
+export type GetCardsAC = ReturnType<typeof getCardsAC>
+export type InputIdAC = ReturnType<typeof inputIdAC>
 export type CardArrayResponseType ={
     answer: string
     answerImg: string

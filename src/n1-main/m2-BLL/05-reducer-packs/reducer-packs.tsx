@@ -6,7 +6,6 @@ import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
 import {AppStateType} from "../00-store/store";
 import {ThunkDispatch} from "redux-thunk";
 
-
 const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
     cardPacksTotalCount:0,
@@ -34,29 +33,17 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
 export const getPacksAC = (array:Array<PardsTypeProps>,cardPacksTotalCount:number) =>
     ({type: "PACKS/GET-PACKS",array,cardPacksTotalCount} as const)
 export const  textCreateNamePackAC = (name: string) => ({type: "PACKS/CREATE-NAME-PACK", name} as const)
-
-
 export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)     // выводиться куда? не используется в коде
-
-
-
-
 
 //TC
 export const getPacksTC = (packName: string, min: number , max: number, sortPacks: string, page: number, pageCount: number, userId: string) => (dispatch: Dispatch) => {
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId)
-        .then((res) => {
-            dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))
-        })
+        .then((res) => dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount)))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
-            if(error.response){
-                dispatch(errorAC(error.response.data.error))
-            }
-            else{
-                dispatch(errorAC(error.message))
-            }
+            if(error.response)   dispatch(errorAC(error.response.data.error))
+            else  dispatch(errorAC(error.message))
         })
 }
 
@@ -64,28 +51,20 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
 
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
-        .then((res) => {
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
-            console.log('ok',{...res.data})
-        })
+        .then((res) =>
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
-            if(error.response){
-                dispatch(errorAC(error.response.data.error))
-            }
-            else{
-                dispatch(errorAC(error.message))
-            }
+            if(error.response) dispatch(errorAC(error.response.data.error))
+            else dispatch(errorAC(error.message))
         })
 }
 
 export const updatePackTC = (_id: string, name: string,rating:number,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
     return PacksAPI.updatePack(_id,rating, name)
-        .then((res) => {
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
-            console.log({...res.data})
-        })
+        .then((res) =>
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -95,21 +74,17 @@ export const updatePackTC = (_id: string, name: string,rating:number,searchCardN
 
 export const deletePackTC = (id: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
     return PacksAPI.deletePack(id)
-        .then((res) => {
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
-            console.log({...res.data})
-        })
+        .then((res) =>
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
         })
 }
 
-
-
-
 //Type
 export type initialStateType = typeof initialState
+
 export type ActionPackType =
     | GetPacksAC
     | TextCreateNamePackAC
@@ -117,8 +92,5 @@ export type ActionPackType =
 
 export type GetPacksAC = ReturnType<typeof getPacksAC>
 export type TextCreateNamePackAC = ReturnType<typeof textCreateNamePackAC>
-
-
-
 export type ErrorType = ReturnType<typeof errorAC>
 

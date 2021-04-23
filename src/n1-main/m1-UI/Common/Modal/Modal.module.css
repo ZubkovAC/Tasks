@@ -3,24 +3,20 @@
    left: 0px;
    height: 100%;
    width: 100%;
-   background-color: rgba(0, 0, 0, .5);
+   background-color: rgba(0, 0, 0, 0.5);
    position: fixed;
-
    display: flex;
    justify-content:center;
    align-items: center;
    transition:0.5s ;
    opacity: 0;
    pointer-events: none;
-   borders: 1px black;
 
 }
 
 .modal.active{
    opacity: 1;
    pointer-events: all;
-
-
 }
 
 .modal_content{
@@ -29,7 +25,7 @@
    width: 400px;
    height: 400px;
 
-   background-color: whitesmoke;
+   background-color: black;
    transform: scale(0.5);
    transition: 0.4s all;
 
@@ -37,8 +33,7 @@
 
 .modal_content.active {
    transform: scale(1);
-   borders: 1px black;
-   background-color: whitesmoke;
+   background-color: black;
    width: 400px;
    height: 400px;
 }

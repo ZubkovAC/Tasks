@@ -20,15 +20,18 @@ export type BlockPropsType = {
 
 export const Block = (props: BlockPropsType) => {
 
+    const dispatch = useDispatch()
+
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
-    const dispatch = useDispatch()
 
+    // modal + input
     const [active,setActive]=useState<boolean>(false)
     const [activeUpdate,setActiveUpdate]=useState<boolean>(false)
     const [inputName,setInputName]=useState<string>('')
     const [inputNumber,setInputNumber]=useState<any>(0)
+
 
     const SetActive =() =>{
         setActive(false)
@@ -54,7 +57,6 @@ export const Block = (props: BlockPropsType) => {
     }
     const UpdatePackNo = () => {
         setActiveUpdate(false)
-        // dispatch(deletePackTC(props.id,searchCardName,pagesList,cardPages))
     }
     const UpdatePackYes = () => {
         dispatch(updatePackTC(props.id, inputName,inputNumber,searchCardName,pagesList,cardPages))
@@ -78,7 +80,7 @@ export const Block = (props: BlockPropsType) => {
                 {/*Delete Madal*/}
                 <Modal active={active} setActive={SetActive} >
                     <h2 style={{color:'wheat',textShadow:'0 0 50px white'}}>Are you sure you want to delete it?</h2>
-                    <div style={{float:'right'}}>
+                    <div style={{float: 'right'}}>
                         <SuperButtonOld title={'yes'}  onClick={deletePackYes} />
                         <SuperButtonOld title={'no'} onClick={deletePackNo}/>
                     </div>
@@ -87,7 +89,7 @@ export const Block = (props: BlockPropsType) => {
                 {/*Update Madal*/}
                 <Modal active={activeUpdate} setActive={SetActiveUpdate} >
                     <h2 style={{color:'wheat',textShadow:'0 0 50px white'}}>update name?</h2>
-                    <div style={{float:'right'}}>
+                    <div style={{float: 'right'}}>
                         <h3 className={css.h3}>Name:</h3>  <SuperInputTextOld title={inputName} onChangeText={onChangeName} />
                         <h3 className={css.h3}>Rating:</h3> <SuperInputTextOld type={'number'} title={inputNumber} onChangeText={onChangeNumber}/>
                         <SuperButtonOld title={'yes'}  onClick={UpdatePackYes} />

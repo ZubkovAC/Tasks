@@ -1,7 +1,6 @@
 import {AuthAPI} from "../../m3-DAL/axios"
 import {Dispatch} from "redux";
 
-
 const reserseInitialState = {
     email: '',
     from: '',
@@ -10,9 +9,6 @@ const reserseInitialState = {
     redirect: false,
 
 }
-
-
-
 
 export const reserseReducer = (state: ReserseInitialState = reserseInitialState, action: ActionType): ReserseInitialState => {
     switch (action.type) {
@@ -32,7 +28,6 @@ export const reserseReducer = (state: ReserseInitialState = reserseInitialState,
         case "REVERSE/REDIRECT-FALSE": {
             return {...state, redirect: true}
         }
-
         default:
             return state
 
@@ -50,18 +45,9 @@ export const passwordAC = (password: string) => ({type: "REVERSE/PASSWORD", pass
 export const resPasswordTC = (email: string, from: string,message:string,) => (dispatch: Dispatch) => {
     return AuthAPI.forgot(email, from,message)
         .then((res) => {
-            // dispatch(redirectF())
-        })
-        .then((res) => {
-
             dispatch(resPassword(email, from,message))
         })
-        .catch((error) => {
-            console.log({...error})
-            // dispatch(redirectF())
-            // dispatch(redirectT())
-            alert(error)
-        })
+        .catch((error) => alert(error))
 }
 
 // Type

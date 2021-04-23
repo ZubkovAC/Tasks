@@ -24,6 +24,7 @@ export const LearnPage = () => {
 
         return cards[res.id + 1];
     }
+
     const [cardForAnswer, setCardForAnswer] = useState(cardArray[0])
     const [finishQuestion, setFinishQuestion] = useState<any>('Learn To Start')
     const [showAnswer, setShowAnswer] = useState<any>(false)
@@ -63,7 +64,6 @@ export const LearnPage = () => {
         let arr = [`кажется я обкакался =(`,`Я точно закончил пятницу?`,`не уверенно, фильшиво, слабо`,`ну почти`,`это было слишком легко`]
         let grede = arr.indexOf(value)
         dispatch(cardGradeTC((grede+1),cardForAnswer._id))
-        // console.log(grede+1,cardForAnswer._id)
     }
 
 
@@ -91,15 +91,11 @@ export const LearnPage = () => {
                                     options={[`это было слишком легко`,`ну почти`,`не уверенно, фильшиво, слабо`,`Я точно закончил пятницу?`,`кажется я обкакался =(`]}
                                     onChangeOption={RadioSelect}
                                 />
-
                             </div>
-
                         </div>
                         : null
                     }
-
             </div>
-
         </div>
     )
 }

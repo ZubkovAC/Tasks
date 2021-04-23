@@ -1,7 +1,7 @@
 .Block{
     margin: 10px;
     margin-left: 300px;
-    background-color:rgba(255, 255, 255, 0.5);;
+    background-color:rgba(255, 255, 255,0.4);;
     justify-content: flex-start;
     border: 1px solid gray;
     padding: 10px;
@@ -25,31 +25,31 @@
 .userName{
     padding: 5px;
     font-size: 22px;
-    grid-area: userName
+    grid-area: userName;
 }
 .name{
     padding: 5px;
-    grid-area: name
+    grid-area: name;
 }
 .rating{
     padding: 5px;
-    grid-area: rating
+    grid-area: rating;
 }
 .cardsCount{
     padding: 5px;
-    grid-area: cardsCount
+    grid-area: cardsCount;
 }
 .create{
     padding: 5px;
-    grid-area: create
+    grid-area: create;
 }
 
 .id{
     padding: 5px;
-    grid-area: id
+    grid-area: id;
 }
 .buttons{
-    grid-area: buttons
+    grid-area: buttons;
 }
 
 .h3 {

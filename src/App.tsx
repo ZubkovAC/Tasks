@@ -58,7 +58,6 @@ function App() {
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
                     <Route exact path={RoutePath.LEARN} render={() => <LearnPage/>}/>
 
-
                     <Route path={RoutePath.PACKS + '/:id'} render={() => <PackId />}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>
 

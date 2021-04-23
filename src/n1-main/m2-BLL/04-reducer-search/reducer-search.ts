@@ -7,8 +7,6 @@ let initialState = {
     pagesList:1,
 }
 
-
-
 export const reducerSearch =
     (state: SearchInitialStateType = initialState, action: ActionTypeSearch): SearchInitialStateType => {
         switch (action.type) {
@@ -28,17 +26,12 @@ export const cardNameAC = (searchCardName: string) => ({type: 'SEARCH/CHANGE-TEX
 export const cardCountAC = (count: number) => ({type: 'SEARCH/COUNT-OF-CARD',count} as const)
 export const pagesListAC = (pagesList: number) => ({type: 'SEARCH/PAGE-COUNT',pagesList} as const)
 
-
 // Action Type
 export type CardNameACType = ReturnType<typeof cardNameAC>
 export type CardCountACType = ReturnType<typeof cardCountAC>
 export type PagesListACACType = ReturnType<typeof pagesListAC>
 
-// TC
-
-
 // Type
-
 export type SearchInitialStateType = typeof initialState
 
 type ActionTypeSearch =

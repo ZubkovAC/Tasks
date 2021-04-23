@@ -19,7 +19,6 @@ export const HeaderPacks = () =>{
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
     }
 
-
     return (
         <div className={css.HeaderPack}>
             <div style={{fontSize:'20px',fontWeight:600}}>

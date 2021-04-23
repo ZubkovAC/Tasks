@@ -1,5 +1,5 @@
 import css from './Packs.module.css'
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {Unauthorised} from '../../Common/Accets/Unauthorised';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Block} from "./Block/Block";
@@ -10,10 +10,8 @@ import SuperSelectOld from "../../Common/InputAndButton/c5-SuperSelectOld/SuperS
 import {cardCountAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
-import {Modal} from '../../Common/Modal/Modal';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {DeleteModal} from "../allComponentPages/DeleteModalPackID/DeleteModal";
-import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+
 
 
 export type PardsTypeProps = {
@@ -60,12 +58,9 @@ export const Packs = () => {
 
     return (
         <div className={css.App}>
-
-
             <HeaderPacks/>
             <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeHandler}
                             options={['9', '8', '7', '6', '5', '4', '3']}/>
-
             <Search/>
             <CreatePack/>
             <Pagination/>
