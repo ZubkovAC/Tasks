@@ -93,7 +93,7 @@ export const LearnPage = () => {
                                 />
                             </div>
                         </div>
-                        : null
+                        : <h5>Answer to click</h5>
                     }
             </div>
         </div>

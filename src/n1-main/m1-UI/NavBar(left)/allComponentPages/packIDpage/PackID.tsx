@@ -108,10 +108,13 @@ export const PackId = () => {
 
                 <div className={css.learn}>
                     <NavLink to={RoutePath.LEARN}>
-                        <SuperButtonOld title={'learn'}/>
+                        <div>
+                            <button className={css.box_button}>LEARN</button>
+                        </div>
+
                     </NavLink>
+                    <SuperButtonOld onClick={CreateCard} title={'create'}/>
                 </div>
-                <div className={css.create}><SuperButtonOld onClick={CreateCard} title={'create'}/></div>
             </div>
 
             <div className={css.box_card}>

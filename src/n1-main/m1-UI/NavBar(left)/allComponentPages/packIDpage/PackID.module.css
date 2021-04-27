@@ -40,17 +40,24 @@
 
 
 .box_button{
-    display: grid;
-    justify-content: center;
-    grid-template-columns:1fr 1fr;
-    grid-template:
-            "create learn";
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    font-family: Panda;
+    font-size: 30px;
+    text-shadow:
+            0 0 15px whitesmoke, 0 0 15px whitesmoke,0 0 15px whitesmoke,
+            0 0 15px whitesmoke, 0 0 15px whitesmoke,0 0 15px whitesmoke;
+    transition: 0.5s;
 }
 
-.learn{
-    margin: 10px;
-    grid-area: learn;
+.box_button:hover {
+    font-size: 30px;
+    text-shadow:
+            0 0 15px #61dafb, 0 0 15px #61dafb,0 0 15px #61dafb,
+            0 0 15px #61dafb, 0 0 15px #61dafb,0 0 15px #61dafb;
 }
+
 
 .create{
     margin: 10px;
