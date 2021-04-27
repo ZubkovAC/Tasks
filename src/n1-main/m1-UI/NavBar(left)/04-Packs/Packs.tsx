@@ -43,6 +43,10 @@ export const Packs = () => {
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
+    let preloader =useSelector<AppStateType,boolean>(state=>state.packs.preloader)
+
+
+
 
     useEffect(()=>{
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
@@ -65,13 +69,19 @@ export const Packs = () => {
             <CreatePack/>
             <Pagination/>
 
-            {cardPacks.map(t => {
-                return <Block
-                    key={t._id} name={t.name} rating={t.rating}
-                    userName={t.user_name} created={t.created}
-                    id={t._id} cardsCount={t.cardsCount}
-                />
-            })}
+            <div  >
+                {preloader
+                    ?<h2 >loading</h2>
+                    :cardPacks.map(t => {
+                        return <Block
+                            key={t._id} name={t.name} rating={t.rating}
+                            userName={t.user_name} created={t.created}
+                            id={t._id} cardsCount={t.cardsCount}
+                        />
+                    })}
+            </div>
+
+
 
         </div>
     )

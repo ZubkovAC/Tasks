@@ -5,6 +5,9 @@ import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
 import React, {useState} from "react";
+import SuperSelect from "../../../Common/InputAndButton/c5-SuperSelect/SuperSelect";
+import SuperCheckbox from "../../../Common/InputAndButton/c3-SuperCheckbox/SuperCheckbox";
+import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 
 
 export const CreatePack = () => {
@@ -26,6 +29,8 @@ export const CreatePack = () => {
     const [textType, settextType] = useState<string>('')
     const [textRating, setTextRating] = useState<number>(0)
 
+    const [valueRadio, setValueRadio] = useState<any>('false')
+
 
 
     const SetActive =()=>{
@@ -39,7 +44,7 @@ export const CreatePack = () => {
         setActive(false)
     }
     const craetePackYes = () =>{
-        dispatch(addPackTC(name,'',0,0,0,'',true,type,searchCardName,pagesList,cardPages))
+        dispatch(addPackTC(name,'',0,0,0,'',valueRadio,type,searchCardName,pagesList,cardPages))
         setActive(false)
     }
 
@@ -57,6 +62,9 @@ export const CreatePack = () => {
         setTextRating(+rating)
     }
 
+    const onChangeChecked=(value:string)=>{
+        setValueRadio(value)
+    }
 
     return (
         <div>
@@ -75,11 +83,12 @@ export const CreatePack = () => {
                <div style={{marginBottom:'10px'}}>
                    <SuperInputTextOld value={textRating} placeholder={'rating'} onChangeText={ratingCreatePack}/>
                </div>
-
+                    <SuperRadio options={['true','false']} value={valueRadio} onChangeOption={onChangeChecked}/>
 
                 <SuperButtonOld title={'yes'}  onClick={craetePackYes} />
                 <SuperButtonOld title={'no'} onClick={craetePackNo}/>
             </Modal>
+
 
 
             <SuperButtonOld  title={'Create  Pack'} onClick={CreatePack}/>

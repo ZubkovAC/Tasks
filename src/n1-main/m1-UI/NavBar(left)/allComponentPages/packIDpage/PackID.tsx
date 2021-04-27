@@ -188,7 +188,7 @@ export const PackId = () => {
 
                             <div>{card.question}</div>
                             <img src={card.answerImg === '' ? card.answerImg : cardFront} width='100px' alt=""/>
-                            <div>{card.answer}</div>
+                            {/*<div>{card.answer}</div>*/}
                             <div>Update:{update}</div>
                             <div> Rating:<span
                                 style={{color: 'white', textShadow: '0 0 10px white'}}>{card.rating}</span></div>
@@ -208,7 +208,6 @@ export const PackId = () => {
 
                         </div>
                     )
-
                 })}
             </div>
 

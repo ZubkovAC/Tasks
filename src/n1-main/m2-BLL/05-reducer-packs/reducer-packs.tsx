@@ -10,7 +10,8 @@ const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
     cardPacksTotalCount:0,
     name:'',
-    type:'TestPack'
+    type:'TestPack',
+    preloader:false
 }
 
 export const reducerPacks = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
@@ -24,6 +25,12 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
         case "PACKS/CREATE-NAME-PACK":{
             return {...state,name:action.name }
         }
+        case "LOGIN/PRELOADER-ON":{
+            return {...state,preloader:action.preloader}
+        }
+        case "LOGIN/PRELOADER-OFF":{
+            return {...state,preloader:action.preloader}
+        }
         default:
             return state
     }
@@ -34,25 +41,29 @@ export const getPacksAC = (array:Array<PardsTypeProps>,cardPacksTotalCount:numbe
     ({type: "PACKS/GET-PACKS",array,cardPacksTotalCount} as const)
 export const  textCreateNamePackAC = (name: string) => ({type: "PACKS/CREATE-NAME-PACK", name} as const)
 export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)     // выводиться куда? не используется в коде
+export const preloaderOnAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-ON', preloader} as const)     // выводиться куда? не используется в коде
+export const preloaderOffAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-OFF', preloader} as const)     // выводиться куда? не используется в коде
 
 //TC
 export const getPacksTC = (packName: string, min: number , max: number, sortPacks: string, page: number, pageCount: number, userId: string) => (dispatch: Dispatch) => {
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId)
-        .then((res) => dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount)))
+        .then((res) => {
+            dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))})
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
             if(error.response)   dispatch(errorAC(error.response.data.error))
             else  dispatch(errorAC(error.message))
         })
+        .finally(()=> dispatch(preloaderOnAC(false)))
 }
 
 
 
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
-        .then((res) =>
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
+        .then((res) =>{
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))})
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -70,6 +81,7 @@ export const updatePackTC = (_id: string, name: string,rating:number,searchCardN
             setTimeout(()=>dispatch(lampAC(true)),2000)
             dispatch(errorAC(error.response.data.error))
         })
+        .finally(()=> dispatch(preloaderOnAC(false)))
 }
 
 export const deletePackTC = (id: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
@@ -89,8 +101,12 @@ export type ActionPackType =
     | GetPacksAC
     | TextCreateNamePackAC
     | ErrorType
+    | PreloaderOnAC
+    | PreloaderOffAC
 
 export type GetPacksAC = ReturnType<typeof getPacksAC>
 export type TextCreateNamePackAC = ReturnType<typeof textCreateNamePackAC>
 export type ErrorType = ReturnType<typeof errorAC>
+export type PreloaderOnAC = ReturnType<typeof preloaderOnAC>
+export type PreloaderOffAC = ReturnType<typeof preloaderOffAC>
 

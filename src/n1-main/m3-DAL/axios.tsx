@@ -9,6 +9,7 @@ const instance = axios.create({
 //   https://neko-back.herokuapp.com/2.0
 //   http://localhost:7542/2.0/
 
+
 export const AuthAPI = {
     createRegistration(email:string,password:string){
         return instance.post('auth/register',{email,password})
@@ -29,6 +30,8 @@ export const AuthAPI = {
         return instance.post('auth/set-new-password',{password,resetPasswordToken})
     }
 }
+
+
 
 export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){

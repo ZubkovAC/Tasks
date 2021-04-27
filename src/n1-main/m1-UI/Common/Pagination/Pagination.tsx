@@ -4,7 +4,7 @@ import {pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import css from './Paginator.module.css'
 import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
-import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {getPacksTC, preloaderOnAC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 export const Pagination = () => {
 
@@ -28,8 +28,9 @@ export const Pagination = () => {
 
 
     const PagesCount = (e:number) =>{
+        dispatch(preloaderOnAC(true))
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', e, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
         dispatch(pagesListAC(e))
-        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
     }
 
     let pagesList = useSelector<AppStateType,number>(state=>state.search.pagesList)

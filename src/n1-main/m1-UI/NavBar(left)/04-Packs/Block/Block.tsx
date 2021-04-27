@@ -106,8 +106,7 @@ export const Block = (props: BlockPropsType) => {
                     <span className={css.rating}> rating:{props.rating}</span>
                     <span className={css.cardsCount}>cardsCount:{props.cardsCount}</span>
                     <span className={css.id}>
-                        ID:
-                        <NavLink to={`/packs/${props.id}`}>{props.id}</NavLink>
+                        <NavLink to={`/packs/${props.id}`}>Go To Packet</NavLink>
                     </span>
                     <span className={css.buttons}>
                         <SuperButtonOld title={'Delete'} onClick={deletePack}/>
