@@ -8,7 +8,7 @@ import {ThunkDispatch} from "redux-thunk";
 
 const initialState = {
     cardPacks:[]as Array<PardsTypeProps>,
-    cardPacksTotalCount:0,
+    cardPacksTotalCount:9999, // меньше 10 не грузится чуть больше страницы не работают -- страницы
     name:'',
     type:'TestPack',
     preloader:false
@@ -57,7 +57,6 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
         })
         .finally(()=> dispatch(preloaderOnAC(false)))
 }
-
 
 
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {

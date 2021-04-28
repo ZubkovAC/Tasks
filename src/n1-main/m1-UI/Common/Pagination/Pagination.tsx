@@ -10,9 +10,9 @@ export const Pagination = () => {
 
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
 
-    const cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.search.cardPageTotalCount)
-    const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)
-    const cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)
+    const cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.packs.cardPacksTotalCount)   //  1609
+    const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)                 //  10
+    const cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)                     //  9
 
     let pageCount = Math.ceil(cardPageTotalCount/cardPages)
     let pageList = []
@@ -20,13 +20,14 @@ export const Pagination = () => {
         pageList.push(i)
     }
 
+
     let portionCount = Math.ceil(pageCount / cardPages);//посмотрим
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
     const dispatch = useDispatch()
 
-
+    console.log(portionNumber)
     const PagesCount = (e:number) =>{
         dispatch(preloaderOnAC(true))
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', e, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
@@ -40,7 +41,7 @@ export const Pagination = () => {
 
             {portionNumber > 1
                 ? <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(portionNumber - 1)}}/>
-                : <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(pageList.length)}}/>        // на будущее реализовать  обратный отсчет
+                : <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(portionCount-2)}}/>        // на будущее реализовать  обратный отсчет
             }
             {pageList
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
@@ -50,9 +51,10 @@ export const Pagination = () => {
                                  onClick={()=>PagesCount(p)}
                                >{p}-</span>
                 })}
-            {portionCount > portionNumber
+
+            {portionCount-1 > portionNumber
                 ? <SuperButtonOld title={'NEXT'} onClick={() => {setPortionNumber(portionNumber + 1)}}/>
-                : portionCount < rightPortionPageNumber-1 && setPortionNumber(1)                // править долго убегает вперед
+                : portionCount <= rightPortionPageNumber-1 && setPortionNumber(1)                // править долго убегает вперед
             }
         </div>
     )

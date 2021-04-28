@@ -3,7 +3,6 @@ let initialState = {
     searchCardName: '',
     countSelect:10,
     cardPages:9,
-    cardPageTotalCount:1557, // меньше 10 не грузится чуть больше страницы не работают -- страницы
     pagesList:1,
 }
 
