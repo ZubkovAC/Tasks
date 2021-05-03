@@ -42,7 +42,7 @@ export const PackId = () => {
     const [questionUpdate, setQuestionUpdate] = useState<string>('')
     const [answerUpdate, setAnswerUpdate] = useState<string>('')
 
-
+    const [cardID,setCardID]=useState<string>('')
     useEffect(() => {
         dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
     }, [id])
@@ -120,25 +120,33 @@ export const PackId = () => {
             <div className={css.box_card}>
                 {cardArray.map(card => {
 
+
                     let arr = card.created.substring(0, 10)
                     let update = card.updated.substring(0, 10)
 
-                    const deleteCardYes = () => {
-                        dispatch(deleteCardTC(card._id, id))
+
+
+                    const deleteCardYes = (cardID:string) => {
+
+                        dispatch(deleteCardTC(cardID, id))
                         setActive(false)
                     }
                     const deleteCardNo = () => {
                         setActive(false)
                     }
-                    const deleteCard = () => {
+                    const deleteCard = (cardId:string) => {
+                        setCardID(cardId)
                         setActive(true)
+
                     }
 
 
                     const SetUpdateCard = () => {
                         setUpdateCard(false)
                     }
-                    const UpdateCard = () => {
+                    const UpdateCard = (cardId:string) => {
+                        debugger
+                        setCardID(cardId)
                         setUpdateCard(true)
                     }
                     const questionUpadateCard = (value: string) => {
@@ -150,10 +158,10 @@ export const PackId = () => {
                     const craeteUpdateNo = () => {
                         setUpdateCard(false)
                     }
-                    const craeteUpdateYes = () => {
+                    const craeteUpdateYes = (cardID:string) => {
                         setAnswerUpdate('')
                         setQuestionUpdate('')
-                        dispatch(updateCardTC(card._id, questionUpdate, answerUpdate, id))
+                        dispatch(updateCardTC(cardID, questionUpdate, answerUpdate, id))
                         setUpdateCard(false)
                     }
 
@@ -161,17 +169,17 @@ export const PackId = () => {
                         <div className={css.cardFront} key={card._id}>
 
                             {/*update modal*/}
-                            <div style={{opacity:'0.5'}}>
+                            <div style={{opacity:'0.7'}}>
                                 <Modal active={updateCard} setActive={SetUpdateCard}>
                                     <h2 style={{color: 'wheat'}}>Update</h2>
                                     <div style={{marginBottom: '10px'}}>
-                                        <SuperInputTextOld placeholder={'question'} onChangeText={questionUpadateCard}/>
+                                        <SuperInputTextOld placeholder='question' value={questionUpdate} onChangeText={questionUpadateCard}/>
                                     </div>
                                     <div style={{marginBottom: '10px'}}>
-                                        <SuperInputTextOld placeholder={'answer'} onChangeText={answerUpdateCard}/>
+                                        <SuperInputTextOld placeholder='answer' value={answerUpdate} onChangeText={answerUpdateCard}/>
                                     </div>
 
-                                    <SuperButtonOld title={'yes'} onClick={craeteUpdateYes}/>
+                                    <SuperButtonOld title={'yes'} onClick={()=>craeteUpdateYes(cardID)}/>
                                     <SuperButtonOld title={'no'} onClick={craeteUpdateNo}/>
                                 </Modal>
                             </div>
@@ -181,8 +189,8 @@ export const PackId = () => {
                             <div style={{opacity:'0.5'}}>
                                 <Modal active={active} setActive={SetActive}>
                                     <h2 style={{color: 'wheat'}}>Are you sure you want to delete it?</h2>
-                                    <div>
-                                        <SuperButtonOld title={'yes'} onClick={deleteCardYes}/>
+                                    <div >
+                                        <SuperButtonOld title={'yes'} onClick={()=>deleteCardYes(cardID)}/>
                                         <SuperButtonOld title={'no'} onClick={deleteCardNo}/>
                                     </div>
                                 </Modal>
@@ -199,14 +207,14 @@ export const PackId = () => {
                             <div>Type: {card.type}</div>
                             -----------------------------
                             <div>
-                                <div className={css.update}><SuperButtonOld onClick={UpdateCard} title={'update'}/>
+                                <div className={css.update}><SuperButtonOld onClick={()=>UpdateCard(card._id)} title={'update'}/>
                                 </div>
                             </div>
                             -----------------------------
                             <div>Create :{arr}</div>
                             -----------------------------
                             <div>
-                                <SuperButtonOld onClick={deleteCard} title={'Delete Card'}/>
+                                <SuperButtonOld onClick={()=>deleteCard(card._id)} title={'Delete Card'}/>
                             </div>
 
                         </div>

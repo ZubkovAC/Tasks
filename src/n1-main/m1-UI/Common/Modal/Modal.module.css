@@ -17,8 +17,17 @@
 .modal.active{
    opacity: 1;
    pointer-events: all;
-}
 
+}
+.button  {
+   /*width: auto;*/
+   /*height: 500px;*/
+   border:0px solid white;
+   border-radius: 15px;
+   padding: 50px;
+   box-shadow: 0 0 5px 0 whitesmoke, inset 0 0 5px 0 whitesmoke;
+
+}
 .modal_content{
    padding: 20px;
    border-radius: 10px;
@@ -29,6 +38,7 @@
    transform: scale(0.5);
    transition: 0.4s all;
 
+
 }
 
 .modal_content.active {
@@ -36,4 +46,5 @@
    background-color: black;
    width: 400px;
    height: 400px;
+
 }

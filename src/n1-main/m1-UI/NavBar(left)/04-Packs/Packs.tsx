@@ -71,7 +71,7 @@ export const Packs = () => {
 
             <div  >
                 {preloader
-                    ?<h2 >loading</h2>
+                    ?<h2 >loading...</h2>
                     :cardPacks.map(t => {
                         return <Block
                             key={t._id} name={t.name} rating={t.rating}

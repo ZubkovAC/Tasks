@@ -8,20 +8,20 @@ import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio"
 
 export const LearnPage = () => {
 
-
     const dispatch = useDispatch()
 
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const getCard = (cards: CardArrayResponseType[]) => {
         const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
         const rand = Math.random() * sum;
-        const res = cards.reduce((acc: { sum: number, id: number }, card, i) => {
+
+        const res = cards.reduce((acc: { sum: number, id: number }, card, i) =>
+            {
                 const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
                 return {sum: newSum, id: newSum < rand ? i : acc.id}
-            }
+                                                                        }
             , {sum: 0, id: -1});
-        console.log('test: ', sum, rand, res)
-
+        console.log('test: ', sum,      rand,                res,cardArray)
         return cards[res.id + 1];
     }
 
@@ -37,8 +37,7 @@ export const LearnPage = () => {
 
     const onClickHandler = (e:any) => {
 
-        const newCard = getCard(cardArray)
-        setCardForAnswer(newCard)
+        setCardForAnswer(getCard(cardArray))
         setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1
         setShowAnswer(false)
         setRadio('')
@@ -62,8 +61,8 @@ export const LearnPage = () => {
     const RadioSelect = (value:string) =>{
         setRadio(value)
         let arr = [`кажется я обкакался =(`,`Я точно закончил пятницу?`,`не уверенно, фильшиво, слабо`,`ну почти`,`это было слишком легко`]
-        let grede = arr.indexOf(value)
-        dispatch(cardGradeTC((grede+1),cardForAnswer._id))
+        let grade = arr.indexOf(value)
+        dispatch(cardGradeTC((grade+1),cardForAnswer._id))
     }
 
 

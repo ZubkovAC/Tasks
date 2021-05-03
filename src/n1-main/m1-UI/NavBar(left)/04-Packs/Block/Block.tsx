@@ -89,12 +89,11 @@ export const Block = (props: BlockPropsType) => {
                 {/*Update Madal*/}
                 <Modal active={activeUpdate} setActive={SetActiveUpdate} >
                     <h2 style={{color:'wheat',textShadow:'0 0 50px white'}}>update name?</h2>
-                    <div style={{float: 'right'}}>
                         <h3 className={css.h3}>Name:</h3>  <SuperInputTextOld title={inputName} onChangeText={onChangeName} />
                         <h3 className={css.h3}>Rating:</h3> <SuperInputTextOld type={'number'} title={inputNumber} onChangeText={onChangeNumber}/>
                         <SuperButtonOld title={'yes'}  onClick={UpdatePackYes} />
                         <SuperButtonOld title={'no'} onClick={UpdatePackNo}/>
-                    </div>
+
                 </Modal>
 
 
