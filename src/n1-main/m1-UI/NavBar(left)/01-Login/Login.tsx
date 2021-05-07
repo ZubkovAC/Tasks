@@ -12,8 +12,6 @@ import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton"
 export const Login = () => {
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
-    let isPassValid = useSelector<AppStateType,boolean>(state => state.login.isPassValid)
-    let isEmailValid = useSelector<AppStateType,boolean>(state => state.login.isEmailValid)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
     let [email, setEmail] = useState("3y6kob@mail.ru")
     let [password, setPassword] = useState("oTBuHTa977")
