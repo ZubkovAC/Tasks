@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
+import { pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import css from './Paginator.module.css'
 import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
@@ -8,11 +8,19 @@ import {getPacksTC, preloaderOnAC} from "../../../m2-BLL/05-reducer-packs/reduce
 
 export const Pagination = () => {
 
+    const dispatch = useDispatch()
+
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
 
-    const cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.packs.cardPacksTotalCount)   //  1609
+    let cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.packs.cardPacksTotalCount)   //  1609
     const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)                 //  10
-    const cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)                     //  9
+    let cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)                     //  9
+
+    let pagesList = useSelector<AppStateType,number>(state=>state.search.pagesList)
+
+    if (cardPageTotalCount < 200) {
+        cardPageTotalCount = 200
+    }
 
     let pageCount = Math.ceil(cardPageTotalCount/cardPages)
     let pageList = []
@@ -25,7 +33,7 @@ export const Pagination = () => {
     let [portionNumber, setPortionNumber] = useState(1);
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
     let rightPortionPageNumber = portionNumber * portionSize;
-    const dispatch = useDispatch()
+
 
     console.log(portionNumber)
     const PagesCount = (e:number) =>{
@@ -34,7 +42,7 @@ export const Pagination = () => {
         dispatch(pagesListAC(e))
     }
 
-    let pagesList = useSelector<AppStateType,number>(state=>state.search.pagesList)
+
 
     return (
         <div style={{textAlign:'right'}}>

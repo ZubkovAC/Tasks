@@ -29,7 +29,7 @@ export const CreatePack = () => {
     const [textType, settextType] = useState<string>('')
     const [textRating, setTextRating] = useState<number>(0)
 
-    const [valueRadio, setValueRadio] = useState<any>('false')
+    const [valueRadio, setValueRadio] = useState<string>('false')
 
 
 
@@ -44,7 +44,11 @@ export const CreatePack = () => {
         setActive(false)
     }
     const craetePackYes = () =>{
-        dispatch(addPackTC(name,'',0,0,0,'',valueRadio,type,searchCardName,pagesList,cardPages))
+        if(valueRadio ==='false'){
+            dispatch(addPackTC(name,'',0,0,0,'',false,type,searchCardName,pagesList,cardPages))
+        } else if(valueRadio !=='false'){
+            dispatch(addPackTC(name,'',0,0,0,'',true,type,searchCardName,pagesList,cardPages))
+        }
         setActive(false)
     }
 
@@ -72,7 +76,7 @@ export const CreatePack = () => {
             <Modal active={active} setActive={SetActive} >
                 <h2 style={{color:'wheat'}}>Create</h2>
                 <div style={{marginBottom:'10px'}}>
-                    <SuperInputTextOld value={question} placeholder={'question'} onChangeText={TextCreatePack}/>
+                    <SuperInputTextOld value={question} type={'textarea'} placeholder={'question'} onChangeText={TextCreatePack}/>
                 </div>
                <div style={{marginBottom:'10px'}}>
                    <SuperInputTextOld value={textAnswer} placeholder={'answer'} onChangeText={answerCreatePack}/>
@@ -83,6 +87,7 @@ export const CreatePack = () => {
                <div style={{marginBottom:'10px'}}>
                    <SuperInputTextOld value={textRating} placeholder={'rating'} onChangeText={ratingCreatePack}/>
                </div>
+                    <span style={{color:'wheat',fontSize:'20px',fontWeight:600}}>Private:</span>
                     <SuperRadio options={['true','false']} value={valueRadio} onChangeOption={onChangeChecked}/>
 
                 <SuperButtonOld title={'yes'}  onClick={craetePackYes} />

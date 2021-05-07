@@ -1,8 +1,8 @@
-import React, {useState, useCallback} from "react";
+import React, {useState, useCallback, useEffect} from "react";
 import "./login.css"
 
 import { useDispatch, useSelector } from "react-redux";
-import { loginTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
+import {errorAC, loginTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
 import { Redirect } from 'react-router-dom';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
@@ -12,22 +12,39 @@ import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton"
 export const Login = () => {
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
+    let isPassValid = useSelector<AppStateType,boolean>(state => state.login.isPassValid)
+    let isEmailValid = useSelector<AppStateType,boolean>(state => state.login.isEmailValid)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
     let [email, setEmail] = useState("3y6kob@mail.ru")
     let [password, setPassword] = useState("oTBuHTa977")
     let [rememberMe, setRememberMe] = useState(false)
 
-    const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    const [acc,SetAcc] = useState<boolean>(false)
+    const [pass,SetPassword] = useState<boolean>(false)
+
+    useEffect( ()=>{
+        if (error ==='not correct password /ᐠ-ꞈ-ᐟ\\')SetPassword(true)
+        if (error ==="user not found /ᐠ-ꞈ-ᐟ\\")SetAcc(true)
+        if (error ===`not valid email/password /ᐠ-ꞈ-ᐟ\\`){
+            SetPassword(true)
+            SetAcc(true)
+        }
+        dispatch(errorAC(null,false,false))
+    },[acc,pass,error])
+
+    console.log(error)
+    const onChangeHandlerEmail =(e: React.FormEvent<HTMLInputElement>) => {
+        SetAcc(false)
         setEmail(e.currentTarget.value)
     }
-    const onChangeHandlerPassword = (e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerPassword =  (e: React.FormEvent<HTMLInputElement>) => {
+        SetPassword(false)
         setPassword(e.currentTarget.value)
     }
+
     const onChangeHandlerRememberMe = (e: React.FormEvent<HTMLInputElement>) => {
         setRememberMe(e.currentTarget.checked)
     }
-
-
 
 
     const onClickHandler = useCallback(() => {
@@ -40,16 +57,24 @@ export const Login = () => {
     return (
         <div>
             <h2>Login</h2>
-            <h3>account</h3>
-            <SuperInputText onChange={onChangeHandlerEmail} value={email} />
-            <h3>password</h3>
-            <SuperInputText onChange={onChangeHandlerPassword} type={'password'} value={password} />
-            <SuperCheckbox  title={'remember Me'} onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
-            <div style={{height:'10px'}}>
+            <h3 >Account</h3>
 
-            </div>
-            {error && <p className={"error"}>{` attention ${error}`}</p>}
+            <SuperInputText
+                error={acc?'not valid email': null}
+                onChange={onChangeHandlerEmail}
+                value={email}
+            />
+            <h3>Password</h3>
+
+            <SuperInputText
+                error={pass?'not valid password': null}
+                onChange={onChangeHandlerPassword}
+                type={'password'}
+                value={password}
+            />
+            <SuperCheckbox  title={'remember Me'} onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
             <SuperButton onClick={onClickHandler} title={'Login'} />
+            {error && <p className={"error"}>{` attention ${error}`}</p>}
         </div>
     )
 }

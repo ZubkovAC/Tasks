@@ -39,22 +39,18 @@ export const Packs = () => {
 
     const dispatch = useDispatch()
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
-    let cardPacks = useSelector<AppStateType, Array<PardsTypeProps>>(state => state.packs.cardPacks)
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     let preloader =useSelector<AppStateType,boolean>(state=>state.packs.preloader)
-
-
+    let cardPacks = useSelector<AppStateType, Array<PardsTypeProps>>(state => state.packs.cardPacks)
 
 
     useEffect(()=>{
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
     },[])
 
-    const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(cardCountAC(+e))
-    }
+
 
     if (!isAuth) {
         return <Unauthorised/>;
@@ -63,8 +59,6 @@ export const Packs = () => {
     return (
         <div className={css.App}>
             <HeaderPacks/>
-            <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeHandler}
-                            options={['9', '8', '7', '6', '5', '4', '3']}/>
             <Search/>
             <CreatePack/>
             <Pagination/>

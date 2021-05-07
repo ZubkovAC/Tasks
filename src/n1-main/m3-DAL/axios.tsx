@@ -5,7 +5,7 @@ const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
     withCredentials: true,
 })
-
+// baseURL: 'http://localhost:7542/2.0/cards/pack?packName=&userId=${607e82d176b4881da8c02a16}
 //   https://neko-back.herokuapp.com/2.0
 //   http://localhost:7542/2.0/
 

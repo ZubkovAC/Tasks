@@ -1,3 +1,6 @@
 .error{
+    font-size: 22px;
+    font-weight: 600;
     color: red;
+    text-shadow:  0 0 15px #2b2e2e,0 0 15px #2b2e2e;
 }

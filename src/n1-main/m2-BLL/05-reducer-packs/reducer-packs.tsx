@@ -48,7 +48,10 @@ export const preloaderOffAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-O
 export const getPacksTC = (packName: string, min: number , max: number, sortPacks: string, page: number, pageCount: number, userId: string) => (dispatch: Dispatch) => {
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId)
         .then((res) => {
-            dispatch(getPacksAC(res.data.cardPacks,res.data.cardPacksTotalCount))})
+            debugger
+            if ( (+res.data.cardPacksTotalCount) <15)dispatch(getPacksAC(res.data.cardPacks,  res.data.cardPacksTotalCount ))
+            else dispatch(getPacksAC(res.data.cardPacks, res.data.cardPacksTotalCount ))
+        })
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
