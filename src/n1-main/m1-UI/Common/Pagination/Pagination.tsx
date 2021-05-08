@@ -38,7 +38,7 @@ export const Pagination = () => {
     console.log(portionNumber)
     const PagesCount = (e:number) =>{
         dispatch(preloaderOnAC(true))
-        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', e, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', e, cardPages, ''))
         dispatch(pagesListAC(e))
     }
 

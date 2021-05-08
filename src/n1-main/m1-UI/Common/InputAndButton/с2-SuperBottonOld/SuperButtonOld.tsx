@@ -12,30 +12,39 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     password?:string
     resetPasswordsToken?:string
     transform?:boolean
-
+    disabled?:boolean
 }
 
 
 
 const SuperButtonOld: React.FC<SuperButtonPropsType> = (
     {
-        red, className,title,onChange,onClick,transform,
+        red, className,title,disabled,
+        onChange,onClick,transform,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
     //const finalClassName = `${red ? s.red : s.default} ${className}`;
     //const finalClassName={ props.error? s.buttonErrorTrue : s.buttonErrorFalse}
+    //const transform ={  `${s.buttonErrorTrue}` : `${s.buttonErrorFalse}`}
+    //const Classdisabled ={ disabled? `${transform}${s.disable}` : `${s.buttonErrorFalse}`}
+    const DisabledTrue = {
+        backgroundColor:'grey',
+    }
+    const DisabledFalse = {
+        backgroundColor:'wheat',
+    }
+
 
     const onClickButon = () =>{
         onClick && onClick()
     }
 
-
-
     return (
         <button
-
-            className={ transform?  s.buttonOldT: s.buttonOld}
+            disabled={disabled}
+            className={ transform?  s.buttonOldT : s.buttonOld }
+            style={disabled? DisabledTrue:DisabledFalse}
             //className={finalClassName}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)
             onClick={onClickButon}

@@ -13,6 +13,7 @@ const initialState = {
     error: null as null | string,
     isEmailValid:false,
     isPassValid:false,
+    userID:'0'
 }
 
 export const reducerLogin = (state: initialStateType = initialState, action: ActionLoginType): initialStateType => {
@@ -29,7 +30,7 @@ export const reducerLogin = (state: initialStateType = initialState, action: Act
         case 'LOGIN/CHECK-AUTH':
             return {...state, isAuth: action.isAuth}
         case 'LOGIN/GET-PROFILE':
-            return {...state, avatar: action.avatar, userName: action.userName}
+            return {...state, avatar: action.avatar, userName: action.userName,userID:action.userID}
         case "LOGIN/TEST-ERROR":
             return {...state, lamp: action.lamp}
         default:
@@ -43,8 +44,8 @@ export const loginAC = (email: string, password: string, rememberMe: boolean) =>
 export const errorAC = (error: string | null, isEmailValid:boolean, isPassValid:boolean) =>
     ({type: 'LOGIN/CHANGE-ERROR', error,isEmailValid,isPassValid} as const)
 export const isAuthAC = (isAuth: boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth} as const)
-export const getProfileAC = (avatar: string, userName: string) => ({
-    type: 'LOGIN/GET-PROFILE', avatar, userName
+export const getProfileAC = (avatar: string, userName: string,userID:string) => ({
+    type: 'LOGIN/GET-PROFILE', avatar, userName,userID
 } as const)
 export const lampAC = (lamp: boolean) => ({type: 'LOGIN/TEST-ERROR', lamp} as const)
 
@@ -56,7 +57,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
                 dispatch(loginAC(email, password, rememberMe))
                 dispatch(errorAC(null,false,false))
                 dispatch(isAuthAC(true))
-                dispatch(getProfileAC(res.data.avatar, res.data.name))
+                dispatch(getProfileAC(res.data.avatar, res.data.name,res.data._id))
             }
         })
         .catch((error) => {
@@ -81,7 +82,7 @@ export const logoutTC = () => (dispatch: Dispatch) => {
 export const authMeTC = () => (dispatch: Dispatch) => {
     return AuthAPI.authMe()
         .then((res) => {
-            dispatch(getProfileAC(res.data.avatar, res.data.name))
+            dispatch(getProfileAC(res.data.avatar, res.data.name,res.data._id))
             dispatch(isAuthAC(true))
         })
         .catch(res => {
