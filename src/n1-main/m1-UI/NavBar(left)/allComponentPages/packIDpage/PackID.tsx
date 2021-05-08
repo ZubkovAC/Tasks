@@ -24,6 +24,7 @@ interface ParamTypes {
 
 export const PackId = () => {
 
+    const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
@@ -44,8 +45,9 @@ export const PackId = () => {
 
     const [cardID,setCardID]=useState<string>('')
     useEffect(() => {
-        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
-    }, [])
+
+        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+    }, [isAuth])
 
 
     const SetActive = () => {

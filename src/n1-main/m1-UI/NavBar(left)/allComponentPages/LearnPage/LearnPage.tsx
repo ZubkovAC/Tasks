@@ -12,6 +12,7 @@ export const LearnPage = () => {
 
     const dispatch = useDispatch()
 
+    let me = useSelector<AppStateType>(state => state.login.me)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
 
@@ -29,6 +30,8 @@ export const LearnPage = () => {
         return cards[res.id + 1];
     }
 
+    let cardArrayyTest = cardArray[0]
+
     const [cardForAnswer, setCardForAnswer] = useState(cardArray[0])
     const [finishQuestion, setFinishQuestion] = useState<any>('Learn To Start')
     const [showAnswer, setShowAnswer] = useState<any>(false)
@@ -41,34 +44,53 @@ export const LearnPage = () => {
 
     let {id} = useParams<{id:string}>()
     useEffect(() => {
-        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
-    }, [])
+        if (me) {
+            dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+            offButton(true)
+            // setCardForAnswer(getCard(cardArray))
+        }
+    }, [me])
     useEffect(()=>{
-        OnClickHandlerForShowAnswer()
-    },[])
+        if (me){
+            OnClickHandlerForShowAnswer()
+            offButton(true)
+        }
+    },[me])
 
 
 
-    const onClickHandler = (e:any) => {
 
-        setCardForAnswer(getCard(cardArray))
-        setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1
-        setShowAnswer(false)
-        setRadio('')
-        offButton(true)
-        e.stopPropagation()
+    const onClickHandler = () => {
+        if ( me && cardForAnswer !== undefined ){
+            debugger
+            setCardForAnswer(getCard(cardArray))
+            setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1    old setCardForAnswer
+            setShowAnswer(false)
+            setRadio('')
+            offButton(true)
+        } else{
+            debugger
+            offButton(true)
+            setCardForAnswer(getCard(cardArray))
+        }
+
+        // e.stopPropagation()
     }
 
 
 
     const OnClickHandlerForShowAnswer = () => {
-        if (onButton){
+        if (onButton && me && cardArray.length !== 0 ){
             setShowAnswer(true)
-            setAnswer(answerP)                  //3.1                        // старое значение новое значение
-            setAnswerP(Object.entries(cardForAnswer)[3][1])                 // использую новое значение
+            setAnswer(answerP)                                  //3.1                        // старое значение новое значение
+            debugger
+            setAnswerP(Object.entries(cardForAnswer)[3][1])                 // использую новое значение   old setCardForAnswer
             offButton(false)
         }
     }
+
+
+
 
     const RadioSelect = (value:string) =>{
         setRadio(value)
@@ -78,12 +100,13 @@ export const LearnPage = () => {
     }
 
 
-    if(!isAuth) return <Redirect to={'/login'}/>;
+    if (!isAuth && me) return <Redirect to={'/login'}/>;
+
     return (
         <div className={css.cardBlock}>
 
             <h2 className={css.content_top}>Learn Page</h2>
-            <button className={css.but} disabled={!cardForAnswer} onClick={e => onClickHandler(e)}>
+            <button className={css.but}  onClick={onClickHandler}>
                 LEARN
             </button>
             <div className={css.cardFrontLearn}  onClick={OnClickHandlerForShowAnswer}>

@@ -7,6 +7,7 @@ const initialState = {
     password: '',
     rememberMe: false,
     isAuth: false,
+    me:false,
     avatar: '',
     userName: '',
     lamp: true,
@@ -28,7 +29,7 @@ export const reducerLogin = (state: initialStateType = initialState, action: Act
         case 'LOGIN/CHANGE-ERROR':
             return {...state, error: action.error ,isEmailValid:action.isEmailValid , isPassValid:action.isPassValid}
         case 'LOGIN/CHECK-AUTH':
-            return {...state, isAuth: action.isAuth}
+            return {...state, isAuth: action.isAuth,me:action.me}
         case 'LOGIN/GET-PROFILE':
             return {...state, avatar: action.avatar, userName: action.userName,userID:action.userID}
         case "LOGIN/TEST-ERROR":
@@ -43,7 +44,7 @@ export const loginAC = (email: string, password: string, rememberMe: boolean) =>
     ({type: "LOGIN/LOGIN", email, password, rememberMe} as const)
 export const errorAC = (error: string | null, isEmailValid:boolean, isPassValid:boolean) =>
     ({type: 'LOGIN/CHANGE-ERROR', error,isEmailValid,isPassValid} as const)
-export const isAuthAC = (isAuth: boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth} as const)
+export const isAuthAC = (isAuth: boolean,me:boolean) => ({type: 'LOGIN/CHECK-AUTH', isAuth,me} as const)
 export const getProfileAC = (avatar: string, userName: string,userID:string) => ({
     type: 'LOGIN/GET-PROFILE', avatar, userName,userID
 } as const)
@@ -56,7 +57,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
             if (res) {
                 dispatch(loginAC(email, password, rememberMe))
                 dispatch(errorAC(null,false,false))
-                dispatch(isAuthAC(true))
+                dispatch(isAuthAC(true,true))
                 dispatch(getProfileAC(res.data.avatar, res.data.name,res.data._id))
             }
         })
@@ -70,7 +71,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
 
 export const logoutTC = () => (dispatch: Dispatch) => {
     return AuthAPI.logout()
-        .then(() => dispatch(isAuthAC(false)))
+        .then(() => dispatch(isAuthAC(false,false)))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(() => dispatch(lampAC(true)), 2000)
@@ -83,9 +84,10 @@ export const authMeTC = () => (dispatch: Dispatch) => {
     return AuthAPI.authMe()
         .then((res) => {
             dispatch(getProfileAC(res.data.avatar, res.data.name,res.data._id))
-            dispatch(isAuthAC(true))
+            dispatch(isAuthAC(true,true))
         })
         .catch(res => {
+            dispatch(isAuthAC(false,true))
             dispatch(lampAC(false))
             setTimeout(() => dispatch(lampAC(true)), 2000)
         })

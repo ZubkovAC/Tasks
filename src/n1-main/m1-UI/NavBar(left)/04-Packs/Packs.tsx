@@ -1,17 +1,14 @@
 import css from './Packs.module.css'
-import React, {ChangeEvent, useEffect} from 'react';
-import {Unauthorised} from '../../Common/Accets/Unauthorised';
+import React, {useEffect} from 'react';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Block} from "./Block/Block";
 import {HeaderPacks} from "./HeaderPacks/HeaderPacks";
 import {useDispatch, useSelector} from "react-redux";
 import {Pagination} from "../../Common/Pagination/Pagination";
-import SuperSelectOld from "../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
-import {cardCountAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
-
+import {Redirect} from "react-router-dom";
 
 
 export type PardsTypeProps = {
@@ -39,6 +36,7 @@ export const Packs = () => {
 
     const dispatch = useDispatch()
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
+    let me = useSelector<AppStateType>(state => state.login.me)
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
@@ -47,14 +45,12 @@ export const Packs = () => {
 
 
     useEffect(()=>{
-        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
-    },[])
+        if (isAuth) dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
+    },[me])
 
 
+    if (!isAuth && me)return <Redirect to={'/login'}/>
 
-    if (!isAuth) {
-        return <Unauthorised/>;
-    }
 
     return (
         <div className={css.App}>
@@ -75,9 +71,6 @@ export const Packs = () => {
                         />
                     })}
             </div>
-
-
-
         </div>
     )
 }

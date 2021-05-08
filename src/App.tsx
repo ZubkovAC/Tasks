@@ -33,10 +33,11 @@ export const RoutePath = {
 function App() {
 
     const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
+    const me = useSelector<AppStateType,boolean>(state=> state.login.me) //no need?
 
     const dispatch = useDispatch()
     useEffect(()=>{
-        if (!isAuth) dispatch(authMeTC())
+        if (!isAuth && !me) dispatch(authMeTC())
     },[])
 
 
