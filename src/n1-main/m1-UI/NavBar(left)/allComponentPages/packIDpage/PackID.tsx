@@ -107,7 +107,7 @@ export const PackId = () => {
                 </Modal>
 
                 <div className={css.learn}>
-                    <NavLink to={RoutePath.LEARN}>
+                    <NavLink to={RoutePath.LEARN+`/${id}`}>
                         <div>
                             <button className={css.box_button}>LEARN</button>
                         </div>

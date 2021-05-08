@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
 import {logoutTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
+import css from './Profile.module.css'
 
 export const Profile = () => {
     const dispatch = useDispatch()
@@ -22,9 +23,10 @@ export const Profile = () => {
             <div>
                 <h2>Profile</h2>
                 <SuperButton onClick={onClickHandler} title={'Logout'} />
-                <div>
-                    <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} width='900px' alt="avatar"/>
+                <div className={css.profile_img}>
                     <h3 style={{color:'white'}}>Hello {userName}</h3>
+                    <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
+
                 </div>
 
             </div>

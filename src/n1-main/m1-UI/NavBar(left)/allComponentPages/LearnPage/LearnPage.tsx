@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
-import {CardArrayResponseType, cardGradeTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {CardArrayResponseType, cardGradeTC, getCardsTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import css from './styleLearnPage.module.css'
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import { Flippys } from "../../06-TestComponent/TestComponent";
+import {Redirect, useParams} from "react-router-dom";
 
 
 export const LearnPage = () => {
 
     const dispatch = useDispatch()
 
+    let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
+
     const getCard = (cards: CardArrayResponseType[]) => {
         const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
         const rand = Math.random() * sum;
@@ -33,7 +36,17 @@ export const LearnPage = () => {
     const [answerP, setAnswerP] = useState<any>('')             // доп стейт для хранения новых данных
 
     const [radio, setRadio] = useState<any>('')
-    const [onButton, offButton] = useState<boolean>(true)
+    const [onButton, offButton] = useState<boolean>(false)
+
+
+    let {id} = useParams<{id:string}>()
+    useEffect(() => {
+        dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+    }, [])
+    useEffect(()=>{
+        OnClickHandlerForShowAnswer()
+    },[])
+
 
 
     const onClickHandler = (e:any) => {
@@ -46,9 +59,7 @@ export const LearnPage = () => {
         e.stopPropagation()
     }
 
-    useEffect(()=>{
-        OnClickHandlerForShowAnswer()
-    },[])
+
 
     const OnClickHandlerForShowAnswer = () => {
         if (onButton){
@@ -67,7 +78,7 @@ export const LearnPage = () => {
     }
 
 
-
+    if(!isAuth) return <Redirect to={'/login'}/>;
     return (
         <div className={css.cardBlock}>
 

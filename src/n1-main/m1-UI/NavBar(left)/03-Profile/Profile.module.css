@@ -1,0 +1,13 @@
+.profile_img img{
+    width: 1200px;
+}
+@media screen and (max-width: 1600px){
+    .profile_img img{
+        width: 900px;
+    }
+}
+@media screen and (max-width: 1300px){
+    .profile_img img{
+        width: 600px;
+    }
+}
