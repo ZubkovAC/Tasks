@@ -3,11 +3,9 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 'http://localhost:7542/2.0/',
+    // baseURL: 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 })
-// baseURL: 'http://localhost:7542/2.0/cards/pack?packName=&userId=${607e82d176b4881da8c02a16}
-//   https://neko-back.herokuapp.com/2.0
-//   http://localhost:7542/2.0/
 
 
 export const AuthAPI = {
@@ -34,8 +32,8 @@ export const AuthAPI = {
 
 
 export const PacksAPI = {
-    getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, userId?: string){
-        return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&userId=${userId}`)
+    getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, user_id?: string,user_name:string= ''){
+        return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&user_id=${user_id}&user_name=${user_name}`)
     },
     addPack(name?: string, path?: string, grade?: number, shots?: number,
             rating?: number, deckCover?: string, privat?: boolean, type?: string){

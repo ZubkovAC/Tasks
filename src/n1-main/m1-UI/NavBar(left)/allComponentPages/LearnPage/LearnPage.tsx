@@ -4,6 +4,7 @@ import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {CardArrayResponseType, cardGradeTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import css from './styleLearnPage.module.css'
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
+import { Flippys } from "../../06-TestComponent/TestComponent";
 
 
 export const LearnPage = () => {
@@ -60,7 +61,7 @@ export const LearnPage = () => {
 
     const RadioSelect = (value:string) =>{
         setRadio(value)
-        let arr = [`кажется я обкакался =(`,`Я точно закончил пятницу?`,`не уверенно, фильшиво, слабо`,`ну почти`,`это было слишком легко`]
+        let arr = [`кажется я обкакался =(`,`Я учился?`,`не уверенно, фильшиво, слабо`,`ну почти`,`это было слишком легко`]
         let grade = arr.indexOf(value)
         dispatch(cardGradeTC((grade+1),cardForAnswer._id))
     }
@@ -69,11 +70,16 @@ export const LearnPage = () => {
 
     return (
         <div className={css.cardBlock}>
+
             <h2 className={css.content_top}>Learn Page</h2>
+            <button className={css.but} disabled={!cardForAnswer} onClick={e => onClickHandler(e)}>
+                LEARN
+            </button>
             <div className={css.cardFrontLearn}  onClick={OnClickHandlerForShowAnswer}>
-                <button className={css.but} disabled={!cardForAnswer} onClick={e => onClickHandler(e)}>
-                    LEARN
-                </button>
+
+
+                {/*<Flippys  />*/}
+
                     {cardForAnswer
                         ? <div className={css.cardForAnswer}>
                             <div>{finishQuestion}</div>
@@ -87,7 +93,7 @@ export const LearnPage = () => {
                                 <SuperRadio
                                     value={radio}
                                     name={"radio"}
-                                    options={[`это было слишком легко`,`ну почти`,`не уверенно, фильшиво, слабо`,`Я точно закончил пятницу?`,`кажется я обкакался =(`]}
+                                    options={[`это было слишком легко`,`ну почти`,`не уверенно, фильшиво, слабо`,`Я учился?`,`кажется я обкакался =(`]}
                                     onChangeOption={RadioSelect}
                                 />
                             </div>
