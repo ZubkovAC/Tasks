@@ -45,7 +45,7 @@ export const PackId = () => {
     const [cardID,setCardID]=useState<string>('')
     useEffect(() => {
         dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
-    }, [id])
+    }, [])
 
 
     const SetActive = () => {

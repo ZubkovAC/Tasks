@@ -70,7 +70,8 @@ export const Packs = () => {
                         return <Block
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}
-                            id={t.user_id} cardsCount={t.cardsCount}
+                            id={t._id}
+                            user_id={t.user_id} cardsCount={t.cardsCount}
                         />
                     })}
             </div>

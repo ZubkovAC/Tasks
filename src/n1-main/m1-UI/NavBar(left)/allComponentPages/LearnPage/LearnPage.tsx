@@ -22,7 +22,7 @@ export const LearnPage = () => {
                 return {sum: newSum, id: newSum < rand ? i : acc.id}
                                                                         }
             , {sum: 0, id: -1});
-        console.log('test: ', sum,      rand,                res,cardArray)
+        console.log('test: ', sum,rand,res,cardArray)
         return cards[res.id + 1];
     }
 

@@ -16,6 +16,7 @@ export type BlockPropsType = {
     created: string
     id: string
     cardsCount: number
+    user_id:string
 }
 
 export const Block = (props: BlockPropsType) => {
@@ -109,11 +110,11 @@ export const Block = (props: BlockPropsType) => {
                     <span className={css.name}>{props.name}</span>
                     <span className={css.cardsCount}>cardsCount:{props.cardsCount}</span>
                     <span className={css.id}>
-                        <NavLink to={`/packs/${props.id}`}>Go To Packet</NavLink>
+                        <NavLink to={`/packs/${props.id}`}>Go To CardPack</NavLink>
                     </span>
                     <span className={css.buttons}>
-                        <SuperButtonOld title={'Delete'} disabled={props.id !== userID}  onClick={deletePack}/>
-                        <SuperButtonOld title={'Update'} disabled={props.id !== userID}   onClick={UpdatePack}/>
+                        <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID}  onClick={deletePack}/>
+                        <SuperButtonOld title={'Update'} disabled={props.user_id !== userID}   onClick={UpdatePack}/>
                     </span>
                 </div>
 
