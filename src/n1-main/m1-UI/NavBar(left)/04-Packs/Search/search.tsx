@@ -6,7 +6,7 @@ import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextO
 import {getPacksTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {PardsTypeProps} from "../Packs";
-import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperSelectOld from "../../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
 
 
@@ -35,6 +35,9 @@ export const Search = () => {
     const [filterSerch,setFilterSerch]=useState<string>('name')
 
 
+    const [value,setValue]=useState<string>('')
+
+
 
     //search
     const onChangeHandler = (value:string) => {
@@ -44,6 +47,7 @@ export const Search = () => {
         if( filterSerch === 'cardsCountMax')setCardsCountMax(+value)
         if( filterSerch === 'cardsCountMin')setCardsCountMin(+value)
         if( filterSerch === 'UserId')setUserId(value)
+        setValue(value)
     }
 
 
@@ -52,6 +56,7 @@ export const Search = () => {
         dispatch( getPacksTC(packName, cardsCountMin, cardsCountMax,
             type, pagesList, cardPages, userId,userEmail))
     }
+
 
     //Select
     const onChangeOption = (e:string) => {
@@ -67,6 +72,7 @@ export const Search = () => {
         setUserId('')
         setCardsCountMax(99)
         setCardsCountMin(0)
+        setValue('')
     }
 
     return (
@@ -75,7 +81,7 @@ export const Search = () => {
             <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeOption}
                             options={['name','UserId', 'cardsCountMax',"cardsCountMin"]}/>
                                                                                 {/*'type', 'userEmail'*/}
-            <SuperInputTextOld onChangeText={onChangeHandler} />
+            <SuperInputTextOld value={value} onChangeText={onChangeHandler} />
             <span style={{display:'inline'}}>
                 <SuperButtonOld onClick={onClickHandler} title={'Search'}/>
             </span>

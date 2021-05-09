@@ -1,6 +1,6 @@
 import css from './Block.module.css'
 import React, {useState} from "react";
-import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
@@ -106,7 +106,7 @@ export const Block = (props: BlockPropsType) => {
                 <span className={css.userName}>{props.userName}</span>
                 <div className={css.Table}>
 
-                    <span className={css.rating}> id:{props.id}</span>
+                    <span className={css.rating}> id:{props.user_id}</span>
                     <span className={css.name}>{props.name}</span>
                     <span className={css.cardsCount}>cardsCount:{props.cardsCount}</span>
                     <span className={css.id}>

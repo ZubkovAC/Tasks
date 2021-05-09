@@ -6,7 +6,7 @@ import {Redirect} from "react-router-dom";
 import {RoutePath} from "../../../../App";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from "./PasswordRecovery.module.css";
-import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 
 
 export const PasswordRecovery = () => {

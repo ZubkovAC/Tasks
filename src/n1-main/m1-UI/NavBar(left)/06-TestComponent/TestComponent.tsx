@@ -7,12 +7,13 @@ import SuperRadio from "../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import SuperRange from "../../Common/InputAndButton/c7-SuperRange/SuperRange";
 import React, {useState} from "react";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
-import SuperButtonOld from "../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {Modal} from "../../Common/Modal/Modal";
 import  './TestComponent.module.css'
 // @ts-ignore
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import {cardGradeTC} from "../../../m2-BLL/06-reducer-cards/reducer-cards";
+import { SuperTextArea } from "../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 
 export const TestComponent = () =>{
 
@@ -26,9 +27,19 @@ export const TestComponent = () =>{
     }
 
 
+
+
+    // Start TextArea
+    const [value,setValue]=useState<string>('hello')
+    const onChangeText = (e:string)=>{
+        console.log(e)
+        setValue(e)
+    }
+    // End   TextArea
+
     return(
         <div >
-
+            <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'} onChangeText={onChangeText} valueStart={value} placeholder={'qwestion'}/>
             {/*<Modal  active={modalActive} setActive={select}>*/}
             {/*</Modal>*/}
             {/*<SuperInputTextOld />*/}

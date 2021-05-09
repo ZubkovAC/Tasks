@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { pagesListAC} from "../../../m2-BLL/04-reducer-search/reducer-search";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import css from './Paginator.module.css'
-import SuperButtonOld from "../InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {getPacksTC, preloaderOnAC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 
 export const Pagination = () => {

@@ -8,13 +8,14 @@ import {
 } from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
-import SuperButtonOld from "../../../Common/InputAndButton/с2-SuperBottonOld/SuperButtonOld";
+import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from './PackID.module.css'
 import cardFront from './../../../Common/Accets/CardFront.jpg'
 import {NavLink, useParams} from "react-router-dom";
 import {RoutePath} from "../../../../../App";
 import {Modal} from "../../../Common/Modal/Modal";
+import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 
 
 interface ParamTypes {
@@ -92,17 +93,16 @@ export const PackId = () => {
                 {/*create modal*/}
                 <Modal active={activeCard} setActive={SetActiveCard}>
                     <h2 style={{color: 'wheat'}}>Create</h2>
-                    <div style={{marginBottom: '10px'}}>
-                        <SuperInputTextOld placeholder={'question'} onChangeText={questionCreateCard}/>
+                    <div style={{marginBottom: '10px',marginTop:'20px'}}>
+                        <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
+                                       onChangeText={questionCreateCard} valueStart={question} placeholder={'qwestion'}/>
                     </div>
                     <div style={{marginBottom: '10px'}}>
-                        <SuperInputTextOld placeholder={'answer'} onChangeText={answerCreateCard}/>
+                        <SuperTextArea width={'250px'} heigth={'150px'} backgroundColor={'wheat'}
+                                       onChangeText={answerCreateCard} valueStart={answer} placeholder={'qwestion'}/>
                     </div>
                     <div style={{marginBottom: '10px'}}>
                         <SuperInputTextOld placeholder={'type'} onChangeText={typeCreateCard}/>
-                    </div>
-                    <div style={{marginBottom: '10px'}}>
-                        <SuperInputTextOld placeholder={'rating'} onChangeText={ratingCreateCard}/>
                     </div>
                     <SuperButtonOld title={'yes'} onClick={craeteCardYes}/>
                     <SuperButtonOld title={'no'} onClick={craeteCardNo}/>
@@ -174,11 +174,14 @@ export const PackId = () => {
                             <div style={{opacity:'0.7'}}>
                                 <Modal active={updateCard} setActive={SetUpdateCard}>
                                     <h2 style={{color: 'wheat'}}>Update</h2>
-                                    <div style={{marginBottom: '10px'}}>
-                                        <SuperInputTextOld placeholder='question' value={questionUpdate} onChangeText={questionUpadateCard}/>
+                                    <div style={{marginBottom: '10px',marginTop:'20px'}}>
+                                        <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
+                                                       onChangeText={questionUpadateCard} valueStart={questionUpdate} placeholder={'qwestion'}/>
+                                        {/*<SuperInputTextOld placeholder='question' value={questionUpdate} onChangeText={questionUpadateCard}/>*/}
                                     </div>
                                     <div style={{marginBottom: '10px'}}>
-                                        <SuperInputTextOld placeholder='answer' value={answerUpdate} onChangeText={answerUpdateCard}/>
+                                        <SuperTextArea width={'250px'} heigth={'150px'} backgroundColor={'wheat'}
+                                                       onChangeText={answerUpdateCard} valueStart={answerUpdate} placeholder={'answer'}/>
                                     </div>
 
                                     <SuperButtonOld title={'yes'} onClick={()=>craeteUpdateYes(cardID)}/>
@@ -199,14 +202,14 @@ export const PackId = () => {
                             </div>
 
 
-                            <div>{card.question}</div>
+                            <div>Type:{card.type}</div>
                             <img src={card.answerImg === '' ? card.answerImg : cardFront} width='100px' alt=""/>
                             {/*<div>{card.answer}</div>*/}
                             <div>Update:{update}</div>
                             <div> Rating:<span
                                 style={{color: 'white', textShadow: '0 0 10px white'}}>{card.rating}</span></div>
                             <div> Grade:{card.grade}</div>
-                            <div>Type: {card.type}</div>
+                            {/*<div>question: {card.question}</div>*/}
                             -----------------------------
                             <div>
                                 <div className={css.update}><SuperButtonOld onClick={()=>UpdateCard(card._id)} title={'update'}/>
