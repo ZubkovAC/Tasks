@@ -1,21 +1,15 @@
 import React, {useEffect, useState} from "react";
-import {
-    CardArrayResponseType,
-    createCardTC,
-    deleteCardTC,
-    getCardsTC,
-    updateCardTC,
-} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {CardArrayResponseType, createCardTC, getCardsTC,} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from './PackID.module.css'
-import cardFront from './../../../Common/Accets/CardFront.jpg'
 import {NavLink, useParams} from "react-router-dom";
 import {RoutePath} from "../../../../../App";
 import {Modal} from "../../../Common/Modal/Modal";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
+import {PackIDMap} from "./PackIDMap";
 
 
 interface ParamTypes {
@@ -29,31 +23,22 @@ export const PackId = () => {
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
-
     let {id} = useParams<ParamTypes>()
-    //delete modal
-    const [active, setActive] = useState<boolean>(false)
+
     //create modal
     const [activeCard, setActiveCard] = useState<boolean>(false)
     const [question, setQuestion] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
     const [type, setType] = useState<string>('')
-    const [rating, setRating] = useState<number>(0)
-    // update modal
-    const [updateCard, setUpdateCard] = useState<boolean>(false)
-    const [questionUpdate, setQuestionUpdate] = useState<string>('')
-    const [answerUpdate, setAnswerUpdate] = useState<string>('')
 
-    const [cardID,setCardID]=useState<string>('')
+
+
     useEffect(() => {
-
         if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
     }, [isAuth])
 
 
-    const SetActive = () => {
-        setActive(false)
-    }
+
     const SetActiveCard = () => {
         setActiveCard(false)
     }
@@ -68,9 +53,7 @@ export const PackId = () => {
     const typeCreateCard = (value: string) => {
         setType(value)
     }
-    const ratingCreateCard = (value: string) => {
-        if (+value >= 0 && +value <= 5) setRating(+value)
-    }
+
 
     const CreateCard = () => {
         setActiveCard(true)
@@ -80,7 +63,7 @@ export const PackId = () => {
     }
     const craeteCardYes = () => {
         dispatch(createCardTC(id, question, answer, 0, 0,
-            rating, 'string', 'string', '',
+            0, 'string', 'string', '',
             '', type))
         setActiveCard(false)
     }
@@ -123,105 +106,9 @@ export const PackId = () => {
                 {cardArray.map(card => {
 
 
-                    let arr = card.created.substring(0, 10)
-                    let update = card.updated.substring(0, 10)
-
-
-
-                    const deleteCardYes = (cardID:string) => {
-
-                        dispatch(deleteCardTC(cardID, id))
-                        setActive(false)
-                    }
-                    const deleteCardNo = () => {
-                        setActive(false)
-                    }
-                    const deleteCard = (cardId:string) => {
-                        setCardID(cardId)
-                        setActive(true)
-
-                    }
-
-
-                    const SetUpdateCard = () => {
-                        setUpdateCard(false)
-                    }
-                    const UpdateCard = (cardId:string) => {
-                        debugger
-                        setCardID(cardId)
-                        setUpdateCard(true)
-                    }
-                    const questionUpadateCard = (value: string) => {
-                        setQuestionUpdate(value)
-                    }
-                    const answerUpdateCard = (value: string) => {
-                        setAnswerUpdate(value)
-                    }
-                    const craeteUpdateNo = () => {
-                        setUpdateCard(false)
-                    }
-                    const craeteUpdateYes = (cardID:string) => {
-                        setAnswerUpdate('')
-                        setQuestionUpdate('')
-                        dispatch(updateCardTC(cardID, questionUpdate, answerUpdate, id))
-                        setUpdateCard(false)
-                    }
-
                     return (
                         <div className={css.cardFront} key={card._id}>
-
-                            {/*update modal*/}
-                            <div style={{opacity:'0.7'}}>
-                                <Modal active={updateCard} setActive={SetUpdateCard}>
-                                    <h2 style={{color: 'wheat'}}>Update</h2>
-                                    <div style={{marginBottom: '10px',marginTop:'20px'}}>
-                                        <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
-                                                       onChangeText={questionUpadateCard} valueStart={questionUpdate} placeholder={'qwestion'}/>
-                                        {/*<SuperInputTextOld placeholder='question' value={questionUpdate} onChangeText={questionUpadateCard}/>*/}
-                                    </div>
-                                    <div style={{marginBottom: '10px'}}>
-                                        <SuperTextArea width={'250px'} heigth={'150px'} backgroundColor={'wheat'}
-                                                       onChangeText={answerUpdateCard} valueStart={answerUpdate} placeholder={'answer'}/>
-                                    </div>
-
-                                    <SuperButtonOld title={'yes'} onClick={()=>craeteUpdateYes(cardID)}/>
-                                    <SuperButtonOld title={'no'} onClick={craeteUpdateNo}/>
-                                </Modal>
-                            </div>
-
-
-                            {/*delete modal*/}
-                            <div style={{opacity:'0.5'}}>
-                                <Modal active={active} setActive={SetActive}>
-                                    <h2 style={{color: 'wheat'}}>Are you sure you want to delete it?</h2>
-                                    <div >
-                                        <SuperButtonOld title={'yes'} onClick={()=>deleteCardYes(cardID)}/>
-                                        <SuperButtonOld title={'no'} onClick={deleteCardNo}/>
-                                    </div>
-                                </Modal>
-                            </div>
-
-
-                            <div>Type:{card.type}</div>
-                            <img src={card.answerImg === '' ? card.answerImg : cardFront} width='100px' alt=""/>
-                            {/*<div>{card.answer}</div>*/}
-                            <div>Update:{update}</div>
-                            <div> Rating:<span
-                                style={{color: 'white', textShadow: '0 0 10px white'}}>{card.rating}</span></div>
-                            <div> Grade:{card.grade}</div>
-                            {/*<div>question: {card.question}</div>*/}
-                            -----------------------------
-                            <div>
-                                <div className={css.update}><SuperButtonOld onClick={()=>UpdateCard(card._id)} title={'update'}/>
-                                </div>
-                            </div>
-                            -----------------------------
-                            <div>Create :{arr}</div>
-                            -----------------------------
-                            <div>
-                                <SuperButtonOld onClick={()=>deleteCard(card._id)} title={'Delete Card'}/>
-                            </div>
-
+                            <PackIDMap card={card} key={card._id} />
                         </div>
                     )
                 })}

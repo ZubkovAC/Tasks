@@ -34,7 +34,7 @@ export const Block = (props: BlockPropsType) => {
     // modal + input
     const [active,setActive]=useState<boolean>(false)
     const [activeUpdate,setActiveUpdate]=useState<boolean>(false)
-    const [inputName,setInputName]=useState<string>('')
+    const [inputName,setInputName]=useState<string>(props.name)
     const [inputNumber,setInputNumber]=useState<any>(0)
 
 
