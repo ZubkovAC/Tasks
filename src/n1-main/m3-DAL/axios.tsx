@@ -50,8 +50,8 @@ export const PacksAPI = {
 }
 
 export const CardsAPI = {
-    getCards(cardPackId:string,cardQuestion:string,cardAnswer:string){
-        return instance.get(`cards/card?pageCount=10&cardsPack_id=${cardPackId}&cardQuestion=${cardQuestion}&cardAnswer=${cardAnswer}`)
+    getCards(cardPackId:string,cardQuestion:string,cardAnswer:string,pageCount:number=11){
+        return instance.get(`cards/card?pageCount=${pageCount}&cardsPack_id=${cardPackId}&cardQuestion=${cardQuestion}&cardAnswer=${cardAnswer}`)
     },
     createCard( cardsPack_id:string, question?:string, answer?:string, grade?:number, shots?:number, rating?:number, answerImg?:string,
                 questionImg?:string, questionVideo?: string, answerVideo?:string, type?:string){

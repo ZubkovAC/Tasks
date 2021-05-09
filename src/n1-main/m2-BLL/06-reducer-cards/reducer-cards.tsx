@@ -37,7 +37,7 @@ export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as c
 // TC
 export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
                       max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
-    return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,)
+    return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,pageCount)
         .then((res)=>dispatch(getCardsAC(res.data.cards)))
         .catch((err)=>{
             dispatch(lampAC(false))

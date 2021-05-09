@@ -82,12 +82,12 @@ export const PackIDMap = (props:PackIDMapPropsType) =>{
                 <Modal active={updateCard} setActive={SetUpdateCard}>
                     <h2 style={{color: 'wheat'}}>Update</h2>
                     <div style={{marginBottom: '10px',marginTop:'20px'}}>
-                        <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
+                        <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
                                        onChangeText={questionUpadateCard} valueStart={questionUpdate} placeholder={'qwestion'}/>
                         {/*<SuperInputTextOld placeholder='question' value={questionUpdate} onChangeText={questionUpadateCard}/>*/}
                     </div>
                     <div style={{marginBottom: '10px'}}>
-                        <SuperTextArea width={'250px'} heigth={'150px'} backgroundColor={'wheat'}
+                        <SuperTextArea width={'350px'} heigth={'150px'} backgroundColor={'wheat'}
                                        onChangeText={answerUpdateCard} valueStart={answerUpdate} placeholder={'answer'}/>
                     </div>
 

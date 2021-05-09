@@ -1,4 +1,3 @@
-import {useState} from "react";
 import css from './SuperTextArea.module.css'
 
 type SuperTextAreaPropsType = {
@@ -11,9 +10,8 @@ type SuperTextAreaPropsType = {
 }
 
 export const SuperTextArea = (props:SuperTextAreaPropsType) =>{
-    const [value,setValue]=useState<string>(props.valueStart)
+
     const onText =(e:any)=>{
-        setValue(e)
         props.onChangeText && props.onChangeText(e)
     }
     let width =props.width
@@ -27,7 +25,7 @@ export const SuperTextArea = (props:SuperTextAreaPropsType) =>{
                     height:heigth,
                     backgroundColor:backgroundColor,
                     outline:"none", fontSize:'16px',padding:'3px',borderRadius:'5px'}}
-                value={value}
+                value={props.valueStart}
                 onChange={e=>onText(e.currentTarget.value)}
                 placeholder={props.placeholder}/>
         </div>

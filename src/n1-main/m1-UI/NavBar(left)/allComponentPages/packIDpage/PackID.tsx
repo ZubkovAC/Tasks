@@ -32,9 +32,9 @@ export const PackId = () => {
     const [type, setType] = useState<string>('')
 
 
-
+    //pageCount - количество карт
     useEffect(() => {
-        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 12))
     }, [isAuth])
 
 
@@ -53,18 +53,29 @@ export const PackId = () => {
     const typeCreateCard = (value: string) => {
         setType(value)
     }
-
+    const defaultText = () =>{
+        debugger
+        setType('')
+        setAnswer('')
+        setQuestion('')
+        console.log(question)
+        console.log(answer)
+        console.log(type)
+    }
 
     const CreateCard = () => {
+        defaultText()
         setActiveCard(true)
     }
     const craeteCardNo = () => {
+        defaultText()
         setActiveCard(false)
     }
     const craeteCardYes = () => {
         dispatch(createCardTC(id, question, answer, 0, 0,
             0, 'string', 'string', '',
             '', type))
+        defaultText()
         setActiveCard(false)
     }
 
@@ -77,12 +88,12 @@ export const PackId = () => {
                 <Modal active={activeCard} setActive={SetActiveCard}>
                     <h2 style={{color: 'wheat'}}>Create</h2>
                     <div style={{marginBottom: '10px',marginTop:'20px'}}>
-                        <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
+                        <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
                                        onChangeText={questionCreateCard} valueStart={question} placeholder={'qwestion'}/>
                     </div>
                     <div style={{marginBottom: '10px'}}>
-                        <SuperTextArea width={'250px'} heigth={'150px'} backgroundColor={'wheat'}
-                                       onChangeText={answerCreateCard} valueStart={answer} placeholder={'qwestion'}/>
+                        <SuperTextArea width={'350px'} heigth={'150px'} backgroundColor={'wheat'}
+                                       onChangeText={answerCreateCard} valueStart={answer} placeholder={'answer'}/>
                     </div>
                     <div style={{marginBottom: '10px'}}>
                         <SuperInputTextOld placeholder={'type'} onChangeText={typeCreateCard}/>
