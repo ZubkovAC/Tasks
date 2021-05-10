@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.3c0df2dc.chunk.css",
-    "main.js": "/Tasks/static/js/main.cb84a5fd.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.cb84a5fd.chunk.js.map",
-    "runtime-main.js": "/Tasks/static/js/runtime-main.8683fdc6.js",
-    "runtime-main.js.map": "/Tasks/static/js/runtime-main.8683fdc6.js.map",
+    "main.css": "/Tasks/static/css/main.96d695e9.chunk.css",
+    "main.js": "/Tasks/static/js/main.f513fdd5.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.f513fdd5.chunk.js.map",
+    "runtime-main.js": "/Tasks/static/js/runtime-main.a741f910.js",
+    "runtime-main.js.map": "/Tasks/static/js/runtime-main.a741f910.js.map",
     "static/css/2.d0fdb7d3.chunk.css": "/Tasks/static/css/2.d0fdb7d3.chunk.css",
-    "static/js/2.1587a2af.chunk.js": "/Tasks/static/js/2.1587a2af.chunk.js",
-    "static/js/2.1587a2af.chunk.js.map": "/Tasks/static/js/2.1587a2af.chunk.js.map",
-    "static/js/3.3fd21a67.chunk.js": "/Tasks/static/js/3.3fd21a67.chunk.js",
-    "static/js/3.3fd21a67.chunk.js.map": "/Tasks/static/js/3.3fd21a67.chunk.js.map",
+    "static/js/2.60706162.chunk.js": "/Tasks/static/js/2.60706162.chunk.js",
+    "static/js/2.60706162.chunk.js.map": "/Tasks/static/js/2.60706162.chunk.js.map",
+    "static/js/3.f2b7ca60.chunk.js": "/Tasks/static/js/3.f2b7ca60.chunk.js",
+    "static/js/3.f2b7ca60.chunk.js.map": "/Tasks/static/js/3.f2b7ca60.chunk.js.map",
     "index.html": "/Tasks/index.html",
     "static/css/2.d0fdb7d3.chunk.css.map": "/Tasks/static/css/2.d0fdb7d3.chunk.css.map",
-    "static/css/main.3c0df2dc.chunk.css.map": "/Tasks/static/css/main.3c0df2dc.chunk.css.map",
-    "static/js/2.1587a2af.chunk.js.LICENSE.txt": "/Tasks/static/js/2.1587a2af.chunk.js.LICENSE.txt",
+    "static/css/main.96d695e9.chunk.css.map": "/Tasks/static/css/main.96d695e9.chunk.css.map",
+    "static/js/2.60706162.chunk.js.LICENSE.txt": "/Tasks/static/js/2.60706162.chunk.js.LICENSE.txt",
     "static/media/CardFront.911ce36f.jpg": "/Tasks/static/media/CardFront.911ce36f.jpg",
     "static/media/Paginator.module.css": "/Tasks/static/media/RussoOne.eeee4979.ttf",
     "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf",
     "static/media/HomePage.module.css": "/Tasks/static/media/Samurai.1eb5b920.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.8683fdc6.js",
+    "static/js/runtime-main.a741f910.js",
     "static/css/2.d0fdb7d3.chunk.css",
-    "static/js/2.1587a2af.chunk.js",
-    "static/css/main.3c0df2dc.chunk.css",
-    "static/js/main.cb84a5fd.chunk.js"
+    "static/js/2.60706162.chunk.js",
+    "static/css/main.96d695e9.chunk.css",
+    "static/js/main.f513fdd5.chunk.js"
   ]
 }
