@@ -13,10 +13,13 @@ export const HeaderPacks = () =>{
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
     let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     let cardPacksTotalCount = useSelector<AppStateType,number>(state => state.packs.cardPacksTotalCount)
-
+    const userID = useSelector<AppStateType,string>(state=>state.login.userID)
 
     const getPack = () => {
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
+    }
+    const getMyPack = () => {
+        dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, userID))
     }
 
     return (
@@ -26,6 +29,9 @@ export const HeaderPacks = () =>{
             </div>
             <div>
                 <SuperButtonOld title={'getPack'} onClick={getPack}/>
+                <span style={{marginLeft:'20px'}}>
+                    <SuperButtonOld title={'getMyPack'} onClick={getMyPack}/>
+                </span>
             </div>
 
         </div>

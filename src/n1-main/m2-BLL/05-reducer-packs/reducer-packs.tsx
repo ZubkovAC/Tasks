@@ -45,7 +45,7 @@ export const preloaderOnAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-ON
 export const preloaderOffAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-OFF', preloader} as const)     // выводиться куда? не используется в коде
 
 //TC
-export const getPacksTC = (packName: string, min: number , max: number, sortPacks: string, page: number, pageCount: number, userId: string,name:string='') => (dispatch: Dispatch) => {
+export const getPacksTC = (packName: string, min: number , max: number, sortPacks: any, page: number, pageCount: number, userId: string,name:string='') => (dispatch: Dispatch) => {
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId,name)
         .then((res) => {
             if ( (+res.data.cardPacksTotalCount) <15)dispatch(getPacksAC(res.data.cardPacks,  res.data.cardPacksTotalCount ))

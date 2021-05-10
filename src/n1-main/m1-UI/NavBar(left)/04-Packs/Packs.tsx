@@ -9,6 +9,7 @@ import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {Redirect} from "react-router-dom";
+import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 
 
 export type PardsTypeProps = {
@@ -57,6 +58,7 @@ export const Packs = () => {
             <HeaderPacks/>
             <Search/>
             <CreatePack/>
+
             <Pagination/>
 
             <div  >

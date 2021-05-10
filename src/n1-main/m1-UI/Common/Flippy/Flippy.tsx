@@ -36,8 +36,8 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             borderRadius: '15px',
                             border: '0 solid',
                             color: 'white',
-                            width: '400px',
-                            height: '500px',
+                            width: '500px',
+                            height: '600px',
                             marginTop: '30px',
                             fontWeight: 600,
                             fontSize: '20px',
@@ -49,16 +49,15 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             textaAlign: 'center',
                         }}
                     >
-                        Answer:
-                        <div style={{display: this.props.button ? 'none' : '', marginTop: '20px'}}>
+                        < span style={{color:'wheat'}}>Answer:</span>
+
+                        <div style={{display: this.props.button ? 'none' : '', marginTop: '20px',height: 'inherit', color:'lightgreen'}}>
 
                             {this.props.answer}
-                        </div>
-                        <div>
                             {this.props.showAnswer === 'Для ознакомления функционала нажмите на кнопку LEARN' ? this.props.showAnswer : ''}
                             {this.props.showAnswer === 'Здесь будет написан Ответ(После нажатия на карточку). Для начала нажмите кнопку LEARN' ? this.props.showAnswer : ''}
                         </div>
-                        <div style={{display: this.props.button ? 'none' : ''}}>
+                        <div style={{display: this.props.button ? 'none' : '',}}>
                             <SelectedFluppy />
                         </div >
 
@@ -74,8 +73,8 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             borderRadius: '15px',
                             border: '0 solid',
                             color: 'white',
-                            width: '400px',
-                            height: '500px',
+                            width: '500px',
+                            height: '600px',
                             fontWeight: 600,
                             marginTop: '-10px',
                             fontSize: '20px',
@@ -86,14 +85,13 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             flexDirection: 'column',
                             textaAlign: 'center',
                         }}>
-                        Quistion:
-                        <div style={{marginTop: '20px'}}>
+                        < span style={{color:'lightgreen'}}>Quistion:</span>
+                        <div style={{marginTop: '20px',color:'wheat'}}>
                             {this.props.finishQuestion}
                         </div>
 
                     </BackSide>
                 </div>
-
             </Flippy>
         )
     }

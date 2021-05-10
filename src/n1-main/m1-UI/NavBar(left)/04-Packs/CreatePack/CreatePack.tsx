@@ -1,6 +1,6 @@
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {useDispatch, useSelector} from "react-redux";
-import {addPackTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {addPackTC, getPacksTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
@@ -70,36 +70,46 @@ export const CreatePack = () => {
         setValueRadio(value)
     }
 
+
+    const SortUp = () =>{
+        dispatch( getPacksTC(searchCardName, 0, 99, '0cardsCount', pagesList, cardPages, ''))
+    }
+    const SortDown =() =>{
+        dispatch( getPacksTC(searchCardName, 0, 99, '1cardsCount', pagesList, cardPages, ''))
+    }
+
+
     return (
         <div>
             {/*Modal createPack*/}
             <Modal active={active} setActive={SetActive}>
                 <h2 style={{color: 'wheat'}}>Create</h2>
                 <div style={{marginBottom: '10px'}}>
-                    {/*<SuperInputTextOld value={question} type={'textarea'} placeholder={'question'} onChangeText={TextCreatePack}/>*/}
                     <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
                                    onChangeText={TextCreatePack} valueStart={question} placeholder={'qwestion'}/>
                 </div>
                 <div style={{marginBottom: '10px'}}>
-                    {/*<SuperInputTextOld value={textAnswer} placeholder={'answer'} onChangeText={answerCreatePack}/>*/}
                     <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
                                    onChangeText={answerCreatePack} valueStart={textAnswer} placeholder={'answer'}/>
                 </div>
                 <div style={{marginBottom: '10px'}}>
                     <SuperInputTextOld value={textType} placeholder={'type'} onChangeText={typeCreatePack}/>
                 </div>
-                {/*<div style={{marginBottom:'10px'}}>*/}
-                {/*    <SuperInputTextOld value={textRating} placeholder={'rating'} onChangeText={ratingCreatePack}/>*/}
-                {/*</div>*/}
                 <span style={{color: 'wheat', fontSize: '20px', fontWeight: 600}}>Private:</span>
                 <SuperRadio options={['true', 'false']} value={valueRadio} onChangeOption={onChangeChecked}/>
-
                 <SuperButtonOld title={'yes'} onClick={craetePackYes}/>
                 <SuperButtonOld title={'no'} onClick={craetePackNo}/>
             </Modal>
 
 
             <SuperButtonOld title={'Create  Pack'} onClick={CreatePack}/>
+            <span style={{marginLeft:'25%'}}>
+                <SuperButtonOld title={'v'} transform={true} onClick={SortUp}/>
+                <span style={{marginLeft:'10px'}}>
+                <SuperButtonOld title={'v'} onClick={SortDown} />
+                </span>
+            </span>
+
         </div>
     )
 }

@@ -34,7 +34,7 @@ export const PackId = () => {
 
     //pageCount - количество карт
     useEffect(() => {
-        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 12))
+        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 99))
     }, [isAuth])
 
 
