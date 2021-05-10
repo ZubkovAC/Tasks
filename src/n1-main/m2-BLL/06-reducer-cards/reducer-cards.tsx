@@ -7,24 +7,29 @@ import {AppStateType} from "../00-store/store";
 const initialState = {
     cardArray:[] as CardArrayResponseType[],
     packID:'',
-    card:{} as CreateCardType
+    card:{} as CreateCardType,
+    grade:0,
+    valueSelect:''
 }
 
 
 
 export const cardsReducer = (state: IniticalStateCardType = initialState, action: ActionTypeCards): IniticalStateCardType => {
     switch (action.type) {
-        case "CARDS/GET-CARDS":
+        case "CARDS/GET-CARDS":{
             return {
                 ...state,
-                cardArray:action.cardArray,
-            }
+                cardArray:action.cardArray }
+        }
         case "CARDS/ID-CARDS":{
             return {
-                ...state,
-                packID:action.packID
-            }
+                ...state, packID:action.packID }
         }
+        case "CARDS/GRADE-CARD":{
+            return {
+                ...state,grade:action.grade , valueSelect: action.valueSelect }
+        }
+
         default:
             return state
     }
@@ -33,6 +38,7 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
 // AC
 export const getCardsAC = (cardArray:CardArrayResponseType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
 export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as const)
+export const gradeCardAC = (grade:number,valueSelect:string) => ({ type:"CARDS/GRADE-CARD",grade,valueSelect}as const)
 
 // TC
 export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
@@ -99,9 +105,11 @@ export type IniticalStateCardType = typeof initialState
 export type ActionTypeCards =
     | GetCardsAC
     | InputIdAC
+    | GradeCardAC
 
 export type GetCardsAC = ReturnType<typeof getCardsAC>
 export type InputIdAC = ReturnType<typeof inputIdAC>
+export type GradeCardAC = ReturnType<typeof gradeCardAC>
 export type CardArrayResponseType ={
     answer: string
     answerImg: string
