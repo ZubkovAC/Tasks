@@ -68,10 +68,11 @@
 .but{
     outline: none;
     border-radius: 10px;
-    background-color: rgba(235,235,235,0.4);
+    background-color: wheat;
     font-size: 25px;
     font-family: Panda;
     padding: 10px;
+    margin-top: 40px;
 }
 .but:hover{
     box-shadow: 0 0 10px 0 whitesmoke;

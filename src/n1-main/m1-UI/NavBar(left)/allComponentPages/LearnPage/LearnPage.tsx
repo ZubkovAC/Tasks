@@ -33,13 +33,13 @@ export const LearnPage = () => {
     let cardArrayyTest = cardArray[0]
 
     const [cardForAnswer, setCardForAnswer] = useState(cardArray[0])
-    const [finishQuestion, setFinishQuestion] = useState<any>('Learn To Start')
-    const [showAnswer, setShowAnswer] = useState<any>(false)
+    const [finishQuestion, setFinishQuestion] = useState<any>('Для получения ответа нажмите на Карточку')
+    const [showAnswer, setShowAnswer] = useState<string>('Для ознакомления функционала нажмите на кнопку LEARN')
     const [answer, setAnswer] = useState<any>('')                    // доп стейт для хранения старых данных
     const [answerP, setAnswerP] = useState<any>('')             // доп стейт для хранения новых данных
 
     const [radio, setRadio] = useState<any>('')
-    const [onButton, offButton] = useState<boolean>(false)
+    const [onButton, offButton] = useState<boolean>(true)
 
 
     let {id} = useParams<{id:string}>()
@@ -53,7 +53,8 @@ export const LearnPage = () => {
     useEffect(()=>{
         if (me){
             OnClickHandlerForShowAnswer()
-            offButton(true)
+            OnClickHandlerForShowAnswer()
+            offButton(false)
         }
     },[me])
 
@@ -62,30 +63,33 @@ export const LearnPage = () => {
 
     const onClickHandler = () => {
         if ( me && cardForAnswer !== undefined ){
-            debugger
+
             setCardForAnswer(getCard(cardArray))
             setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1    old setCardForAnswer
-            setShowAnswer(false)
+            // setShowAnswer(false)
             setRadio('')
-            offButton(true)
+            offButton( onButton?false : true)
+            setAnswer(answerP)
+            setAnswerP(Object.entries(cardForAnswer)[3][1])
+            OnClickHandlerForShowAnswer()
+            setShowAnswer('12')
+
         } else{
-            debugger
             offButton(true)
             setCardForAnswer(getCard(cardArray))
         }
-
-        // e.stopPropagation()
     }
 
 
 
     const OnClickHandlerForShowAnswer = () => {
         if (onButton && me && cardArray.length !== 0 ){
-            setShowAnswer(true)
+            // setShowAnswer(true)
             setAnswer(answerP)                                  //3.1                        // старое значение новое значение
-            debugger
             setAnswerP(Object.entries(cardForAnswer)[3][1])                 // использую новое значение   old setCardForAnswer
-            offButton(false)
+            offButton(false  )
+            debugger
+            if (showAnswer!=='12') setShowAnswer('Для ознакомления функционала нажмите на кнопку LEARN'? 'Здесь будет написан Ответ(После нажатия на карточку). Для начала нажмите кнопку LEARN': '')
         }
     }
 
@@ -101,40 +105,50 @@ export const LearnPage = () => {
 
 
     if (!isAuth && me) return <Redirect to={'/login'}/>;
-
+    console.log(showAnswer)
+    console.log(answer)
     return (
         <div className={css.cardBlock}>
 
             <h2 className={css.content_top}>Learn Page</h2>
-            <button className={css.but}  onClick={onClickHandler}>
-                LEARN
-            </button>
-            <div className={css.cardFrontLearn}  onClick={OnClickHandlerForShowAnswer}>
 
+            {/*className={css.cardFrontLearn}*/}
+            <div   onClick={OnClickHandlerForShowAnswer}>
+                <Flippys
+                    finishQuestion={finishQuestion}
+                    showAnswer={showAnswer}
+                    answer={answer}
+                    button={onButton}
+                />
 
-                {/*<Flippys  />*/}
-
-                    {cardForAnswer
-                        ? <div className={css.cardForAnswer}>
-                            <div>{finishQuestion}</div>
-                        </div>
-                        : <h2>Go to Packs and choose Pack for learning</h2>
-                    }
-                    {showAnswer
-                        ? <div className={css.cardBlock}>
-                            <div className={css.text}>{answer}</div>
-                            <div className={css.btnBlock}>
-                                <SuperRadio
-                                    value={radio}
-                                    name={"radio"}
-                                    options={[`это было слишком легко`,`ну почти`,`не уверенно, фильшиво, слабо`,`Я учился?`,`кажется я обкакался =(`]}
-                                    onChangeOption={RadioSelect}
-                                />
-                            </div>
-                        </div>
-                        : <h5>Answer to click</h5>
-                    }
             </div>
+            <div style={{opacity:onButton ? 0.7:1}}>
+                <button disabled={onButton} className={css.but}  onClick={onClickHandler}>
+                    LEARN
+                </button>
+            </div>
+
         </div>
     )
 }
+
+{/*{cardForAnswer*/}
+{/*    ? <div className={css.cardForAnswer}>*/}
+{/*        <div>{finishQuestion}</div>*/}
+{/*    </div>*/}
+{/*    : <h2>Go to Packs and choose Pack for learning</h2>*/}
+{/*}*/}
+{/*{showAnswer*/}
+{/*    ? <div className={css.cardBlock}>*/}
+{/*        <div className={css.text}>{answer}</div>*/}
+{/*        <div className={css.btnBlock}>*/}
+{/*            <SuperRadio*/}
+{/*                value={radio}*/}
+{/*                name={"radio"}*/}
+{/*                options={[`это было слишком легко`,`ну почти`,`не уверенно, фильшиво, слабо`,`Я учился?`,`кажется я обкакался =(`]}*/}
+{/*                onChangeOption={RadioSelect}*/}
+{/*            />*/}
+{/*        </div>*/}
+{/*    </div>*/}
+{/*    : <h5>Answer to click</h5>*/}
+{/*}*/}
