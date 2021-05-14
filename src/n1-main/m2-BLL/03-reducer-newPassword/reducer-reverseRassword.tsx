@@ -7,7 +7,6 @@ const reserseInitialState = {
     message:'' ,
     password:'',
     redirect: false,
-
 }
 
 export const reserseReducer = (state: ReserseInitialState = reserseInitialState, action: ActionType): ReserseInitialState => {

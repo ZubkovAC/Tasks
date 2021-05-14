@@ -12,10 +12,6 @@ import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/Su
 import {PackIDMap} from "./PackIDMap";
 
 
-interface ParamTypes {
-    id: string
-}
-
 
 export const PackId = () => {
 
@@ -23,7 +19,7 @@ export const PackId = () => {
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
-    let {id} = useParams<ParamTypes>()
+    let {id} = useParams<{id:string}>()
 
     //create modal
     const [activeCard, setActiveCard] = useState<boolean>(false)
@@ -55,9 +51,6 @@ export const PackId = () => {
         setType('')
         setAnswer('')
         setQuestion('')
-        console.log(question)
-        console.log(answer)
-        console.log(type)
     }
 
     const CreateCard = () => {

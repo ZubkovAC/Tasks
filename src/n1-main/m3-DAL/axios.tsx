@@ -26,6 +26,9 @@ export const AuthAPI = {
     },
     newPassword(password:string,resetPasswordToken:string){
         return instance.post('auth/set-new-password',{password,resetPasswordToken})
+    },
+    updateLogin (name:string,avatar:string){
+        return instance.put('auth/me',{name,avatar})
     }
 }
 

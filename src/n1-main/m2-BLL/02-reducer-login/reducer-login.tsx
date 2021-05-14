@@ -35,6 +35,8 @@ export const reducerLogin = (state: initialStateType = initialState, action: Act
             return {...state, avatar: action.avatar, userName: action.userName,userID:action.userID,publicCardPacksCount:action.cardPackCount}
         case "LOGIN/TEST-ERROR":
             return {...state, lamp: action.lamp}
+        case "LOGIN/UPDATE":
+            return {...state, userName: action.name , avatar:action.avatar}
         default:
             return state
     }
@@ -49,7 +51,7 @@ export const isAuthAC = (isAuth: boolean,me:boolean) => ({type: 'LOGIN/CHECK-AUT
 export const getProfileAC = (avatar: string, userName: string,userID:string,cardPackCount:number) => ({
     type: 'LOGIN/GET-PROFILE', avatar, userName,userID,cardPackCount} as const)
 export const lampAC = (lamp: boolean) => ({type: 'LOGIN/TEST-ERROR', lamp} as const)
-
+export const updateAccAC = (name:string,avatar:string)=>({type:'LOGIN/UPDATE',name,avatar}as const)
 //TC
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
     return AuthAPI.login(email, password, rememberMe)
@@ -92,7 +94,14 @@ export const authMeTC = () => (dispatch: Dispatch) => {
             setTimeout(() => dispatch(lampAC(true)), 2000)
         })
 }
-
+export const updateAccTC = (name:string,avatar:string) => (dispatch:Dispatch) => {
+    debugger
+    return AuthAPI.updateLogin(name,avatar)
+        .then((res)=>{
+            debugger
+            dispatch(updateAccAC(res.data.updatedUser.name,res.data.updatedUser.avatar))
+        })
+}
 
 //Type
 export type initialStateType = typeof initialState
@@ -102,9 +111,11 @@ export type ActionLoginType =
     | IsAuthType
     | GetProfileType
     | LampAC
+    | UpdateAccAC
 
 export type LoginType = ReturnType<typeof loginAC>
 export type ErrorType = ReturnType<typeof errorAC>
 export type IsAuthType = ReturnType<typeof isAuthAC>
 export type GetProfileType = ReturnType<typeof getProfileAC>
 export type LampAC = ReturnType<typeof lampAC>
+export type UpdateAccAC = ReturnType<typeof updateAccAC>

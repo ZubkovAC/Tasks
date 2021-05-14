@@ -12,8 +12,6 @@ const initialState = {
     valueSelect:''
 }
 
-
-
 export const cardsReducer = (state: IniticalStateCardType = initialState, action: ActionTypeCards): IniticalStateCardType => {
     switch (action.type) {
         case "CARDS/GET-CARDS":{
