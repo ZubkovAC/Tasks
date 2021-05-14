@@ -33,12 +33,9 @@
    border-radius: 10px;
    width: 400px;
    height: 400px;
-
    background-color: black;
    transform: scale(0.5);
    transition: 0.4s all;
-
-
 }
 
 .modal_content.active {
@@ -46,5 +43,4 @@
    background-color: black;
    width: 400px;
    height: 400px;
-
 }

@@ -13,8 +13,7 @@ export const Login = () => {
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
-    // let isEmailValid = useSelector<AppStateType,boolean>(state => state.login.isEmailValid)
-    // let isPassValid = useSelector<AppStateType,boolean>(state => state.login.isPassValid)
+
     let [email, setEmail] = useState("3y6kob@mail.ru")
     let [password, setPassword] = useState("oTBuHTa977")
     let [rememberMe, setRememberMe] = useState(false)

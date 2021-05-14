@@ -37,12 +37,9 @@ export const PackId = () => {
         if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 99))
     }, [isAuth])
 
-
-
     const SetActiveCard = () => {
         setActiveCard(false)
     }
-
 
     const questionCreateCard = (value: string) => {
         setQuestion(value)

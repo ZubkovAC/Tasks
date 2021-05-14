@@ -5,22 +5,16 @@ import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
 import React, {useState} from "react";
-import SuperSelect from "../../../Common/InputAndButton/c5-SuperSelect/SuperSelect";
-import SuperCheckbox from "../../../Common/InputAndButton/c3-SuperCheckbox/SuperCheckbox";
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 
 
 export const CreatePack = () => {
+
     const dispatch = useDispatch()
 
-    let searchCardName = useSelector<AppStateType, string>(state => state.search.searchCardName)
-    let pagesList = useSelector<AppStateType, number>(state => state.search.pagesList)
-    let cardPages = useSelector<AppStateType, number>(state => state.search.cardPages)
-
-
-    let name = useSelector<AppStateType, string>(state => state.packs.name)
-    let type = useSelector<AppStateType, string>(state => state.packs.type)
+    let {searchCardName,pagesList,cardPages} = useSelector((state:AppStateType) => state.search)
+    let {name,type} = useSelector((state:AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)

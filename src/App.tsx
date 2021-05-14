@@ -32,8 +32,7 @@ export const RoutePath = {
 
 function App() {
 
-    const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
-    const me = useSelector<AppStateType,boolean>(state=> state.login.me) //no need?
+    let {isAuth,me} = useSelector((state:AppStateType)=> state.login)
 
     const dispatch = useDispatch()
     useEffect(()=>{

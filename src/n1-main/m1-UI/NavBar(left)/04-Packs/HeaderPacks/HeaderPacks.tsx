@@ -9,11 +9,11 @@ export const HeaderPacks = () =>{
 
     const dispatch = useDispatch()
 
-    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
-    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
-    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
-    let cardPacksTotalCount = useSelector<AppStateType,number>(state => state.packs.cardPacksTotalCount)
     const userID = useSelector<AppStateType,string>(state=>state.login.userID)
+    let cardPacksTotalCount = useSelector<AppStateType,number>(state => state.packs.cardPacksTotalCount)
+
+    let {cardPages,pagesList,searchCardName} = useSelector((state:AppStateType) => state.search)
+
 
     const getPack = () => {
         dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))

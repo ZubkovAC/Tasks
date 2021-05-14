@@ -18,10 +18,9 @@ export const LearnPage = () => {
 
     const dispatch = useDispatch()
 
-    let me = useSelector<AppStateType>(state => state.login.me)
-    let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
-    const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
-    const grade = useSelector<AppStateType, number>(state => state.cards.grade)
+    let {me,isAuth} = useSelector((state:AppStateType) => state.login)
+    let {grade,cardArray} = useSelector((state:AppStateType) => state.cards)
+
 
     const getCard = (cards: CardArrayResponseType[]) => {
         const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);

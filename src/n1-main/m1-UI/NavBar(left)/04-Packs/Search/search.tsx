@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {getPacksTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
-import {PardsTypeProps} from "../Packs";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperSelectOld from "../../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
 
@@ -16,11 +15,9 @@ export const Search = () => {
 
     const  dispatch = useDispatch()
 
-    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
-
     let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
-    let cardPacks = useSelector<AppStateType,Array<PardsTypeProps>>(state => state.packs.cardPacks)
+
 
 
     const [packName,setPackName]=useState<string>('')
@@ -41,8 +38,6 @@ export const Search = () => {
 
     //search
     const onChangeHandler = (value:string) => {
-        // if( filterSerch === 'type')setType(value)
-        // if( filterSerch === 'userEmail')setUserEmail(value)
         if( filterSerch === 'name')setPackName(value)
         if( filterSerch === 'cardsCountMax')setCardsCountMax(+value)
         if( filterSerch === 'cardsCountMin')setCardsCountMin(+value)
@@ -60,8 +55,6 @@ export const Search = () => {
 
     //Select
     const onChangeOption = (e:string) => {
-        // if( e ==='type')setFilterSerch('type')
-        // if( e ==='userEmail')setFilterSerch('userName')
         if( e ==='name')setFilterSerch('name')
         if( e ==='cardsCountMax')setFilterSerch('cardsCountMax')
         if( e ==='cardsCountMin')setFilterSerch('cardsCountMin')
@@ -80,7 +73,6 @@ export const Search = () => {
 
             <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeOption}
                             options={['name','UserId', 'cardsCountMax',"cardsCountMin"]}/>
-                                                                                {/*'type', 'userEmail'*/}
             <SuperInputTextOld value={value} onChangeText={onChangeHandler} />
             <span style={{display:'inline'}}>
                 <SuperButtonOld onClick={onClickHandler} title={'Search'}/>

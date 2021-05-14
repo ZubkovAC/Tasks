@@ -9,7 +9,7 @@ import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {Redirect} from "react-router-dom";
-import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
+
 
 
 export type PardsTypeProps = {
@@ -36,13 +36,10 @@ export type PardsTypeProps = {
 export const Packs = () => {
 
     const dispatch = useDispatch()
-    let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
-    let me = useSelector<AppStateType>(state => state.login.me)
-    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
-    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
-    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
-    let preloader =useSelector<AppStateType,boolean>(state=>state.packs.preloader)
-    let cardPacks = useSelector<AppStateType, Array<PardsTypeProps>>(state => state.packs.cardPacks)
+
+    let {me, isAuth} = useSelector((state:AppStateType) => state.login)
+    let {cardPages, pagesList , searchCardName} = useSelector((state:AppStateType) => state.search)
+    let {preloader, cardPacks } = useSelector((state:AppStateType) => state.packs)
 
 
     useEffect(()=>{

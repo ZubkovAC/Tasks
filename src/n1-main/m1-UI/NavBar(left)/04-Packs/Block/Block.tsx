@@ -23,9 +23,8 @@ export const Block = (props: BlockPropsType) => {
 
     const dispatch = useDispatch()
 
-    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
-    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
-    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
+    let {cardPages,pagesList,searchCardName} = useSelector((state:AppStateType) => state.search)
+
 
     let userID =useSelector<AppStateType,string>(state=>state.login.userID)
 

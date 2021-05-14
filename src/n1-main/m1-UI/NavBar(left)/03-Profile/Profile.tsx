@@ -8,10 +8,8 @@ import css from './Profile.module.css'
 
 export const Profile = () => {
     const dispatch = useDispatch()
-    let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
+    let {avatar ,userName ,publicCardPacksCount, isAuth} = useSelector((state:AppStateType) => state.login)
 
-    let avatar = useSelector<AppStateType,string>(state => state.login.avatar)
-    let userName = useSelector<AppStateType, string>(state => state.login.userName)
 
     const onClickHandler = useCallback(() => {
         dispatch( logoutTC())
@@ -24,7 +22,8 @@ export const Profile = () => {
                 <h2>Profile</h2>
                 <SuperButton onClick={onClickHandler} title={'Logout'} />
                 <div className={css.profile_img}>
-                    <h3 style={{color:'white'}}>Hello {userName}</h3>
+                    <h2 style={{color:'wheat'}}>Hello {userName}</h2>
+                    <h3>Card Pack Count:{publicCardPacksCount}</h3>
                     <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
 
                 </div>

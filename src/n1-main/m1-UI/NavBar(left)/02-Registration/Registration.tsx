@@ -14,12 +14,9 @@ import {Login} from "../01-Login/Login";
 export const regForEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const Registration =React.memo(() => {
-    console.log("02-Registration is render")
-    let validationEmail =useSelector<AppStateType>(state=>state.registration.validationEmail)
-    let validationPassword = useSelector<AppStateType>(state=>state.registration.validationPassword)
-    let isRegistred = useSelector<AppStateType>(state => state.registration.isRegistered)
+
+    let {validationEmail,validationPassword,isRegistered,isFetching}=useSelector((state:AppStateType)=>state.registration)
     let error = useSelector<AppStateType>(state => state.registration.error)
-    let isFetching = useSelector<AppStateType>(state => state.registration.isFetching)
 
     const dispatch = useDispatch()
 
@@ -27,7 +24,6 @@ export const Registration =React.memo(() => {
     let [password, setPassword] = useState("")
     let [checkOnBlurEmail, setCheckOnBlurEmail] = useState(false)
     let[checkOnBlurPassword,setCheckOnBlurPassword]=useState(false)
-
 
     const handleBlurPassword = useCallback((e:React.FormEvent<HTMLInputElement>)=>{
         setCheckOnBlurPassword(true)
@@ -61,7 +57,7 @@ export const Registration =React.memo(() => {
         dispatch( registrationTC(email,password))
     },[email,password])
 
-    if (isRegistred) {
+    if (isRegistered) {
         return <Login/>
     }
 
