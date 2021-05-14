@@ -24,8 +24,10 @@
 
 .userName{
     padding: 5px;
-    font-size: 22px;
+    font-size: 20px;
     grid-area: userName;
+    color:antiquewhite;
+    text-shadow:  0 0 15px black;
 }
 .name{
     padding: 5px;

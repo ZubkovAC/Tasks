@@ -20,7 +20,7 @@ export const Search = () => {
 
 
 
-    const [packName,setPackName]=useState<string>('')
+    const [name,setName]=useState<string>('')
     const [userId,setUserId]=useState<string>('')
 
     // next functional
@@ -38,18 +38,18 @@ export const Search = () => {
 
     //search
     const onChangeHandler = (value:string) => {
-        if( filterSerch === 'name')setPackName(value)
+        if( filterSerch === 'UserId')setUserId(value)
+        if( filterSerch === 'name')setName(value)
         if( filterSerch === 'cardsCountMax')setCardsCountMax(+value)
         if( filterSerch === 'cardsCountMin')setCardsCountMin(+value)
-        if( filterSerch === 'UserId')setUserId(value)
         setValue(value)
     }
 
 
     //button
     const onClickHandler = () =>{
-        dispatch( getPacksTC(packName, cardsCountMin, cardsCountMax,
-            type, pagesList, cardPages, userId,userEmail))
+        dispatch( getPacksTC(name, cardsCountMin, cardsCountMax,
+            type, pagesList, cardPages, userId,''))
     }
 
 
@@ -61,7 +61,7 @@ export const Search = () => {
         if( e ==='UserId')setFilterSerch('UserId')
         setType('')
         setUserEmail('')
-        setPackName('')
+        setName('')
         setUserId('')
         setCardsCountMax(99)
         setCardsCountMin(0)

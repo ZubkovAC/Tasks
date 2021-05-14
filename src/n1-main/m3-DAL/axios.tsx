@@ -44,8 +44,8 @@ export const PacksAPI = {
         return instance.post(`cards/pack`, {cardsPack:{name, path, grade,
             shots, rating, deckCover, privat, type}})
     },
-    updatePack(_id: string,rating:number, name: string){
-        return instance.put(`cards/pack`, {cardsPack:{_id,rating, name}})
+    updatePack(_id: string, name: string){
+        return instance.put(`cards/pack`, {cardsPack:{_id, name}})
     },
     deletePack(id: string){
         return instance.delete(`cards/pack?id=${id}`)

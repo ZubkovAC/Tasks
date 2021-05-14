@@ -46,6 +46,7 @@ export const preloaderOffAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-O
 
 //TC
 export const getPacksTC = (packName: string, min: number , max: number, sortPacks: any, page: number, pageCount: number, userId: string,name:string='') => (dispatch: Dispatch) => {
+    debugger
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId,name)
         .then((res) => {
             if ( (+res.data.cardPacksTotalCount) <15)dispatch(getPacksAC(res.data.cardPacks,  res.data.cardPacksTotalCount ))
@@ -64,7 +65,7 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
         .then((res) =>{
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7'))})
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, name))})
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -73,10 +74,10 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
         })
 }
 
-export const updatePackTC = (_id: string, name: string,rating:number,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
-    return PacksAPI.updatePack(_id,rating, name)
-        .then((res) =>
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
+export const updatePackTC = (_id: string, name: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
+    debugger
+    return PacksAPI.updatePack(_id, name)
+        .then((res) => dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, '')))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -86,9 +87,10 @@ export const updatePackTC = (_id: string, name: string,rating:number,searchCardN
 }
 
 export const deletePackTC = (id: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
+    debugger
     return PacksAPI.deletePack(id)
         .then((res) =>
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, 'user_id=5eb543f6bea3ad21480f1ee7')))
+            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, '')))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)

@@ -28,13 +28,11 @@ export const Block = (props: BlockPropsType) => {
 
     let userID =useSelector<AppStateType,string>(state=>state.login.userID)
 
-    console.log(props.id )
-    console.log( userID )
     // modal + input
     const [active,setActive]=useState<boolean>(false)
     const [activeUpdate,setActiveUpdate]=useState<boolean>(false)
     const [inputName,setInputName]=useState<string>(props.name)
-    const [inputNumber,setInputNumber]=useState<any>(0)
+
 
 
     const SetActive =() =>{
@@ -63,7 +61,7 @@ export const Block = (props: BlockPropsType) => {
         setActiveUpdate(false)
     }
     const UpdatePackYes = () => {
-        dispatch(updatePackTC(props.id, inputName,inputNumber,searchCardName,pagesList,cardPages))
+        dispatch(updatePackTC(props.id, inputName,searchCardName,pagesList,cardPages))
         setActiveUpdate(false)
     }
 
@@ -71,9 +69,7 @@ export const Block = (props: BlockPropsType) => {
     const onChangeName = (value:string) =>{
         setInputName(value)
     }
-    const onChangeNumber = (value:string) =>{
-        if(+value >= 0 && +value <=5)setInputNumber(+value)
-    }
+
 
 
 
@@ -94,7 +90,6 @@ export const Block = (props: BlockPropsType) => {
                 <Modal active={activeUpdate} setActive={SetActiveUpdate} >
                     <h2 style={{color:'wheat',textShadow:'0 0 50px white'}}>update name?</h2>
                         <h3 className={css.h3}>Name:</h3>  <SuperInputTextOld  title={inputName} onChangeText={onChangeName} />
-                        <h3 className={css.h3}>Rating:</h3> <SuperInputTextOld type={'number'} title={inputNumber} onChangeText={onChangeNumber}/>
                         <SuperButtonOld title={'yes'}  onClick={UpdatePackYes} />
                         <SuperButtonOld title={'no'} onClick={UpdatePackNo}/>
 

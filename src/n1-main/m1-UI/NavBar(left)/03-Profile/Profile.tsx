@@ -55,7 +55,8 @@ export const Profile = () => {
                         <span style={{float:'right'}}><SuperButton onClick={onClickHandler} title={'Logout'} /></span>
                         <SuperButton onClick={updateProfile} title={'update'} />
                         <div className={css.profile_img}>
-                            <h2 style={{color:'wheat'}}>Hello {userName}</h2>
+                            <h2>Hello:</h2>
+                            <h2 style={{color:'wheat'}}> {userName}</h2>
                             <h3 style={{color:'white'}}>Card Pack Count:{publicCardPacksCount}</h3>
                             <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"} alt="avatar"/>
 

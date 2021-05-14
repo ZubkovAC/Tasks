@@ -14,15 +14,14 @@ export const CreatePack = () => {
     const dispatch = useDispatch()
 
     let {searchCardName,pagesList,cardPages} = useSelector((state:AppStateType) => state.search)
-    let {name,type} = useSelector((state:AppStateType) => state.packs)
+    let {type} = useSelector((state:AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)
     // InputText
     const [question, setQuestion] = useState<string>('')
-    const [textAnswer, settextAnswer] = useState<string>('')
-    const [textType, settextType] = useState<string>('')
-    const [textRating, setTextRating] = useState<number>(0)
+    const [textType, setTextType] = useState<string>('')
+
 
     const [valueRadio, setValueRadio] = useState<string>('false')
 
@@ -39,9 +38,9 @@ export const CreatePack = () => {
     }
     const craetePackYes = () => {
         if (valueRadio === 'false') {
-            dispatch(addPackTC(name, '', 0, 0, 0, '', false, type, searchCardName, pagesList, cardPages))
+            dispatch(addPackTC(textType, '', 0, 0, 0, '', false, type, searchCardName, pagesList, cardPages))
         } else if (valueRadio !== 'false') {
-            dispatch(addPackTC(name, '', 0, 0, 0, '', true, type, searchCardName, pagesList, cardPages))
+            dispatch(addPackTC(textType, '', 0, 0, 0, '', true, type, searchCardName, pagesList, cardPages))
         }
         setActive(false)
     }
@@ -50,15 +49,11 @@ export const CreatePack = () => {
         dispatch(textCreateNamePackAC(question))
         setQuestion(question)
     }
-    const answerCreatePack = (answer: string) => {
-        settextAnswer(answer)
-    }
+
     const typeCreatePack = (type: string) => {
-        settextType(type)
+        setTextType(type)
     }
-    const ratingCreatePack = (rating: string) => {
-        setTextRating(+rating)
-    }
+
 
     const onChangeChecked = (value: string) => {
         setValueRadio(value)
@@ -80,11 +75,7 @@ export const CreatePack = () => {
                 <h2 style={{color: 'wheat'}}>Create</h2>
                 <div style={{marginBottom: '10px'}}>
                     <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
-                                   onChangeText={TextCreatePack} valueStart={question} placeholder={'qwestion'}/>
-                </div>
-                <div style={{marginBottom: '10px'}}>
-                    <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'}
-                                   onChangeText={answerCreatePack} valueStart={textAnswer} placeholder={'answer'}/>
+                                   onChangeText={TextCreatePack} valueStart={question} placeholder={'name'}/>
                 </div>
                 <div style={{marginBottom: '10px'}}>
                     <SuperInputTextOld value={textType} placeholder={'type'} onChangeText={typeCreatePack}/>
