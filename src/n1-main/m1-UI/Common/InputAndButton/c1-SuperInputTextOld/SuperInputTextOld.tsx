@@ -60,7 +60,7 @@ const SuperInputTextOld: React.FC<SuperInputTextPropsType> = (
 
 
     return (
-        <span>
+        <span >
             <input
                 type={type? type :'text'}
                 onChange={onChangeCallback}

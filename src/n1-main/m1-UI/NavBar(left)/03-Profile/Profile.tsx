@@ -7,6 +7,7 @@ import {logoutTC, updateAccTC} from "../../../m2-BLL/02-reducer-login/reducer-lo
 import css from './Profile.module.css'
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
+import {TitleModal} from "../../Common/TitleModal/TitleModal";
 
 export const Profile = () => {
     const dispatch = useDispatch()
@@ -44,14 +45,14 @@ export const Profile = () => {
                 <h2>Profile</h2>
                 {edit ?
                     <div>
-                        <h3>NewName:</h3>
+                        <TitleModal title={'NewName:'}/>
                         <SuperInputTextOld
                             placeholder={'terminator'}
                             title={name}
                             onChangeText={updateName}
                         />
 
-                        <h3>NewAvatar:</h3>
+
                         <SuperInputTextOld
                             placeholder={'https://.....'}
                             title={avatar}
@@ -72,7 +73,7 @@ export const Profile = () => {
                         />
                         <div className={css.profile_img}>
                             <h2>Hello:</h2>
-                            <h2 style={{color: 'wheat'}}> {userName}</h2>
+                            <TitleModal title={userName}/>
                             <h3 style={{color: 'white'}}>Card Pack Count:{publicCardPacksCount}</h3>
                             <img src={avatar ? avatar : "https://i.ytimg.com/vi/Ha9tQlRTGms/maxresdefault.jpg"}
                                  alt="avatar"/>

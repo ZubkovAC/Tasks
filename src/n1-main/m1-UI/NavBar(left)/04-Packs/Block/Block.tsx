@@ -7,6 +7,7 @@ import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/re
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {Modal} from "../../../Common/Modal/Modal";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
+import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 
 
 export type BlockPropsType = {
@@ -76,7 +77,7 @@ export const Block = (props: BlockPropsType) => {
 
                 {/*Delete Madal*/}
                 <Modal active={active} setActive={SetActive}>
-                    <h2 style={{color: 'wheat', textShadow: '0 0 50px white'}}>Are you sure you want to delete it?</h2>
+                    <TitleModal title={'Are you sure you want to delete it?'}/>
                     <div style={{float: 'right'}}>
                         <SuperButtonOld title={'yes'} onClick={deletePackYes}/>
                         <SuperButtonOld title={'no'} onClick={deletePackNo}/>
@@ -85,11 +86,16 @@ export const Block = (props: BlockPropsType) => {
 
                 {/*Update Madal*/}
                 <Modal active={activeUpdate} setActive={SetActiveUpdate}>
-                    <h2 style={{color: 'wheat', textShadow: '0 0 50px white'}}>update name?</h2>
-                    <h3 className={css.h3}>Name:</h3>  <SuperInputTextOld title={inputName}
-                                                                          onChangeText={onChangeName}/>
-                    <SuperButtonOld title={'yes'} onClick={UpdatePackYes}/>
-                    <SuperButtonOld title={'no'} onClick={UpdatePackNo}/>
+                    <TitleModal title={'update name'}/>
+                   <SuperInputTextOld
+                       title={inputName}
+                       onChangeText={onChangeName}/>
+                    <SuperButtonOld
+                        title={'yes'}
+                        onClick={UpdatePackYes}/>
+                    <SuperButtonOld
+                        title={'no'}
+                        onClick={UpdatePackNo}/>
 
                 </Modal>
 
@@ -97,16 +103,16 @@ export const Block = (props: BlockPropsType) => {
                 <span className={css.userName}>{props.userName}</span>
                 <div className={css.Table}>
 
-                    <span className={css.rating}> id:{props.user_id}</span>
-                    <span className={css.name}>{props.name}</span>
-                    <span className={css.cardsCount}>cardsCount:{props.cardsCount}</span>
-                    <span className={css.id}>
+                    <p className={css.rating}> id:{props.user_id}</p>
+                    <p className={css.name}>{props.name}</p>
+                    <p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>
+                    <p className={css.id}>
                         <NavLink to={`/packs/${props.id}`}>Go To CardPack</NavLink>
-                    </span>
-                    <span className={css.buttons}>
+                    </p>
+                    <p className={css.buttons}>
                         <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID} onClick={deletePack}/>
                         <SuperButtonOld title={'Update'} disabled={props.user_id !== userID} onClick={UpdatePack}/>
-                    </span>
+                    </p>
                 </div>
 
             </div>

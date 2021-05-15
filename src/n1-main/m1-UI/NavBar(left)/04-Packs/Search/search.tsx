@@ -67,12 +67,16 @@ export const Search = () => {
     return (
         <div style={{textAlign: 'right'}}>
 
-            <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeOption}
-                            options={[ 'UserId', 'cardsCountMax', "cardsCountMin"]}/>
-            <SuperInputTextOld value={value} onChangeText={onChangeHandler}/>
-            <span style={{display: 'inline'}}>
-                <SuperButtonOld onClick={onClickHandler} title={'Search'}/>
-            </span>
+            <SuperSelectOld
+                style={{display: 'inline'}}
+                onChangeOption={onChangeOption}
+                options={['UserId', 'cardsCountMax', "cardsCountMin"]}/>
+            <SuperInputTextOld
+                value={value}
+                onChangeText={onChangeHandler}/>
+            <SuperButtonOld
+                onClick={onClickHandler}
+                title={'Search'}/>
         </div>
     )
 }

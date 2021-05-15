@@ -8,6 +8,7 @@ import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperCheckbox from "../../Common/InputAndButton/c3-SuperCheckbox/SuperCheckbox";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
+import {TitleModal} from "../../Common/TitleModal/TitleModal";
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -57,14 +58,14 @@ export const Login = () => {
         <div>
             <h2>Login</h2>
 
-            <h3>Account</h3>
+            <TitleModal title={'Account'}/>
             <SuperInputText
                 error={acc ? 'not valid email' : null}
                 onChange={onChangeHandlerEmail}
                 value={email}
             />
 
-            <h3>Password</h3>
+            <TitleModal title={'Password'}/>
             <SuperInputText
                 error={pass ? 'not valid password' : null}
                 onChange={onChangeHandlerPassword}

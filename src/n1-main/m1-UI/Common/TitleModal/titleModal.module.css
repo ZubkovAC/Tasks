@@ -1,0 +1,11 @@
+@font-face {
+    font-family: Panda;
+    src: url("../fonts/KungFuPanda.otf") format("opentype");
+}
+.modalTitle{
+    font-family: Panda;
+    color:wheat;
+    font-size: 25px;
+    text-shadow: 0 0 50px  white;
+    margin: 10px;
+}

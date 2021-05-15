@@ -10,6 +10,7 @@ import {RoutePath} from "../../../../../App";
 import {Modal} from "../../../Common/Modal/Modal";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import {PackIDMap} from "./PackIDMap";
+import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 
 
 export const PackId = () => {
@@ -75,37 +76,32 @@ export const PackId = () => {
 
                 {/*create modal*/}
                 <Modal active={activeCard} setActive={SetActiveCard}>
-                    <h2 style={{color: 'wheat'}}>Create</h2>
-                    <div style={{marginBottom: '10px', marginTop: '20px'}}>
-                        <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
-                                       onChangeText={questionCreateCard} valueStart={question}
-                                       placeholder={'qwestion'}/>
-                    </div>
-                    <div style={{marginBottom: '10px'}}>
-                        <SuperTextArea width={'350px'} heigth={'150px'} backgroundColor={'wheat'}
-                                       onChangeText={answerCreateCard} valueStart={answer} placeholder={'answer'}/>
-                    </div>
-                    <div style={{marginBottom: '10px'}}>
-                        <SuperInputTextOld placeholder={'type'} onChangeText={typeCreateCard}/>
-                    </div>
+                    <TitleModal title={'Create'}/>
+                    <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
+                                   onChangeText={questionCreateCard} valueStart={question}
+                                   placeholder={'qwestion'}
+                    />
+                    <SuperTextArea width={'350px'} heigth={'150px'} backgroundColor={'wheat'}
+                                   onChangeText={answerCreateCard} valueStart={answer} placeholder={'answer'}
+                    />
+                    <SuperInputTextOld placeholder={'type'} onChangeText={typeCreateCard}
+                    />
                     <SuperButtonOld title={'yes'} onClick={craeteCardYes}/>
                     <SuperButtonOld title={'no'} onClick={craeteCardNo}/>
                 </Modal>
 
                 <div className={css.learn}>
                     <NavLink to={RoutePath.LEARN + `/${id}`}>
-                        <div>
-                            <button className={css.box_button}>LEARN</button>
-                        </div>
-
+                        <button className={css.box_button}>LEARN</button>
                     </NavLink>
-                    <SuperButtonOld onClick={CreateCard} title={'create'}/>
+                    <SuperButtonOld
+                        onClick={CreateCard}
+                        title={'create'}/>
                 </div>
             </div>
 
             <div className={css.box_card}>
                 {cardArray.map(card => {
-
 
                     return (
                         <div className={css.cardFront} key={card._id}>

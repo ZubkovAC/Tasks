@@ -7,6 +7,7 @@ import {Modal} from "../../../Common/Modal/Modal";
 import React, {useState} from "react";
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
+import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 
 
 export const CreatePack = () => {
@@ -74,27 +75,41 @@ export const CreatePack = () => {
         <div>
             {/*Modal createPack*/}
             <Modal active={active} setActive={SetActive}>
-                <h2 style={{color: 'wheat'}}>Create</h2>
-                <div style={{marginBottom: '10px'}}>
-                    <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
-                                   onChangeText={TextCreatePack} valueStart={question} placeholder={'name'}/>
-                </div>
-                <div style={{marginBottom: '10px'}}>
-                    <SuperInputTextOld value={textType} placeholder={'type'} onChangeText={typeCreatePack}/>
-                </div>
-                <span style={{color: 'wheat', fontSize: '20px', fontWeight: 600}}>Private:</span>
-                <SuperRadio options={['true', 'false']} value={valueRadio} onChangeOption={onChangeChecked}/>
-                <SuperButtonOld title={'yes'} onClick={craetePackYes}/>
-                <SuperButtonOld title={'no'} onClick={craetePackNo}/>
+
+                <TitleModal title={'Create'}/>
+                <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
+                               onChangeText={TextCreatePack}
+                               valueStart={question}
+                               placeholder={'name'}/>
+                <SuperInputTextOld
+                    value={textType}
+                    placeholder={'type'}
+                    onChangeText={typeCreatePack}/>
+
+                <TitleModal title={'Private:'}/>
+                <SuperRadio
+                    options={['true', 'false']}
+                    value={valueRadio}
+                    onChangeOption={onChangeChecked}/>
+                <SuperButtonOld
+                    title={'yes'}
+                    onClick={craetePackYes}/>
+                <SuperButtonOld
+                    title={'no'}
+                    onClick={craetePackNo}/>
             </Modal>
 
-
-            <SuperButtonOld title={'Create  Pack'} onClick={CreatePack}/>
+            <SuperButtonOld
+                title={'Create  Pack'}
+                onClick={CreatePack}/>
             <span style={{marginLeft: '25%'}}>
-                <SuperButtonOld title={'v'} transform={true} onClick={SortUp}/>
-                <span style={{marginLeft: '10px'}}>
-                <SuperButtonOld title={'v'} onClick={SortDown}/>
-                </span>
+                <SuperButtonOld
+                    title={'v'}
+                    transform={true}
+                    onClick={SortUp}/>
+                <SuperButtonOld
+                    title={'v'}
+                    onClick={SortDown}/>
             </span>
 
         </div>

@@ -4,6 +4,7 @@ import SuperButtonOld from '../../../Common/InputAndButton/c2-SuperBottonOld/Sup
 import {getPacksTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 
 export const HeaderPacks = () => {
 
@@ -24,16 +25,15 @@ export const HeaderPacks = () => {
 
     return (
         <div className={css.HeaderPack}>
-            <div style={{fontSize: '20px', fontWeight: 600}}>
-                Total Cards : {cardPacksTotalCount}
-            </div>
-            <div>
-                <SuperButtonOld title={'getPack'} onClick={getPack}/>
-                <span style={{marginLeft: '20px'}}>
-                    <SuperButtonOld title={'getMyPack'} onClick={getMyPack}/>
-                </span>
-            </div>
 
+            <TitleModal
+                title={`Total Cards : ${cardPacksTotalCount}`}/>
+            <SuperButtonOld
+                title={'getPack'}
+                onClick={getPack}/>
+            <SuperButtonOld
+                title={'getMyPack'}
+                onClick={getMyPack}/>
         </div>
     )
 }
