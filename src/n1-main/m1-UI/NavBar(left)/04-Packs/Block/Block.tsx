@@ -102,16 +102,13 @@ export const Block = (props: BlockPropsType) => {
 
                 <span className={css.userName}>{props.userName}</span>
                 <div className={css.Table}>
-
                     <p className={css.rating}> id:{props.user_id}</p>
                     <p className={css.name}>{props.name}</p>
                     <p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>
-                    <p className={css.id}>
-                        <NavLink to={`/packs/${props.id}`}>Go To CardPack</NavLink>
-                    </p>
                     <p className={css.buttons}>
                         <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID} onClick={deletePack}/>
                         <SuperButtonOld title={'Update'} disabled={props.user_id !== userID} onClick={UpdatePack}/>
+                        <NavLink to={`/packs/${props.id}`} className={css.Link}>cards</NavLink>
                     </p>
                 </div>
 

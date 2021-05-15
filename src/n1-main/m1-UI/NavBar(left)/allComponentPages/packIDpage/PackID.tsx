@@ -61,6 +61,12 @@ export const PackId = () => {
         defaultText()
         setActiveCard(false)
     }
+
+
+
+
+
+
     const craeteCardYes = () => {
         dispatch(createCardTC(id, question, answer, 0, 0,
             0, 'string', 'string', '',

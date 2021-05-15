@@ -10,6 +10,8 @@ import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {Redirect} from "react-router-dom";
 import {CardPackType} from "../../../m3-DAL/axios";
+import {TitleModal} from "../../Common/TitleModal/TitleModal";
+import {TableContents} from "../../Common/TableContents/TableContents";
 
 
 type PackSelectorType ={
@@ -41,9 +43,7 @@ export const Packs = () => {
         if (isAuth) dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, ''))
     }, [me])
 
-
     if (!isAuth && me) return <Redirect to={'/login'}/>
-
 
     return (
         <div className={css.App}>
@@ -53,9 +53,12 @@ export const Packs = () => {
 
             <Pagination/>
 
-            <div>
+
+
+            <div className={css.tableBlock}>
+                <TableContents />
                 {preloader
-                    ? <h2>loading...</h2>
+                    ? <TitleModal title={'loading...'}/>
                     : cardPacks.map(t => {
                         return <Block
                             key={t._id} name={t.name} rating={t.rating}

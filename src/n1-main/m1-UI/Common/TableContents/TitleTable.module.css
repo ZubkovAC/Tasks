@@ -1,0 +1,35 @@
+@font-face {
+    font-family: Panda;
+    src: url("../fonts/KungFuPanda.otf") format("opentype");
+}
+.TitleTable{
+    font-family: Panda;
+    color:wheat;
+    font-size: 25px;
+    text-shadow: 0 0 50px  white;
+    margin: 10px;
+}
+.container{
+    font-size: 18px;
+    font-weight: 600;
+    text-shadow: 0 0 15px black, 0 0 15px black;
+    color:darkred;
+    justify-content:space-around;
+    display: grid;
+    grid-template:
+            "n c g a";
+    grid-template-columns:8% 8% 28% 8% ;
+}
+.name {
+
+    grid-area: n;
+}
+.card {
+    grid-area: c;
+}
+.grade {
+    grid-area: g;
+}
+.actions {
+    grid-area: a;
+}

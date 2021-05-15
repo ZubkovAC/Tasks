@@ -57,6 +57,11 @@
     color:#61dafb;
 }
 
+.box_button a{
+    color:wheat;
+    font-weight: 600;
+
+}
 
 .create{
     margin: 10px;
@@ -64,10 +69,4 @@
 }
 .update{
     grid-area: update;
-}
-
-.box_button a{
-    color:wheat;
-    font-weight: 600;
-
 }

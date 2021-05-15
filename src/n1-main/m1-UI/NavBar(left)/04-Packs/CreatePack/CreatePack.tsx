@@ -20,7 +20,7 @@ export const CreatePack = () => {
     // modal position
     const [active, setActive] = useState<boolean>(false)
     // InputText
-    const [question, setQuestion] = useState<string>('')
+    const [namePack, setNamePack] = useState<string>('')
     const [textType, setTextType] = useState<string>('')
 
 
@@ -37,27 +37,28 @@ export const CreatePack = () => {
     const craetePackNo = () => {
         setActive(false)
     }
+
+
+
     const craetePackYes = () => {
         if (valueRadio === 'false') {
-            dispatch(addPackTC(textType, '', 0, 0, 0, '', false, type,
+            dispatch(addPackTC(namePack, '', 0, 0, 0, '', false, type,
                 searchCardName, pagesList, cardPages))
         } else if (valueRadio !== 'false') {
-            dispatch(addPackTC(textType, '', 0, 0, 0, '', true, type,
+            dispatch(addPackTC(namePack, '', 0, 0, 0, '', true, type,
                 searchCardName, pagesList, cardPages))
         }
+        setNamePack('')
         setActive(false)
     }
 
     const TextCreatePack = (question: string) => {
         dispatch(textCreateNamePackAC(question))
-        setQuestion(question)
+        setNamePack(question)
     }
-
     const typeCreatePack = (type: string) => {
         setTextType(type)
     }
-
-
     const onChangeChecked = (value: string) => {
         setValueRadio(value)
     }
@@ -79,7 +80,7 @@ export const CreatePack = () => {
                 <TitleModal title={'Create'}/>
                 <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
                                onChangeText={TextCreatePack}
-                               valueStart={question}
+                               valueStart={namePack}
                                placeholder={'name'}/>
                 <SuperInputTextOld
                     value={textType}
