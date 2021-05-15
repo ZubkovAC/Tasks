@@ -71,7 +71,6 @@ export const LearnPage = () => {
 
             setCardForAnswer(getCard(cardArray))
             setFinishQuestion(Object.entries(cardForAnswer)[4][1])//для вопроса 4.1, для ответа 3,1    old setCardForAnswer
-            // setRadio('')
             offButton( onButton?false : true)
             setAnswer(answerP)
             setAnswerP(Object.entries(cardForAnswer)[3][1])

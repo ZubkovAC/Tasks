@@ -13,8 +13,8 @@ export const CreatePack = () => {
 
     const dispatch = useDispatch()
 
-    let {searchCardName,pagesList,cardPages} = useSelector((state:AppStateType) => state.search)
-    let {type} = useSelector((state:AppStateType) => state.packs)
+    let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
+    let {type} = useSelector((state: AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)
@@ -38,9 +38,11 @@ export const CreatePack = () => {
     }
     const craetePackYes = () => {
         if (valueRadio === 'false') {
-            dispatch(addPackTC(textType, '', 0, 0, 0, '', false, type, searchCardName, pagesList, cardPages))
+            dispatch(addPackTC(textType, '', 0, 0, 0, '', false, type,
+                searchCardName, pagesList, cardPages))
         } else if (valueRadio !== 'false') {
-            dispatch(addPackTC(textType, '', 0, 0, 0, '', true, type, searchCardName, pagesList, cardPages))
+            dispatch(addPackTC(textType, '', 0, 0, 0, '', true, type,
+                searchCardName, pagesList, cardPages))
         }
         setActive(false)
     }
@@ -60,11 +62,11 @@ export const CreatePack = () => {
     }
 
 
-    const SortUp = () =>{
-        dispatch( getPacksTC(searchCardName, 0, 99, '0cardsCount', pagesList, cardPages, ''))
+    const SortUp = () => {
+        dispatch(getPacksTC(searchCardName, 0, 99, '0cardsCount', pagesList, cardPages, ''))
     }
-    const SortDown =() =>{
-        dispatch( getPacksTC(searchCardName, 0, 99, '1cardsCount', pagesList, cardPages, ''))
+    const SortDown = () => {
+        dispatch(getPacksTC(searchCardName, 0, 99, '1cardsCount', pagesList, cardPages, ''))
     }
 
 
@@ -88,10 +90,10 @@ export const CreatePack = () => {
 
 
             <SuperButtonOld title={'Create  Pack'} onClick={CreatePack}/>
-            <span style={{marginLeft:'25%'}}>
+            <span style={{marginLeft: '25%'}}>
                 <SuperButtonOld title={'v'} transform={true} onClick={SortUp}/>
-                <span style={{marginLeft:'10px'}}>
-                <SuperButtonOld title={'v'} onClick={SortDown} />
+                <span style={{marginLeft: '10px'}}>
+                <SuperButtonOld title={'v'} onClick={SortDown}/>
                 </span>
             </span>
 

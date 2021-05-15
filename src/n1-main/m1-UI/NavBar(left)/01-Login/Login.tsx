@@ -1,9 +1,9 @@
 import React, {useState, useCallback, useEffect} from "react";
 import "./login.css"
 
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {errorAC, loginTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperCheckbox from "../../Common/InputAndButton/c3-SuperCheckbox/SuperCheckbox";
@@ -18,25 +18,25 @@ export const Login = () => {
     let [password, setPassword] = useState("oTBuHTa977")
     let [rememberMe, setRememberMe] = useState(false)
 
-    const [acc,SetAcc] = useState<boolean>(false)
-    const [pass,SetPassword] = useState<boolean>(false)
+    const [acc, SetAcc] = useState<boolean>(false)
+    const [pass, SetPassword] = useState<boolean>(false)
 
-    useEffect( ()=>{
-        if (error ==='not correct password /ᐠ-ꞈ-ᐟ\\')SetPassword(true)
-        if (error ==="user not found /ᐠ-ꞈ-ᐟ\\")SetAcc(true)
-        if (error ===`not valid email/password /ᐠ-ꞈ-ᐟ\\`){
+    useEffect(() => {
+        if (error === 'not correct password /ᐠ-ꞈ-ᐟ\\') SetPassword(true)
+        if (error === "user not found /ᐠ-ꞈ-ᐟ\\") SetAcc(true)
+        if (error === `not valid email/password /ᐠ-ꞈ-ᐟ\\`) {
             SetPassword(true)
             SetAcc(true)
         }
-        dispatch(errorAC(null,false,false))
-    },[acc,pass,error])
+        dispatch(errorAC(null, false, false))
+    }, [acc, pass, error])
 
     console.log(error)
-    const onChangeHandlerEmail =(e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
         SetAcc(false)
         setEmail(e.currentTarget.value)
     }
-    const onChangeHandlerPassword =  (e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerPassword = (e: React.FormEvent<HTMLInputElement>) => {
         SetPassword(false)
         setPassword(e.currentTarget.value)
     }
@@ -47,32 +47,37 @@ export const Login = () => {
 
 
     const onClickHandler = useCallback(() => {
-        dispatch( loginTC(email, password, rememberMe))
-    },[email, password, rememberMe])
+        dispatch(loginTC(email, password, rememberMe))
+    }, [email, password, rememberMe])
 
-    if(isAuth)return <Redirect to={'/profile'}/>;
+    if (isAuth) return <Redirect to={'/profile'}/>;
 
 
     return (
         <div>
             <h2>Login</h2>
-            <h3 >Account</h3>
 
+            <h3>Account</h3>
             <SuperInputText
-                error={acc?'not valid email': null}
+                error={acc ? 'not valid email' : null}
                 onChange={onChangeHandlerEmail}
                 value={email}
             />
-            <h3>Password</h3>
 
+            <h3>Password</h3>
             <SuperInputText
-                error={pass?'not valid password': null}
+                error={pass ? 'not valid password' : null}
                 onChange={onChangeHandlerPassword}
                 type={'password'}
                 value={password}
             />
-            <SuperCheckbox  title={'remember Me'} onClick={onChangeHandlerRememberMe} checked={rememberMe}/>
-            <SuperButton onClick={onClickHandler} title={'Login'} />
+            <SuperCheckbox
+                title={'remember Me'}
+                onClick={onChangeHandlerRememberMe}
+                checked={rememberMe}/>
+            <SuperButton
+                onClick={onClickHandler}
+                title={'Login'}/>
             {error && <p className={"error"}>{` attention ${error}`}</p>}
         </div>
     )

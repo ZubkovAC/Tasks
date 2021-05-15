@@ -12,14 +12,13 @@ import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/Su
 import {PackIDMap} from "./PackIDMap";
 
 
-
 export const PackId = () => {
 
-    const isAuth = useSelector<AppStateType,boolean>(state=> state.login.isAuth)
+    const isAuth = useSelector<AppStateType, boolean>(state => state.login.isAuth)
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
-    let {id} = useParams<{id:string}>()
+    let {id} = useParams<{ id: string }>()
 
     //create modal
     const [activeCard, setActiveCard] = useState<boolean>(false)
@@ -46,7 +45,7 @@ export const PackId = () => {
     const typeCreateCard = (value: string) => {
         setType(value)
     }
-    const defaultText = () =>{
+    const defaultText = () => {
         debugger
         setType('')
         setAnswer('')
@@ -77,9 +76,10 @@ export const PackId = () => {
                 {/*create modal*/}
                 <Modal active={activeCard} setActive={SetActiveCard}>
                     <h2 style={{color: 'wheat'}}>Create</h2>
-                    <div style={{marginBottom: '10px',marginTop:'20px'}}>
+                    <div style={{marginBottom: '10px', marginTop: '20px'}}>
                         <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
-                                       onChangeText={questionCreateCard} valueStart={question} placeholder={'qwestion'}/>
+                                       onChangeText={questionCreateCard} valueStart={question}
+                                       placeholder={'qwestion'}/>
                     </div>
                     <div style={{marginBottom: '10px'}}>
                         <SuperTextArea width={'350px'} heigth={'150px'} backgroundColor={'wheat'}
@@ -93,7 +93,7 @@ export const PackId = () => {
                 </Modal>
 
                 <div className={css.learn}>
-                    <NavLink to={RoutePath.LEARN+`/${id}`}>
+                    <NavLink to={RoutePath.LEARN + `/${id}`}>
                         <div>
                             <button className={css.box_button}>LEARN</button>
                         </div>
@@ -109,7 +109,7 @@ export const PackId = () => {
 
                     return (
                         <div className={css.cardFront} key={card._id}>
-                            <PackIDMap card={card} key={card._id} />
+                            <PackIDMap card={card} key={card._id}/>
                         </div>
                     )
                 })}

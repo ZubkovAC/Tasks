@@ -11,7 +11,6 @@ import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {Redirect} from "react-router-dom";
 
 
-
 export type PardsTypeProps = {
     cardsCount: number
     created: string
@@ -37,17 +36,17 @@ export const Packs = () => {
 
     const dispatch = useDispatch()
 
-    let {me, isAuth} = useSelector((state:AppStateType) => state.login)
-    let {cardPages, pagesList , searchCardName} = useSelector((state:AppStateType) => state.search)
-    let {preloader, cardPacks } = useSelector((state:AppStateType) => state.packs)
+    let {me, isAuth} = useSelector((state: AppStateType) => state.login)
+    let {cardPages, pagesList, searchCardName} = useSelector((state: AppStateType) => state.search)
+    let {preloader, cardPacks} = useSelector((state: AppStateType) => state.packs)
 
 
-    useEffect(()=>{
-        if (isAuth) dispatch( getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
-    },[me])
+    useEffect(() => {
+        if (isAuth) dispatch(getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
+    }, [me])
 
 
-    if (!isAuth && me)return <Redirect to={'/login'}/>
+    if (!isAuth && me) return <Redirect to={'/login'}/>
 
 
     return (
@@ -58,10 +57,10 @@ export const Packs = () => {
 
             <Pagination/>
 
-            <div  >
+            <div>
                 {preloader
-                    ?<h2 >loading...</h2>
-                    :cardPacks.map(t => {
+                    ? <h2>loading...</h2>
+                    : cardPacks.map(t => {
                         return <Block
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}

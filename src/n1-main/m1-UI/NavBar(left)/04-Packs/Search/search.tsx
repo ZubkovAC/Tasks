@@ -9,56 +9,52 @@ import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/Sup
 import SuperSelectOld from "../../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
 
 
-
-
 export const Search = () => {
 
-    const  dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    let pagesList = useSelector<AppStateType,number>(state => state.search.pagesList)
-    let cardPages = useSelector<AppStateType,number>(state => state.search.cardPages)
+    let pagesList = useSelector<AppStateType, number>(state => state.search.pagesList)
+    let cardPages = useSelector<AppStateType, number>(state => state.search.cardPages)
 
 
-
-    const [name,setName]=useState<string>('')
-    const [userId,setUserId]=useState<string>('')
+    const [name, setName] = useState<string>('')
+    const [userId, setUserId] = useState<string>('')
 
     // next functional
-    const [type,setType]=useState<string>('')
-    const [userEmail,setUserEmail]=useState<string>('')
+    const [type, setType] = useState<string>('')
+    const [userEmail, setUserEmail] = useState<string>('')
     //Ok
-    const [cardsCountMax,setCardsCountMax]=useState<number>(99)
-    const [cardsCountMin,setCardsCountMin]=useState<number>(0)
-    const [filterSerch,setFilterSerch]=useState<string>('name')
+    const [cardsCountMax, setCardsCountMax] = useState<number>(99)
+    const [cardsCountMin, setCardsCountMin] = useState<number>(0)
+    const [filterSerch, setFilterSerch] = useState<string>('name')
 
 
-    const [value,setValue]=useState<string>('')
-
+    const [value, setValue] = useState<string>('')
 
 
     //search
-    const onChangeHandler = (value:string) => {
-        if( filterSerch === 'UserId')setUserId(value)
-        if( filterSerch === 'name')setName(value)
-        if( filterSerch === 'cardsCountMax')setCardsCountMax(+value)
-        if( filterSerch === 'cardsCountMin')setCardsCountMin(+value)
+    const onChangeHandler = (value: string) => {
+        if (filterSerch === 'UserId') setUserId(value)
+        if (filterSerch === 'name') setName(value)
+        if (filterSerch === 'cardsCountMax') setCardsCountMax(+value)
+        if (filterSerch === 'cardsCountMin') setCardsCountMin(+value)
         setValue(value)
     }
 
 
     //button
-    const onClickHandler = () =>{
-        dispatch( getPacksTC(name, cardsCountMin, cardsCountMax,
-            type, pagesList, cardPages, userId,''))
+    const onClickHandler = () => {
+        dispatch(getPacksTC(name, cardsCountMin, cardsCountMax,
+            type, pagesList, cardPages, userId, ''))
     }
 
 
     //Select
-    const onChangeOption = (e:string) => {
-        if( e ==='name')setFilterSerch('name')
-        if( e ==='cardsCountMax')setFilterSerch('cardsCountMax')
-        if( e ==='cardsCountMin')setFilterSerch('cardsCountMin')
-        if( e ==='UserId')setFilterSerch('UserId')
+    const onChangeOption = (e: string) => {
+        if (e === 'name') setFilterSerch('name')
+        if (e === 'cardsCountMax') setFilterSerch('cardsCountMax')
+        if (e === 'cardsCountMin') setFilterSerch('cardsCountMin')
+        if (e === 'UserId') setFilterSerch('UserId')
         setType('')
         setUserEmail('')
         setName('')
@@ -69,12 +65,12 @@ export const Search = () => {
     }
 
     return (
-        <div style={{textAlign:'right'}}>
+        <div style={{textAlign: 'right'}}>
 
             <SuperSelectOld style={{display: 'inline', textAlign: 'right'}} onChangeOption={onChangeOption}
-                            options={['name','UserId', 'cardsCountMax',"cardsCountMin"]}/>
-            <SuperInputTextOld value={value} onChangeText={onChangeHandler} />
-            <span style={{display:'inline'}}>
+                            options={[ 'UserId', 'cardsCountMax', "cardsCountMin"]}/>
+            <SuperInputTextOld value={value} onChangeText={onChangeHandler}/>
+            <span style={{display: 'inline'}}>
                 <SuperButtonOld onClick={onClickHandler} title={'Search'}/>
             </span>
         </div>

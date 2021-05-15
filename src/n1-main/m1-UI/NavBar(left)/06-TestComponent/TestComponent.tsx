@@ -13,7 +13,14 @@ export const TestComponent = () =>{
 
     return(
         <div >
-            <SuperTextArea width={'250px'} heigth={'100px'} backgroundColor={'wheat'} onChangeText={onChangeText} valueStart={value} placeholder={'qwestion'}/>
+            <SuperTextArea
+                width={'250px'}
+                heigth={'100px'}
+                backgroundColor={'wheat'}
+                onChangeText={onChangeText}
+                valueStart={value}
+                placeholder={'qwestion'}
+            />
 
         </div>
     )
