@@ -26,7 +26,7 @@ export const Search = () => {
     //Ok
     const [cardsCountMax, setCardsCountMax] = useState<number>(99)
     const [cardsCountMin, setCardsCountMin] = useState<number>(0)
-    const [filterSerch, setFilterSerch] = useState<string>('name')
+    const [filterSerch, setFilterSerch] = useState<string>('UserId')
 
 
     const [value, setValue] = useState<string>('')
@@ -70,6 +70,7 @@ export const Search = () => {
             <SuperSelectOld
                 style={{display: 'inline'}}
                 onChangeOption={onChangeOption}
+                value={filterSerch}
                 options={['UserId', 'cardsCountMax', "cardsCountMin"]}/>
             <SuperInputTextOld
                 value={value}

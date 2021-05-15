@@ -46,16 +46,15 @@
     font-family: Panda;
     font-size: 30px;
     text-shadow:
-            0 0 15px whitesmoke, 0 0 15px whitesmoke,0 0 15px whitesmoke,
-            0 0 15px whitesmoke, 0 0 15px whitesmoke,0 0 15px whitesmoke;
+            0 0 15px black, 0 0 15px black,0 0 15px black;
     transition: 0.5s;
 }
 
 .box_button:hover {
     font-size: 30px;
     text-shadow:
-            0 0 15px #61dafb, 0 0 15px #61dafb,0 0 15px #61dafb,
-            0 0 15px #61dafb, 0 0 15px #61dafb,0 0 15px #61dafb;
+            0 0 15px grey, 0 0 15px grey;
+    color:#61dafb;
 }
 
 
@@ -65,4 +64,10 @@
 }
 .update{
     grid-area: update;
+}
+
+.box_button a{
+    color:wheat;
+    font-weight: 600;
+
 }

@@ -90,14 +90,13 @@ export const PackId = () => {
                     <SuperButtonOld title={'no'} onClick={craeteCardNo}/>
                 </Modal>
 
-                <div className={css.learn}>
-                    <NavLink to={RoutePath.LEARN + `/${id}`}>
-                        <button className={css.box_button}>LEARN</button>
-                    </NavLink>
-                    <SuperButtonOld
-                        onClick={CreateCard}
-                        title={'create'}/>
-                </div>
+                <NavLink to={RoutePath.LEARN + `/${id}`}>
+                    LEARN
+                </NavLink>
+                <SuperButtonOld
+                    onClick={CreateCard}
+                    title={'create'}/>
+
             </div>
 
             <div className={css.box_card}>

@@ -1,17 +1,16 @@
-
-import {PacksAPI} from "../../m3-DAL/axios"
-import {PardsTypeProps} from "../../m1-UI/NavBar(left)/04-Packs/Packs";
+import {CardPackType, PacksAPI} from "../../m3-DAL/axios"
 import {Dispatch} from "redux";
 import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
 import {AppStateType} from "../00-store/store";
 import {ThunkDispatch} from "redux-thunk";
 
 const initialState = {
-    cardPacks:[]as Array<PardsTypeProps>,
+    cardPacks:[]as Array<CardPackType>,
     cardPacksTotalCount:9999, // меньше 10 не грузится чуть больше страницы не работают -- страницы
     name:'',
     type:'TestPack',
-    preloader:false
+    preloader:false,
+    maxCard:999,
 }
 
 export const reducerPacks = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
@@ -37,7 +36,7 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
 }
 
 // ActionType
-export const getPacksAC = (array:Array<PardsTypeProps>,cardPacksTotalCount:number) =>
+export const getPacksAC = (array:Array<CardPackType>,cardPacksTotalCount:number) =>
     ({type: "PACKS/GET-PACKS",array,cardPacksTotalCount} as const)
 export const  textCreateNamePackAC = (name: string) => ({type: "PACKS/CREATE-NAME-PACK", name} as const)
 export const errorAC = (error: any) => ({type: 'LOGIN/CHANGE-ERROR', error} as const)     // выводиться куда? не используется в коде
@@ -46,7 +45,6 @@ export const preloaderOffAC = (preloader: boolean) => ({type: 'LOGIN/PRELOADER-O
 
 //TC
 export const getPacksTC = (packName: string, min: number , max: number, sortPacks: any, page: number, pageCount: number, userId: string,name:string='') => (dispatch: Dispatch) => {
-    debugger
     return PacksAPI.getPacks(packName, min, max, sortPacks, page, pageCount, userId,name)
         .then((res) => {
             if ( (+res.data.cardPacksTotalCount) <15)dispatch(getPacksAC(res.data.cardPacks,  res.data.cardPacksTotalCount ))
@@ -65,7 +63,7 @@ export const getPacksTC = (packName: string, min: number , max: number, sortPack
 export const addPackTC = (name: string, path: string, grade: number, shots: number, rating: number, deckCover: string, privat: boolean, type: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown,ActionPackType | ActionLoginType >) => {
     return PacksAPI.addPack(name, path, grade, shots, rating, deckCover, privat, type)
         .then((res) =>{
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, name))})
+            dispatch( getPacksTC(searchCardName, 0, 999,'0updated', pagesList, cardPages, name))})
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -77,7 +75,7 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
 export const updatePackTC = (_id: string, name: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
     debugger
     return PacksAPI.updatePack(_id, name)
-        .then((res) => dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, '')))
+        .then((res) => dispatch( getPacksTC(searchCardName, 0, 999,'0updated', pagesList, cardPages, '')))
         .catch((error) => {
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -90,7 +88,7 @@ export const deletePackTC = (id: string,searchCardName:string,pagesList:number,c
     debugger
     return PacksAPI.deletePack(id)
         .then((res) =>
-            dispatch( getPacksTC(searchCardName, 0, 99,'0updated', pagesList, cardPages, '')))
+            dispatch( getPacksTC(searchCardName, 0, 999,'0updated', pagesList, cardPages, '')))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)

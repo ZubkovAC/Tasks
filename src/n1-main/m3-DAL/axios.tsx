@@ -37,7 +37,7 @@ export const AuthAPI = {
 
 export const PacksAPI = {
     getPacks(packName?: string, min?: number  , max?: number, sortPacks?: string, page?: number, pageCount?: number, user_id?: string,user_name:string= ''){
-        return instance.get(`cards/pack?packName=${packName}&min=${min}&max=${max}&sortPacks=${sortPacks}&page=${page}&pageCount=${pageCount}&user_id=${user_id}&user_name=${user_name}`)
+        return instance.get<ResponceGetType>('cards/pack',{params:{packName,min,max,sortPacks,page,pageCount,user_id,user_name}})
     },
     addPack(name?: string, path?: string, grade?: number, shots?: number,
             rating?: number, deckCover?: string, privat?: boolean, type?: string){
@@ -92,5 +92,36 @@ export type CreateCardType = {
     answerVideo?:string,
     type?:string
 }
+export type ResponceGetType={
+    cardPacks:CardPackType[]
+    cardPacksTotalCount: number
+    maxCardsCount: number
+    minCardsCount: number
+    page: number
+    pageCount: number
+    token: string
+    tokenDeathTime: number
+}
+export type CardPackType={
+    cardsCount: number
+    created: string
+    deckCover: null
+    grade: number
+    more_id: string
+    name: string
+    path: string
+    private: false
+    rating: number
+    shots: number
+    type:string
+    updated: string
+    user_id: string
+    user_name: string
+    __v: number
+    _id:string
+
+}
+
+
 
 

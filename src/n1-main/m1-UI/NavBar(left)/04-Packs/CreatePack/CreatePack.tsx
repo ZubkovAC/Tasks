@@ -15,7 +15,7 @@ export const CreatePack = () => {
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
-    let {type} = useSelector((state: AppStateType) => state.packs)
+    let {type,maxCard} = useSelector((state: AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)
@@ -64,10 +64,10 @@ export const CreatePack = () => {
 
 
     const SortUp = () => {
-        dispatch(getPacksTC(searchCardName, 0, 99, '0cardsCount', pagesList, cardPages, ''))
+        dispatch(getPacksTC(searchCardName, 0, maxCard, '0cardsCount', pagesList, cardPages, ''))
     }
     const SortDown = () => {
-        dispatch(getPacksTC(searchCardName, 0, 99, '1cardsCount', pagesList, cardPages, ''))
+        dispatch(getPacksTC(searchCardName, 0, maxCard, '1cardsCount', pagesList, cardPages, ''))
     }
 
 

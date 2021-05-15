@@ -9,40 +9,36 @@ import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {Redirect} from "react-router-dom";
+import {CardPackType} from "../../../m3-DAL/axios";
 
 
-export type PardsTypeProps = {
-    cardsCount: number
-    created: string
-    deckCover: null
-    grade: number
-    more_id: string
-    name: string
-    path: string
-    private: boolean
-    rating: number
-    shots: number
-    type: string
-    updated: string
-    user_id: string
-    user_name: string
-    __v: number
-    _id: string
-    __proto__: {}
+type PackSelectorType ={
+    preloader:boolean
+    cardPacks:CardPackType[]
+    maxCard:number
 }
 
+type LoginSelectorType = {
+    me:boolean
+    isAuth:boolean
+}
+
+type SearchSelectorType ={
+    cardPages: number
+    pagesList:number
+    searchCardName:string
+}
 
 export const Packs = () => {
 
     const dispatch = useDispatch()
-
-    let {me, isAuth} = useSelector((state: AppStateType) => state.login)
-    let {cardPages, pagesList, searchCardName} = useSelector((state: AppStateType) => state.search)
-    let {preloader, cardPacks} = useSelector((state: AppStateType) => state.packs)
+    let {me, isAuth} = useSelector<AppStateType,LoginSelectorType>(state => state.login)
+    let {cardPages, pagesList, searchCardName} = useSelector<AppStateType,SearchSelectorType>(state => state.search)
+    let {preloader, cardPacks,maxCard} = useSelector<AppStateType,PackSelectorType>(state => state.packs)
 
 
     useEffect(() => {
-        if (isAuth) dispatch(getPacksTC(searchCardName, 0, 99, '0updated', pagesList, cardPages, ''))
+        if (isAuth) dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, ''))
     }, [me])
 
 
