@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.df46c326.chunk.css",
-    "main.js": "/Tasks/static/js/main.039d43a0.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.039d43a0.chunk.js.map",
+    "main.css": "/Tasks/static/css/main.19a18688.chunk.css",
+    "main.js": "/Tasks/static/js/main.2afea663.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.2afea663.chunk.js.map",
     "runtime-main.js": "/Tasks/static/js/runtime-main.15c2b75e.js",
     "runtime-main.js.map": "/Tasks/static/js/runtime-main.15c2b75e.js.map",
     "static/css/2.d0fdb7d3.chunk.css": "/Tasks/static/css/2.d0fdb7d3.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.08c240bc.chunk.js.map": "/Tasks/static/js/3.08c240bc.chunk.js.map",
     "index.html": "/Tasks/index.html",
     "static/css/2.d0fdb7d3.chunk.css.map": "/Tasks/static/css/2.d0fdb7d3.chunk.css.map",
-    "static/css/main.df46c326.chunk.css.map": "/Tasks/static/css/main.df46c326.chunk.css.map",
+    "static/css/main.19a18688.chunk.css.map": "/Tasks/static/css/main.19a18688.chunk.css.map",
     "static/js/2.67236586.chunk.js.LICENSE.txt": "/Tasks/static/js/2.67236586.chunk.js.LICENSE.txt",
     "static/media/CardFront.911ce36f.jpg": "/Tasks/static/media/CardFront.911ce36f.jpg",
     "static/media/titleModal.module.css": "/Tasks/static/media/KungFuPanda.fd3df450.otf",
@@ -24,7 +24,7 @@
     "static/js/runtime-main.15c2b75e.js",
     "static/css/2.d0fdb7d3.chunk.css",
     "static/js/2.67236586.chunk.js",
-    "static/css/main.df46c326.chunk.css",
-    "static/js/main.039d43a0.chunk.js"
+    "static/css/main.19a18688.chunk.css",
+    "static/js/main.2afea663.chunk.js"
   ]
 }
