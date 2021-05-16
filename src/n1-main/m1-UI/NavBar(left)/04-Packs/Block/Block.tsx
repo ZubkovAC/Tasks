@@ -11,9 +11,6 @@ import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {Grade} from "./Grade";
 
 
-
-
-
 export type BlockPropsType = {
     name: string
     rating: number
@@ -22,7 +19,7 @@ export type BlockPropsType = {
     id: string
     cardsCount: number
     user_id: string
-    grade:number
+    grade: number
 }
 
 export const Block = (props: BlockPropsType) => {
@@ -38,7 +35,7 @@ export const Block = (props: BlockPropsType) => {
     const [active, setActive] = useState<boolean>(false)
     const [activeUpdate, setActiveUpdate] = useState<boolean>(false)
     const [inputName, setInputName] = useState<string>(props.name)
-
+    const [gradeType, setGradeType] = useState<number  >(0)
 
     const SetActive = () => {
         setActive(false)
@@ -66,16 +63,18 @@ export const Block = (props: BlockPropsType) => {
         setActiveUpdate(false)
     }
     const UpdatePackYes = () => {
-        dispatch(updatePackTC(props.id, inputName, searchCardName, pagesList, cardPages))
+        dispatch(updatePackTC(props.id,gradeType, inputName, searchCardName, pagesList, cardPages))
         setActiveUpdate(false)
     }
-
+    const packGrade = (type: string) => {
+        if(+type < 6 && +type > -1  ) setGradeType(+type)
+    }
 
     const onChangeName = (value: string) => {
         setInputName(value)
     }
 
-    let name = props.name.substr(0,15)
+    let name = props.name.substr(0, 15)
 
 // component - title
     return (
@@ -94,9 +93,14 @@ export const Block = (props: BlockPropsType) => {
                 {/*Update Madal*/}
                 <Modal active={activeUpdate} setActive={SetActiveUpdate}>
                     <TitleModal title={'update name'}/>
-                   <SuperInputTextOld
-                       title={inputName}
-                       onChangeText={onChangeName}/>
+                    <SuperInputTextOld
+                        title={inputName}
+                        onChangeText={onChangeName}/>
+                    <SuperInputTextOld
+                        value={gradeType}
+                        placeholder={'number'}
+                        type={'number'}
+                        onChangeText={packGrade}/>
                     <SuperButtonOld
                         title={'yes'}
                         onClick={UpdatePackYes}/>
@@ -111,7 +115,7 @@ export const Block = (props: BlockPropsType) => {
                 <div className={css.Table}>
                     {/*<p className={css.rating}> id:{props.user_id}</p>*/}
                     {/*<p className={css.rating}> {props.cardsCount} | {props.grade}</p>*/}
-                    <p className={css.rating}>  <Grade grade={props.grade} /></p>
+                    <p className={css.rating}><Grade grade={props.grade}/></p>
                     <p className={css.cards}>  {props.cardsCount}</p>
                     <p className={css.name}><h3>{name}</h3></p>
                     {/*<p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>*/}

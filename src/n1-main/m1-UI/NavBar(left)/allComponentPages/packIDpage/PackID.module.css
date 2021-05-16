@@ -4,31 +4,34 @@
 }
 
 .box_card{
-    display: flex;
+    display: grid;
     flex-wrap:wrap;
-    justify-content: center;
     text-align: center;
+    margin-left: 15%;
+    margin-top: 40px;
+    border: 0px solid white;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: 0 0 15px  0 black;
 }
 
 .cardFront{
-    background-color:rgba(43, 46, 46, 0.5);
+    background-color:rgba(255, 255, 255, 0.3);
     image-orientation: inherit;
     background-position: 50% 50%;
     padding: 10px;
-    border-radius: 15px;
     border: 0 solid;
     color:lightgrey;
-    width: 400px;
-    height: 500px;
-    margin: 30px;
     font-weight: 600;
     font-size: 20px;
     text-shadow: 0 0 30px whitesmoke;
     align-items: center;
-    box-shadow: 0 0 30px 5px black;
+    box-shadow: 0 0 5px 0px black;
+    transition: 0.3s;
 }
 .cardFront:hover{
-    box-shadow: 0 0 30px 5px white;
+    box-shadow: 0 0 5px 0 white;
+    background-color:rgba(255, 255, 255, 0.5);
 }
 .content_top{
     font-size: 40px;
@@ -70,3 +73,33 @@
 .update{
     grid-area: update;
 }
+
+.Table{
+    justify-content: space-between;
+    display: grid;
+    grid-template:
+            "question answer grade buttons";
+    grid-template-columns: 15% 15% 18% ;
+    color:black;
+    font-size: 16px;
+}
+
+.question{
+    grid-area:question ;
+    display: flex;
+    justify-content: start;
+}
+.answer{
+    grid-area:answer ;
+    display: flex;
+    justify-content: start;
+}
+.grade{
+    grid-area:grade ;
+}
+.buttons{
+    grid-area:buttons ;
+}
+
+
+

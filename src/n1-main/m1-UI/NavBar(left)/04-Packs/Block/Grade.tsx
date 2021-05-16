@@ -6,13 +6,14 @@ import star2 from './../../../Common/img/stars2.png'
 
 type GradeType = {
     grade:number
+    width?: string
 }
-export const Grade = ({grade}:GradeType) =>{
+export const Grade = ({grade,width}:GradeType) =>{
     return (
         <span >
             <Rating
-                emptySymbol={<img src={star} width='15px' className="icon" />}
-                fullSymbol={<img src={star2} width='15px' className="icon" />}
+                emptySymbol={<img src={star} width={width? width : '15px' } className="icon" />}
+                fullSymbol={<img src={star2} width={width? width : '15px' } className="icon" />}
                 initialRating={grade}
                 readonly
             />

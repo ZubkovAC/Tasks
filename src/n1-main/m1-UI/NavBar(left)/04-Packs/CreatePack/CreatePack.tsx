@@ -21,7 +21,7 @@ export const CreatePack = () => {
     const [active, setActive] = useState<boolean>(false)
     // InputText
     const [namePack, setNamePack] = useState<string>('')
-    const [textType, setTextType] = useState<string>('')
+    const [gradeType, setGradeType] = useState<number  >(0)
 
 
     const [valueRadio, setValueRadio] = useState<string>('false')
@@ -42,10 +42,10 @@ export const CreatePack = () => {
 
     const craetePackYes = () => {
         if (valueRadio === 'false') {
-            dispatch(addPackTC(namePack, '', 0, 0, 0, '', false, type,
+            dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', false, type,
                 searchCardName, pagesList, cardPages))
         } else if (valueRadio !== 'false') {
-            dispatch(addPackTC(namePack, '', 0, 0, 0, '', true, type,
+            dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', true, type,
                 searchCardName, pagesList, cardPages))
         }
         setNamePack('')
@@ -56,8 +56,8 @@ export const CreatePack = () => {
         dispatch(textCreateNamePackAC(question))
         setNamePack(question)
     }
-    const typeCreatePack = (type: string) => {
-        setTextType(type)
+    const packGrade = (type: string) => {
+        if(+type < 6 && +type > -1 ) setGradeType(+type)
     }
     const onChangeChecked = (value: string) => {
         setValueRadio(value)
@@ -83,9 +83,10 @@ export const CreatePack = () => {
                                valueStart={namePack}
                                placeholder={'name'}/>
                 <SuperInputTextOld
-                    value={textType}
-                    placeholder={'type'}
-                    onChangeText={typeCreatePack}/>
+                    value={gradeType}
+                    placeholder={'number'}
+                    type={'number'}
+                    onChangeText={packGrade}/>
 
                 <TitleModal title={'Private:'}/>
                 <SuperRadio

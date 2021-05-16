@@ -1,21 +1,29 @@
 import React from "react";
 import css from "./TitleTable.module.css";
 
-export const TableContents = () =>{
+type TableContentsPropsType = {
+    name?:string
+    packUserName?:string
+    grade?:string
+    actions?:string
+}
+
+export const TableContents = ({name,packUserName,grade,actions}:TableContentsPropsType) =>{
     return (
         <div className={css.container}>
             <p className={css.name}>
-                Name
+                {name ? name: 'Name'}
             </p>
             <p className={css.card}>
-                packName
+                {packUserName ? packUserName: 'packUserName'}
+
             </p>
             <p className={css.grade}>
-                cardCount |
-                grade
+                {grade ? grade: 'cardCount | grade'}
             </p>
             <p className={css.actions}>
-                actions
+                {actions ? actions: 'actions'}
+
             </p>
         </div>
     )

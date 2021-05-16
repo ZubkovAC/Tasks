@@ -72,8 +72,8 @@ export const addPackTC = (name: string, path: string, grade: number, shots: numb
         })
 }
 
-export const updatePackTC = (_id: string, name: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
-    return PacksAPI.updatePack(_id, name)
+export const updatePackTC = (_id: string,grade:number, name: string,searchCardName:string,pagesList:number,cardPages:number) => (dispatch: ThunkDispatch<AppStateType, unknown, ActionPackType | ActionLoginType >) => {
+    return PacksAPI.updatePack(_id, name,grade)
         .then((res) => dispatch( getPacksTC(searchCardName, 0, 999,'0updated', pagesList, cardPages, '')))
         .catch((error) => {
             dispatch(lampAC(false))

@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import {CardArrayResponseType, deleteCardTC, updateCardTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
-import {useParams} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {NavLink, useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import css from "./PackID.module.css";
 import {Modal} from "../../../Common/Modal/Modal";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import cardFront from "../../../Common/Accets/CardFront.jpg";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
+import {Grade} from "../../04-Packs/Block/Grade";
+import {AppStateType} from "../../../../m2-BLL/00-store/store";
 
 type PackIDMapPropsType = {
     card: CardArrayResponseType
@@ -17,6 +19,7 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
 
     const dispatch = useDispatch()
     let {id} = useParams<{ id: string }>()
+    let userID = useSelector<AppStateType, string>(state => state.login.userID)
     //delete modal
     const [active, setActive] = useState<boolean>(false)
 
@@ -75,6 +78,8 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
         dispatch(updateCardTC(cardID, questionUpdate, answerUpdate, id))
         setUpdateCard(false)
     }
+    let answer = props.card.answer.substr(0, 20)
+    let question = props.card.question.substr(0, 20)
     return (
         <div>
             {/*<PackIDMap card={props.card} />*/}
@@ -116,27 +121,52 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
             </div>
 
 
-            <div>Type:{props.card.type}</div>
-            <img src={props.card.answerImg === '' ? props.card.answerImg : cardFront} width='100px' alt=""/>
 
-            <div> Grade:{props.card.grade}</div>
-            <div style={{fontSize: '25px', color: 'orange', justifyContent: 'start', display: 'flex'}}>Вопрос:</div>
 
-            <div>{props.card.question}</div>
-
-            -----------------------------
-            <div>
-                <div>Update:{update}</div>
-                <div className={css.update}><SuperButtonOld onClick={() => UpdateCard(props.card._id)}
-                                                            title={'update'}/>
-                </div>
+            <div className={css.Table}>
+                {/*<p className={css.rating}><Grade grade={props.grade}/></p>*/}
+                <p className={css.question}><h3>{question}</h3></p>
+                <p className={css.answer}>  {answer}</p>
+                <p className={css.grade}><Grade grade={props.card.grade}/></p>
+                <p className={css.buttons}>
+                    <SuperButtonOld title={'Delete'}
+                                    disabled={props.card.user_id !== userID}
+                                    onClick={() => deleteCard(props.card._id)}/>
+                    <SuperButtonOld title={'Update'}
+                                    disabled={props.card.user_id !== userID}
+                                    onClick={() => UpdateCard(props.card._id)}/>
+                </p>
             </div>
-            -----------------------------
-            <div>Create :{arr}</div>
-            -----------------------------
-            <div>
-                <SuperButtonOld onClick={() => deleteCard(props.card._id)} title={'Delete Card'}/>
-            </div>
+
+
+
+
+
+
+
+            {/*<div>Type:{props.card.type}</div>*/}
+            {/*<img src={props.card.answerImg === '' ? props.card.answerImg : cardFront} width='100px' alt=""/>*/}
+
+            {/*<div>*/}
+            {/*    <Grade grade={props.card.grade} width={'20px'}/>*/}
+            {/*</div>*/}
+            {/*<div style={{fontSize: '25px', color: 'orange', justifyContent: 'start', display: 'flex'}}>Вопрос:</div>*/}
+
+            {/*<div>{props.card.question}</div>*/}
+
+            {/*-----------------------------*/}
+            {/*<div>*/}
+            {/*    <div>Update:{update}</div>*/}
+            {/*    <div className={css.update}><SuperButtonOld onClick={() => UpdateCard(props.card._id)}*/}
+            {/*                                                title={'update'}/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+            {/*-----------------------------*/}
+            {/*<div>Create :{arr}</div>*/}
+            {/*-----------------------------*/}
+            {/*<div>*/}
+            {/*    <SuperButtonOld onClick={() => deleteCard(props.card._id)} title={'Delete Card'}/>*/}
+            {/*</div>*/}
 
         </div>
     )
