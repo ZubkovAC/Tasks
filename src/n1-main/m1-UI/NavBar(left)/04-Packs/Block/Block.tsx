@@ -8,6 +8,10 @@ import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {Modal} from "../../../Common/Modal/Modal";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
+import {Grade} from "./Grade";
+
+
+
 
 
 export type BlockPropsType = {
@@ -71,6 +75,8 @@ export const Block = (props: BlockPropsType) => {
         setInputName(value)
     }
 
+    let name = props.name.substr(0,15)
+
 // component - title
     return (
         <div className={css.Block}>
@@ -104,8 +110,10 @@ export const Block = (props: BlockPropsType) => {
                 {/*<span className={css.userName}>{props.userName}</span>*/}
                 <div className={css.Table}>
                     {/*<p className={css.rating}> id:{props.user_id}</p>*/}
-                    <p className={css.rating}> {props.cardsCount} | {props.grade}</p>
-                    <p className={css.name}><h3>{props.name}</h3></p>
+                    {/*<p className={css.rating}> {props.cardsCount} | {props.grade}</p>*/}
+                    <p className={css.rating}>  <Grade grade={props.grade} /></p>
+                    <p className={css.cards}>  {props.cardsCount}</p>
+                    <p className={css.name}><h3>{name}</h3></p>
                     {/*<p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>*/}
                     <p className={css.cardsCount}>{props.userName}</p>
                     <p className={css.buttons}>

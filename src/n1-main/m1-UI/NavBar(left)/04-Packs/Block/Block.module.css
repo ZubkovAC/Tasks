@@ -20,10 +20,14 @@
     display: grid;
 
     grid-template:
-            "name cardsCount rating buttons";
-    grid-template-columns:12% 22% 18% 26% ;
+            "name cardsCount cards rating buttons";
+    grid-template-columns:12% 22% 2% 18% 26% ;
 }
-
+.cards{
+    grid-area: cards;
+    margin-top: 5px;
+    color:darkred;
+}
 .userName{
     padding: 5px;
     font-size: 20px;
