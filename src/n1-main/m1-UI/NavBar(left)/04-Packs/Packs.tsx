@@ -64,7 +64,9 @@ export const Packs = () => {
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}
                             id={t._id}
-                            user_id={t.user_id} cardsCount={t.cardsCount}
+                            user_id={t.user_id}
+                            cardsCount={t.cardsCount}
+                            grade={t.grade}
                         />
                     })}
             </div>

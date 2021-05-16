@@ -18,6 +18,7 @@ export type BlockPropsType = {
     id: string
     cardsCount: number
     user_id: string
+    grade:number
 }
 
 export const Block = (props: BlockPropsType) => {
@@ -100,11 +101,13 @@ export const Block = (props: BlockPropsType) => {
                 </Modal>
 
 
-                <span className={css.userName}>{props.userName}</span>
+                {/*<span className={css.userName}>{props.userName}</span>*/}
                 <div className={css.Table}>
-                    <p className={css.rating}> id:{props.user_id}</p>
-                    <p className={css.name}>{props.name}</p>
-                    <p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>
+                    {/*<p className={css.rating}> id:{props.user_id}</p>*/}
+                    <p className={css.rating}> {props.cardsCount} | {props.grade}</p>
+                    <p className={css.name}><h3>{props.name}</h3></p>
+                    {/*<p className={css.cardsCount}>cardsCount:{props.cardsCount}</p>*/}
+                    <p className={css.cardsCount}>{props.userName}</p>
                     <p className={css.buttons}>
                         <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID} onClick={deletePack}/>
                         <SuperButtonOld title={'Update'} disabled={props.user_id !== userID} onClick={UpdatePack}/>

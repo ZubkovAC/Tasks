@@ -24,9 +24,9 @@ export const Search = () => {
     const [type, setType] = useState<string>('')
     const [userEmail, setUserEmail] = useState<string>('')
     //Ok
-    const [cardsCountMax, setCardsCountMax] = useState<number>(99)
+    const [cardsCountMax, setCardsCountMax] = useState<number>(999)
     const [cardsCountMin, setCardsCountMin] = useState<number>(0)
-    const [filterSerch, setFilterSerch] = useState<string>('UserId')
+    const [filterSerch, setFilterSerch] = useState<string>('name')
 
 
     const [value, setValue] = useState<string>('')
@@ -34,8 +34,8 @@ export const Search = () => {
 
     //search
     const onChangeHandler = (value: string) => {
-        if (filterSerch === 'UserId') setUserId(value)
         if (filterSerch === 'name') setName(value)
+        if (filterSerch === 'UserId') setUserId(value)
         if (filterSerch === 'cardsCountMax') setCardsCountMax(+value)
         if (filterSerch === 'cardsCountMin') setCardsCountMin(+value)
         setValue(value)
@@ -71,7 +71,7 @@ export const Search = () => {
                 style={{display: 'inline'}}
                 onChangeOption={onChangeOption}
                 value={filterSerch}
-                options={['UserId', 'cardsCountMax', "cardsCountMin"]}/>
+                options={['name','UserId', 'cardsCountMax', "cardsCountMin"]}/>
             <SuperInputTextOld
                 value={value}
                 onChangeText={onChangeHandler}/>

@@ -13,12 +13,13 @@
     font-size: 18px;
     font-weight: 600;
     text-shadow: 0 0 15px black, 0 0 15px black;
+    margin: 10px 0 ;
     color:darkred;
     justify-content:space-around;
     display: grid;
     grid-template:
             "n c g a";
-    grid-template-columns:8% 8% 28% 8% ;
+    grid-template-columns:12% 20% 42% 10% ;
 }
 .name {
 

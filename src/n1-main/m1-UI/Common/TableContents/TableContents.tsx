@@ -11,6 +11,7 @@ export const TableContents = () =>{
                 packName
             </p>
             <p className={css.grade}>
+                cardCount |
                 grade
             </p>
             <p className={css.actions}>

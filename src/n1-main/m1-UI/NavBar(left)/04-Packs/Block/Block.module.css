@@ -1,6 +1,6 @@
 .Block{
-    margin: 20px;
-    background-color:rgba(255, 255, 255,0.4);;
+    margin: 0 20px;
+    background-color:rgba(255, 255, 255,0.3);
     justify-content: flex-start;
     border: 1px solid gray;
     padding: 10px;
@@ -8,9 +8,11 @@
     font-weight: 600;
     box-shadow:  0 0 5px 0 black;
     color: #2b2e2e;
+    transition: 0.5s;
 }
 .Block:hover{
     box-shadow: 0 0 5px 0 white;
+    background-color:rgba(255, 255, 255,0.7);
 }
 
 .Table{
@@ -19,7 +21,7 @@
 
     grid-template:
             "name cardsCount rating buttons";
-    grid-template-columns:8% 8% 18% 24% ;
+    grid-template-columns:12% 22% 18% 26% ;
 }
 
 .userName{
@@ -58,16 +60,16 @@
 }
 
 .Link {
-    border: 2px solid ;
+    border: 2px solid #2b2e2e ;
     font-family: Panda;
     color:black;
     box-shadow: 0 0 45px 0 black;
-    min-width: 30px;
-    min-height: 20px;
     background-color: wheat;
     font-size: 20px;
     padding: 5px;
     outline: none;
+    text-decoration: none;
+    margin: 5px;
 }
 .Link:hover{
      box-shadow: 0 0 30px 0 black;
