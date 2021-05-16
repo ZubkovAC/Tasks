@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Tasks/static/css/main.19a18688.chunk.css",
-    "main.js": "/Tasks/static/js/main.2afea663.chunk.js",
-    "main.js.map": "/Tasks/static/js/main.2afea663.chunk.js.map",
-    "runtime-main.js": "/Tasks/static/js/runtime-main.15c2b75e.js",
-    "runtime-main.js.map": "/Tasks/static/js/runtime-main.15c2b75e.js.map",
+    "main.css": "/Tasks/static/css/main.edf78440.chunk.css",
+    "main.js": "/Tasks/static/js/main.edc13d92.chunk.js",
+    "main.js.map": "/Tasks/static/js/main.edc13d92.chunk.js.map",
+    "runtime-main.js": "/Tasks/static/js/runtime-main.ab5baa72.js",
+    "runtime-main.js.map": "/Tasks/static/js/runtime-main.ab5baa72.js.map",
     "static/css/2.d0fdb7d3.chunk.css": "/Tasks/static/css/2.d0fdb7d3.chunk.css",
-    "static/js/2.67236586.chunk.js": "/Tasks/static/js/2.67236586.chunk.js",
-    "static/js/2.67236586.chunk.js.map": "/Tasks/static/js/2.67236586.chunk.js.map",
-    "static/js/3.08c240bc.chunk.js": "/Tasks/static/js/3.08c240bc.chunk.js",
-    "static/js/3.08c240bc.chunk.js.map": "/Tasks/static/js/3.08c240bc.chunk.js.map",
+    "static/js/2.aa791045.chunk.js": "/Tasks/static/js/2.aa791045.chunk.js",
+    "static/js/2.aa791045.chunk.js.map": "/Tasks/static/js/2.aa791045.chunk.js.map",
+    "static/js/3.3d069cb5.chunk.js": "/Tasks/static/js/3.3d069cb5.chunk.js",
+    "static/js/3.3d069cb5.chunk.js.map": "/Tasks/static/js/3.3d069cb5.chunk.js.map",
     "index.html": "/Tasks/index.html",
     "static/css/2.d0fdb7d3.chunk.css.map": "/Tasks/static/css/2.d0fdb7d3.chunk.css.map",
-    "static/css/main.19a18688.chunk.css.map": "/Tasks/static/css/main.19a18688.chunk.css.map",
-    "static/js/2.67236586.chunk.js.LICENSE.txt": "/Tasks/static/js/2.67236586.chunk.js.LICENSE.txt",
+    "static/css/main.edf78440.chunk.css.map": "/Tasks/static/css/main.edf78440.chunk.css.map",
+    "static/js/2.aa791045.chunk.js.LICENSE.txt": "/Tasks/static/js/2.aa791045.chunk.js.LICENSE.txt",
     "static/media/CardFront.911ce36f.jpg": "/Tasks/static/media/CardFront.911ce36f.jpg",
     "static/media/titleModal.module.css": "/Tasks/static/media/KungFuPanda.fd3df450.otf",
     "static/media/SuperInputTextOld.module.css": "/Tasks/static/media/KungRU.18f8493e.otf",
@@ -21,10 +21,10 @@
     "static/media/HomePage.module.css": "/Tasks/static/media/Samurai.1eb5b920.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.15c2b75e.js",
+    "static/js/runtime-main.ab5baa72.js",
     "static/css/2.d0fdb7d3.chunk.css",
-    "static/js/2.67236586.chunk.js",
-    "static/css/main.19a18688.chunk.css",
-    "static/js/main.2afea663.chunk.js"
+    "static/js/2.aa791045.chunk.js",
+    "static/css/main.edf78440.chunk.css",
+    "static/js/main.edc13d92.chunk.js"
   ]
 }
