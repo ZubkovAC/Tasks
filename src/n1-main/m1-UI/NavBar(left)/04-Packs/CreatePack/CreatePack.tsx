@@ -104,7 +104,7 @@ export const CreatePack = () => {
             <SuperButtonOld
                 title={'Create  Pack'}
                 onClick={CreatePack}/>
-            <span style={{marginLeft: '25%'}}>
+            <span style={{marginLeft: '30%'}}>
                 <SuperButtonOld
                     title={'v'}
                     transform={true}

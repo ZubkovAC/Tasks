@@ -11,12 +11,12 @@ import {Modal} from "../../../Common/Modal/Modal";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import {PackIDMap} from "./PackIDMap";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
-import { TableContents } from "../../../Common/TableContents/TableContents";
+import {TableContents} from "../../../Common/TableContents/TableContents";
 
 
 export const PackId = () => {
 
-    const isAuth = useSelector<AppStateType, boolean>(state => state.login.isAuth)
+    const {isAuth, userID} = useSelector((state: AppStateType) => state.login)
     const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
     const dispatch = useDispatch()
 
@@ -64,10 +64,6 @@ export const PackId = () => {
     }
 
 
-
-
-
-
     const craeteCardYes = () => {
         dispatch(createCardTC(id, question, answer, 0, 0,
             0, 'string', 'string', '',
@@ -75,7 +71,7 @@ export const PackId = () => {
         defaultText()
         setActiveCard(false)
     }
-
+    let disable = cardArray.find(t => t.user_id === userID)
     return (
         <div>
             <h2 className={css.content_top}>Pack -- Card</h2>
@@ -97,13 +93,17 @@ export const PackId = () => {
                     <SuperButtonOld title={'no'} onClick={craeteCardNo}/>
                 </Modal>
 
-                <NavLink to={RoutePath.LEARN + `/${id}`}>
-                    LEARN
-                </NavLink>
+
                 <SuperButtonOld
                     onClick={CreateCard}
-                    title={'create'}/>
-
+                    title={'create'}
+                    disabled={!disable}
+                />
+                <NavLink to={RoutePath.LEARN + `/${id}`}
+                         style={{display: !cardArray.length ? 'none' : ""}}
+                >
+                    LEARN
+                </NavLink>
             </div>
 
             <div className={css.box_card}>
@@ -112,7 +112,6 @@ export const PackId = () => {
                     packUserName={'answer'}
                     grade={'grade'}
                     actions={'actions'}
-
                 />
                 {cardArray.map(card => {
 

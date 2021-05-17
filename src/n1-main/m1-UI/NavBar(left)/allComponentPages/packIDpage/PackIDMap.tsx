@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import {CardArrayResponseType, deleteCardTC, updateCardTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
-import {NavLink, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import css from "./PackID.module.css";
 import {Modal} from "../../../Common/Modal/Modal";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
-import cardFront from "../../../Common/Accets/CardFront.jpg";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {Grade} from "../../04-Packs/Block/Grade";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
@@ -28,12 +27,7 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
     const [questionUpdate, setQuestionUpdate] = useState<string>(props.card.question)
     const [answerUpdate, setAnswerUpdate] = useState<string>(props.card.answer)
 
-
     const [cardID, setCardID] = useState<string>('')
-
-    let arr = props.card.created.substring(0, 10)
-    let update = props.card.updated.substring(0, 10)
-
 
     const SetActive = () => {
         setActive(false)
@@ -82,7 +76,6 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
     let question = props.card.question.substr(0, 20)
     return (
         <div>
-            {/*<PackIDMap card={props.card} />*/}
             {/*update modal*/}
             <div>
                 <Modal active={updateCard} setActive={SetUpdateCard}>
@@ -120,11 +113,7 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
                 </Modal>
             </div>
 
-
-
-
             <div className={css.Table}>
-                {/*<p className={css.rating}><Grade grade={props.grade}/></p>*/}
                 <p className={css.question}><h3>{question}</h3></p>
                 <p className={css.answer}>  {answer}</p>
                 <p className={css.grade}><Grade grade={props.card.grade}/></p>
@@ -138,35 +127,6 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
                 </p>
             </div>
 
-
-
-
-
-
-
-            {/*<div>Type:{props.card.type}</div>*/}
-            {/*<img src={props.card.answerImg === '' ? props.card.answerImg : cardFront} width='100px' alt=""/>*/}
-
-            {/*<div>*/}
-            {/*    <Grade grade={props.card.grade} width={'20px'}/>*/}
-            {/*</div>*/}
-            {/*<div style={{fontSize: '25px', color: 'orange', justifyContent: 'start', display: 'flex'}}>Вопрос:</div>*/}
-
-            {/*<div>{props.card.question}</div>*/}
-
-            {/*-----------------------------*/}
-            {/*<div>*/}
-            {/*    <div>Update:{update}</div>*/}
-            {/*    <div className={css.update}><SuperButtonOld onClick={() => UpdateCard(props.card._id)}*/}
-            {/*                                                title={'update'}/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-            {/*-----------------------------*/}
-            {/*<div>Create :{arr}</div>*/}
-            {/*-----------------------------*/}
-            {/*<div>*/}
-            {/*    <SuperButtonOld onClick={() => deleteCard(props.card._id)} title={'Delete Card'}/>*/}
-            {/*</div>*/}
 
         </div>
     )

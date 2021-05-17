@@ -8,7 +8,7 @@ type TableContentsPropsType = {
     actions:string
 }
 
-export const TableContents = (props:TableContentsPropsType) =>{
+export const TableCard = (props:TableContentsPropsType) =>{
     return (
         <div className={css.container}>
             <p className={css.name}>

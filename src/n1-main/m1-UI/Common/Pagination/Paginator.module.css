@@ -9,11 +9,16 @@
    color:wheat;
    font-family: Panda;
    font-size: 28px;
+   /*min-width: 50px;*/
+   /*display: inline-block;*/
+
 }
 .selectedP {
    color:black;
    font-family: RussoOne;
    font-size: 22px;
+   /*width: 50px;*/
+   /*display: inline-block;*/
 }
 .selectedP:hover{
    color:white;

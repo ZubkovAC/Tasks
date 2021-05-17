@@ -2,11 +2,20 @@
     font-family: Panda;
     src: url("../Common/fonts/KungFuPanda.otf") format("opentype");
 }
+.Header{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .navlink a{
+    margin: 40px;
     font-family: Panda;
     color:black;
     line-height: 2.5;
-    font-size: 24px;
+    font-size: 28px;
     box-shadow: 0 0 50px 0px black;
 }
 .navlink a:hover{
@@ -16,11 +25,16 @@
 .navlink a:active {
     box-shadow: 0 0 20px 0px black;
 }
+
+.link:visited{
+    color:red;
+}
+
 .lamp{
     position:absolute;
     float:left;
     color:greenyellow;
-    left: 95%;
+    right: 95%;
     top:5%;
     text-shadow: 1px 1px 20px lightgreen, 0 0 1em lightgreen;
 }
@@ -28,7 +42,12 @@
     position:absolute;
     float:left;
     color:red;
-    left: 95%;
+    right: 95%;
     top:5%;
-    text-shadow: 1px 1px 20px red, 0 0 1em darkred;
+    text-shadow: 1px 1px 20px red, 0 0 1em darkred, 0 0 1em darkred, 0 0 1em darkred;
+}
+@media screen and (max-width: 1400px){
+    .navlink a{
+        font-size: 20px;
+    }
 }

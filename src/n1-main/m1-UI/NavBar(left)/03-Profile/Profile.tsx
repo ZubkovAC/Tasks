@@ -1,9 +1,9 @@
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import {Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
-import {logoutTC, updateAccTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
+import { updateAccTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
 import css from './Profile.module.css'
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import SuperButtonOld from "../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
@@ -18,9 +18,6 @@ export const Profile = () => {
     const [name, setName] = useState<string>(userName)
     const [newAvatar, setNewAvatar] = useState<string>(avatar)
 
-    const onClickHandler = useCallback(() => {
-        dispatch(logoutTC())
-    }, [dispatch])
 
     const updateProfile = () => {
         setEdit(true)
@@ -64,9 +61,6 @@ export const Profile = () => {
                         />
                     </div>
                     : <div>
-                        <span style={{float: 'right'}}>
-                            <SuperButton onClick={onClickHandler} title={'Logout'}/>
-                        </span>
                         <SuperButton
                             onClick={updateProfile}
                             title={'update'}

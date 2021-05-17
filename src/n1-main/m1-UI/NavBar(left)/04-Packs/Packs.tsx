@@ -46,9 +46,17 @@ export const Packs = () => {
     if (!isAuth && me) return <Redirect to={'/login'}/>
 
     return (
-        <div className={css.App}>
-            <HeaderPacks/>
-            <Search/>
+        <div >
+            <div className={css.Pack}>
+                <div className={css.hp}>
+                    <HeaderPacks/>
+                </div >
+                <div className={css.s}>
+                    <Search/>
+                </div>
+            </div>
+
+
             <CreatePack/>
 
             <Pagination/>
@@ -56,7 +64,7 @@ export const Packs = () => {
 
 
             <div className={css.tableBlock}>
-                <TableContents />
+                <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>
                     : cardPacks.map(t => {

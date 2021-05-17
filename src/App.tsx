@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {Navbar} from "./n1-main/m1-UI/Route/Routes";
 import {TestComponent} from "./n1-main/m1-UI/NavBar(left)/06-TestComponent/TestComponent";
 import {Login} from './n1-main/m1-UI/NavBar(left)/01-Login/Login';
@@ -41,10 +41,9 @@ function App() {
 
 
 
-
     return (
         <div className="App">
-            <div style={{float: 'left', margin: '40px', height: '1000px'}}>
+            <div >
                 <Navbar/>
             </div>
             <div style={{margin: '40px'}}>
