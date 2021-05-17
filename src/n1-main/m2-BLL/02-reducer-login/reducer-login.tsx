@@ -95,10 +95,8 @@ export const authMeTC = () => (dispatch: Dispatch) => {
         })
 }
 export const updateAccTC = (name:string,avatar:string) => (dispatch:Dispatch) => {
-    debugger
     return AuthAPI.updateLogin(name,avatar)
         .then((res)=>{
-            debugger
             dispatch(updateAccAC(res.data.updatedUser.name,res.data.updatedUser.avatar))
         })
 }

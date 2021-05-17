@@ -2,8 +2,8 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    // baseURL: 'http://localhost:7542/2.0/',
-    baseURL: 'https://neko-back.herokuapp.com/2.0',
+    baseURL: 'http://localhost:7542/2.0/',
+    // baseURL: 'https://neko-back.herokuapp.com/2.0',
     withCredentials: true,
 })
 
@@ -52,7 +52,7 @@ export const PacksAPI = {
 
 export const CardsAPI = {
     getCards(cardPackId:string,cardQuestion:string,cardAnswer:string,pageCount:number=11){
-        return instance.get(`cards/card?pageCount=${pageCount}&cardsPack_id=${cardPackId}&cardQuestion=${cardQuestion}&cardAnswer=${cardAnswer}`)
+        return instance.get<CardGetTypeResponse>(`cards/card`,{params:{cardsPack_id:cardPackId,cardQuestion,cardAnswer,pageCount}})
     },
     createCard( cardsPack_id:string, question?:string, answer?:string, grade?:number, shots?:number, rating?:number, answerImg?:string,
                 questionImg?:string, questionVideo?: string, answerVideo?:string, type?:string){
@@ -115,6 +115,35 @@ export type CardPackType={
 
 }
 
+type CardGetTypeResponse = {
+    cards:CardTypeResponce[]
+    cardsTotalCount: number
+    maxGrade: number
+    minGrade: number
+    packUserId: string
+    page: number
+    pageCount: number
+    token: string
+    tokenDeathTime: number
+}
+
+
+export type CardTypeResponce = {
+    answer: string
+    cardsPack_id: string
+    comments: string
+    created: string
+    grade: number
+    more_id:string
+    question: string
+    rating: number
+    shots: number
+    type: string
+    updated: string
+    user_id: string
+    __v: number
+    _id: string
+}
 
 
 

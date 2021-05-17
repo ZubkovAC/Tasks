@@ -35,7 +35,6 @@ export const Pagination = () => {
     let rightPortionPageNumber = portionNumber * portionSize;
 
 
-    console.log(portionNumber)
     const PagesCount = (e:number) =>{
         dispatch(preloaderOnAC(true))
         dispatch( getPacksTC(searchCardName, 0, 999, '0updated', e, cardPages, ''))

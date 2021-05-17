@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import {
-    CardArrayResponseType,
     cardGradeTC,
     getCardsTC,
     gradeCardAC
@@ -12,6 +11,7 @@ import css from './styleLearnPage.module.css'
 
 import {Redirect, useParams} from "react-router-dom";
 import {Flippys} from "../../../Common/Flippy/Flippy";
+import {CardTypeResponce} from "../../../../m3-DAL/axios";
 
 
 export const LearnPage = () => {
@@ -22,7 +22,7 @@ export const LearnPage = () => {
     let {grade,cardArray} = useSelector((state:AppStateType) => state.cards)
 
 
-    const getCard = (cards: CardArrayResponseType[]) => {
+    const getCard = (cards: CardTypeResponce[]) => {
         const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
         const rand = Math.random() * sum;
 
@@ -32,7 +32,6 @@ export const LearnPage = () => {
                 return {sum: newSum, id: newSum < rand ? i : acc.id}
                                                                         }
             , {sum: 0, id: -1});
-        console.log('test: ', sum,rand,res,cardArray)
         return cards[res.id + 1];
     }
 

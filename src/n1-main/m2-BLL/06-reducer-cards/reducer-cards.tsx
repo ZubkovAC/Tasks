@@ -1,15 +1,16 @@
 import {Dispatch} from "redux";
-import {CardsAPI, CreateCardType} from "../../m3-DAL/axios";
+import {CardsAPI, CardTypeResponce, CreateCardType} from "../../m3-DAL/axios";
 import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
 import {ThunkDispatch} from "redux-thunk";
 import {AppStateType} from "../00-store/store";
 
 const initialState = {
-    cardArray:[] as CardArrayResponseType[],
+    cardArray:[] as CardTypeResponce[],
     packID:'',
     card:{} as CreateCardType,
     grade:0,
-    valueSelect:''
+    valueSelect:'',
+    packUserId:''
 }
 
 export const cardsReducer = (state: IniticalStateCardType = initialState, action: ActionTypeCards): IniticalStateCardType => {
@@ -17,7 +18,8 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
         case "CARDS/GET-CARDS":{
             return {
                 ...state,
-                cardArray:action.cardArray }
+                packUserId: action.packUserId,
+                cardArray:action.cardArray}
         }
         case "CARDS/ID-CARDS":{
             return {
@@ -34,7 +36,7 @@ export const cardsReducer = (state: IniticalStateCardType = initialState, action
 }
 
 // AC
-export const getCardsAC = (cardArray:CardArrayResponseType[]) => ({ type:"CARDS/GET-CARDS",cardArray}as const)
+export const getCardsAC = (cardArray:CardTypeResponce[],packUserId:string) => ({ type:"CARDS/GET-CARDS",cardArray,packUserId}as const)
 export const inputIdAC = (packID:string) => ({ type:"CARDS/ID-CARDS",packID}as const)
 export const gradeCardAC = (grade:number,valueSelect:string) => ({ type:"CARDS/GRADE-CARD",grade,valueSelect}as const)
 
@@ -42,7 +44,7 @@ export const gradeCardAC = (grade:number,valueSelect:string) => ({ type:"CARDS/G
 export const getCardsTC = (cardAnswer:string,cardQuestion:string,cardsPack_id:string,min:number,
                       max:number,sortCards:string,page:number,pageCount:number) => (dispatch: Dispatch)=>{
     return CardsAPI.getCards(cardsPack_id,cardQuestion,cardAnswer,pageCount)
-        .then((res)=>dispatch(getCardsAC(res.data.cards)))
+        .then((res)=>dispatch(getCardsAC(res.data.cards,res.data.packUserId)))
         .catch((err)=>{
             dispatch(lampAC(false))
             setTimeout(()=>dispatch(lampAC(true)),2000)
@@ -92,8 +94,8 @@ export const deleteCardTC = (idCard:string,idPack:string) => (dispatch:ThunkDisp
 
 export const cardGradeTC = (grade:number,card_id:string) => (dispatch:ThunkDispatch<AppStateType, unknown, ActionTypeCards>) =>{
     return CardsAPI.cardGrade(grade,card_id)
-        .then(res=>console.log('alulyjjj'))
-        .catch(err=> console.log('Xpehalulyjjjj!!!'))
+        .then()
+        .catch()
 }
 
 
@@ -108,23 +110,4 @@ export type ActionTypeCards =
 export type GetCardsAC = ReturnType<typeof getCardsAC>
 export type InputIdAC = ReturnType<typeof inputIdAC>
 export type GradeCardAC = ReturnType<typeof gradeCardAC>
-export type CardArrayResponseType ={
-    answer: string
-    answerImg: string
-    answerVideo: string
-    cardsPack_id: string
-    comments: string
-    created: string
-    grade: number
-    more_id: string
-    question: string
-    questionImg: string
-    questionVideo: string
-    rating: number
-    shots: number
-    type: string
-    updated: string
-    user_id: string
-    __v: number
-    _id: string
-}
+

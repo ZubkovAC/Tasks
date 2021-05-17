@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {CardArrayResponseType, createCardTC, getCardsTC,} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {createCardTC, getCardsTC,} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
@@ -14,13 +14,15 @@ import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {TableContents} from "../../../Common/TableContents/TableContents";
 
 
+
 export const PackId = () => {
 
     const {isAuth, userID} = useSelector((state: AppStateType) => state.login)
-    const cardArray = useSelector<AppStateType, CardArrayResponseType[]>(state => state.cards.cardArray)
+    const {cardArray,packUserId} = useSelector((state:AppStateType) => state.cards)
     const dispatch = useDispatch()
 
     let {id} = useParams<{ id: string }>()
+
 
     //create modal
     const [activeCard, setActiveCard] = useState<boolean>(false)
@@ -31,7 +33,7 @@ export const PackId = () => {
 
     //pageCount - количество карт
     useEffect(() => {
-        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 99))
+        if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 999))
     }, [isAuth])
 
     const SetActiveCard = () => {
@@ -48,7 +50,6 @@ export const PackId = () => {
         setType(value)
     }
     const defaultText = () => {
-        debugger
         setType('')
         setAnswer('')
         setQuestion('')
@@ -71,7 +72,7 @@ export const PackId = () => {
         defaultText()
         setActiveCard(false)
     }
-    let disable = cardArray.find(t => t.user_id === userID)
+
     return (
         <div>
             <h2 className={css.content_top}>Pack -- Card</h2>
@@ -97,7 +98,7 @@ export const PackId = () => {
                 <SuperButtonOld
                     onClick={CreateCard}
                     title={'create'}
-                    disabled={!disable}
+                    disabled={packUserId !== userID}
                 />
                 <NavLink to={RoutePath.LEARN + `/${id}`}
                          style={{display: !cardArray.length ? 'none' : ""}}
@@ -113,6 +114,7 @@ export const PackId = () => {
                     grade={'grade'}
                     actions={'actions'}
                 />
+                <p></p>
                 {cardArray.map(card => {
 
                     return (

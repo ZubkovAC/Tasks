@@ -32,7 +32,7 @@ export const Login = () => {
         dispatch(errorAC(null, false, false))
     }, [acc, pass, error])
 
-    console.log(error)
+
     const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
         SetAcc(false)
         setEmail(e.currentTarget.value)

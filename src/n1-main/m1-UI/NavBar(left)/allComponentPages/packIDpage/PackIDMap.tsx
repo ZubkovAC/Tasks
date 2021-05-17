@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {CardArrayResponseType, deleteCardTC, updateCardTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {deleteCardTC, updateCardTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import css from "./PackID.module.css";
@@ -9,9 +9,10 @@ import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/Sup
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {Grade} from "../../04-Packs/Block/Grade";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {CardTypeResponce} from "../../../../m3-DAL/axios";
 
 type PackIDMapPropsType = {
-    card: CardArrayResponseType
+    card: CardTypeResponce
 }
 
 export const PackIDMap = (props: PackIDMapPropsType) => {
@@ -53,7 +54,6 @@ export const PackIDMap = (props: PackIDMapPropsType) => {
         setUpdateCard(false)
     }
     const UpdateCard = (cardId: string) => {
-        debugger
         setCardID(cardId)
         setUpdateCard(true)
     }
