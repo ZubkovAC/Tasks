@@ -13,18 +13,17 @@
     opacity: 0.7;
     border-radius: 50px;
     height: 60px;
-    min-width: 400px;
     outline: none;
     background-color: white;
     font-size: 25px;
 
 }
+
 .errorInputFalse{
     border-radius: 50px;
     opacity: 0.4;
     height: 60px;
     padding-left: 15px;
-    min-width: 400px;
     outline: none;
     background-color: white;
     box-shadow: 0 0 10px white;
@@ -44,7 +43,7 @@
     opacity: 0.4;
     height: 60px;
     padding-left: 15px;
-    min-width: 400px;
+    min-width: 200px;
     outline: none;
     background-color: white;
     box-shadow: 0 0 10px white;

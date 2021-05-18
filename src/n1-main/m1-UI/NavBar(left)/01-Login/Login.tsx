@@ -55,32 +55,31 @@ export const Login = () => {
 
 
     return (
-        <div className='login'>
-            <div className='login_box' >
+        <div>
 
-                <TitleModal title={'Account'}/>
-                <SuperInputText
-                    error={acc ? 'not valid email' : null}
-                    onChange={onChangeHandlerEmail}
-                    value={email}
-                />
+            <TitleModal title={'Account'}/>
+            <SuperInputText
+                error={acc ? 'not valid email' : null}
+                onChange={onChangeHandlerEmail}
+                value={email}
+            />
 
-                <TitleModal title={'Password'}/>
-                <SuperInputText
-                    error={pass ? 'not valid password' : null}
-                    onChange={onChangeHandlerPassword}
-                    type={'password'}
-                    value={password}
-                />
-                <SuperCheckbox
-                    title={'remember Me'}
-                    onClick={onChangeHandlerRememberMe}
-                    checked={rememberMe}/>
-                <SuperButton
-                    onClick={onClickHandler}
-                    title={'Login'}/>
-                {error && <p className={"error"}>{` attention ${error}`}</p>}
-            </div>
+            <TitleModal title={'Password'}/>
+            <SuperInputText
+                error={pass ? 'not valid password' : null}
+                onChange={onChangeHandlerPassword}
+                type={'password'}
+                value={password}
+            />
+            <SuperCheckbox
+                title={'remember Me'}
+                onClick={onChangeHandlerRememberMe}
+                checked={rememberMe}/>
+            <SuperButton
+                onClick={onClickHandler}
+                title={'Login'}/>
+            {error && <p className={"error"}>{` attention ${error}`}</p>}
+
         </div>
 
     )

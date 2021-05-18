@@ -51,3 +51,8 @@
         font-size: 20px;
     }
 }
+@media screen and (max-width: 1050px){
+    .navlink a{
+        font-size: 16px;
+    }
+}

@@ -65,8 +65,8 @@ export const Registration = React.memo(() => {
     }
 
     return (
-        <div className='registration'>
-            <div className='registration_box'>
+        <div >
+
                 <h2>temporary stub</h2>
                 {isFetching && <Preloader/>}
                 <TitleModal title={'Your email'}/>
@@ -89,8 +89,6 @@ export const Registration = React.memo(() => {
                     onClick={onClickHandler}
                     title={'create'}
                 />
-            </div>
-
 
         </div>
     )

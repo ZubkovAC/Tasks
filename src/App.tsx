@@ -16,6 +16,7 @@ import {Packs} from "./n1-main/m1-UI/NavBar(left)/04-Packs/Packs";
 import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/PackID";
 import {LearnPage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/LearnPage/LearnPage";
+import {TableMenu} from "./n1-main/m1-UI/Common/TableContents/TableMenu";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -49,10 +50,10 @@ function App() {
             <div style={{margin: '40px'}}>
                 <Switch>
                     <Route exact path={RoutePath.HOME_RAGE} render={() => <HomePage/>}/>
-                    <Route exact path={RoutePath.LOGIN} render={() => <Login/>}/>
-                    <Route exact path={RoutePath.REGISTRATION} render={() => <Registration/>}/>
+                    <Route exact path={RoutePath.LOGIN} render={() => <TableMenu children={<Login/>}/>}/>
+                    <Route exact path={RoutePath.REGISTRATION} render={() =><TableMenu children={ <Registration/>}/>}/>
                     <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
-                    <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <PasswordRecovery/>}/>
+                    <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <TableMenu children={<PasswordRecovery/>}/> }/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
                     <Route exact path={RoutePath.LEARN+ '/:id'} render={() => <LearnPage/>}/>
