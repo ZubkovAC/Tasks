@@ -1,3 +1,25 @@
 .error{
     color:red;
 }
+.error{
+    font-size: 22px;
+    font-weight: 600;
+    color: red;
+    text-shadow:  0 0 15px #2b2e2e,0 0 15px #2b2e2e;
+}
+.registration{
+    margin: auto auto;
+    width: 40%;
+    justify-content: center;
+    border: 0px solid white;
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 45px;
+}
+.registration_box{
+
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -100,11 +100,13 @@ export const PackId = () => {
                     title={'create'}
                     disabled={packUserId !== userID}
                 />
-                <NavLink to={RoutePath.LEARN + `/${id}`}
-                         style={{display: !cardArray.length ? 'none' : ""}}
-                >
-                    LEARN
-                </NavLink>
+                {cardArray.length ?
+                    <NavLink to={RoutePath.LEARN + `/${id}`}>
+                        LEARN
+                    </NavLink>
+                    :
+                    <TitleModal title={'no card'}/>
+                }
             </div>
 
             <div className={css.box_card}>

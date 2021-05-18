@@ -20,16 +20,17 @@ export const Navbar = () => {
     return (
         <div className={css.Header}>
             <span className={lamp ? css.lamp : css.lampErr}>status</span>
-            {!isAuth &&
-            <div className={css.navlink}>
-                <NavLink to={RoutePath.LOGIN} activeClassName={css.link}>Login</NavLink>
-            </div>
-            }
+
 
             {!isAuth &&
             <div className={css.navlink}>
                 <NavLink to={RoutePath.REGISTRATION} activeClassName={css.link}>Registration</NavLink>
 
+            </div>
+            }
+            {!isAuth &&
+            <div className={css.navlink}>
+                <NavLink to={RoutePath.LOGIN} activeClassName={css.link}>Login</NavLink>
             </div>
             }
             {isAuth &&

@@ -65,30 +65,33 @@ export const Registration = React.memo(() => {
     }
 
     return (
-        <div>
+        <div className='registration'>
+            <div className='registration_box'>
+                <h2>temporary stub</h2>
+                {isFetching && <Preloader/>}
+                <TitleModal title={'Your email'}/>
+                {validationEmail && checkOnBlurEmail && <span className={"error"}>email is incorrect</span>}
+                <SuperInputText
+                    onBlur={handleBlurEmail}
+                    onChange={onChangeHandlerLogin}
+                />
+                <TitleModal title={'your password'}/>
+                {validationPassword && checkOnBlurPassword &&
+                <span className={"error"}>Password must be more than 7 characters</span>}
 
-            <h2>temporary stub</h2>
-            {isFetching && <Preloader/>}
-            <TitleModal title={'Your email'}/>
-            {validationEmail && checkOnBlurEmail && <span className={"error"}>email is incorrect</span>}
-            <SuperInputText
-                onBlur={handleBlurEmail}
-                onChange={onChangeHandlerLogin}
-            />
-            <TitleModal title={'your password'}/>
-            {validationPassword && checkOnBlurPassword &&
-            <span className={"error"}>Password must be more than 7 characters</span>}
+                <SuperInputText
+                    onBlur={handleBlurPassword}
+                    onChange={onChangeHandlerPassword}
+                />
+                {error && <p className={"error"}>{` attention ${error}`}</p>}
+                <SuperButton
+                    disabled={!!isFetching}
+                    onClick={onClickHandler}
+                    title={'create'}
+                />
+            </div>
 
-            <SuperInputText
-                onBlur={handleBlurPassword}
-                onChange={onChangeHandlerPassword}
-            />
-            {error && <p className={"error"}>{` attention ${error}`}</p>}
-            <SuperButton
-                disabled={!!isFetching}
-                onClick={onClickHandler}
-                title={'create'}
-            />
+
         </div>
     )
 })

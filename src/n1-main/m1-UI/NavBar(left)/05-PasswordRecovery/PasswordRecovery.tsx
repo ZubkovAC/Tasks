@@ -55,28 +55,27 @@ export const PasswordRecovery = () => {
 
     else{
 
-
         return (
-            <div>
-
-                <h2>Recovery</h2>
-                <span className={css.span}  >email</span>
-                <SuperInputTextOld onChangeText={unpdateMail} title={mail}/>
-                <div style={{height:'10px'}}></div>
-                <SuperButtonOld title={"recovery"} onClick={recoveryMail}/>
-                {SplitFlap &&
-                <div style={{margin:"20px"}}>
-                    <span className={css.span}  >password</span>
-                    <SuperInputTextOld onChangeText={unpdateFirstPassword} title={pass} />
+            <div className={css.recovery}>
+                <div className={css.recovery_box}>
+                    <h2>Recovery</h2>
+                    <span className={css.span}  >email</span>
+                    <SuperInputTextOld onChangeText={unpdateMail} title={mail}/>
                     <div style={{height:'10px'}}></div>
-                    <span className={css.span}  >password</span>
-                    <SuperInputTextOld onChangeText={unpdateLastPassword} title={pass1} />
-                    <div style={{height:'10px'}}></div>
-                    <SuperButtonOld title={"recovery"} onClick={recoveryPass}/>
+                    <SuperButtonOld title={"recovery"} onClick={recoveryMail}/>
+                    {SplitFlap &&
+                    <div style={{margin:"20px"}}>
+                        <span className={css.span}  >password</span>
+                        <SuperInputTextOld onChangeText={unpdateFirstPassword} title={pass} />
+                        <div style={{height:'10px'}}></div>
+                        <span className={css.span}  >password</span>
+                        <SuperInputTextOld onChangeText={unpdateLastPassword} title={pass1} />
+                        <div style={{height:'10px'}}></div>
+                        <SuperButtonOld title={"recovery"} onClick={recoveryPass}/>
+                    </div>
+                    }
                 </div>
-                }
             </div>
         )
-
     }
 }
