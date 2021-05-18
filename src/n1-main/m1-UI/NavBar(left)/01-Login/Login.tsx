@@ -16,7 +16,7 @@ export const Login = () => {
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
 
     let [email, setEmail] = useState("3y6kob@mail.ru")
-    let [password, setPassword] = useState("oTBuHTa977")
+    let [password, setPassword] = useState("qwertyui")
     let [rememberMe, setRememberMe] = useState(false)
 
     const [acc, SetAcc] = useState<boolean>(false)

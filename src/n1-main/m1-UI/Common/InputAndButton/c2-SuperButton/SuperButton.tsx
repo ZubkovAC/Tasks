@@ -11,12 +11,12 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
     onChange?:any
     password?:string
     resetPasswordsToken?:string
-
+    disabled?:boolean
 }
 
 const SuperButton: React.FC<SuperButtonPropsType> = (
     {
-        red, className,title,onChange,onClick,
+        red, className,title,onChange,onClick,disabled,
         ...restProps// все остальные пропсы попадут в объект restProps, там же будет children
     }
 ) => {
@@ -30,7 +30,7 @@ const SuperButton: React.FC<SuperButtonPropsType> = (
 
     return (
         <button
-
+            disabled={disabled}
             className={red? s.buttonErrorTrue : s.buttonErrorFalse }
             //className={finalClassName}
             {...restProps} // отдаём кнопке остальные пропсы если они есть (children там внутри)

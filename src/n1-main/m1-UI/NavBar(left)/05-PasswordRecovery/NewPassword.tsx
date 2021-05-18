@@ -1,0 +1,81 @@
+import React, {useCallback, useEffect, useState} from "react";
+import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
+import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {newPasswordTC, registrationTC, validationPasswordAC} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import {useParams} from "react-router-dom";
+import {TitleModal} from "../../Common/TitleModal/TitleModal";
+
+export const NewPassword = () => {
+
+    let {token} = useParams<{ token: string }>()
+
+    let {error, messagePass} = useSelector((state: AppStateType) => state.registration)
+    const dispatch = useDispatch()
+    let [password, setPassword] = useState("")
+    let [passwordRepeat, setPasswordRepeat] = useState("")
+    let [checkOnBlurPassword, setCheckOnBlurPassword] = useState(false)
+    let [checkOnBlurPasswordRepeat, setCheckOnBlurPasswordRepeat] = useState(false) // button next
+    let [email, setEmail] = useState("")
+
+
+    const onClickHandler = useCallback(() => {
+        dispatch(newPasswordTC(password, token))
+    }, [email, password])
+
+    const onChangeHandlerPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value.length >= 7) {
+            setPassword(e.currentTarget.value)
+            dispatch(validationPasswordAC(false))
+        } else if (!e.currentTarget.onblur) {
+            dispatch(validationPasswordAC(true))
+        }
+    }, [dispatch])
+
+
+    const onChangeHandlerPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value.length >= 7) {
+            setPasswordRepeat(e.currentTarget.value)
+        } else if (!e.currentTarget.onblur) {
+
+        }
+    }, [dispatch])
+    const handleBlurPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        setCheckOnBlurPasswordRepeat(true)
+    }, [setCheckOnBlurPassword])
+    const handleBlurPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        setCheckOnBlurPassword(true)
+    }, [setCheckOnBlurPassword])
+
+
+    const tokenUP = () => {
+        console.log(token)
+    }
+
+    return (
+        <div>
+            {messagePass
+                ?<TitleModal title={messagePass}/>
+                :<div>
+                    <TitleModal title={'new Password'}/>
+                    <SuperInputText
+                        onBlur={handleBlurPassword}
+                        onChange={onChangeHandlerPassword}
+                    />
+                    <TitleModal title={'repeat pass'}/>
+                    <SuperInputText
+                        onBlur={handleBlurPasswordRepeat}
+                        onChange={onChangeHandlerPasswordRepeat}
+                    />
+                    {error && <p className={"error"}>{` attention ${error}`}</p>}
+                    <SuperButton
+                        disabled={password.length < 7 || password !== passwordRepeat}
+                        onClick={onClickHandler}
+                        title={'create'}
+                    />
+                </div>
+            }
+
+        </div>)
+}

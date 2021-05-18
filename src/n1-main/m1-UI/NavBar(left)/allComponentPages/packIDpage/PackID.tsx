@@ -30,7 +30,6 @@ export const PackId = () => {
     const [answer, setAnswer] = useState<string>('')
     const [type, setType] = useState<string>('')
 
-
     //pageCount - количество карт
     useEffect(() => {
         if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 999))
@@ -72,6 +71,7 @@ export const PackId = () => {
         defaultText()
         setActiveCard(false)
     }
+
 
     return (
         <div>

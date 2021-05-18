@@ -9,6 +9,10 @@ const instance = axios.create({
 
 
 export const AuthAPI = {
+    // forgot(email:string,from:string,message:string = "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='http://localhost:3000/#/newPassword/$token$'>link</a>\n</div>\n"){
+        forgot(email:string,from:string,message:string = "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='https://zubkovac.github.io/Tasks/#/newPassword/$token$'>link</a>\n</div>\n"){
+        return instance.post('auth/forgot',{email,from,message})
+    },
     createRegistration(email:string,password:string){
         return instance.post('auth/register',{email,password})
     },
@@ -20,9 +24,6 @@ export const AuthAPI = {
     },
     logout(){
         return instance.delete('auth/me',{})
-    },
-    forgot(email:string,from:string,message:string){
-        return instance.post('auth/forgot',{email,from,message})
     },
     newPassword(password:string,resetPasswordToken:string){
         return instance.post('auth/set-new-password',{password,resetPasswordToken})

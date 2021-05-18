@@ -60,7 +60,7 @@ export const Navbar = () => {
             }
 
             {/*<div className={css.navlink}>*/}
-            {/*    <NavLink to={RoutePath.TEST_COMPONENT}>Test component</NavLink>*/}
+            {/*    <NavLink to={RoutePath.NEW_PASSWORD}>Test component</NavLink>*/}
             {/*</div>*/}
         </div>
     )

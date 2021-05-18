@@ -11,12 +11,14 @@
    transition:0.5s ;
    opacity: 0;
    pointer-events: none;
+   z-index: 9999;
 
 }
 
 .modal.active{
    opacity: 1;
    pointer-events: all;
+   z-index: 9999;
 
 }
 .button  {
@@ -26,6 +28,7 @@
    border-radius: 15px;
    padding: 50px;
    box-shadow: 0 0 5px 0 whitesmoke, inset 0 0 5px 0 whitesmoke;
+   z-index: 9999;
 
 }
 .modal_content{
@@ -36,6 +39,7 @@
    background-color: black;
    transform: scale(0.5);
    transition: 0.4s all;
+
 }
 
 .modal_content.active {
@@ -43,4 +47,5 @@
    background-color: black;
    width: 400px;
    height: 400px;
+   z-index: 9999;
 }

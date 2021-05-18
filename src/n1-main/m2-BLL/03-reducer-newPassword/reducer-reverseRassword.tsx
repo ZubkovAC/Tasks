@@ -1,5 +1,6 @@
 import {AuthAPI} from "../../m3-DAL/axios"
 import {Dispatch} from "redux";
+import {lampAC} from "../02-reducer-login/reducer-login";
 
 const reserseInitialState = {
     email: '',
@@ -41,12 +42,13 @@ export const redirectF = () => ({type: "REVERSE/REDIRECT-FALSE"} as const)
 export const passwordAC = (password: string) => ({type: "REVERSE/PASSWORD", password} as const)
 
 //TC     password recover link ???
-export const resPasswordTC = (email: string, from: string,message:string,) => (dispatch: Dispatch) => {
-    return AuthAPI.forgot(email, from,message)
+export const resPasswordTC = (email: string, from: string) => (dispatch: Dispatch) => {
+    return AuthAPI.forgot(email, from)
         .then((res) => {
-            dispatch(resPassword(email, from,message))
+            if (res.data.success === true) dispatch(resPassword(email, from,'Ok go to Mail'))
         })
         .catch((error) => alert(error))
+        .finally(()=>setTimeout(() => dispatch(resPassword('', '','')), 20000))
 }
 
 // Type

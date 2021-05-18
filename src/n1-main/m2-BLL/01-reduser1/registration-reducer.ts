@@ -7,7 +7,8 @@ let initialState = {
     error: null,
     isFetching: false,
     validationEmail: false,
-    validationPassword: false
+    validationPassword: false,
+    messagePass:''
 }
 export type RegistrationInitialStateType = {
     isRegistered: boolean
@@ -15,6 +16,7 @@ export type RegistrationInitialStateType = {
     isFetching: boolean
     validationEmail: boolean
     validationPassword: boolean
+    messagePass:string
 }
 
 
@@ -30,6 +32,8 @@ export const registrationReducer = (state: RegistrationInitialStateType = initia
             return {...state, validationEmail: action.validationEmail}
         case 'REGISTERED/VAL-PASSWORD':
             return {...state, validationPassword: action.validationPassword}
+        case "REGISTERED/NEW-PASSWORD-MESSAGE":
+            return {...state,messagePass:action.message}
         default:
             return state
     }
@@ -37,6 +41,7 @@ export const registrationReducer = (state: RegistrationInitialStateType = initia
 
 // Action Type
 export const isRegisteredAC = (isRegistered: boolean) => ({type: 'REGISTERED/CHANGE-IS-REGISTERED', isRegistered} as const)
+export const messageAC = (message: string) => ({type: 'REGISTERED/NEW-PASSWORD-MESSAGE', message} as const)
 export const errorAC = (error: any) => ({type: 'REGISTERED/CHANGE-ERROR', error} as const)
 export const isFetchingAC = (isFetching: boolean) => ({type: 'REGISTERED/IS-FETCHING', isFetching} as const)
 export const validationEmailAC = (validationEmail: boolean) => ({type: 'REGISTERED/VAL-EMAIL', validationEmail} as const)
@@ -65,9 +70,19 @@ export const registrationTC = (email: string, password: string) =>  (dispatch: D
             })
             .finally(() => dispatch(isFetchingAC(false)))
 }
+export const newPasswordTC = (password:string, resetPasswordToken:string) => (dispatch:Dispatch)=>{
+    return AuthAPI.newPassword(password,resetPasswordToken)
+        .then(res=>{
+            dispatch(messageAC(res.data.info))
+            console.log(res)
+        })
+        .catch(err=>console.log(err))
+
+}
 
 // Type
 export type IsRegisteredAC = ReturnType<typeof isRegisteredAC>
+export type MessageAC = ReturnType<typeof messageAC>
 export type errorACType = ReturnType<typeof errorAC>
 export type isFetchingACType = ReturnType<typeof isFetchingAC>
 export type validationEmailType = ReturnType<typeof validationEmailAC>
@@ -80,3 +95,4 @@ type ActionTypeRegistration =
     | isFetchingACType
     | validationEmailType
     | validationPasswordType
+    | MessageAC

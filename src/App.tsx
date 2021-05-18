@@ -1,6 +1,6 @@
 import './App.css';
 
-import {Redirect, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {Navbar} from "./n1-main/m1-UI/Route/Routes";
 import {TestComponent} from "./n1-main/m1-UI/NavBar(left)/06-TestComponent/TestComponent";
 import {Login} from './n1-main/m1-UI/NavBar(left)/01-Login/Login';
@@ -17,6 +17,7 @@ import {AppStateType} from "./n1-main/m2-BLL/00-store/store";
 import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/PackID";
 import {LearnPage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/LearnPage/LearnPage";
 import {TableMenu} from "./n1-main/m1-UI/Common/TableContents/TableMenu";
+import {NewPassword} from "./n1-main/m1-UI/NavBar(left)/05-PasswordRecovery/NewPassword";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -24,6 +25,7 @@ export const RoutePath = {
     REGISTRATION: '/registration',
     PROFILE: '/profile',
     PASSWORD_RECOVERY: '/recovery',
+    NEW_PASSWORD: '/newPassword',
     TEST_COMPONENT: "/testComponent",
     PACKS: '/packs',
     LEARN: '/learn',
@@ -49,14 +51,17 @@ function App() {
             </div>
             <div style={{margin: '40px'}}>
                 <Switch>
-                    <Route exact path={RoutePath.HOME_RAGE} render={() => <HomePage/>}/>
+
                     <Route exact path={RoutePath.LOGIN} render={() => <TableMenu children={<Login/>}/>}/>
                     <Route exact path={RoutePath.REGISTRATION} render={() =><TableMenu children={ <Registration/>}/>}/>
-                    <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <TableMenu children={<PasswordRecovery/>}/> }/>
-                    <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
+                    <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
+                    <Route exact path={RoutePath.HOME_RAGE} render={() => <HomePage/>}/>
+                    <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.LEARN+ '/:id'} render={() => <LearnPage/>}/>
+
+                    <Route  path={RoutePath.NEW_PASSWORD+'/:token'} render={() => <TableMenu children={<NewPassword/>}/>}/>
 
                     <Route path={RoutePath.PACKS + '/:id'} render={() => <PackId />}/>
                     <Route path={RoutePath.REDIRECT} render={() => <Error404/>}/>

@@ -26,13 +26,21 @@ export const Registration = React.memo(() => {
     const dispatch = useDispatch()
 
     let [email, setEmail] = useState("")
+
     let [password, setPassword] = useState("")
+    let [passwordRepeat, setPasswordRepeat] = useState("")   // password 2
     let [checkOnBlurEmail, setCheckOnBlurEmail] = useState(false)
     let [checkOnBlurPassword, setCheckOnBlurPassword] = useState(false)
+    let [checkOnBlurPasswordRepeat, setCheckOnBlurPasswordRepeat] = useState(false) // button next
+
 
     const handleBlurPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        setCheckOnBlurPasswordRepeat(true)
+    }, [setCheckOnBlurPassword])
+    const handleBlurPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setCheckOnBlurPassword(true)
     }, [setCheckOnBlurPassword])
+
 
     const handleBlurEmail = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setCheckOnBlurEmail(true)
@@ -48,11 +56,18 @@ export const Registration = React.memo(() => {
     }, [dispatch])
 
     const onChangeHandlerPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
-        if (e.currentTarget.value.length > 7) {
+        if (e.currentTarget.value.length >= 7) {
             setPassword(e.currentTarget.value)
             dispatch(validationPasswordAC(false))
         } else if (!e.currentTarget.onblur) {
             dispatch(validationPasswordAC(true))
+        }
+    }, [dispatch])
+    const onChangeHandlerPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value.length >= 7) {
+            setPasswordRepeat(e.currentTarget.value)
+        } else if (!e.currentTarget.onblur) {
+
         }
     }, [dispatch])
 
@@ -77,15 +92,19 @@ export const Registration = React.memo(() => {
                 />
                 <TitleModal title={'your password'}/>
                 {validationPassword && checkOnBlurPassword &&
-                <span className={"error"}>Password must be more than 7 characters</span>}
+                <span className={"error"}>At least 7 characters</span>}
 
                 <SuperInputText
                     onBlur={handleBlurPassword}
                     onChange={onChangeHandlerPassword}
                 />
+                <SuperInputText
+                    onBlur={handleBlurPasswordRepeat}
+                    onChange={onChangeHandlerPasswordRepeat}
+                />
                 {error && <p className={"error"}>{` attention ${error}`}</p>}
                 <SuperButton
-                    disabled={!!isFetching}
+                    disabled={password.length < 7 || password !== passwordRepeat}
                     onClick={onClickHandler}
                     title={'create'}
                 />
