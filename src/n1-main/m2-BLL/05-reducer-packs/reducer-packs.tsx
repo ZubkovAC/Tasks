@@ -11,6 +11,7 @@ const initialState = {
     type:'TestPack',
     preloader:false,
     maxCard:999,
+    RealCardPacksCount:0
 }
 
 export const reducerPacks = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
@@ -19,7 +20,8 @@ export const reducerPacks = (state: initialStateType = initialState, action: Act
             return {
                 ...state,
                 cardPacks:action.array,
-                cardPacksTotalCount:action.cardPacksTotalCount
+                cardPacksTotalCount:action.cardPacksTotalCount,
+                RealCardPacksCount:action.cardPacksTotalCount
             }
         case "PACKS/CREATE-NAME-PACK":{
             return {...state,name:action.name }

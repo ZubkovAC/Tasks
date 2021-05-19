@@ -54,12 +54,17 @@ export const Navbar = () => {
             </div>
             }
             {isAuth
-            && <div  className={css.navlink} style={{right: '40px', position: 'fixed'}}>
-                <NavLink to={RoutePath.LOGIN} onClick={onClickHandler}>Logout </NavLink>
+            && <div  className={css.logout}>
+                <button onClick={onClickHandler} >Logout</button>
               </div>
             }
 
             {/*<div className={css.navlink}>*/}
+
+
+            {/*<div  className={css.navlink} style={{right: '40px', position: 'fixed'}}>*/}
+            {/*    <NavLink to={RoutePath.LOGIN} ><button >Logout</button> </NavLink>*/}
+            {/*</div>*/}
             {/*    <NavLink to={RoutePath.NEW_PASSWORD}>Test component</NavLink>*/}
             {/*</div>*/}
         </div>

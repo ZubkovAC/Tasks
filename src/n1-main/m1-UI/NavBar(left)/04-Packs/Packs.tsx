@@ -4,7 +4,6 @@ import {AppStateType} from "../../../m2-BLL/00-store/store";
 import {Block} from "./Block/Block";
 import {HeaderPacks} from "./HeaderPacks/HeaderPacks";
 import {useDispatch, useSelector} from "react-redux";
-import {Pagination} from "../../Common/Pagination/Pagination";
 import {Search} from "./Search/search";
 import {CreatePack} from './CreatePack/CreatePack';
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
@@ -56,10 +55,8 @@ export const Packs = () => {
                 </div>
             </div>
 
-            <CreatePack userID={''}/>
-            <Pagination/>
-
             <div className={css.tableBlock}>
+                <CreatePack userID={''}/>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>

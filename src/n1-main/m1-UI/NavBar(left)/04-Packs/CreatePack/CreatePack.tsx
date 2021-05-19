@@ -1,6 +1,6 @@
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {useDispatch, useSelector} from "react-redux";
-import {addPackTC, getPacksTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {addPackTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
@@ -9,6 +9,7 @@ import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio"
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {Sort} from "../../allComponentPages/SortPack&Card/Sort";
+import {Pagination} from "../../../Common/Pagination/Pagination";
 
 type CreatePackPropsType = {
     userID: string
@@ -19,7 +20,7 @@ export const CreatePack = (props: CreatePackPropsType) => {
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
-    let {type, maxCard} = useSelector((state: AppStateType) => state.packs)
+    let {type} = useSelector((state: AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)
@@ -66,17 +67,8 @@ export const CreatePack = (props: CreatePackPropsType) => {
         setValueRadio(value)
     }
 
-
-    // const SortUp = () => {
-    //     dispatch(getPacksTC(searchCardName, 0, maxCard, '0cardsCount', pagesList, cardPages, ''))
-    // }
-    // const SortDown = () => {
-    //     dispatch(getPacksTC(searchCardName, 0, maxCard, '1cardsCount', pagesList, cardPages, ''))
-    // }
-
-
     return (
-        <div>
+        <div style={{padding:'5px'}}>
             {/*Modal createPack*/}
             <Modal active={active} setActive={SetActive}>
 
@@ -112,7 +104,9 @@ export const CreatePack = (props: CreatePackPropsType) => {
             <span style={{marginLeft: '30%'}}>
                     <Sort userID={props.userID}/>
             </span>
-
+            <span style={{float:"right" }}>
+                <Pagination/>
+            </span>
         </div>
     )
 }

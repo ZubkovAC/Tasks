@@ -8,6 +8,7 @@ const instance = axios.create({
 })
 
 
+
 export const AuthAPI = {
     // forgot(email:string,from:string,message:string = "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='http://localhost:3000/#/newPassword/$token$'>link</a>\n</div>\n"){
         forgot(email:string,from:string,message:string = "\n<div style=\"background-color: lime; padding: 15px\">\npassword recovery link: \n<a href='https://zubkovac.github.io/Tasks/#/newPassword/$token$'>link</a>\n</div>\n"){

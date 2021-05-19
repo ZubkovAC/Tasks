@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
 import {updateAccTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
 import css from './Profile.module.css'
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
@@ -11,19 +10,18 @@ import {TitleModal} from "../../Common/TitleModal/TitleModal";
 import {TableContents} from "../../Common/TableContents/TableContents";
 import {Block} from "../04-Packs/Block/Block";
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {Pagination} from "../../Common/Pagination/Pagination";
 import {CreatePack} from "../04-Packs/CreatePack/CreatePack";
-import { Sort } from "../allComponentPages/SortPack&Card/Sort";
+
 
 export const Profile = () => {
     const dispatch = useDispatch()
-    let {avatar, userName, publicCardPacksCount, isAuth, userID} = useSelector((state: AppStateType) => state.login)
+    let {avatar, userName, publicCardPacksCount, isAuth,me, userID} = useSelector((state: AppStateType) => state.login)
     let {preloader, cardPacks, maxCard} = useSelector((state: AppStateType) => state.packs)
     let {cardPages, pagesList, searchCardName} = useSelector((state: AppStateType) => state.search)
 
     useEffect(() => {
-        if (isAuth) dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, userID))
-    }, [])
+        if (userID!=='0') dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, userID))
+    }, [userID])
 
     const [edit, setEdit] = useState<boolean>(false)
     const [name, setName] = useState<string>(userName)
@@ -78,8 +76,9 @@ export const Profile = () => {
                                 <TitleModal title={userName}/>
 
                             </div>
-                            <h3 style={{color: 'white', display: 'flex', justifyContent: "center", margin: '20px'}}>Card
-                                Pack Count:{publicCardPacksCount}</h3>
+                            <h3 style={{color: 'white', display: 'flex', justifyContent: "center", margin: '20px'}}>
+                                Card Pack Count:{publicCardPacksCount}
+                            </h3>
 
                         </div>
                     </div>
@@ -88,7 +87,6 @@ export const Profile = () => {
 
                 <div className={css.tableProfile}>
                     <CreatePack  userID={userID}/>
-                    <Pagination/>
                     <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'}
                                    actions={'actions'}/>
                     {cardPacks.map(t => {

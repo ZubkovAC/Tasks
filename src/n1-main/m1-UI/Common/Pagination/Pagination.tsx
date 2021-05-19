@@ -10,8 +10,9 @@ export const Pagination = () => {
 
     const dispatch = useDispatch()
 
-    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
+    let  RealCardPacksCount = useSelector<AppStateType,number>(state=>state.packs.RealCardPacksCount)
 
+    let searchCardName =useSelector<AppStateType,string>(state=>state.search.searchCardName)
     let cardPageTotalCount = useSelector<AppStateType,number>((state)=>state.packs.cardPacksTotalCount)   //  1609
     const portionSize = useSelector<AppStateType,number>((state)=>state.search.countSelect)                 //  10
     let cardPages = useSelector<AppStateType,number>((state)=>state.search.cardPages)                     //  9
@@ -44,7 +45,7 @@ export const Pagination = () => {
 
 
     return (
-        <div style={{textAlign:'right'}}>
+        <span style={{textAlign:'right'}}>
 
             {portionNumber > 1
                 ? <SuperButtonOld  title={'PREV'} onClick={() => {setPortionNumber(portionNumber - 1)}}/>
@@ -52,8 +53,8 @@ export const Pagination = () => {
             }
             {pageList
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
-                .map(p => {
-                    return <span key={p}
+                .map((p,index) => {
+                    return <span key={p} style={{display: index*9 < RealCardPacksCount ? '':'none'}}
                                  className={p === pagesList ? css.selectedPage : css.selectedP}
                                  onClick={()=>PagesCount(p)}
                                >{p}-</span>
@@ -63,6 +64,6 @@ export const Pagination = () => {
                 ? <SuperButtonOld title={'NEXT'} onClick={() => {setPortionNumber(portionNumber + 1)}}/>
                 : portionCount <= rightPortionPageNumber-1 && setPortionNumber(1)                // править долго убегает вперед
             }
-        </div>
+        </span>
     )
 }

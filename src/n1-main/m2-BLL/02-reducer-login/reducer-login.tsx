@@ -32,7 +32,8 @@ export const reducerLogin = (state: initialStateType = initialState, action: Act
         case 'LOGIN/CHECK-AUTH':
             return {...state, isAuth: action.isAuth,me:action.me}
         case 'LOGIN/GET-PROFILE':
-            return {...state, avatar: action.avatar, userName: action.userName,userID:action.userID,publicCardPacksCount:action.cardPackCount}
+            return {...state, avatar: action.avatar, userName: action.userName,userID:action.userID,
+                publicCardPacksCount:action.cardPackCount}
         case "LOGIN/TEST-ERROR":
             return {...state, lamp: action.lamp}
         case "LOGIN/UPDATE":
