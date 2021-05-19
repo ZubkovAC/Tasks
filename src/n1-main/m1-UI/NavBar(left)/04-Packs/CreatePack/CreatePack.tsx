@@ -8,20 +8,24 @@ import React, {useState} from "react";
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
+import {Sort} from "../../allComponentPages/SortPack&Card/Sort";
 
+type CreatePackPropsType = {
+    userID: string
+}
 
-export const CreatePack = () => {
+export const CreatePack = (props: CreatePackPropsType) => {
 
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
-    let {type,maxCard} = useSelector((state: AppStateType) => state.packs)
+    let {type, maxCard} = useSelector((state: AppStateType) => state.packs)
 
     // modal position
     const [active, setActive] = useState<boolean>(false)
     // InputText
     const [namePack, setNamePack] = useState<string>('')
-    const [gradeType, setGradeType] = useState<number  >(0)
+    const [gradeType, setGradeType] = useState<number>(0)
 
 
     const [valueRadio, setValueRadio] = useState<string>('false')
@@ -37,7 +41,6 @@ export const CreatePack = () => {
     const craetePackNo = () => {
         setActive(false)
     }
-
 
 
     const craetePackYes = () => {
@@ -57,19 +60,19 @@ export const CreatePack = () => {
         setNamePack(question)
     }
     const packGrade = (type: string) => {
-        if(+type < 6 && +type > -1 ) setGradeType(+type)
+        if (+type < 6 && +type > -1) setGradeType(+type)
     }
     const onChangeChecked = (value: string) => {
         setValueRadio(value)
     }
 
 
-    const SortUp = () => {
-        dispatch(getPacksTC(searchCardName, 0, maxCard, '0cardsCount', pagesList, cardPages, ''))
-    }
-    const SortDown = () => {
-        dispatch(getPacksTC(searchCardName, 0, maxCard, '1cardsCount', pagesList, cardPages, ''))
-    }
+    // const SortUp = () => {
+    //     dispatch(getPacksTC(searchCardName, 0, maxCard, '0cardsCount', pagesList, cardPages, ''))
+    // }
+    // const SortDown = () => {
+    //     dispatch(getPacksTC(searchCardName, 0, maxCard, '1cardsCount', pagesList, cardPages, ''))
+    // }
 
 
     return (
@@ -104,14 +107,10 @@ export const CreatePack = () => {
             <SuperButtonOld
                 title={'Create  Pack'}
                 onClick={CreatePack}/>
+
+
             <span style={{marginLeft: '30%'}}>
-                <SuperButtonOld
-                    title={'v'}
-                    transform={true}
-                    onClick={SortUp}/>
-                <SuperButtonOld
-                    title={'v'}
-                    onClick={SortDown}/>
+                    <Sort userID={props.userID}/>
             </span>
 
         </div>

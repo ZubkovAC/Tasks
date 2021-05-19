@@ -56,12 +56,8 @@ export const Packs = () => {
                 </div>
             </div>
 
-
-            <CreatePack/>
-
+            <CreatePack userID={''}/>
             <Pagination/>
-
-
 
             <div className={css.tableBlock}>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>

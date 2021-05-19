@@ -21,7 +21,7 @@
 
     grid-template:
             "name cardsCount cards rating buttons";
-    grid-template-columns:12% 22% 2% 18% 26% ;
+    grid-template-columns:12% 22% 2% 18% 350px ;
 }
 .cards{
     grid-area: cards;
