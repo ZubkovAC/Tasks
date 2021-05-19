@@ -6,8 +6,8 @@ type TitleModalPropsType ={
 }
 export const TitleModal = (props:TitleModalPropsType) =>{
     return (
-        <div className={css.modalTitle}>
+        <span className={css.modalTitle}>
             {props.title}
-        </div>
+        </span>
     )
 }
