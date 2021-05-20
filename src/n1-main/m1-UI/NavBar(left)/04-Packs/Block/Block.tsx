@@ -20,6 +20,7 @@ export type BlockPropsType = {
     cardsCount: number
     user_id: string
     grade: number
+    update:string
 }
 
 export const Block = (props: BlockPropsType) => {
@@ -48,7 +49,7 @@ export const Block = (props: BlockPropsType) => {
         setActive(false)
     }
     const deletePackYes = () => {
-        dispatch(deletePackTC(props.id, searchCardName, pagesList, cardPages))
+        dispatch(deletePackTC(props.id, searchCardName, pagesList, cardPages,props.update))
         setActive(false)
     }
 
@@ -63,7 +64,7 @@ export const Block = (props: BlockPropsType) => {
         setActiveUpdate(false)
     }
     const UpdatePackYes = () => {
-        dispatch(updatePackTC(props.id,gradeType, inputName, searchCardName, pagesList, cardPages))
+        dispatch(updatePackTC(props.id,gradeType, inputName, searchCardName, pagesList, cardPages,props.update))
         setActiveUpdate(false)
     }
     const packGrade = (type: string) => {
@@ -93,6 +94,7 @@ export const Block = (props: BlockPropsType) => {
                 {/*Update Madal*/}
                 <Modal active={activeUpdate} setActive={SetActiveUpdate}>
                     <TitleModal title={'update name'}/>
+                    <br/>
                     <SuperInputTextOld
                         title={inputName}
                         onChangeText={onChangeName}/>

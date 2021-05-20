@@ -56,12 +56,13 @@ export const Packs = () => {
             </div>
 
             <div className={css.tableBlock}>
-                <CreatePack userID={''}/>
+                <CreatePack userID={''} update={''}/>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>
                     : cardPacks.map(t => {
                         return <Block
+                            update={''}
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}
                             id={t._id}

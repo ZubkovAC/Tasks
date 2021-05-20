@@ -122,11 +122,12 @@ export const Profile = () => {
 
 
                 <div className={css.tableProfile}>
-                    <CreatePack userID={userID}/>
+                    <CreatePack userID={userID} update={userID}/>
                     <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'}
                                    actions={'actions'}/>
                     {cardPacks.map(t => {
                         return <Block
+                            update={userID}
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}
                             id={t._id}

@@ -13,6 +13,7 @@ import {Pagination} from "../../../Common/Pagination/Pagination";
 
 type CreatePackPropsType = {
     userID: string
+    update:string
 }
 
 export const CreatePack = (props: CreatePackPropsType) => {
@@ -47,10 +48,10 @@ export const CreatePack = (props: CreatePackPropsType) => {
     const craetePackYes = () => {
         if (valueRadio === 'false') {
             dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', false, type,
-                searchCardName, pagesList, cardPages))
+                searchCardName, pagesList, cardPages,props.update))
         } else if (valueRadio !== 'false') {
             dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', true, type,
-                searchCardName, pagesList, cardPages))
+                searchCardName, pagesList, cardPages,props.update))
         }
         setNamePack('')
         setActive(false)
