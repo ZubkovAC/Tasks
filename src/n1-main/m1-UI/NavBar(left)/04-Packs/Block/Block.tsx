@@ -23,6 +23,9 @@ export type BlockPropsType = {
     update:string
 }
 
+
+
+
 export const Block = (props: BlockPropsType) => {
 
     const dispatch = useDispatch()
@@ -109,19 +112,18 @@ export const Block = (props: BlockPropsType) => {
                     <SuperButtonOld
                         title={'no'}
                         onClick={UpdatePackNo}/>
-
                 </Modal>
 
                 <div className={css.Table}>
-                    <p className={css.rating}><Grade grade={props.grade}/></p>
-                    <p className={css.cards}>  {props.cardsCount}</p>
-                    <p className={css.name}><h3>{name}</h3></p>
-                    <p className={css.cardsCount}>{props.userName}</p>
-                    <p className={css.buttons}>
+                    <div className={css.rating}><Grade grade={props.grade}/></div>
+                    <div className={css.cards}>{props.cardsCount}</div>
+                    <div className={css.name}>{name}</div>
+                    <div className={css.cardsCount}>{props.userName}</div>
+                    <div className={css.buttons}>
                         <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID} onClick={deletePack}/>
                         <SuperButtonOld title={'Update'} disabled={props.user_id !== userID} onClick={UpdatePack}/>
                         <NavLink to={`/packs/${props.id}`} className={css.Link}>cards</NavLink>
-                    </p>
+                    </div>
                 </div>
 
             </div>

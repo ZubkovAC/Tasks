@@ -40,7 +40,7 @@ export const Packs = () => {
 
     useEffect(() => {
         if (isAuth) dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, ''))
-    }, [me])
+    }, [me,cardPages,dispatch,isAuth,maxCard,pagesList,searchCardName])
 
     if (!isAuth && me) return <Redirect to={'/login'}/>
 

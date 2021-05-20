@@ -33,7 +33,7 @@ export const PackId = () => {
     //pageCount - количество карт
     useEffect(() => {
         if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 999))
-    }, [isAuth])
+    }, [isAuth,dispatch,id])
 
     const SetActiveCard = () => {
         setActiveCard(false)

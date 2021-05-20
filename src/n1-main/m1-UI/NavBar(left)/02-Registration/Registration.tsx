@@ -15,7 +15,7 @@ import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton"
 import {Login} from "../01-Login/Login";
 import {TitleModal} from "../../Common/TitleModal/TitleModal";
 
-//@ts-ignore
+//eslint-disable-next-line
 export const regForEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 export const Registration = React.memo(() => {
@@ -36,10 +36,10 @@ export const Registration = React.memo(() => {
 
     const handleBlurPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setCheckOnBlurPasswordRepeat(true)
-    }, [setCheckOnBlurPassword])
+    }, [])
     const handleBlurPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setCheckOnBlurPassword(true)
-    }, [setCheckOnBlurPassword])
+    }, [])
 
 
     const handleBlurEmail = useCallback((e: React.FormEvent<HTMLInputElement>) => {
@@ -63,17 +63,17 @@ export const Registration = React.memo(() => {
             dispatch(validationPasswordAC(true))
         }
     }, [dispatch])
-    const onChangeHandlerPasswordRepeat = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerPasswordRepeat = (e: React.FormEvent<HTMLInputElement>) => {
         if (e.currentTarget.value.length >= 7) {
             setPasswordRepeat(e.currentTarget.value)
         } else if (!e.currentTarget.onblur) {
 
         }
-    }, [dispatch])
+    }
 
     const onClickHandler = useCallback(() => {
         dispatch(registrationTC(email, password))
-    }, [email, password])
+    }, [email, password,dispatch])
 
     if (isRegistered) {
         return <Login/>
@@ -91,7 +91,7 @@ export const Registration = React.memo(() => {
                     onChange={onChangeHandlerLogin}
                 />
                 <TitleModal title={'your password'}/>
-                {validationPassword && checkOnBlurPassword &&
+                {validationPassword && checkOnBlurPassword && checkOnBlurPasswordRepeat &&
                 <span className={"error"}>At least 7 characters</span>}
 
                 <SuperInputText

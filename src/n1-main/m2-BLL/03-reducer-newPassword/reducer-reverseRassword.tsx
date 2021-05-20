@@ -1,6 +1,5 @@
 import {AuthAPI} from "../../m3-DAL/axios"
 import {Dispatch} from "redux";
-import {lampAC} from "../02-reducer-login/reducer-login";
 
 const reserseInitialState = {
     email: '',

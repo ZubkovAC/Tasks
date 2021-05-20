@@ -14,15 +14,18 @@ import {CreatePack} from "../04-Packs/CreatePack/CreatePack";
 import pencil from '../../Common/Accets/pencil.png'
 import {Modal} from "../../Common/Modal/Modal";
 
+
+const BlockR = React.memo(Block)
+
 export const Profile = () => {
     const dispatch = useDispatch()
-    let {avatar, userName, publicCardPacksCount, isAuth, me, userID} = useSelector((state: AppStateType) => state.login)
+    let {avatar, userName, publicCardPacksCount, isAuth, userID} = useSelector((state: AppStateType) => state.login)
     let {cardPacks, maxCard} = useSelector((state: AppStateType) => state.packs)
     let {cardPages, pagesList, searchCardName} = useSelector((state: AppStateType) => state.search)
 
     useEffect(() => {
         if (userID !== '0') dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, userID))
-    }, [userID])
+    }, [userID,cardPages,dispatch,maxCard , pagesList ,searchCardName])
 
     const [edit, setEdit] = useState<boolean>(false)
     const [modePhoto, setModePhoto] = useState<boolean>(false)
@@ -121,12 +124,12 @@ export const Profile = () => {
                 </div>
 
 
-                <div className={css.tableProfile}>
+                <div  className={css.tableProfile}>
                     <CreatePack userID={userID} update={userID}/>
                     <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'}
                                    actions={'actions'}/>
-                    {cardPacks.map(t => {
-                        return <Block
+                    { cardPacks.map(t => {
+                        return <BlockR
                             update={userID}
                             key={t._id} name={t.name} rating={t.rating}
                             userName={t.user_name} created={t.created}

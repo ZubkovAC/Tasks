@@ -7,8 +7,6 @@ import {
     gradeCardAC
 } from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
 import css from './styleLearnPage.module.css'
-
-
 import {Redirect, useParams} from "react-router-dom";
 import {Flippys} from "../../../Common/Flippy/Flippy";
 import {CardTypeResponce} from "../../../../m3-DAL/axios";
@@ -35,14 +33,11 @@ export const LearnPage = () => {
         return cards[res.id + 1];
     }
 
-
     const [cardForAnswer, setCardForAnswer] = useState(cardArray[0])
     const [finishQuestion, setFinishQuestion] = useState<any>('Для получения ответа нажмите на Карточку')
     const [showAnswer, setShowAnswer] = useState<string>('Для ознакомления функционала нажмите на кнопку LEARN')
     const [answer, setAnswer] = useState<any>('')                    // доп стейт для хранения старых данных
     const [answerP, setAnswerP] = useState<any>('')             // доп стейт для хранения новых данных
-
-
     const [onButton, offButton] = useState<boolean>(true)
 
 
@@ -51,18 +46,14 @@ export const LearnPage = () => {
         if (me) {
             dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
             offButton(true)
-            // setCardForAnswer(getCard(cardArray))
         }
-    }, [me])
+    }, [me,dispatch,id])
     useEffect(()=>{
         if (me){
             OnClickHandlerForShowAnswer()
-            OnClickHandlerForShowAnswer()
             offButton(false)
         }
-    },[me])
-
-
+    },[me]) //eslint-disable-line
 
 
     const onClickHandler = () => {
@@ -84,7 +75,7 @@ export const LearnPage = () => {
         }
     }
 
-    const OnClickHandlerForShowAnswer = () => {
+    const OnClickHandlerForShowAnswer =() => {
         if (onButton && me && cardArray.length !== 0 ){
             setAnswer(answerP)                                  //3.1                        // старое значение новое значение
             setAnswerP(Object.entries(cardForAnswer)[3][1])                 // использую новое значение   old setCardForAnswer

@@ -36,6 +36,8 @@
     text-shadow:  0 0 15px black;
 }
 .name{
+    font-size: 18px;
+    font-weight: 600;
     padding: 5px;
     grid-area: name;
 }

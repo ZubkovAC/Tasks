@@ -1,5 +1,4 @@
 import './App.css';
-
 import {Route, Switch} from "react-router-dom";
 import {Navbar} from "./n1-main/m1-UI/Route/Routes";
 import {TestComponent} from "./n1-main/m1-UI/NavBar(left)/06-TestComponent/TestComponent";
@@ -18,7 +17,7 @@ import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/
 import {LearnPage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/LearnPage/LearnPage";
 import {TableMenu} from "./n1-main/m1-UI/Common/TableContents/TableMenu";
 import {NewPassword} from "./n1-main/m1-UI/NavBar(left)/05-PasswordRecovery/NewPassword";
-import SuperInputText from "./n1-main/m1-UI/Common/InputAndButton/c1-SuperInputText/SuperInputText";
+
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -44,7 +43,7 @@ function App() {
     const dispatch = useDispatch()
     useEffect(()=>{
         if (!isAuth && !me) dispatch(authMeTC())
-    },[])
+    },[dispatch , me ,isAuth])
 
 
 

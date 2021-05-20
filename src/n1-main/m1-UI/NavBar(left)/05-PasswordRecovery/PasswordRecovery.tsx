@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {resPasswordTC} from "../../../m2-BLL/03-reducer-newPassword/reducer-reverseRassword";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
@@ -15,39 +15,16 @@ export const PasswordRecovery = () => {
 
     const dispatch = useDispatch()
     let { redirect, message} = useSelector((state:AppStateType) => state.resPassword)
-
     const [mail, setMail] = useState<string>('nya-admin@nya.nya')
-    const [SplitFlap, setSplitFlap] = useState<boolean>(false)
-    const [pass, setPass] = useState<string>('1qazxcvBG')
-    const [pass1, setPass1] = useState<string>('1qazxcvBG')
 
 
-    const unpdateMail = useCallback((value: string) => {
+    const unpdateMail = (value: string) => {
         setMail(value)
-    }, [mail])
+    }
 
-    const unpdateFirstPassword = useCallback((value: string) => {
-        setPass(value)
-    }, [pass])
-
-    const unpdateLastPassword = useCallback((value: string) => {
-        setPass1(value)
-    }, [setPass1])
-
-    const recoveryMail = useCallback(() => {
-
-            // setSplitFlap(true)
-            dispatch(resPasswordTC(mail, 'hello'))   //alert reducer reverseRassword
-        // if (mail === 'nya-admin@nya.nya') {
-        // } else {
-        //     setSplitFlap(false)
-        // }
-    }, [mail])
-
-    const recoveryPass = useCallback(() => {
-        if (pass === pass1) {
-        }
-    }, [pass, pass1])
+    const recoveryMail = () => {
+            dispatch(resPasswordTC(mail, 'hello'))
+    }
 
     if (redirect) {
         return (

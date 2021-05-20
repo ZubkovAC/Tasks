@@ -88,12 +88,10 @@
 
 .question{
     grid-area:question ;
-    display: flex;
     justify-content: start;
 }
 .answer{
     grid-area:answer ;
-    display: flex;
     justify-content: start;
 }
 .grade{

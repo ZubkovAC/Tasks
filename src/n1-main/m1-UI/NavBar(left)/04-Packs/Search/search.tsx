@@ -22,7 +22,6 @@ export const Search = () => {
 
     // next functional
     const [type, setType] = useState<string>('')
-    const [userEmail, setUserEmail] = useState<string>('')
     //Ok
     const [cardsCountMax, setCardsCountMax] = useState<number>(999)
     const [cardsCountMin, setCardsCountMin] = useState<number>(0)
@@ -56,7 +55,6 @@ export const Search = () => {
         if (e === 'cardsCountMin') setFilterSerch('cardsCountMin')
         if (e === 'UserId') setFilterSerch('UserId')
         setType('')
-        setUserEmail('')
         setName('')
         setUserId('')
         setCardsCountMax(99)

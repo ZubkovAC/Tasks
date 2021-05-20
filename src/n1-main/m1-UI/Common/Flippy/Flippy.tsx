@@ -2,7 +2,6 @@ import React from "react";
 // @ts-ignore
 import Flippy, {FrontSide, BackSide} from 'react-flippy';
 import css from './Flippy.module.css'
-import {cardGradeTC} from "../../../m2-BLL/06-reducer-cards/reducer-cards";
 import { SelectedFluppy } from "./SelectedFlippy";
 
 type FlippysPropsType = {

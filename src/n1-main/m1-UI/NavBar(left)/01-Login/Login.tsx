@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import "./login.css"
 
 import {useDispatch, useSelector} from "react-redux";
@@ -19,7 +19,7 @@ const TitleModalR = React.memo(TitleModal)
 
 
 export const Login =() => {
-    console.log('login')
+
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
@@ -39,27 +39,27 @@ export const Login =() => {
             SetAcc(true)
         }
         dispatch(errorAC(null, false, false))
-    }, [acc, pass, error])
+    }, [acc, pass, error,dispatch])
 
 
-    const onChangeHandlerEmail =useCallback( (e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerEmail = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         SetAcc(false)
         setEmail(e.currentTarget.value)
-    },[email])
+    },[])
 
-    const onChangeHandlerPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerPassword =useCallback((e: React.FormEvent<HTMLInputElement>) => {
         SetPassword(false)
         setPassword(e.currentTarget.value)
-    },[password])
+    },[])
 
     const onChangeHandlerRememberMe = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setRememberMe(e.currentTarget.checked)
-    },[rememberMe])
+    },[])
 
 
-    const onClickHandler = useCallback(() => {
+    const onClickHandler = () => {
         dispatch(loginTC(email, password, rememberMe))
-    }, [])
+    }
 
     if (isAuth) return <Redirect to={'/profile'}/>;
 
