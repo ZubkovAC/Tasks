@@ -5,6 +5,7 @@ type TitleModalPropsType ={
     title:string
 }
 export const TitleModal = (props:TitleModalPropsType) =>{
+
     return (
         <span className={css.modalTitle}>
             {props.title}

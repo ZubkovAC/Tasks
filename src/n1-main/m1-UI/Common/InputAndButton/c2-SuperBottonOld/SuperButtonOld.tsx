@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from "react";
+import React, {ButtonHTMLAttributes, DetailedHTMLProps, useCallback} from "react";
 import s from "./SuperButtonOld.module.css";
 
 // тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
@@ -6,7 +6,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonE
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
     red?: boolean
-    title?:string
+    title:string
     onClick?: (e?:any) => void
     onChange?:any
     password?:string
@@ -36,9 +36,9 @@ const SuperButtonOld: React.FC<SuperButtonPropsType> = (
     }
 
 
-    const onClickButon = () =>{
+    const onClickButon = useCallback( () =>{
         onClick && onClick()
-    }
+    },[])
 
     return (
         <button

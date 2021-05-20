@@ -18,6 +18,7 @@ import {PackId} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/packIDpage/
 import {LearnPage} from "./n1-main/m1-UI/NavBar(left)/allComponentPages/LearnPage/LearnPage";
 import {TableMenu} from "./n1-main/m1-UI/Common/TableContents/TableMenu";
 import {NewPassword} from "./n1-main/m1-UI/NavBar(left)/05-PasswordRecovery/NewPassword";
+import SuperInputText from "./n1-main/m1-UI/Common/InputAndButton/c1-SuperInputText/SuperInputText";
 
 export const RoutePath = {
     HOME_RAGE:'/',
@@ -32,6 +33,9 @@ export const RoutePath = {
     ERROR_404: "/404",
     REDIRECT: '*',
 }
+
+const LoginR = React.memo(Login)
+
 
 function App() {
 
@@ -52,7 +56,7 @@ function App() {
             <div style={{margin: '40px'}}>
                 <Switch>
 
-                    <Route exact path={RoutePath.LOGIN} render={() => <TableMenu children={<Login/>}/>}/>
+                    <Route exact path={RoutePath.LOGIN} render={() => <TableMenu children={<LoginR/>}/>}/>
                     <Route exact path={RoutePath.REGISTRATION} render={() =><TableMenu children={ <Registration/>}/>}/>
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <TableMenu children={<PasswordRecovery/>}/> }/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>

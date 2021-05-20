@@ -10,7 +10,16 @@ import SuperCheckbox from "../../Common/InputAndButton/c3-SuperCheckbox/SuperChe
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
 import {TitleModal} from "../../Common/TitleModal/TitleModal";
 
-export const Login = () => {
+
+const SuperInputTextR = React.memo(SuperInputText)
+const SuperCheckboxR = React.memo(SuperCheckbox)
+const SuperButtonR = React.memo(SuperButton)
+const TitleModalR = React.memo(TitleModal)
+
+
+
+export const Login =() => {
+    console.log('login')
     const dispatch = useDispatch()
     let error = useSelector<AppStateType>(state => state.login.error)
     let isAuth = useSelector<AppStateType>(state => state.login.isAuth)
@@ -33,23 +42,24 @@ export const Login = () => {
     }, [acc, pass, error])
 
 
-    const onChangeHandlerEmail = (e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerEmail =useCallback( (e: React.FormEvent<HTMLInputElement>) => {
         SetAcc(false)
         setEmail(e.currentTarget.value)
-    }
-    const onChangeHandlerPassword = (e: React.FormEvent<HTMLInputElement>) => {
+    },[email])
+
+    const onChangeHandlerPassword = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         SetPassword(false)
         setPassword(e.currentTarget.value)
-    }
+    },[password])
 
-    const onChangeHandlerRememberMe = (e: React.FormEvent<HTMLInputElement>) => {
+    const onChangeHandlerRememberMe = useCallback((e: React.FormEvent<HTMLInputElement>) => {
         setRememberMe(e.currentTarget.checked)
-    }
+    },[rememberMe])
 
 
     const onClickHandler = useCallback(() => {
         dispatch(loginTC(email, password, rememberMe))
-    }, [email, password, rememberMe])
+    }, [])
 
     if (isAuth) return <Redirect to={'/profile'}/>;
 
@@ -57,25 +67,25 @@ export const Login = () => {
     return (
         <div>
 
-            <TitleModal title={'Account'}/>
-            <SuperInputText
+            <TitleModalR title={'Account'}/>
+            <SuperInputTextR
                 error={acc ? 'not valid email' : null}
                 onChange={onChangeHandlerEmail}
                 value={email}
             />
 
-            <TitleModal title={'Password'}/>
-            <SuperInputText
+            <TitleModalR title={'Password'}/>
+            <SuperInputTextR
                 error={pass ? 'not valid password' : null}
                 onChange={onChangeHandlerPassword}
                 type={'password'}
                 value={password}
             />
-            <SuperCheckbox
+            <SuperCheckboxR
                 title={'remember Me'}
                 onClick={onChangeHandlerRememberMe}
                 checked={rememberMe}/>
-            <SuperButton
+            <SuperButtonR
                 onClick={onClickHandler}
                 title={'Login'}/>
             {error && <p className={"error"}>{` attention ${error}`}</p>}
