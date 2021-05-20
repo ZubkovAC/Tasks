@@ -1,8 +1,14 @@
+@font-face {
+    font-family: Monoton;
+    src: url("../../../Common/fonts/Monoton.ttf") format("truetype");
+}
 body {
 
 }
 .App {
-    background-color: #000;
+    font-family: Monoton;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,19 +16,22 @@ body {
     text-align: center;
     font-size: 10rem;
     text-transform: uppercase;
-    font-family: 'Monoton', cursive;
+    /*font-family: 'Monoton', cursive;*/
     word-spacing: 4rem;
     letter-spacing: 13px;
     text-shadow: 0 0 80px red, 0 0 30px FireBrick, 0 0 6px DarkRed;
     position: relative;
     margin-top: 5rem;
+    padding: 100px;
 }
 
 .space {
+    font-family: Monoton;
     padding-right: 4rem;
 }
 
 .R {
+    font-family: Monoton;
     animation-name: blink;
     animation-duration: 11s;
     animation-delay: 4s;
@@ -34,16 +43,20 @@ div span:nth-of-type(2) {
 }
 
 .off {
+    font-family: Monoton;
     color: rgb(105, 8, 8);
     text-shadow: none;
 }
 
-#hangEdge {
+.hangEdge {
+
     display: inline-block;
     animation: hang 5s linear forwards;
-    /* animation-delay: 10s; */
+    animation-delay: 10s;
     margin: 0;
+    transform:rotate(180deg);
 }
+
 
 #hangEdge span {
     animation: slowBlink 15s linear infinite;
