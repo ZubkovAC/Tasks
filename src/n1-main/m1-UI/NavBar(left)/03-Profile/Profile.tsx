@@ -4,23 +4,23 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../m2-BLL/00-store/store";
 import css from './Profile.module.css'
 import {TableContents} from "../../Common/TableContents/TableContents";
-import {Block} from "../04-Packs/Block/Block";
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {CreatePack} from "../04-Packs/CreatePack/CreatePack";
 import {Avatar} from "./Avatar";
+import {CardPacksMapper} from "../04-Packs/Block/CardPacksMapper";
 
 
-const BlockR = React.memo(Block)
+
 const CreatePackR = React.memo(CreatePack)
 
 
 export const Profile = () => {
-    console.log('profile')
+
     const dispatch = useDispatch()
     const {
         search: {cardPages, pagesList, searchCardName},
-        packs: {cardPacks, maxCard},
-        login: { isAuth, userID, publicCardPacksCount}
+        packs: {cardPacks, maxCard, cardPacksTotalCount},
+        login: {isAuth, userID}
     } = useSelector((state: AppStateType) => ({
         search: state.search,
         packs: state.packs,
@@ -31,7 +31,7 @@ export const Profile = () => {
         if (userID !== '0') dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, userID))
     }, [userID, cardPages, dispatch, maxCard, pagesList, searchCardName])
 
-    if (!isAuth) return <Redirect to={'/login'} />
+    if (!isAuth) return <Redirect to={'/login'}/>
     // const cardPacksMapper = useMemo(() => cardPacks.map(t => {
     //     return <BlockR
     //         update={userID}
@@ -50,7 +50,7 @@ export const Profile = () => {
                 <div>
                     <Avatar/>
                     <h3 style={{color: 'white', display: 'flex', justifyContent: "center", margin: '20px'}}>
-                        Card Pack :{publicCardPacksCount}
+                        Card Pack :{cardPacksTotalCount}
                     </h3>
 
                 </div>
@@ -61,17 +61,7 @@ export const Profile = () => {
                 <CreatePackR userID={userID} update={userID}/>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'}
                                actions={'actions'}/>
-                {cardPacks.map(t => {
-                    return <BlockR
-                        update={userID}
-                        key={t._id} name={t.name} rating={t.rating}
-                        userName={t.user_name} created={t.created}
-                        id={t._id}
-                        user_id={t.user_id}
-                        cardsCount={t.cardsCount}
-                        grade={t.grade}
-                    />
-                })}
+                <CardPacksMapper userID={userID} cardPacks={cardPacks}/>
             </div>
 
         </div>

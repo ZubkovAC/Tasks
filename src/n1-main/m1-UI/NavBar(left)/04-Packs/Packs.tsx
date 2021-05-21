@@ -1,7 +1,6 @@
 import css from './Packs.module.css'
 import React, {useEffect} from 'react';
 import {AppStateType} from "../../../m2-BLL/00-store/store";
-import {Block} from "./Block/Block";
 import {HeaderPacks} from "./HeaderPacks/HeaderPacks";
 import {useDispatch, useSelector} from "react-redux";
 import {Search} from "./Search/search";
@@ -11,6 +10,7 @@ import {Redirect} from "react-router-dom";
 import {CardPackType} from "../../../m3-DAL/axios";
 import {TitleModal} from "../../Common/TitleModal/TitleModal";
 import {TableContents} from "../../Common/TableContents/TableContents";
+import { CardPacksMapper } from './Block/CardPacksMapper';
 
 
 type PackSelectorType ={
@@ -22,6 +22,7 @@ type PackSelectorType ={
 type LoginSelectorType = {
     me:boolean
     isAuth:boolean
+    userID:string
 }
 
 type SearchSelectorType ={
@@ -29,11 +30,11 @@ type SearchSelectorType ={
     pagesList:number
     searchCardName:string
 }
-
+const CardPacksMapperR = React.memo(CardPacksMapper)
 export const Packs = () => {
 
     const dispatch = useDispatch()
-    let {me, isAuth} = useSelector<AppStateType,LoginSelectorType>(state => state.login)
+    let {me, isAuth,userID} = useSelector<AppStateType,LoginSelectorType>(state => state.login)
     let {cardPages, pagesList, searchCardName} = useSelector<AppStateType,SearchSelectorType>(state => state.search)
     let {preloader, cardPacks,maxCard} = useSelector<AppStateType,PackSelectorType>(state => state.packs)
 
@@ -60,17 +61,8 @@ export const Packs = () => {
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>
-                    : cardPacks.map(t => {
-                        return <Block
-                            update={''}
-                            key={t._id} name={t.name} rating={t.rating}
-                            userName={t.user_name} created={t.created}
-                            id={t._id}
-                            user_id={t.user_id}
-                            cardsCount={t.cardsCount}
-                            grade={t.grade}
-                        />
-                    })}
+                    : <CardPacksMapperR userID={userID} cardPacks={cardPacks}/>
+                }
             </div>
         </div>
     )

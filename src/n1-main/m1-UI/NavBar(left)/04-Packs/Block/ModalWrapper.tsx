@@ -9,33 +9,26 @@ import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextO
 
 type ModalWrapperPropsType = {
     modalType:string
-    userName:string
+    name:string
     id:string
-    update:string
+    updateID:string
     setModalType:any
 }
 
 
-export const ModalWrapper = ({modalType, userName, id, update, setModalType}: ModalWrapperPropsType) => {
+export const ModalWrapper = ({modalType, name, id, updateID, setModalType}: ModalWrapperPropsType) => {
     const dispatch = useDispatch()
-
     let {cardPages, pagesList, searchCardName} = useSelector((state: AppStateType) => state.search)
-    const [inputName, setInputName] = useState<string>(userName)
+    const [inputName, setInputName] = useState<string>(name)
     const [gradeType, setGradeType] = useState<number  >(0)
 
-    const SetActiveUpdate = () => {
-        setModalType('')
-    }
+
     const UpdatePack = (yes?: boolean) => {
-        if (yes) {
-            dispatch(updatePackTC(id,gradeType, inputName, searchCardName, pagesList, cardPages,update))
-        }
+        if (yes) dispatch(updatePackTC(id,gradeType, inputName, searchCardName, pagesList, cardPages,updateID))
         setModalType('')
     }
     const deletePack = (yes?: boolean) => {
-        if (yes) {
-            dispatch(deletePackTC(id, searchCardName, pagesList, cardPages, id))
-        }
+        if (yes) dispatch(deletePackTC(id, searchCardName, pagesList, cardPages, updateID  ))
         setModalType('')
     }
     const packGrade = (type: string) => {
@@ -50,13 +43,19 @@ export const ModalWrapper = ({modalType, userName, id, update, setModalType}: Mo
         <Modal active={true} setActive={() => setModalType('')}>
             <TitleModal title={'Are you sure you want to delete it?'}/>
             <div style={{float: 'right'}}>
-                <SuperButtonOld title={'yes'} onClick={() => deletePack(true)}/>
-                <SuperButtonOld title={'no'} onClick={() => deletePack()}/>
+                <SuperButtonOld
+                    title={'yes'}
+                    onClick={() => deletePack(true)}
+                />
+                <SuperButtonOld
+                    title={'no'}
+                    onClick={() => deletePack()}
+                />
             </div>
         </Modal>
 
     ) : (
-        <Modal active={true} setActive={SetActiveUpdate}>
+        <Modal active={true} setActive={()=>setModalType('')}>
             <TitleModal title={'update name'}/>
             <br/>
             <SuperInputTextOld

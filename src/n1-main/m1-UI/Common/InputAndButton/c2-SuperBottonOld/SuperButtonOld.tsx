@@ -17,7 +17,6 @@ type SuperButtonPropsType = DefaultButtonPropsType & {
 
 
 const SuperButtonOld =  ({red, className,title,disabled, onChange,onClick,transform, ...restProps}:SuperButtonPropsType) => {
-    console.log('button')
 
     const DisabledTrue = {
         backgroundColor:'grey',
@@ -25,7 +24,6 @@ const SuperButtonOld =  ({red, className,title,disabled, onChange,onClick,transf
     const DisabledFalse = {
         backgroundColor:'wheat',
     }
-
 
     const onClickButon = useCallback( () =>{
         onClick && onClick()

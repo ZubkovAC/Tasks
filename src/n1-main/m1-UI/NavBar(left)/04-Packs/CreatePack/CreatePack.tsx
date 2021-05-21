@@ -17,7 +17,7 @@ type CreatePackPropsType = {
 }
 
 export const CreatePack = (props: CreatePackPropsType) => {
-    console.log('createPack')
+
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
