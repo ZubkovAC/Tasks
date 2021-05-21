@@ -60,7 +60,7 @@ function App() {
                     <Route exact path={RoutePath.PASSWORD_RECOVERY} render={() => <TableMenu children={<PasswordRecovery/>}/> }/>
                     <Route exact path={RoutePath.PACKS} render={() => <Packs/>}/>
                     <Route exact path={RoutePath.PROFILE} render={() => <Profile/>}/>
-                    <Route exact path={RoutePath.HOME_RAGE} render={() => <HomePage/>}/>
+                    <Route exact path={RoutePath.HOME_RAGE} render={() =><HomePage/>}/>
                     <Route exact path={RoutePath.TEST_COMPONENT} render={() => <TestComponent/>}/>
                     <Route exact path={RoutePath.LEARN+ '/:id'} render={() => <LearnPage/>}/>
 

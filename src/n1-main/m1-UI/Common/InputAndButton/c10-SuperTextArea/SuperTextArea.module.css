@@ -1,3 +1,14 @@
+@font-face {
+    font-family: Panda;
+    src: url("../../fonts/KungFuPanda.otf") format("opentype");
+    font-family: PandaRU;
+    src: url("../../fonts/KungRU.otf") format("opentype");
+    font-family: RussoOne;
+    src: url("../../fonts/RussoOne.ttf") format("truetype");
+}
 .textArea{
+    font-family:RussoOne, Panda,PandaRU;
     margin:10px;
+    font-weight: 400;
+    font-size: 20px;
 }

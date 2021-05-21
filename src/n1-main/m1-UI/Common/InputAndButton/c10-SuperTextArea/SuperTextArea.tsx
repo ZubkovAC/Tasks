@@ -14,7 +14,7 @@ export const SuperTextArea = (props:SuperTextAreaPropsType) =>{
     const onText =(e:any)=>{
         props.onChangeText && props.onChangeText(e)
     }
-    let width =props.width
+    let width =props.width?props.width : '18px'
     let heigth =props.heigth
     let backgroundColor =props.backgroundColor
     return (
@@ -24,7 +24,7 @@ export const SuperTextArea = (props:SuperTextAreaPropsType) =>{
                     width:width,
                     height:heigth,
                     backgroundColor:backgroundColor,
-                    outline:"none", fontSize:'16px',padding:'3px',borderRadius:'5px'}}
+                    outline:"none", fontSize:'20px',padding:'3px',borderRadius:'5px',fontWeight:600}}
                 value={props.valueStart}
                 onChange={e=>onText(e.currentTarget.value)}
                 placeholder={props.placeholder}/>
