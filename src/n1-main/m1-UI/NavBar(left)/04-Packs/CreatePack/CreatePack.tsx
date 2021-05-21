@@ -4,7 +4,7 @@ import {addPackTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-pac
 import {AppStateType} from "../../../../m2-BLL/00-store/store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import SuperRadio from "../../../Common/InputAndButton/c6-SuperRadio/SuperRadio";
 import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/SuperTextArea";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
@@ -17,7 +17,7 @@ type CreatePackPropsType = {
 }
 
 export const CreatePack = (props: CreatePackPropsType) => {
-
+    console.log('createPack')
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
@@ -45,7 +45,7 @@ export const CreatePack = (props: CreatePackPropsType) => {
     }
 
 
-    const craetePackYes = () => {
+    const craetePackYes =useCallback( () => {
         if (valueRadio === 'false') {
             dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', false, type,
                 searchCardName, pagesList, cardPages,props.update))
@@ -55,7 +55,7 @@ export const CreatePack = (props: CreatePackPropsType) => {
         }
         setNamePack('')
         setActive(false)
-    }
+    },[props.update,dispatch,type,cardPages,gradeType,namePack,pagesList,searchCardName,valueRadio])
 
     const TextCreatePack = (question: string) => {
         dispatch(textCreateNamePackAC(question))
