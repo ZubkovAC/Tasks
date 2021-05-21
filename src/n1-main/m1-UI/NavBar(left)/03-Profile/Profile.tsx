@@ -6,9 +6,8 @@ import css from './Profile.module.css'
 import {TableContents} from "../../Common/TableContents/TableContents";
 import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
 import {CreatePack} from "../04-Packs/CreatePack/CreatePack";
-import {Avatar} from "./Avatar";
+import {Avatar} from "./Avatar/Avatar";
 import {CardPacksMapper} from "../04-Packs/Block/CardPacksMapper";
-
 
 
 const CreatePackR = React.memo(CreatePack)
@@ -31,31 +30,17 @@ export const Profile = () => {
         if (userID !== '0') dispatch(getPacksTC(searchCardName, 0, maxCard, '0updated', pagesList, cardPages, userID))
     }, [userID, cardPages, dispatch, maxCard, pagesList, searchCardName])
 
+
     if (!isAuth) return <Redirect to={'/login'}/>
-    // const cardPacksMapper = useMemo(() => cardPacks.map(t => {
-    //     return <BlockR
-    //         update={userID}
-    //         key={t._id} name={t.name} rating={t.rating}
-    //         userName={t.user_name} created={t.created}
-    //         id={t._id}
-    //         user_id={t.user_id}
-    //         cardsCount={t.cardsCount}
-    //         grade={t.grade}
-    //     />
-    // }),[cardPacks, userID])
 
     return (
         <div className={css.Profile}>
             <div className={css.profile_img}>
-                <div>
-                    <Avatar/>
-                    <h3 style={{color: 'white', display: 'flex', justifyContent: "center", margin: '20px'}}>
-                        Card Pack :{cardPacksTotalCount}
-                    </h3>
-
-                </div>
+                <Avatar />
+                <h3 style={{color: 'white', display: 'flex', justifyContent: "center", margin: '20px'}}>
+                    Card Pack :{cardPacksTotalCount}
+                </h3>
             </div>
-
 
             <div className={css.tableProfile}>
                 <CreatePackR userID={userID} update={userID}/>

@@ -22,7 +22,6 @@ type PackSelectorType ={
 type LoginSelectorType = {
     me:boolean
     isAuth:boolean
-    userID:string
 }
 
 type SearchSelectorType ={
@@ -30,11 +29,11 @@ type SearchSelectorType ={
     pagesList:number
     searchCardName:string
 }
-const CardPacksMapperR = React.memo(CardPacksMapper)
+
 export const Packs = () => {
 
     const dispatch = useDispatch()
-    let {me, isAuth,userID} = useSelector<AppStateType,LoginSelectorType>(state => state.login)
+    let {me, isAuth} = useSelector<AppStateType,LoginSelectorType>(state => state.login)
     let {cardPages, pagesList, searchCardName} = useSelector<AppStateType,SearchSelectorType>(state => state.search)
     let {preloader, cardPacks,maxCard} = useSelector<AppStateType,PackSelectorType>(state => state.packs)
 
@@ -61,7 +60,7 @@ export const Packs = () => {
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>
-                    : <CardPacksMapperR userID={userID} cardPacks={cardPacks}/>
+                    : <CardPacksMapper userID={''} cardPacks={cardPacks}/>
                 }
             </div>
         </div>

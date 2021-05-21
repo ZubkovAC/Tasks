@@ -22,7 +22,6 @@ export const ModalWrapper = ({modalType, name, id, updateID, setModalType}: Moda
     const [inputName, setInputName] = useState<string>(name)
     const [gradeType, setGradeType] = useState<number  >(0)
 
-
     const UpdatePack = (yes?: boolean) => {
         if (yes) dispatch(updatePackTC(id,gradeType, inputName, searchCardName, pagesList, cardPages,updateID))
         setModalType('')
