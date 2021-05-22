@@ -48,17 +48,23 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             textaAlign: 'center',
                         }}
                     >
-                        < span style={{color:'wheat'}}>Answer:</span>
+                        < div style={{color:'lightgreen'}}>Quistion:</div>
+                        <div style={{marginTop: '20px',color:'wheat'}}>
+                            {this.props.finishQuestion}
+                        </div>
+                        < span style={{color:'lightgreen'}}>Answer:</span>
 
-                        <div style={{display: this.props.button ? 'none' : '', marginTop: '20px',height: 'inherit', color:'lightgreen'}}>
+                        <div style={{display: this.props.button ? 'none' : '', marginTop: '20px',height: 'inherit', color:'wheat'}}>
 
                             {this.props.answer}
                             {this.props.showAnswer === 'Для ознакомления функционала нажмите на кнопку LEARN' ? this.props.showAnswer : ''}
                             {this.props.showAnswer === 'Здесь будет написан Ответ(После нажатия на карточку). Для начала нажмите кнопку LEARN' ? this.props.showAnswer : ''}
                         </div>
-                        <div style={{display: this.props.button ? 'none' : '',}}>
+
+
+                        <span style={{display: this.props.button ? 'none' : '',}}>
                             <SelectedFluppy />
-                        </div >
+                        </span >
 
                     </FrontSide>
                 </div>
@@ -84,9 +90,8 @@ export class Flippys extends React.Component<FlippysPropsType> {
                             flexDirection: 'column',
                             textaAlign: 'center',
                         }}>
-                        < span style={{color:'lightgreen'}}>Quistion:</span>
+                        < div style={{color:'lightgreen'}}>Quistion:</div>
                         <div style={{marginTop: '20px',color:'wheat'}}>
-                            {this.props.answer}
                             {this.props.finishQuestion}
                         </div>
 

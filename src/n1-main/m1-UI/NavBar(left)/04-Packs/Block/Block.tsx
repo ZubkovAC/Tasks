@@ -24,6 +24,7 @@ export type BlockPropsType = {
 export const Block = (props: BlockPropsType) => {
     let {userID} = useSelector((state:AppStateType) => state.login)
 
+
     const [modalType, setModalType] = useState<string>('')
     let name = props.name.substr(0, 15)
     return (
@@ -50,8 +51,13 @@ export const Block = (props: BlockPropsType) => {
 
                     </div>
                     <div className={css.LinkPosiiton}>
-                        <NavLink to={RoutePath.PACKS+`/${props.id}`} className={css.Link}>cards</NavLink>
-                        <NavLink to={RoutePath.LEARN+`/${props.id}`} className={css.Link}>learn</NavLink>
+                        <NavLink to={RoutePath.PACKS+`/${props.id}`} className={css.Link}>
+                            cards
+                        </NavLink>
+                        <NavLink to={RoutePath.LEARN+`/${props.id}`} className={props.cardsCount? css.Link : css.LinkDisable}
+                                 >
+                            learn
+                        </NavLink>
                     </div>
                 </div>
             </div>
