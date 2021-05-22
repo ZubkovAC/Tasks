@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
-import {deletePackTC, updatePackTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {AppStateType} from "../../../../m2-BLL/00-store";
+import {deletePackTC, updatePackTC} from "../../../../m2-BLL/Packs-reducer";
 import {Modal} from "../../../Common/Modal/Modal";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";

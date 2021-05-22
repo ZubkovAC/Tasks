@@ -2,8 +2,8 @@ import React, {useCallback, useState} from "react";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../m2-BLL/00-store/store";
-import {newPasswordTC, validationPasswordAC} from "../../../m2-BLL/01-reduser1/registration-reducer";
+import {AppStateType} from "../../../m2-BLL/00-store";
+import {newPasswordTC, validationPasswordAC} from "../../../m2-BLL/Registration-reducer";
 import {useParams} from "react-router-dom";
 import {TitleModal} from "../../Common/TitleModal/TitleModal";
 

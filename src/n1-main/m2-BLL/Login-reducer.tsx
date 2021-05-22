@@ -1,4 +1,4 @@
-import {AuthAPI} from "../../m3-DAL/axios"
+import {AuthAPI} from "../m3-DAL/axios"
 import {Dispatch} from "redux";
 
 
@@ -18,7 +18,7 @@ const initialState = {
     publicCardPacksCount:0
 }
 
-export const reducerLogin = (state: initialStateType = initialState, action: ActionLoginType): initialStateType => {
+export const loginReducer = (state: initialStateType = initialState, action: ActionLoginType): initialStateType => {
     switch (action.type) {
         case "LOGIN/LOGIN":
             return {

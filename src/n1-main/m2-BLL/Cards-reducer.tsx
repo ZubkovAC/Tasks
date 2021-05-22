@@ -1,8 +1,8 @@
 import {Dispatch} from "redux";
-import {CardsAPI, CardTypeResponce, CreateCardType} from "../../m3-DAL/axios";
-import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
+import {CardsAPI, CardTypeResponce, CreateCardType} from "../m3-DAL/axios";
+import {ActionLoginType, lampAC} from "./Login-reducer";
 import {ThunkDispatch} from "redux-thunk";
-import {AppStateType} from "../00-store/store";
+import {AppStateType} from "./00-store";
 
 const initialState = {
     cardArray:[] as CardTypeResponce[],

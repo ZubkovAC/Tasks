@@ -1,7 +1,7 @@
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {useDispatch, useSelector} from "react-redux";
-import {addPackTC, textCreateNamePackAC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {addPackTC, textCreateNamePackAC} from "../../../../m2-BLL/Packs-reducer";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import {Modal} from "../../../Common/Modal/Modal";
 import React, {useCallback, useState} from "react";
@@ -13,19 +13,19 @@ import {Pagination} from "../../../Common/Pagination/Pagination";
 
 type CreatePackPropsType = {
     userID: string
-    update:string
+    update: string
 }
 
-export const CreatePack = (props: CreatePackPropsType) => {
+export const HeaderTablePack = (props: CreatePackPropsType) => {
 
     const dispatch = useDispatch()
 
     let {searchCardName, pagesList, cardPages} = useSelector((state: AppStateType) => state.search)
     let {type} = useSelector((state: AppStateType) => state.packs)
 
-    // modal position
+
     const [active, setActive] = useState<boolean>(false)
-    // InputText
+
     const [namePack, setNamePack] = useState<string>('')
     const [gradeType, setGradeType] = useState<number>(0)
 
@@ -33,29 +33,17 @@ export const CreatePack = (props: CreatePackPropsType) => {
     const [valueRadio, setValueRadio] = useState<string>('false')
 
 
-    const SetActive = () => {
-        setActive(false)
-    }
-
-    const CreatePack = () => {
-        setActive(true)
-    }
-    const craetePackNo = () => {
-        setActive(false)
-    }
-
-
-    const craetePackYes =useCallback( () => {
+    const craetePackYes = useCallback(() => {
         if (valueRadio === 'false') {
             dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', false, type,
-                searchCardName, pagesList, cardPages,props.update))
+                searchCardName, pagesList, cardPages, props.update))
         } else if (valueRadio !== 'false') {
             dispatch(addPackTC(namePack, '', gradeType, 0, 0, '', true, type,
-                searchCardName, pagesList, cardPages,props.update))
+                searchCardName, pagesList, cardPages, props.update))
         }
         setNamePack('')
         setActive(false)
-    },[props.update,dispatch,type,cardPages,gradeType,namePack,pagesList,searchCardName,valueRadio])
+    }, [props.update, dispatch, type, cardPages, gradeType, namePack, pagesList, searchCardName, valueRadio])
 
     const TextCreatePack = (question: string) => {
         dispatch(textCreateNamePackAC(question))
@@ -68,10 +56,11 @@ export const CreatePack = (props: CreatePackPropsType) => {
         setValueRadio(value)
     }
 
+
     return (
-        <div style={{padding:'5px'}}>
+        <div style={{padding: '5px',justifyContent:"space-between",display:"flex"}}>
             {/*Modal createPack*/}
-            <Modal active={active} setActive={SetActive}>
+            <Modal active={active} setActive={() => setActive(false)}>
 
                 <TitleModal title={'Create'}/>
                 <SuperTextArea width={'250px'} heigth={'75px'} backgroundColor={'wheat'}
@@ -94,18 +83,17 @@ export const CreatePack = (props: CreatePackPropsType) => {
                     onClick={craetePackYes}/>
                 <SuperButtonOld
                     title={'no'}
-                    onClick={craetePackNo}/>
+                    onClick={() => setActive(false)}/>
             </Modal>
 
             <SuperButtonOld
                 title={'Create  Pack'}
-                onClick={CreatePack}/>
+                onClick={() => setActive(true)}/>
 
-
-            <span style={{marginLeft: '30%'}}>
+            <span >
                     <Sort userID={props.userID}/>
             </span>
-            <span style={{float:"right" }}>
+            <span style={{float: "right"}}>
                 <Pagination/>
             </span>
         </div>

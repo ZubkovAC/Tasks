@@ -6,9 +6,9 @@ import {
     registrationTC,
     validationEmailAC,
     validationPasswordAC
-} from "../../../m2-BLL/01-reduser1/registration-reducer";
+} from "../../../m2-BLL/Registration-reducer";
 
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../m2-BLL/00-store";
 import {Preloader} from "../../Common/Accets/Preloader";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";

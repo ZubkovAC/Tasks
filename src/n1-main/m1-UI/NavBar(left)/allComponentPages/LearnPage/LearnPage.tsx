@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import {
     cardGradeTC,
     getCardsTC,
     gradeCardAC
-} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+} from "../../../../m2-BLL/Cards-reducer";
 import css from './styleLearnPage.module.css'
 import {Redirect, useParams} from "react-router-dom";
 import {Flippys} from "../../../Common/Flippy/Flippy";
@@ -42,9 +42,10 @@ export const LearnPage = () => {
 
 
     let {id} = useParams<{id:string}>()
+
     useEffect(() => {
         if (me) {
-            dispatch(getCardsTC('', '', id, 1, 4, '', 1, 7))
+            dispatch(getCardsTC('', '', id, 1, 4, '', 1, 999))
             offButton(true)
         }
     }, [me,dispatch,id])

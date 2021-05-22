@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import {ModePhoto} from "./ModePhoto";
 import {ModeUserName} from "./ModeUserName";
 

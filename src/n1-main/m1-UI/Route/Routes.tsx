@@ -3,9 +3,9 @@ import {NavLink} from "react-router-dom";
 import {RoutePath} from "../../../App";
 import css from './Routes.module.css'
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../m2-BLL/00-store/store";
+import {AppStateType} from "../../m2-BLL/00-store";
 
-import {logoutTC} from "../../m2-BLL/02-reducer-login/reducer-login";
+import {logoutTC} from "../../m2-BLL/Login-reducer";
 
 export const Navbar = () => {
 

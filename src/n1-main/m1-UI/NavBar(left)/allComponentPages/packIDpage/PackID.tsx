@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {createCardTC, getCardsTC,} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {createCardTC, getCardsTC,} from "../../../../m2-BLL/Cards-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import css from './PackID.module.css'
@@ -14,11 +14,10 @@ import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {TableContents} from "../../../Common/TableContents/TableContents";
 
 
-
 export const PackId = () => {
 
     const {isAuth, userID} = useSelector((state: AppStateType) => state.login)
-    const {cardArray,packUserId} = useSelector((state:AppStateType) => state.cards)
+    const {cardArray, packUserId} = useSelector((state: AppStateType) => state.cards)
     const dispatch = useDispatch()
 
     let {id} = useParams<{ id: string }>()
@@ -33,11 +32,8 @@ export const PackId = () => {
     //pageCount - количество карт
     useEffect(() => {
         if (isAuth) dispatch(getCardsTC('', '', id, 1, 4, '', 1, 999))
-    }, [isAuth,dispatch,id])
+    }, [isAuth, dispatch, id])
 
-    const SetActiveCard = () => {
-        setActiveCard(false)
-    }
 
     const questionCreateCard = (value: string) => {
         setQuestion(value)
@@ -79,7 +75,7 @@ export const PackId = () => {
             <div className={css.box_button}>
 
                 {/*create modal*/}
-                <Modal active={activeCard} setActive={SetActiveCard}>
+                <Modal active={activeCard} setActive={() => setActiveCard(false)}>
                     <TitleModal title={'Create'}/>
                     <SuperTextArea width={'350px'} heigth={'100px'} backgroundColor={'wheat'}
                                    onChangeText={questionCreateCard} valueStart={question}
@@ -116,7 +112,7 @@ export const PackId = () => {
                     grade={'grade'}
                     actions={'actions'}
                 />
-                <p></p>
+
                 {cardArray.map(card => {
 
                     return (

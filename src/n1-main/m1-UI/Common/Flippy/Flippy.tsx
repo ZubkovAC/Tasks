@@ -86,6 +86,7 @@ export class Flippys extends React.Component<FlippysPropsType> {
                         }}>
                         < span style={{color:'lightgreen'}}>Quistion:</span>
                         <div style={{marginTop: '20px',color:'wheat'}}>
+                            {this.props.answer}
                             {this.props.finishQuestion}
                         </div>
 

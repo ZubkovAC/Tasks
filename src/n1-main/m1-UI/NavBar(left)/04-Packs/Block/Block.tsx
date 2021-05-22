@@ -3,9 +3,10 @@ import React, {useState} from "react";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {NavLink} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import {Grade} from "./Grade";
 import {ModalWrapper} from './ModalWrapper';
+import {RoutePath} from "../../../../../App";
 
 
 export type BlockPropsType = {
@@ -46,7 +47,11 @@ export const Block = (props: BlockPropsType) => {
                     <div className={css.buttons}>
                         <SuperButtonOld title={'Delete'} disabled={props.user_id !== userID} onClick={() => setModalType('delete')}/>
                         <SuperButtonOld title={'Update'} disabled={props.user_id !== userID} onClick={() => setModalType('Update')}/>
-                        <NavLink to={`/packs/${props.id}`} className={css.Link}>cards</NavLink>
+
+                    </div>
+                    <div className={css.LinkPosiiton}>
+                        <NavLink to={RoutePath.PACKS+`/${props.id}`} className={css.Link}>cards</NavLink>
+                        <NavLink to={RoutePath.LEARN+`/${props.id}`} className={css.Link}>learn</NavLink>
                     </div>
                 </div>
             </div>

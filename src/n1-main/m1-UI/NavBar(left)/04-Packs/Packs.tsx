@@ -1,11 +1,11 @@
 import css from './Packs.module.css'
 import React, {useEffect} from 'react';
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../m2-BLL/00-store";
 import {HeaderPacks} from "./HeaderPacks/HeaderPacks";
 import {useDispatch, useSelector} from "react-redux";
 import {Search} from "./Search/search";
-import {CreatePack} from './CreatePack/CreatePack';
-import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {HeaderTablePack} from './HeaderTable/HeaderTablePack';
+import {getPacksTC} from "../../../m2-BLL/Packs-reducer";
 import {Redirect} from "react-router-dom";
 import {CardPackType} from "../../../m3-DAL/axios";
 import {TitleModal} from "../../Common/TitleModal/TitleModal";
@@ -56,7 +56,7 @@ export const Packs = () => {
             </div>
 
             <div className={css.tableBlock}>
-                <CreatePack userID={''} update={''}/>
+                <HeaderTablePack userID={''} update={''}/>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'} actions={'actions'}/>
                 {preloader
                     ? <TitleModal title={'loading...'}/>

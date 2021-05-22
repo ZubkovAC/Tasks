@@ -1,7 +1,7 @@
-import {CardPackType, PacksAPI} from "../../m3-DAL/axios"
+import {CardPackType, PacksAPI} from "../m3-DAL/axios"
 import {Dispatch} from "redux";
-import {ActionLoginType, lampAC} from "../02-reducer-login/reducer-login";
-import {AppStateType} from "../00-store/store";
+import {ActionLoginType, lampAC} from "./Login-reducer";
+import {AppStateType} from "./00-store";
 import {ThunkDispatch} from "redux-thunk";
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
     RealCardPacksCount:0
 }
 
-export const reducerPacks = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
+export const packsReducer = (state: initialStateType = initialState, action: ActionPackType): initialStateType => {
     switch (action.type) {
         case "PACKS/GET-PACKS":
             return {

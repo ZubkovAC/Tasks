@@ -1,6 +1,6 @@
-import {AuthAPI} from "../../m3-DAL/axios";
+import {AuthAPI} from "../m3-DAL/axios";
 import {Dispatch} from "redux";
-import {lampAC} from "../02-reducer-login/reducer-login";
+import {lampAC} from "./Login-reducer";
 
 let initialState = {
     isRegistered: false,

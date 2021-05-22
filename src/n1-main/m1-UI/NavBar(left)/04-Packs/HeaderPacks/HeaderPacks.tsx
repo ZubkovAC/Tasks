@@ -1,9 +1,9 @@
 import css from './HeaderPack.module.css'
 import React from 'react';
 import SuperButtonOld from '../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld';
-import {getPacksTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
+import {getPacksTC} from "../../../../m2-BLL/Packs-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 
 type PackSelectorType={

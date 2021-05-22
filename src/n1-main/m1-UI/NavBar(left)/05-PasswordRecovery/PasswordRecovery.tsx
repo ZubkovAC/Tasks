@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {resPasswordTC} from "../../../m2-BLL/03-reducer-newPassword/reducer-reverseRassword";
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {resPasswordTC} from "../../../m2-BLL/ReverseRassword-reducer";
+import {AppStateType} from "../../../m2-BLL/00-store";
 import {Redirect} from "react-router-dom";
 import {RoutePath} from "../../../../App";
 import SuperInputTextOld from "../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";

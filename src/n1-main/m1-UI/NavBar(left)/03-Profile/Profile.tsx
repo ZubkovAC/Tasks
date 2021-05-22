@@ -1,16 +1,16 @@
 import React, {useEffect} from "react";
 import {Redirect} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../m2-BLL/00-store";
 import css from './Profile.module.css'
 import {TableContents} from "../../Common/TableContents/TableContents";
-import {getPacksTC} from "../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {CreatePack} from "../04-Packs/CreatePack/CreatePack";
+import {getPacksTC} from "../../../m2-BLL/Packs-reducer";
+import {HeaderTablePack} from "../04-Packs/HeaderTable/HeaderTablePack";
 import {Avatar} from "./Avatar/Avatar";
 import {CardPacksMapper} from "../04-Packs/Block/CardPacksMapper";
 
 
-const CreatePackR = React.memo(CreatePack)
+const HeaderTablePackR = React.memo(HeaderTablePack)
 
 
 export const Profile = () => {
@@ -43,7 +43,7 @@ export const Profile = () => {
             </div>
 
             <div className={css.tableProfile}>
-                <CreatePackR userID={userID} update={userID}/>
+                <HeaderTablePackR userID={userID} update={userID}/>
                 <TableContents name={'Name'} packUserName={'packUserName'} grade={'grade | rating'}
                                actions={'actions'}/>
                 <CardPacksMapper userID={userID} cardPacks={cardPacks}/>

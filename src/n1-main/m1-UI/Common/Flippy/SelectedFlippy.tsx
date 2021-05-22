@@ -1,8 +1,8 @@
 import React from "react";
-import { gradeCardAC} from "../../../m2-BLL/06-reducer-cards/reducer-cards";
+import { gradeCardAC} from "../../../m2-BLL/Cards-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import SuperRadio from "../InputAndButton/c6-SuperRadio/SuperRadio";
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../m2-BLL/00-store";
 
 
 export const SelectedFluppy = () => {

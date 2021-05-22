@@ -1,7 +1,7 @@
 import React from "react";
 import Rating from "react-rating";
-import star from './../../../Common/img/stars.png'
-import star2 from './../../../Common/img/stars2.png'
+import star from '../../../Common/Accets/stars.png'
+import star2 from '../../../Common/Accets/stars2.png'
 
 
 type GradeType = {

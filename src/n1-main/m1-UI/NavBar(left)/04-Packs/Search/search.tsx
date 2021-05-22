@@ -3,8 +3,8 @@ import './styleSearch.css'
 import {useDispatch, useSelector} from "react-redux";
 
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
-import {getPacksTC} from "../../../../m2-BLL/05-reducer-packs/reducer-packs";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {getPacksTC} from "../../../../m2-BLL/Packs-reducer";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import SuperSelectOld from "../../../Common/InputAndButton/c5-SuperSelectOld/SuperSelectOld";
 

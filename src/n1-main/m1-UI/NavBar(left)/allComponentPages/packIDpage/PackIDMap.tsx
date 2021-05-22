@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {deleteCardTC, updateCardTC} from "../../../../m2-BLL/06-reducer-cards/reducer-cards";
+import {deleteCardTC, updateCardTC} from "../../../../m2-BLL/Cards-reducer";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import css from "./PackID.module.css";
@@ -8,7 +8,7 @@ import {SuperTextArea} from "../../../Common/InputAndButton/c10-SuperTextArea/Su
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import {Grade} from "../../04-Packs/Block/Grade";
-import {AppStateType} from "../../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../../m2-BLL/00-store";
 import {CardTypeResponce} from "../../../../m3-DAL/axios";
 
 type PackIDMapPropsType = {

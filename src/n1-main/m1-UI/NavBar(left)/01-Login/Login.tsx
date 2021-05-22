@@ -2,9 +2,9 @@ import React, {useState, useEffect, useCallback} from "react";
 import "./login.css"
 
 import {useDispatch, useSelector} from "react-redux";
-import {errorAC, loginTC} from "../../../m2-BLL/02-reducer-login/reducer-login";
+import {errorAC, loginTC} from "../../../m2-BLL/Login-reducer";
 import {Redirect} from 'react-router-dom';
-import {AppStateType} from "../../../m2-BLL/00-store/store";
+import {AppStateType} from "../../../m2-BLL/00-store";
 import SuperInputText from "../../Common/InputAndButton/c1-SuperInputText/SuperInputText";
 import SuperCheckbox from "../../Common/InputAndButton/c3-SuperCheckbox/SuperCheckbox";
 import SuperButton from "../../Common/InputAndButton/c2-SuperButton/SuperButton";

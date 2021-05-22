@@ -3,7 +3,7 @@ import pencil from "../../../Common/Accets/pencil.png";
 import {TitleModal} from "../../../Common/TitleModal/TitleModal";
 import SuperInputTextOld from "../../../Common/InputAndButton/c1-SuperInputTextOld/SuperInputTextOld";
 import SuperButtonOld from "../../../Common/InputAndButton/c2-SuperBottonOld/SuperButtonOld";
-import {updateAccTC} from "../../../../m2-BLL/02-reducer-login/reducer-login";
+import {updateAccTC} from "../../../../m2-BLL/Login-reducer";
 import {useDispatch} from "react-redux";
 
 const SuperInputTextOldR = React.memo(SuperInputTextOld)

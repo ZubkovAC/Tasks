@@ -1,4 +1,4 @@
-import {AuthAPI} from "../../m3-DAL/axios"
+import {AuthAPI} from "../m3-DAL/axios"
 import {Dispatch} from "redux";
 
 const reserseInitialState = {
