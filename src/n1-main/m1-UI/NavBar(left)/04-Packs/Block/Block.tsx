@@ -51,7 +51,7 @@ export const Block = (props: BlockPropsType) => {
 
                     </div>
                     <div className={css.LinkPosiiton}>
-                        <NavLink to={RoutePath.PACKS+`/${props.id}`} className={css.Link}>
+                        <NavLink to={RoutePath.PACKS+`/${props.id}`} className={props.user_id === userID? css.Link : css.LinkDisable}>
                             cards
                         </NavLink>
                         <NavLink to={RoutePath.LEARN+`/${props.id}`} className={props.cardsCount? css.Link : css.LinkDisable}
